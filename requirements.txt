@@ -1,0 +1,7 @@
+pandas
+numpy
+kaggle
+deepeval
+openai
+google-generativeai
+python-dotenv
