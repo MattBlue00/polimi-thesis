@@ -4,8 +4,9 @@ import tempfile
 import zipfile
 import pandas as pd
 
-from experiments.utils.constants import ROWS_TO_SAMPLE, RANDOM_SEED
-from experiments.utils.setup import setup
+from scripts.utils.constants import ROWS_TO_SAMPLE, RANDOM_SEED
+from scripts.utils.path import get_directory_from_root
+from scripts.utils.setup import setup
 from scripts.utils.data_enrichment import generate_random_address
 
 print("Setting up the environment...")
@@ -58,9 +59,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
     df_sampled['brokered_by'] = df_sampled['brokered_by'].astype(int, errors='ignore')
     df_sampled['price'] = df_sampled['price'].astype(int, errors='ignore')
 
-    script_dir = os.path.dirname(os.path.abspath(__file__))  # script directory
-    root_dir = os.path.dirname(script_dir)  # root directory
-    datasets_dir = os.path.join(root_dir, 'datasets')  # datasets directory
+    datasets_dir = get_directory_from_root(__file__, 'datasets')  # datasets directory
 
     # if datasets directory does not exist, create it
     if not os.path.exists(datasets_dir):

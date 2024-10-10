@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-from experiments.utils.constants import RANDOM_SEED
+from scripts.utils.constants import RANDOM_SEED
 
 def setup():
     _setup_seed()
