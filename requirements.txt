@@ -1,7 +1,11 @@
-pandas
-numpy
+pandas~=2.2.3
+numpy~=1.26.4
 kaggle
-deepeval
-openai
+deepeval~=1.3.5
+openai~=1.51.2
 google-generativeai
-python-dotenv
+python-dotenv~=1.0.1
+protobuf~=5.28.2
+mistralai~=1.1.0
+matplotlib~=3.9.2
+seaborn~=0.13.2
