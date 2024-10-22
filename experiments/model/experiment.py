@@ -42,7 +42,6 @@ class Experiment:
       # Completeness
       Metric(
         name="Completeness",
-        weight=0.35,
         evaluation_steps=[
           "Check whether all relevant facts in 'actual output' are contained in the 'expected output'.",
           "Penalize omission of any key facts that are present in the 'expected output' but missing from the 'actual output'.",
@@ -54,7 +53,6 @@ class Experiment:
       # Accuracy
       Metric(
         name="Accuracy",
-        weight=0.40,
         evaluation_steps=[
           "Compare each element in 'actual output' to the corresponding element in 'expected output'",
           "Penalize any mismatches between 'actual output' and 'expected output' based on content accuracy",
@@ -69,7 +67,6 @@ class Experiment:
       # Consistency
       Metric(
         name="Consistency",
-        weight=0.10,
         evaluation_steps=[
           "Check whether 'actual output' is internally consistent, ensuring there are no contradictions within the output itself.",
           "Penalize any inconsistencies in logic or flow between different parts of 'actual output' (e.g., conflicting statements or transitions).",
@@ -81,7 +78,6 @@ class Experiment:
       # Relevance
       Metric(
         name="Relevance",
-        weight=0.10,
         evaluation_steps=[
           "Check if 'actual output' directly addresses the question or request made in the input prompt.",
           "Penalize any unnecessary or off-topic information in 'actual output'.",
@@ -92,7 +88,6 @@ class Experiment:
       # Fluency
       Metric(
         name="Fluency",
-        weight=0.05,
         evaluation_steps=[
           "Check if 'actual output' is grammatically correct and free of awkward phrasing.",
           "Ensure the language flows naturally and is easy to read and understand.",

@@ -1,7 +1,6 @@
 from openai import OpenAI
 from mistralai import Mistral
 import google.generativeai as genai
-from dotenv import load_dotenv
 import os
 
 class LLM:
@@ -11,8 +10,6 @@ class LLM:
     self.model = model
 
   def _get_response_from_gpt(self, prompt):
-
-    load_dotenv()
 
     client = OpenAI(
       api_key=os.getenv('OPEN_AI_KEY'),
@@ -57,8 +54,6 @@ class LLM:
     return chat_session.send_message(prompt.user_message).text
 
   def _get_response_from_mistral(self, prompt):
-
-    load_dotenv()
 
     client = Mistral(api_key=os.getenv('MISTRAL_API_KEY'))
 

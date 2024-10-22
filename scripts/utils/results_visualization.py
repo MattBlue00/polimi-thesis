@@ -10,7 +10,7 @@ def get_results(experiments):
         row = {
           'Dataset': llm_result.dataset_id,
           'Task Name': llm_result.task_name,
-          'Prompt': llm_result.prompt_id,
+          'Prompt': llm_result.id,
           'LLM': llm_result.llm_name,
           'Accuracy': llm_result.accuracy,
           'Completeness': llm_result.completeness,
