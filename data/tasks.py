@@ -47,3 +47,12 @@ tasks = [
             )
         ]
     )]
+
+def get_prompt(task_name, prompt_id):
+    for task in tasks:
+        if task.name == task_name:
+            for prompt in task.prompts:
+                if str(prompt.id) == str(prompt_id):
+                    return prompt
+
+    raise Exception("Prompt " + str(prompt_id) + " not found for task " + str(task_name))

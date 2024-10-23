@@ -15,9 +15,9 @@ datasets_dir = get_directory_from_root(__file__, os.path.join("datasets", "dirty
 
 # if datasets directory does not exist, raise an exception
 if not os.path.exists(datasets_dir):
-    raise Exception("There is no 'datasets' directory to work with. Consider running 'python -m scripts.get_clean_dataset' before running this script.")
+    raise Exception("There is no 'datasets/dirty' directory to work with. Consider running 'python -m scripts.get_dirty_datasets' before running this script.")
 
-datasets = load_dirty_datasets(datasets_dir, "df_dirty_10")
+datasets = load_dirty_datasets(datasets_dir, "df_dirty_10") # FIXME: aggiustare secondo parametro quando avremo più datasets
 
 responses_dir = get_directory_from_root(__file__, 'responses')  # responses directory
 

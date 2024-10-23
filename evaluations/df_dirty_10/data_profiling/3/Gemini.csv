@@ -1,0 +1,2 @@
+dataset_id,task_name,prompt_id,llm_name,accuracy,acc_reason,completeness,compl_reason
+df_dirty_10,data_profiling,3,Gemini,0.4,The actual output identifies data quality issues and data types but lacks detailed cardinality and value distribution analysis present in the expected output.,0.3,"Actual output includes dataset structure and data quality issues, but omits cardinality analysis, value distribution, and dependency discovery present in expected output."
