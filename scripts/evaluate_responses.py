@@ -1,3 +1,7 @@
+from scripts.utils.setup import setup
+print("Setting up the environment...")
+setup(dotenv=True)
+
 import concurrent.futures
 import os
 
@@ -8,11 +12,7 @@ from experiments.model.result import DataCleaningResult, DataProfilingResult
 from scripts.utils.metric import evaluate_metric, find_metric_by_name
 from scripts.utils.fetch_datasets import load_dirty_datasets
 from scripts.utils.path import get_directory_from_root, get_directory_from_dir_name
-from scripts.utils.setup import setup
 from data.metrics import metrics
-
-print("Setting up the environment...")
-setup(dotenv=True)
 
 responses_dir = get_directory_from_root(__file__, 'responses')  # responses directory
 
