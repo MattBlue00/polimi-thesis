@@ -1,87 +1,135 @@
+from abc import ABC, abstractmethod
+
 from openai import OpenAI
-from mistralai import Mistral
+from mistralai import Mistral as MistralClient
 import google.generativeai as genai
 import os
 
-class LLM:
+import transformers
+import torch
 
-  def __init__(self, name, model):
-    self.name = name
-    self.model = model
+from scripts.utils.path import get_directory_from_root
 
-  def _get_response_from_gpt(self, prompt):
 
-    client = OpenAI(
-      api_key=os.getenv('OPEN_AI_KEY'),
-    )
+class LLM(ABC):
 
-    messages = []
+    def __init__(self, name, model_name):
+        self.name = name
+        self.model_name = model_name
 
-    if prompt.system_message is not None:
-      messages.append({"role": "system", "content": prompt.system_message})
+    @abstractmethod
+    def get_response(self, prompt):
+        pass
 
-    messages.append({"role": "user", "content": prompt.user_message})
+class GPT(LLM):
 
-    chat_completion = client.chat.completions.create(
-      messages=messages,
-      model=self.model,
-      temperature=0,
-      max_completion_tokens=16384
-    )
+    def __init__(self, model_name):
+        super().__init__(name="GPT", model_name=model_name)
 
-    return chat_completion.choices[0].message.content
+    def get_response(self, prompt):
 
-  def _get_response_from_gemini(self, prompt):
+        client = OpenAI(
+            api_key=os.getenv('OPEN_AI_KEY'),
+        )
 
-    generation_config = {
-      "temperature": 0
-    }
+        messages = []
 
-    if prompt.system_message is not None:
-      model = genai.GenerativeModel(
-        model_name=self.model,
-        generation_config=generation_config,
-        system_instruction=prompt.system_message
-      )
-    else:
-      model = genai.GenerativeModel(
-        model_name=self.model,
-        generation_config=generation_config
-      )
+        if prompt.system_message is not None:
+            messages.append({"role": "system", "content": prompt.system_message})
 
-    chat_session = model.start_chat(history=[])
+        messages.append({"role": "user", "content": prompt.user_message})
 
-    return chat_session.send_message(prompt.user_message).text
+        chat_completion = client.chat.completions.create(
+            messages=messages,
+            model=self.model_name,
+            temperature=0,
+            max_completion_tokens=16384
+            )
 
-  def _get_response_from_mistral(self, prompt):
+        return chat_completion.choices[0].message.content
 
-    client = Mistral(api_key=os.getenv('MISTRAL_API_KEY'))
 
-    messages = []
+class Gemini(LLM):
 
-    if prompt.system_message is not None:
-      messages.append({"role": "system", "content": prompt.system_message})
+    def __init__(self, model_name):
+        super().__init__(name="Gemini", model_name=model_name)
 
-    messages.append({"role": "user", "content": prompt.user_message})
+    def get_response(self, prompt):
 
-    chat_response = client.chat.complete(
-        model=self.model,
-        messages=messages,
-        temperature=0,
-    )
+        generation_config = {
+            "temperature": 0
+        }
 
-    return chat_response.choices[0].message.content
+        if prompt.system_message is not None:
+            model = genai.GenerativeModel(
+                model_name=self.model_name,
+                generation_config=generation_config,
+                system_instruction=prompt.system_message
+            )
+        else:
+            model = genai.GenerativeModel(
+                model_name=self.model_name,
+                generation_config=generation_config
+            )
 
-  def get_response(self, prompt):
+        chat_session = model.start_chat(history=[])
 
-    if self.name == "GPT":
-      return self._get_response_from_gpt(prompt)
+        return chat_session.send_message(prompt.user_message).text
 
-    elif self.name == "Gemini":
-      return self._get_response_from_gemini(prompt)
 
-    elif self.name == "Mistral":
-      return self._get_response_from_mistral(prompt)
+class Mistral(LLM):
 
-    else:
-      raise ValueError("It was not possible to get an answer from " + self.name + " because no LLM-specific implementation of 'get_response' was provided.")
+    def __init__(self, model_name):
+        super().__init__(name="Mistral", model_name=model_name)
+
+    def get_response(self, prompt):
+
+        client = MistralClient(api_key=os.getenv('MISTRAL_API_KEY'))
+
+        messages = []
+
+        if prompt.system_message is not None:
+            messages.append({"role": "system", "content": prompt.system_message})
+
+        messages.append({"role": "user", "content": prompt.user_message})
+
+        chat_response = client.chat.complete(
+            model=self.model_name,
+            messages=messages,
+            temperature=0,
+        )
+
+        return chat_response.choices[0].message.content
+
+
+class Llama(LLM):
+
+    def __init__(self, model_name):
+        super().__init__(name="Llama", model_name=model_name)
+        model_path = get_directory_from_root(__file__, 'models')
+
+        if not os.path.exists(model_path):
+            os.makedirs(model_path)
+
+        self.pipeline = transformers.pipeline(
+            "text-generation",
+            model=self.model_name,
+            model_kwargs={"torch_dtype": torch.bfloat16},
+            device_map="auto",
+            cache_dir=model_path
+        )
+
+    def get_response(self, prompt):
+
+        messages = []
+
+        if prompt.system_message is not None:
+            messages.append({"role": "system", "content": prompt.system_message})
+
+        messages.append({"role": "user", "content": prompt.user_message})
+
+        outputs = self.pipeline(
+            messages,
+            temperature=0.0,
+        )
+        return outputs[0]["generated_text"][-1]
