@@ -1,8 +1,7 @@
 from deepeval.metrics import GEval
 from deepeval.test_case import LLMTestCaseParams
 
-from experiments.evaluators.gpt_evaluator import GPTEvaluator
-from experiments.model.llm import LLM
+from experiments.evaluators import LlamaEvaluator, GPTEvaluator, GeminiEvaluator
 
 
 class Metric:
@@ -16,18 +15,9 @@ class Metric:
 
     self.name = name
 
-    evaluator_model = GPTEvaluator(
-        model=LLM(
-            name="GPT",
-            model="gpt-4o"
-        )
-    )
-    #evaluator_model = GeminiEvaluator(
-    #    model=LLM(
-    #        name="Gemini",
-    #        model="gemini-1.5-pro"
-    #    )
-    #)
+    #evaluator_model = GPTEvaluator()
+    #evaluator_model = GeminiEvaluator()
+    evaluator_model = LlamaEvaluator()
 
     if evaluation_steps is not None and LLMTestCaseParams.ACTUAL_OUTPUT in evaluation_params:
       evaluation_steps.insert(0, "Assign a score of zero if 'actual output' contains only the original dataset (or a portion of it) and there are no changes justified by the prompt.")
