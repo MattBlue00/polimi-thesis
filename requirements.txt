@@ -5,3 +5,6 @@ deepeval
 openai
 google-generativeai
 python-dotenv
+mistralai
+matplotlib
+seaborn

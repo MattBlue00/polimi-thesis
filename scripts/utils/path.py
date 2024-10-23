@@ -6,3 +6,6 @@ def _get_root_directory(current_file_name):
 
 def get_directory_from_root(current_file_name, dir_name):
     return os.path.join(_get_root_directory(current_file_name), dir_name)  # datasets directory
+
+def get_directory_from_dir_name(current_directory, dir_name):
+    return os.path.join(current_directory, dir_name)
