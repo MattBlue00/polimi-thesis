@@ -1,3 +1,4 @@
+import subprocess
 from abc import ABC, abstractmethod
 
 from openai import OpenAI
@@ -110,6 +111,15 @@ class Llama(LLM):
 
         if not os.path.exists(model_path):
             os.makedirs(model_path)
+
+        token = os.getenv('HUGGING_FACE_TOKEN')
+        command = f"echo {token} | huggingface-cli login"
+        try:
+            print("Logging into HuggingFace...")
+            subprocess.run(command, check=True, shell=True)
+
+        except subprocess.CalledProcessError as e:
+            print(f"Error while logging into HuggingFace: {e}")
 
         self.pipeline = transformers.pipeline(
             "text-generation",
