@@ -140,4 +140,4 @@ class Llama(LLM):
             top_p=None,
             max_new_tokens=2048
         )
-        return outputs[0]["generated_text"][-1]
+        return outputs[0]["generated_text"][-1].content
