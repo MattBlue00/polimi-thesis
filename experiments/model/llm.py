@@ -134,10 +134,13 @@ class Llama(LLM):
 
         messages.append({"role": "user", "content": prompt.user_message})
 
+        print("Sto chiedendo...")
         outputs = self.pipeline(
             messages,
             temperature=None,
             top_p=None,
             max_new_tokens=2048
         )
-        return outputs[0]["generated_text"][-1].content
+        print("Risposta!")
+        print(outputs[0]["generated_text"][-1]["content"])
+        return outputs[0]["generated_text"][-1]["content"]
