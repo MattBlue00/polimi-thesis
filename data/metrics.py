@@ -31,7 +31,7 @@ metrics = {
         )
     ],
     "data_profiling": [
-# Completeness
+        # Completeness
         Metric(
             name="Completeness",
             evaluation_steps=[
