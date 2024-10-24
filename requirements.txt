@@ -8,3 +8,5 @@ python-dotenv
 mistralai
 transformers
 torch
+protobuf
+huggingface-hub

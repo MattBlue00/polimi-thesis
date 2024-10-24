@@ -1,12 +1,12 @@
+from scripts.utils.setup import setup
+print("Setting up the environment...")
+setup()
+
 import pandas as pd
 import os
 
 from scripts.utils.data_pollution import make_dirty, shuffle_dataset
 from scripts.utils.path import get_directory_from_root
-from scripts.utils.setup import setup
-
-print("Setting up the environment...")
-setup()
 
 percentages = [0.1, 0.5]
 

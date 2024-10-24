@@ -1,10 +1,11 @@
-import os
-import pandas as pd
-from scripts.utils.path import get_directory_from_root, get_directory_from_dir_name
 from scripts.utils.setup import setup
 
 print("Setting up the environment...")
 setup()
+
+import os
+import pandas as pd
+from scripts.utils.path import get_directory_from_root, get_directory_from_dir_name
 
 evaluations_dir = get_directory_from_root(__file__, 'evaluations')  # responses directory
 
