@@ -1,9 +1,9 @@
-import subprocess
 from abc import ABC, abstractmethod
 
 from openai import OpenAI
 from mistralai import Mistral as MistralClient
 import google.generativeai as genai
+from huggingface_hub import login
 import os
 
 import transformers
@@ -113,12 +113,13 @@ class Llama(LLM):
             os.makedirs(model_path)
 
         token = os.getenv('HUGGING_FACE_TOKEN')
-        command = f"echo {token} | huggingface-cli login"
+
         try:
             print("Logging into HuggingFace...")
-            subprocess.run(command, check=True, shell=True)
+            login(token=token)
+            print("Logged in successfully!")
 
-        except subprocess.CalledProcessError as e:
+        except Exception as e:
             print(f"Error while logging into HuggingFace: {e}")
 
         self.pipeline = transformers.pipeline(
