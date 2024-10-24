@@ -11,7 +11,7 @@ llms = [
         #  model_name="mistral-large-2407"
         #),
         Llama(
-            model_name="meta-llama/Meta-Llama-3.1-70B-Instruct"
+            model_name="meta-llama/Meta-Llama-3.1-8B-Instruct"
         )
     ]
 
