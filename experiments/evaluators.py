@@ -1,7 +1,6 @@
 from deepeval.models import DeepEvalBaseLLM
 
 from data.llms import get_llm
-from experiments.model.llm import LLM
 from experiments.model.prompt import Prompt
 
 
@@ -29,7 +28,7 @@ class GeminiEvaluator(DeepEvalBaseLLM):
         raise Exception("Async evaluation is not permitted here.")
 
     def get_model_name(self):
-        return "Gemini (gemini-1.5-pro) Evaluator"
+        return self.load_model().model_name
 
 
 class LlamaEvaluator(DeepEvalBaseLLM):
@@ -56,7 +55,7 @@ class LlamaEvaluator(DeepEvalBaseLLM):
         raise Exception("Async evaluation is not permitted here.")
 
     def get_model_name(self):
-        return "Llama (llama-3.2-40B) Evaluator"
+        return self.load_model().model_name
 
 class GPTEvaluator(DeepEvalBaseLLM):
     def __init__(self):
@@ -81,4 +80,4 @@ class GPTEvaluator(DeepEvalBaseLLM):
         raise Exception("Async evaluation is not permitted here.")
 
     def get_model_name(self):
-        return "GPT (gpt-4o) Evaluator"
+        return self.load_model().model_name
