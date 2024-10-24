@@ -107,10 +107,6 @@ class Llama(LLM):
 
     def __init__(self, model_name):
         super().__init__(name="Llama", model_name=model_name)
-        model_path = get_directory_from_root(__file__, 'models')
-
-        if not os.path.exists(model_path):
-            os.makedirs(model_path)
 
         token = os.getenv('HUGGING_FACE_TOKEN')
 
@@ -127,7 +123,6 @@ class Llama(LLM):
             model=self.model_name,
             model_kwargs={"torch_dtype": torch.bfloat16},
             device_map="auto",
-            cache_dir=model_path
         )
 
     def get_response(self, prompt):
