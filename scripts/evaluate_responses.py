@@ -1,15 +1,11 @@
-import concurrent.futures
 import os
 
-from deepeval.test_case import LLMTestCase
-
-from data.tasks import get_prompt
-from experiments.model.result import DataCleaningResult, DataProfilingResult
-from scripts.utils.metric import evaluate_metric, find_metric_by_name
+from data.llms import get_llm
+from data.task_evaluation_handlers.data_cleaning_evaluation_handler import DataCleaningEvaluationHandler
 from scripts.utils.fetch_datasets import load_dirty_datasets
 from scripts.utils.path import get_directory_from_root, get_directory_from_dir_name
 from scripts.utils.setup import setup
-from data.metrics import metrics
+from scripts.utils.text_filter import filter_llm_response
 
 print("Setting up the environment...")
 setup(dotenv=True)
@@ -50,6 +46,9 @@ for dataset in datasets:
 
     for task in tasks:
 
+        if task == "data_profiling": #FIXME
+            continue
+
         task_dir = get_directory_from_dir_name(dataset_dir, task)
         if not os.path.exists(task_dir):
             raise Exception(
@@ -69,82 +68,39 @@ for dataset in datasets:
             print("Evaluating prompt " + os.path.basename(prompt_dir))
 
             response_files = [r for r in os.listdir(prompt_dir) if os.path.isfile(os.path.join(prompt_dir, r))]
-            llm_test_cases = {}
-
-            prompt_eval = get_prompt(task, prompt)
-            prompt_eval.user_message = prompt_eval.user_message.replace("{{csv_text}}", dataset_obj.df.to_string())
-
-            expected_output_dir = get_directory_from_root(__file__, "expected_outputs")
-            with open(os.path.join(expected_output_dir, task + "_" + dataset_obj.dirty_percentage + ".md"), 'r') as file:
-                expected_output = file.read()
 
             for rf in response_files:
                 with open(os.path.join(prompt_dir, rf), 'r', encoding='utf-8') as file:
+                    print("Evaluating response: " + rf)
                     file_content = file.read()
-                    llm_test_cases[os.path.splitext(rf)[0]] = LLMTestCase(
-                        input=prompt_eval.user_message,
-                        actual_output=file_content,
-                        expected_output=expected_output
-                    )
+                    llm_response_filtered = filter_llm_response(file_content)
+                    cleaning_handler = DataCleaningEvaluationHandler()
+                    cleaning_handler.evaluate(llm_response_filtered, get_llm("GPT"))
+                    print(cleaning_handler.get_scores())
 
+                break #fixme
+
+            break #fixme
+
+            '''
             evaluations_dir = get_directory_from_root(__file__, 'evaluations')  # responses directory
-
+    
             # if evaluations directory does not exist, create it
             if not os.path.exists(evaluations_dir):
                 os.makedirs(evaluations_dir)
-
+    
             dataset_eval_dir = get_directory_from_dir_name(evaluations_dir, dataset)
             if not os.path.exists(dataset_eval_dir):
                 os.makedirs(dataset_eval_dir)
-
+    
             task_eval_dir = get_directory_from_dir_name(dataset_eval_dir, task)
             if not os.path.exists(task_eval_dir):
                 os.makedirs(task_eval_dir)
-
+    
             prompt_eval_dir = get_directory_from_dir_name(task_eval_dir, prompt)
             if not os.path.exists(prompt_eval_dir):
                 os.makedirs(prompt_eval_dir)
-
+    
             print("Evaluating responses...")
-
-            # è stato commentato su suggerimento dell'IDE, ma potrebbero esserci casini, questo è un reminder
-            # metric_results = []
-
-            for llm_name in llm_test_cases:
-
-                with concurrent.futures.ThreadPoolExecutor() as executor:
-
-                    futures = {}
-
-                    for metric in metrics[task]:
-                        futures[executor.submit(evaluate_metric, metric, llm_test_cases[llm_name])] = metric.name
-
-                    metric_results = [future.result() for future in concurrent.futures.as_completed(futures)]
-
-                    if task == "data_cleaning":
-                        DataCleaningResult(
-                            dataset_id = dataset,
-                            task_name = task,
-                            prompt_id = prompt,
-                            llm_name = llm_name,
-                            accuracy = find_metric_by_name(metric_results, 'Accuracy').scorer.score,
-                            acc_reason = find_metric_by_name(metric_results, 'Accuracy').scorer.reason,
-                            completeness = find_metric_by_name(metric_results, 'Completeness').scorer.score,
-                            compl_reason = find_metric_by_name(metric_results, 'Completeness').scorer.reason,
-                        ).to_csv(os.path.join(prompt_eval_dir, llm_name + ".csv"))
-
-                    elif task == "data_profiling":
-                        DataProfilingResult(
-                            dataset_id = dataset,
-                            task_name = task,
-                            prompt_id = prompt,
-                            llm_name = llm_name,
-                            accuracy=  find_metric_by_name(metric_results, 'Accuracy').scorer.score,
-                            acc_reason = find_metric_by_name(metric_results, 'Accuracy').scorer.reason,
-                            completeness = find_metric_by_name(metric_results, 'Completeness').scorer.score,
-                            compl_reason = find_metric_by_name(metric_results, 'Completeness').scorer.reason,
-                        ).to_csv(os.path.join(prompt_eval_dir, llm_name + ".csv"))
-
-                    else:
-                        raise Exception("There is no result implementation for the following task: " + task)
+            '''
 

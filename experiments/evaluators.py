@@ -1,7 +1,7 @@
 from deepeval.models import DeepEvalBaseLLM
 
 from data.llms import get_llm
-from experiments.model.llm import LLM
+from experiments.model.llm import BaseLLM
 from experiments.model.prompt import QuestionPrompt
 
 

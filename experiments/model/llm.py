@@ -11,8 +11,7 @@ import torch
 
 from scripts.utils.path import get_directory_from_root
 
-
-class LLM(ABC):
+class BaseLLM(ABC):
 
     def __init__(self, name, model_name):
         self.name = name
@@ -22,7 +21,7 @@ class LLM(ABC):
     def get_response(self, prompt):
         pass
 
-class GPT(LLM):
+class GPT(BaseLLM):
 
     def __init__(self, model_name):
         super().__init__(name="GPT", model_name=model_name)
@@ -50,7 +49,7 @@ class GPT(LLM):
         return chat_completion.choices[0].message.content
 
 
-class Gemini(LLM):
+class Gemini(BaseLLM):
 
     def __init__(self, model_name):
         super().__init__(name="Gemini", model_name=model_name)
@@ -78,7 +77,7 @@ class Gemini(LLM):
         return chat_session.send_message(prompt.user_message).text
 
 
-class Mistral(LLM):
+class Mistral(BaseLLM):
 
     def __init__(self, model_name):
         super().__init__(name="Mistral", model_name=model_name)
@@ -103,7 +102,7 @@ class Mistral(LLM):
         return chat_response.choices[0].message.content
 
 
-class Llama(LLM):
+class Llama(BaseLLM):
 
     def __init__(self, model_name):
         super().__init__(name="Llama", model_name=model_name)
