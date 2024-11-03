@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 from abc import ABC
+
 
 class BasePrompt(ABC):
 
@@ -17,3 +20,6 @@ class EvaluationPrompt(BasePrompt):
     def __init__(self, batch: str, user_message: str, system_message: str = None):
         super().__init__(user_message, system_message)
         self.batch = batch
+
+    def copy(self) -> EvaluationPrompt:
+        return EvaluationPrompt(self.batch, self.user_message, self.system_message)

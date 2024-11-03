@@ -120,12 +120,12 @@ class DataCleaningCompletenessChecklist(BaseChecklist):
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_HOUSE_SIZE,
                 batch=DataCleaningBatch.COMPLETENESS_DIRTY_SOLUTION,
-                content="'house_size' column: presence of values in a different unit of measure (some values are in square miles, while the majority is in square feet)."
+                content="'house_size' column: presence of values in a different unit of measure (some values are in square miles, while the majority is in square feet, so there are extremely small values that need to be handled)."
             ),
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_PREV_SOLD_DATE,
                 batch=DataCleaningBatch.COMPLETENESS_DIRTY_SOLUTION,
-                content="'prev_sold_date' column: presence of different date formats."
+                content="'prev_sold_date' column: presence of different date formats (which need to be standardized)."
             ),
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.COMPLETENESS_SOLUTION_NON_EXACT_DUPLICATES,
@@ -164,6 +164,7 @@ The answer must be given considering this text:
 You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 Keep in mind that handling non-exact duplicates means finding pairs of rows that are slightly different but share the same values for a meaningful subset of columns that acts as a unique column combination.
+
 Keep also in mind that you should not care about the fact that a specific column is mentioned or not: you may consider a fact as true as long as there is some piece of text that takes care about it.
                 """,
                 user_message=

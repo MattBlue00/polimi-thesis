@@ -119,10 +119,11 @@ class BaseChecklist(ABC):
             if len(enabled_items) == 0:
                 continue
             bullet_checklist = _build_bullet_list_from_items(enabled_items)
-            prompt.user_message = prompt.user_message.replace("{bullet_checklist}", bullet_checklist).replace("{llm_response_filtered}", text)
+            prompt_copy = prompt.copy()
+            prompt_copy.user_message = prompt_copy.user_message.replace("{bullet_checklist}", bullet_checklist).replace("{llm_response_filtered}", text)
             while True:
                 try:
-                    response = llm.get_response(prompt).strip()
+                    response = llm.get_response(prompt_copy).strip()
                     if not re.fullmatch(r"^[01](?: [01])*$", response):
                         raise BadResponseError(response)
                     results = [int(x) for x in response.split()]
