@@ -19,17 +19,16 @@ class BaseTaskEvaluationHandler(ABC):
                 causing_dependency = dependency.get_causing_dependency()
                 causing_dependency_items = [item for item in may_cause_dependency_items if _filter_item_name(item.get_id()) == _filter_item_name(causing_dependency.name)]
                 if not len(causing_dependency_items) == 0:
-                    print(causing_dependency_items[0].id + " may cause a dependency.")
                     if not causing_dependency_items[0].is_checked():
-                        print(causing_dependency_items[0].id + " causes a dependency.")
+                        #print(causing_dependency_items[0].id + " is not checked, so I am disabling its dependent checklist items.")
                         dependent = dependency.get_dependent()
                         dependent_str = [d.name for d in dependent]
                         dependent_items = [item for item in may_be_dependent_items if item.get_id() in dependent_str]
                         for dependent_item in dependent_items:
-                            print("Disabling " + dependent_item.get_id())
+                            #print("Disabling " + dependent_item.get_id())
                             dependent_item.disable()
 
-    def evaluate(self, text: str, llm: BaseLLM):
+    def evaluate(self, text: str, llm: BaseLLM) -> None:
         for checklist in self.checklists:
             print("Evaluating " + checklist.name)
             checklist.evaluate(text, llm)
@@ -42,6 +41,10 @@ class BaseTaskEvaluationHandler(ABC):
         for checklist in self.checklists:
             scores[checklist.name] = checklist.get_score()
         return scores
+
+    def reset(self) -> None:
+        for checklist in self.checklists:
+            checklist.reset()
 
 
 def _filter_item_name(item_name: str) -> str:

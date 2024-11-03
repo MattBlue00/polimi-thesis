@@ -69,18 +69,15 @@ for dataset in datasets:
 
             response_files = [r for r in os.listdir(prompt_dir) if os.path.isfile(os.path.join(prompt_dir, r))]
 
+            cleaning_handler = DataCleaningEvaluationHandler()
             for rf in response_files:
                 with open(os.path.join(prompt_dir, rf), 'r', encoding='utf-8') as file:
                     print("Evaluating response: " + rf)
                     file_content = file.read()
                     llm_response_filtered = filter_llm_response(file_content)
-                    cleaning_handler = DataCleaningEvaluationHandler()
                     cleaning_handler.evaluate(llm_response_filtered, get_llm("GPT"))
                     print(cleaning_handler.get_scores())
-
-                break #fixme
-
-            break #fixme
+                    cleaning_handler.reset()
 
             '''
             evaluations_dir = get_directory_from_root(__file__, 'evaluations')  # responses directory

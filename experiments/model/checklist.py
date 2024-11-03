@@ -1,4 +1,5 @@
 import re
+import time
 from abc import ABC
 from typing import List, Optional
 
@@ -83,6 +84,12 @@ class BaseChecklist(ABC):
         else:
             return checked_items_count / enabled_items_count
 
+    def reset(self) -> None:
+        self.evaluated = False
+        for item in self.items:
+            item.enabled = True
+            item.value = False
+
     def get_batches(self) -> List[str]:
         batches = []
         for item in self.items:
@@ -113,16 +120,22 @@ class BaseChecklist(ABC):
                 continue
             bullet_checklist = _build_bullet_list_from_items(enabled_items)
             prompt.user_message = prompt.user_message.replace("{bullet_checklist}", bullet_checklist).replace("{llm_response_filtered}", text)
-            response = llm.get_response(prompt).strip()
-            if not re.fullmatch(r"^[01](?: [01])*$", response):
-                raise BadResponseError(response)
-            results = [int(x) for x in response.split()]
+            while True:
+                try:
+                    response = llm.get_response(prompt).strip()
+                    if not re.fullmatch(r"^[01](?: [01])*$", response):
+                        raise BadResponseError(response)
+                    results = [int(x) for x in response.split()]
+                    if len(results) != len(enabled_items):
+                        raise BadResponseError(response)
+                    break
+                except BadResponseError as error:
+                    print(error.message)
+                    print("Retrying in 10 seconds...")
+                    time.sleep(10)
+                    print("Retrying now!")
+            print(response)
             for idx, result in enumerate(results):
                 if result == 1:
                     enabled_items[idx].check()
-            self.evaluated = True
-            # FIXME: remove the following
-            for item in self.items:
-                if item.get_batch() == prompt.batch and item.is_enabled():
-                    score = 1 if item.is_checked() else 0
-                    print(f"Item: {item.id}, Score: {score}")
+        self.evaluated = True
