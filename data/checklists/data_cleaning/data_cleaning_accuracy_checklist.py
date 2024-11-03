@@ -5,7 +5,7 @@ from experiments.model.prompt import EvaluationPrompt
 
 class DataCleaningAccuracyChecklist(BaseChecklist):
 
-    def __init__(self, accuracy_dependencies) -> None:
+    def __init__(self) -> None:
         items = [
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_BROKERED_BY,
@@ -441,4 +441,4 @@ The answer must be given considering this text:
                 """
             )
         ]
-        super().__init__("Data Cleaning - Accuracy", items, prompts, accuracy_dependencies)
+        super().__init__("Data Cleaning - Accuracy", items, prompts)

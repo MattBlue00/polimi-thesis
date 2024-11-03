@@ -9,7 +9,7 @@ from experiments.model.task_evaluation_handler import BaseTaskEvaluationHandler
 class DataCleaningEvaluationHandler(BaseTaskEvaluationHandler):
 
     def __init__(self) -> None:
-        accuracy_dependencies = [
+        dependencies = [
             DataCleaningDependency(
                 batch=DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_BROKERED_BY,
@@ -225,6 +225,6 @@ class DataCleaningEvaluationHandler(BaseTaskEvaluationHandler):
         ]
         checklists = [
             DataCleaningCompletenessChecklist(),
-            DataCleaningAccuracyChecklist(accuracy_dependencies)
+            DataCleaningAccuracyChecklist()
         ]
-        super().__init__(checklists)
+        super().__init__(checklists, dependencies)

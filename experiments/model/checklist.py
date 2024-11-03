@@ -7,7 +7,6 @@ from data.checklists.data_cleaning.item_ids import DataCleaningItemId
 from experiments.errors.bad_response_error import BadResponseError
 from experiments.errors.check_item_error import CheckItemError
 from experiments.errors.disable_item_error import DisableItemError
-from experiments.model.dependency import BaseDependency
 from experiments.model.llm import BaseLLM
 from experiments.model.prompt import EvaluationPrompt
 
@@ -64,12 +63,12 @@ def _build_bullet_list_from_items(enabled_items: List[BaseChecklistItem]) -> str
 
 class BaseChecklist(ABC):
 
-    def __init__(self, name: str, items: List[BaseChecklistItem], prompts: List[EvaluationPrompt], dependencies: Optional[List[BaseDependency]] = None) -> None:
+    def __init__(self, name: str, items: List[BaseChecklistItem], prompts: List[EvaluationPrompt] = None) -> None:
         super().__init__()
         self.name = name
         self.items = items
         self.prompts = prompts
-        self.dependencies = dependencies
+        self.evaluated = False
 
     def get_score(self) -> float:
         checked_items_count = 0
@@ -84,29 +83,34 @@ class BaseChecklist(ABC):
         else:
             return checked_items_count / enabled_items_count
 
+    def get_batches(self) -> List[str]:
+        batches = []
+        for item in self.items:
+            if item.get_batch() not in batches:
+                batches.append(item.get_batch())
+        return batches
+
+    def get_items(self) -> List[BaseChecklistItem]:
+        return self.items
+
+    def is_evaluated(self) -> bool:
+        return self.evaluated
+
+    def disable_items(self, item_ids: List[str]) -> None:
+        for item in self.items:
+            if item.get_id() in item_ids:
+                item.disable()
+
     def _build_enabled_items_list(self, prompt_batch: str) -> List[BaseChecklistItem]:
         return [item for item in self.items if prompt_batch == item.get_batch() and item.is_enabled()]
 
-    def _solve_dependencies(self, batch_str: str):
-        print("Solving dependencies...")
-        for dependency in self.dependencies:
-            if dependency.get_batch() == batch_str:
-                causing_dependency = dependency.get_causing_dependency()
-                causing_dependency_items = [item for item in self.items if item.get_id() == causing_dependency.name]
-                if not len(causing_dependency_items) == 0:
-                    if not causing_dependency_items[0].is_checked():
-                        dependent = dependency.get_dependent()
-                        dependent_str = [d.name for d in dependent]
-                        dependent_items = [item for item in self.items if item.get_id() in dependent_str]
-                        for dependent_item in dependent_items:
-                            dependent_item.disable()
 
     def evaluate(self, text: str, llm: BaseLLM):
         for prompt in self.prompts:
             print("Evaluating batch: " + prompt.batch)
-            if self.dependencies is not None:
-                self._solve_dependencies(prompt.batch)
             enabled_items = self._build_enabled_items_list(prompt.batch)
+            if len(enabled_items) == 0:
+                continue
             bullet_checklist = _build_bullet_list_from_items(enabled_items)
             prompt.user_message = prompt.user_message.replace("{bullet_checklist}", bullet_checklist).replace("{llm_response_filtered}", text)
             response = llm.get_response(prompt).strip()
@@ -116,5 +120,9 @@ class BaseChecklist(ABC):
             for idx, result in enumerate(results):
                 if result == 1:
                     enabled_items[idx].check()
-            for enabled_item in enabled_items:
-                print(f"Item: {enabled_item.id}, Score: {enabled_item.is_checked()}")
+            self.evaluated = True
+            # FIXME: remove the following
+            for item in self.items:
+                if item.get_batch() == prompt.batch and item.is_enabled():
+                    score = 1 if item.is_checked() else 0
+                    print(f"Item: {item.id}, Score: {score}")
