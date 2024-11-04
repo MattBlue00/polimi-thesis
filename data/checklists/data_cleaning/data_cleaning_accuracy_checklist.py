@@ -336,7 +336,7 @@ Keep also in mind that if there are actions that are computed on the whole datas
 Consider if the piece of text provides a VALID solution for the following problems:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. Answer with only a list of ordered, whitespace-separated numbers. 
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -363,7 +363,7 @@ Keep also in mind that, for categorical columns, solutions that are different fr
 Consider if the piece of text provides a VALID solution for the following problems:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. Answer with only a list of ordered, whitespace-separated numbers. 
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -385,7 +385,7 @@ Keep also in mind that if there are actions that convert the data type of a colu
 Consider if the piece of text provides a solution that encompasses all the three types of missing values for the following columns:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. Answer with only a list of ordered, whitespace-separated numbers. 
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -409,7 +409,7 @@ Keep also in mind that solutions that are different from the ones that will be p
 Consider if the piece of text provides at least one of the following solutions for the problem of the presence of missing values for the:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. Answer with only a list of ordered, whitespace-separated numbers. 
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -435,7 +435,7 @@ Keep also in mind that if a solution replaces some values because they are not i
 Consider if the piece of text provides at least one of the following solutions for the following problems:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. Answer with only a list of ordered, whitespace-separated numbers. 
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}

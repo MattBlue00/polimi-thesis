@@ -1,6 +1,7 @@
 import subprocess
 from abc import ABC, abstractmethod
 
+import anthropic
 from openai import OpenAI
 from mistralai import Mistral as MistralClient
 import google.generativeai as genai
@@ -18,7 +19,7 @@ class BaseLLM(ABC):
         self.model_name = model_name
 
     @abstractmethod
-    def get_response(self, prompt):
+    def get_response(self, prompt) -> str:
         pass
 
 class GPT(BaseLLM):
@@ -26,7 +27,7 @@ class GPT(BaseLLM):
     def __init__(self, model_name):
         super().__init__(name="GPT", model_name=model_name)
 
-    def get_response(self, prompt):
+    def get_response(self, prompt) -> str:
 
         client = OpenAI(
             api_key=os.getenv('OPEN_AI_KEY'),
@@ -54,7 +55,7 @@ class Gemini(BaseLLM):
     def __init__(self, model_name):
         super().__init__(name="Gemini", model_name=model_name)
 
-    def get_response(self, prompt):
+    def get_response(self, prompt) -> str:
 
         generation_config = {
             "temperature": 0
@@ -82,7 +83,7 @@ class Mistral(BaseLLM):
     def __init__(self, model_name):
         super().__init__(name="Mistral", model_name=model_name)
 
-    def get_response(self, prompt):
+    def get_response(self, prompt) -> str:
 
         client = MistralClient(api_key=os.getenv('MISTRAL_API_KEY'))
 
@@ -128,7 +129,7 @@ class Llama(BaseLLM):
             cache_dir=model_path
         )
 
-    def get_response(self, prompt):
+    def get_response(self, prompt) -> str:
 
         messages = []
 
@@ -142,3 +143,32 @@ class Llama(BaseLLM):
             temperature=0.0,
         )
         return outputs[0]["generated_text"][-1]
+
+
+class Claude(BaseLLM):
+
+    def __init__(self, model_name: str) -> None:
+        super().__init__(name="Claude", model_name=model_name)
+
+    def get_response(self, prompt) -> str:
+        client = anthropic.Anthropic(
+            api_key=os.getenv('CLAUDE_API_KEY'),
+        )
+        message = client.messages.create(
+            model=self.model_name,
+            max_tokens=8192,
+            temperature=0,
+            system=prompt.system_message,
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": prompt.user_message
+                        }
+                    ]
+                }
+            ]
+        )
+        return message.content[0].text

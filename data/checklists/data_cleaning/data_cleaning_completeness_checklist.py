@@ -153,7 +153,7 @@ Keep also in mind that if there are actions that are performed on the whole data
 Consider if the piece of text I will give you provides a solution for the following problems:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. Answer with only a list of ordered, whitespace-separated numbers. 
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -174,7 +174,7 @@ Keep also in mind that you should not care about the fact that a specific column
 Consider if the piece of text I will give you provides a solution for the following problems:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. Answer with only a list of ordered, whitespace-separated numbers. 
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
