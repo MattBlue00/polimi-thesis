@@ -142,7 +142,9 @@ You are working on a dataset with 12 columns: brokered_by, status, price, bed, b
 
 Keep in mind that there are only three types of missing values: '-', '' and NaN. Any other character or combination of characters must not be considered a missing value (for example, negative values are NOT to be considered missing values).
 
-Keep also in mind that you should not care about the fact that a specific column is mentioned or not while handling missing values: you may consider a fact as true as long as there is some piece of text that implicitly takes care about them, and you may consider a fact as true even if only ONE kind of missing value is handled.
+Keep also in mind that you should not care about the fact that a specific column is mentioned or not while handling missing values: you may consider a fact as true as long as there is some piece of text that implicitly takes care about them.
+
+Keep also in mind you that you must consider a fact as true even if only ONE kind of missing value is handled (i.e. if there is an EXPLICIT solution for handling NaN values, but not other types of missing values, the solution is still valid and must be evaluated as true).
 
 Keep also in mind that if there are actions that are performed on the whole dataset and that address AT LEAST one kind of missing value, you must evaluate each statement with a score of 1. Examples of such table-wise actions are replacements of '-' and/or '' with NaN performed on an entire dataframe in a single line of code.
                 """,
