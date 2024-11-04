@@ -95,7 +95,7 @@ class DataCleaningAccuracyChecklist(BaseChecklist):
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_ACRE_LOT,
                 batch=DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                content="'acre_lot' column: the presence of negative values (which are nonsensical)."
+                content="'acre_lot' column: the presence of negative values (which need to be replaced)."
             ),
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_STREET,
@@ -280,7 +280,7 @@ class DataCleaningAccuracyChecklist(BaseChecklist):
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_ACRE_LOT,
                 batch=DataCleaningBatch.ACCURACY_DIRTY_OPTIMAL,
-                content="'acre_lot' column: the presence of negative values (which are nonsensical). The list of solutions is: \"Replace negative values with the mean/mode/median value\", \"Replace negative values with NaN\"."
+                content="'acre_lot' column: the presence of negative values (which need to be replaced). The list of solutions is: \"Replace negative values with the mean/mode/median value\", \"Replace negative values with NaN\"."
             ),
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_STREET,

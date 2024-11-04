@@ -95,7 +95,7 @@ class DataCleaningCompletenessChecklist(BaseChecklist):
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_ACRE_LOT,
                 batch=DataCleaningBatch.COMPLETENESS_DIRTY_SOLUTION,
-                content="'acre_lot' column: the presence of negative values (which are nonsensical)."
+                content="'acre_lot' column: the presence of negative values (which need to be replaced)."
             ),
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_STREET,
@@ -120,7 +120,7 @@ class DataCleaningCompletenessChecklist(BaseChecklist):
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_HOUSE_SIZE,
                 batch=DataCleaningBatch.COMPLETENESS_DIRTY_SOLUTION,
-                content="'house_size' column: presence of values in a different unit of measure (some values are in square miles, while the majority is in square feet, so there are extremely small values that need to be handled)."
+                content="'house_size' column: presence of values in a different unit of measure (some values are in square miles, while the majority is in square feet, so there are extremely small values that need to be replaced)."
             ),
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_PREV_SOLD_DATE,
