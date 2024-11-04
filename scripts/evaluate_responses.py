@@ -65,6 +65,7 @@ for dataset in datasets:
                 raise Exception(
                     "There is no prompt directory to work with. Consider running 'python -m scripts.get_responses_from_llms' before running this script.")
 
+            print("-" * 50)
             print("Evaluating prompt " + os.path.basename(prompt_dir))
 
             response_files = [r for r in os.listdir(prompt_dir) if os.path.isfile(os.path.join(prompt_dir, r))]
