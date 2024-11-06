@@ -1,7 +1,7 @@
 import re
 import time
 from abc import ABC
-from typing import List, Optional
+from typing import List
 
 from data.batches import DataCleaningBatch, DataProfilingBatch
 from data.checklists.data_cleaning.item_ids import DataCleaningItemId
@@ -14,13 +14,12 @@ from experiments.model.prompt import EvaluationPrompt
 
 class BaseChecklistItem(ABC):
 
-    def __init__(self, item_id: str, batch: str, content: str, dependencies: Optional[List[str]] = None) -> None:
+    def __init__(self, item_id: str, batch: str, content: str) -> None:
         self.id = item_id
         self.batch = batch
         self.content = content
         self.value = False
         self.enabled = True
-        self.dependencies = dependencies
 
     def check(self) -> None:
         if self.is_enabled():
@@ -54,14 +53,14 @@ class BaseChecklistItem(ABC):
 
 class DataCleaningChecklistItem(BaseChecklistItem):
 
-    def __init__(self, item: DataCleaningItemId, batch: DataCleaningBatch, content: str, dependencies: Optional[List[str]] = None) -> None:
-        super().__init__(item.name, batch.name, content, dependencies)
+    def __init__(self, item: DataCleaningItemId, batch: DataCleaningBatch, content: str) -> None:
+        super().__init__(item.name, batch.name, content)
         self.item = item
 
 class DataProfilingChecklistItem(BaseChecklistItem):
 
-    def __init__(self, item: DataProfilingItemId, batch: DataProfilingBatch, content: str, dependencies: Optional[List[str]] = None) -> None:
-        super().__init__(item.name, batch.name, content, dependencies)
+    def __init__(self, item: DataProfilingItemId, batch: DataProfilingBatch, content: str) -> None:
+        super().__init__(item.name, batch.name, content)
         self.item = item
 
 

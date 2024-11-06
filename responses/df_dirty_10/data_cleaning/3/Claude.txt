@@ -1,0 +1,83 @@
+I'll help you identify and clean various data quality issues in this dataset. Here are the main issues and recommended cleaning steps:
+
+1. Status Column Standardization:
+- Convert 's' and 'f' to 'sold' and 'for_sale' respectively
+- Remove any '-' values
+- Standardize case
+
+2. Price Column:
+- Remove '$' symbols
+- Convert string prices to numeric
+- Remove '-' values
+- Handle NaN values
+
+3. Bed/Bath Columns:
+- Replace 9999 values with NaN (likely placeholder/error values)
+- Convert to numeric
+- Replace '-' with NaN
+- Handle negative values (invalid)
+
+4. Acre_lot Column:
+- Remove negative values (invalid)
+- Convert to numeric
+- Handle '-' values
+
+5. Street Column:
+- Replace '-' and 'NaN' with None/NaN
+- Standardize format
+
+6. City/State Columns:
+- Replace '-' with NaN
+- Standardize state abbreviations (e.g., 'TX' to 'Texas')
+- Fill missing values where possible
+
+7. Zip_code Column:
+- Standardize format (some are missing leading zeros)
+- Remove invalid values
+
+8. House_size Column:
+- Convert scientific notation to regular numbers
+- Remove '-' values
+- Convert to numeric
+
+9. Prev_sold_date Column:
+- Standardize date format (some are in MM/DD/YY format)
+- Convert all to datetime
+- Handle invalid dates
+
+10. Brokered_by Column:
+- Standardize format (some are names, some are numbers)
+- Handle missing values
+
+Here's a Python code example for some of these cleaning steps:
+
+```python
+import pandas as pd
+import numpy as np
+
+# Status standardization
+df['status'] = df['status'].replace({'s': 'sold', 'f': 'for_sale', '-': np.nan})
+
+# Price cleaning
+df['price'] = df['price'].replace('[\$,]', '', regex=True)
+df['price'] = pd.to_numeric(df['price'].replace('-', np.nan))
+
+# Bed/Bath cleaning
+df['bed'] = pd.to_numeric(df['bed'].replace([9999, '-'], np.nan))
+df['bath'] = pd.to_numeric(df['bath'].replace(['-'], np.nan))
+
+# Acre_lot cleaning
+df['acre_lot'] = pd.to_numeric(df['acre_lot'].replace('-', np.nan))
+df.loc[df['acre_lot'] < 0, 'acre_lot'] = np.nan
+
+# Street cleaning
+df['street'] = df['street'].replace(['-', 'NaN'], np.nan)
+
+# Date standardization
+df['prev_sold_date'] = pd.to_datetime(df['prev_sold_date'], format='mixed')
+
+# House_size cleaning
+df['house_size'] = pd.to_numeric(df['house_size'].replace('-', np.nan))
+```
+
+Would you like me to provide more specific cleaning steps for any particular column or issue?

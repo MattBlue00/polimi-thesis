@@ -154,11 +154,14 @@ class Claude(BaseLLM):
         client = anthropic.Anthropic(
             api_key=os.getenv('CLAUDE_API_KEY'),
         )
+        system_message = ""
+        if prompt.system_message is not None:
+            system_message = prompt.system_message
         message = client.messages.create(
             model=self.model_name,
             max_tokens=8192,
             temperature=0,
-            system=prompt.system_message,
+            system=system_message,
             messages=[
                 {
                     "role": "user",

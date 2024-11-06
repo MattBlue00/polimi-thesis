@@ -54,7 +54,7 @@ for dataset in datasets:
 
     for task in tasks:
 
-        if task == "data_cleaning": #FIXME
+        if task == "data_profiling": #FIXME
             continue
 
         task_dir = get_directory_from_dir_name(dataset_dir, task)
@@ -82,7 +82,7 @@ for dataset in datasets:
 
             scores[os.path.basename(dataset_dir)][os.path.basename(task_dir)][os.path.basename(prompt_dir)] = {}
 
-            handler = DataProfilingEvaluationHandler()
+            handler = DataCleaningEvaluationHandler()
 
             for rf in response_files:
 
@@ -94,7 +94,7 @@ for dataset in datasets:
 
                     temp_scores = []
                     for _ in range(NUM_SUCCESSFUL_TRIES):
-                        handler.evaluate(llm_response_filtered, get_llm("GPT"))
+                        handler.evaluate(llm_response_filtered, get_llm("Claude"))
                         temp_scores.append(handler.get_scores())
                         handler.reset()
 
