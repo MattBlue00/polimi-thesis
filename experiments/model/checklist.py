@@ -57,6 +57,12 @@ class DataCleaningChecklistItem(BaseChecklistItem):
         super().__init__(item.name, batch, content, dependencies)
         self.item = item
 
+class DataProfilingChecklistItem(BaseChecklistItem):
+
+    def __init__(self, item: DataProfilingItemId, batch: DataProfilingBatch, content: str, dependencies: Optional[List[str]] = None) -> None:
+        super().__init__(item.name, batch, content, dependencies)
+        self.item = item
+
 
 def _build_bullet_list_from_items(enabled_items: List[BaseChecklistItem]) -> str:
     return "\n".join(f"- {item.content}" for item in enabled_items).strip()
