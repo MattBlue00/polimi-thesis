@@ -147,6 +147,8 @@ Keep also in mind that you should not care about the fact that a specific column
 Keep also in mind you that you must consider a fact as true even if only ONE kind of missing value is handled (i.e. if there is an EXPLICIT solution for handling NaN values, but not other types of missing values, the solution is still valid and must be evaluated as true).
 
 Keep also in mind that if there are actions that are performed on the whole dataset and that address AT LEAST one kind of missing value, you must evaluate each statement with a score of 1. Examples of such table-wise actions are replacements of '-' and/or '' with NaN performed on an entire dataframe in a single line of code.
+
+Keep also in mind that it might happen that some actions will be performed on a subset of columns (for example, "for the columns 'street', 'city', 'state', 'zip_code', consider filling missing values with placeholders or leaving as NaN"). Focus on the list of columns and evaluate their respective statements (do not miss or skip any mentioned column).
                 """,
                 user_message=
                 """
