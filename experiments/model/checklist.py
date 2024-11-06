@@ -3,8 +3,9 @@ import time
 from abc import ABC
 from typing import List, Optional
 
-from data.batches import DataCleaningBatch
+from data.batches import DataCleaningBatch, DataProfilingBatch
 from data.checklists.data_cleaning.item_ids import DataCleaningItemId
+from data.checklists.data_profiling.item_ids import DataProfilingItemId
 from experiments.errors.bad_response_error import BadResponseError
 from experiments.errors.check_item_error import CheckItemError
 from experiments.errors.disable_item_error import DisableItemError
@@ -13,7 +14,7 @@ from experiments.model.prompt import EvaluationPrompt
 
 class BaseChecklistItem(ABC):
 
-    def __init__(self, item_id: str, batch: DataCleaningBatch, content: str, dependencies: Optional[List[str]] = None) -> None:
+    def __init__(self, item_id: str, batch: str, content: str, dependencies: Optional[List[str]] = None) -> None:
         self.id = item_id
         self.batch = batch
         self.content = content
@@ -49,18 +50,18 @@ class BaseChecklistItem(ABC):
         return self.value
 
     def get_batch(self) -> str:
-        return self.batch.name
+        return self.batch
 
 class DataCleaningChecklistItem(BaseChecklistItem):
 
     def __init__(self, item: DataCleaningItemId, batch: DataCleaningBatch, content: str, dependencies: Optional[List[str]] = None) -> None:
-        super().__init__(item.name, batch, content, dependencies)
+        super().__init__(item.name, batch.name, content, dependencies)
         self.item = item
 
 class DataProfilingChecklistItem(BaseChecklistItem):
 
     def __init__(self, item: DataProfilingItemId, batch: DataProfilingBatch, content: str, dependencies: Optional[List[str]] = None) -> None:
-        super().__init__(item.name, batch, content, dependencies)
+        super().__init__(item.name, batch.name, content, dependencies)
         self.item = item
 
 

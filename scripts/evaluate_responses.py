@@ -3,6 +3,7 @@ import pprint
 
 from data.llms import get_llm
 from data.task_evaluation_handlers.data_cleaning_evaluation_handler import DataCleaningEvaluationHandler
+from data.task_evaluation_handlers.data_profiling_evaluation_handler import DataProfilingEvaluationHandler
 from scripts.utils.constants import NUM_SUCCESSFUL_TRIES
 from scripts.utils.fetch_datasets import load_dirty_datasets
 from scripts.utils.path import get_directory_from_root, get_directory_from_dir_name
@@ -53,7 +54,7 @@ for dataset in datasets:
 
     for task in tasks:
 
-        if task == "data_profiling": #FIXME
+        if task == "data_cleaning": #FIXME
             continue
 
         task_dir = get_directory_from_dir_name(dataset_dir, task)
@@ -81,7 +82,7 @@ for dataset in datasets:
 
             scores[os.path.basename(dataset_dir)][os.path.basename(task_dir)][os.path.basename(prompt_dir)] = {}
 
-            cleaning_handler = DataCleaningEvaluationHandler()
+            handler = DataProfilingEvaluationHandler()
 
             for rf in response_files:
 
@@ -93,9 +94,9 @@ for dataset in datasets:
 
                     temp_scores = []
                     for _ in range(NUM_SUCCESSFUL_TRIES):
-                        cleaning_handler.evaluate(llm_response_filtered, get_llm("GPT"))
-                        temp_scores.append(cleaning_handler.get_scores())
-                        cleaning_handler.reset()
+                        handler.evaluate(llm_response_filtered, get_llm("GPT"))
+                        temp_scores.append(handler.get_scores())
+                        handler.reset()
 
                     scores[os.path.basename(dataset_dir)][os.path.basename(task_dir)][os.path.basename(prompt_dir)][os.path.basename(rf)] = get_mean_scores(temp_scores)
 
