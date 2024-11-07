@@ -12,7 +12,7 @@ class BaseDependency(ABC):
         pass
 
     @abstractmethod
-    def get_batch(self) -> str:
+    def get_batches(self) -> List[str]:
         raise GenericError("You should not be here.")
 
     @abstractmethod
@@ -26,14 +26,14 @@ class BaseDependency(ABC):
 
 class DataCleaningDependency(BaseDependency):
 
-    def __init__(self, batch: DataCleaningBatch, causing_dependency: DataCleaningItemId, dependent: List[DataCleaningItemId]) -> None:
+    def __init__(self, batches: List[DataCleaningBatch], causing_dependency: DataCleaningItemId, dependent: List[DataCleaningItemId]) -> None:
         super().__init__()
-        self.batch = batch
+        self.batches = batches
         self.causing_dependency = causing_dependency
         self.dependent = dependent
 
-    def get_batch(self) -> str:
-        return self.batch.name
+    def get_batches(self) -> List[str]:
+        return [batch.name for batch in self.batches]
 
     def get_causing_dependency(self) -> DataCleaningItemId:
         return self.causing_dependency

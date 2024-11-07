@@ -1,6 +1,7 @@
 from data.batches import DataCleaningBatch
 from data.checklists.data_cleaning.item_ids import DataCleaningItemId
-from experiments.model.checklist import BaseChecklist, DataCleaningChecklistItem
+from experiments.model.checklist import BaseChecklist
+from experiments.model.checklist_item import DataCleaningChecklistItem
 from experiments.model.prompt import EvaluationPrompt
 
 class DataCleaningAccuracyChecklist(BaseChecklist):

@@ -1,6 +1,7 @@
 from data.batches import DataProfilingBatch
 from data.checklists.data_profiling.item_ids import DataProfilingItemId
-from experiments.model.checklist import BaseChecklist, DataProfilingChecklistItem
+from experiments.model.checklist import BaseChecklist
+from experiments.model.checklist_item import DataProfilingChecklistItem
 from experiments.model.prompt import EvaluationPrompt
 
 class DataProfilingCompletenessChecklist(BaseChecklist):

@@ -15,7 +15,7 @@ class BaseTaskEvaluationHandler(ABC):
     def _solve_dependencies(self, batches: List[str], may_cause_dependency_items: List[BaseChecklistItem], may_be_dependent_items: List[BaseChecklistItem]) -> None:
         print("Solving dependencies...")
         for dependency in self.dependencies:
-            if dependency.get_batch() in batches:
+            if set(dependency.get_batches()).intersection(set(batches)):
                 causing_dependency = dependency.get_causing_dependency()
                 causing_dependency_items = [item for item in may_cause_dependency_items if _filter_item_name(item.get_id()) == _filter_item_name(causing_dependency.name)]
                 if not len(causing_dependency_items) == 0:
