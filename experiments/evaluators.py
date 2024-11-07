@@ -1,7 +1,7 @@
 from deepeval.models import DeepEvalBaseLLM
 
 from data.llms import get_llm
-from experiments.model.prompt import Prompt
+from experiments.model.prompt import QuestionPrompt
 
 
 class GeminiEvaluator(DeepEvalBaseLLM):
@@ -16,8 +16,8 @@ class GeminiEvaluator(DeepEvalBaseLLM):
     def generate(self, prompt: str) -> str:
         chat_model = self.load_model()
         model_response = chat_model.get_response(
-            Prompt(
-                prompt_id="evaluator",
+            QuestionPrompt(
+                prompt_id=0,
                 user_message=prompt
             )
         )
@@ -28,7 +28,7 @@ class GeminiEvaluator(DeepEvalBaseLLM):
         raise Exception("Async evaluation is not permitted here.")
 
     def get_model_name(self):
-        return self.load_model().model_name
+        return "Gemini (gemini-1.5-pro) Evaluator"
 
 
 class LlamaEvaluator(DeepEvalBaseLLM):
@@ -43,8 +43,8 @@ class LlamaEvaluator(DeepEvalBaseLLM):
     def generate(self, prompt: str) -> str:
         chat_model = self.load_model()
         model_response = chat_model.get_response(
-            Prompt(
-                prompt_id="evaluator",
+            QuestionPrompt(
+                prompt_id=0,
                 user_message=prompt
             )
         )
@@ -55,7 +55,7 @@ class LlamaEvaluator(DeepEvalBaseLLM):
         raise Exception("Async evaluation is not permitted here.")
 
     def get_model_name(self):
-        return self.load_model().model_name
+        return "Llama (llama-3.2-40B) Evaluator"
 
 class GPTEvaluator(DeepEvalBaseLLM):
     def __init__(self):
@@ -68,8 +68,8 @@ class GPTEvaluator(DeepEvalBaseLLM):
     def generate(self, prompt: str) -> str:
         chat_model = self.load_model()
         model_response = chat_model.get_response(
-            Prompt(
-                prompt_id="evaluator",
+            QuestionPrompt(
+                prompt_id=0,
                 user_message=prompt
             )
         )
@@ -80,4 +80,4 @@ class GPTEvaluator(DeepEvalBaseLLM):
         raise Exception("Async evaluation is not permitted here.")
 
     def get_model_name(self):
-        return self.load_model().model_name
+        return "GPT (gpt-4o) Evaluator"

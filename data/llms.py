@@ -1,4 +1,4 @@
-from experiments.model.llm import GPT, Gemini, Mistral, Llama
+from experiments.model.llm import GPT, Gemini, Mistral, Llama, Claude
 
 llms = [
         GPT(
@@ -7,12 +7,15 @@ llms = [
         Gemini(
             model_name="gemini-1.5-pro"
         ),
+        Claude(
+            model_name="claude-3-5-sonnet-latest"
+        )
         #Mistral(
         #  model_name="mistral-large-2407"
         #),
-        Llama(
-            model_name="meta-llama/Meta-Llama-3.1-8B-Instruct"
-        )
+        #Llama(
+        #    model_name="meta-llama/Meta-Llama-3.1-70B-Instruct"
+        #)
     ]
 
 def get_llm(llm_name):
