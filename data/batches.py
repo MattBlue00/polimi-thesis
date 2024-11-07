@@ -9,6 +9,7 @@ class DataCleaningBatch(Enum):
     ACCURACY_DIRTY_SOLUTION = auto()
     ACCURACY_DIRTY_OPTIMAL = auto()
     CONSEQUENTIALITY_MISSING_VALUES_SOLUTION = auto()
+    CONSEQUENTIALITY_MISSING_VALUES_ALL_KINDS = auto()
     CONSEQUENTIALITY_DIRTY_SOLUTION = auto()
 
 class DataProfilingBatch(Enum):
