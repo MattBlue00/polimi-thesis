@@ -1,7 +1,6 @@
 from deepeval.models import DeepEvalBaseLLM
 
 from data.llms import get_llm
-from experiments.model.llm import BaseLLM
 from experiments.model.prompt import QuestionPrompt
 
 
@@ -18,7 +17,7 @@ class GeminiEvaluator(DeepEvalBaseLLM):
         chat_model = self.load_model()
         model_response = chat_model.get_response(
             QuestionPrompt(
-                prompt_id="evaluator",
+                prompt_id=0,
                 user_message=prompt
             )
         )
@@ -45,7 +44,7 @@ class LlamaEvaluator(DeepEvalBaseLLM):
         chat_model = self.load_model()
         model_response = chat_model.get_response(
             QuestionPrompt(
-                prompt_id="evaluator",
+                prompt_id=0,
                 user_message=prompt
             )
         )
@@ -70,7 +69,7 @@ class GPTEvaluator(DeepEvalBaseLLM):
         chat_model = self.load_model()
         model_response = chat_model.get_response(
             QuestionPrompt(
-                prompt_id="evaluator",
+                prompt_id=0,
                 user_message=prompt
             )
         )
