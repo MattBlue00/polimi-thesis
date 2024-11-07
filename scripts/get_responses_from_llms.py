@@ -1,3 +1,8 @@
+from scripts.utils.setup import setup
+
+print("Setting up the environment...")
+setup(dotenv=True)
+
 import concurrent.futures
 import os
 
@@ -5,10 +10,6 @@ from data.llms import llms
 from data.tasks import tasks
 from scripts.utils.fetch_datasets import load_dirty_datasets
 from scripts.utils.path import get_directory_from_root, get_directory_from_dir_name
-from scripts.utils.setup import setup
-
-print("Setting up the environment...")
-setup(dotenv=True)
 
 # Load the datasets
 datasets_dir = get_directory_from_root(__file__, os.path.join("datasets", "dirty"))  # datasets directory

@@ -1,3 +1,7 @@
+from scripts.utils.setup import setup
+print("Setting up the environment...")
+setup()
+
 import os
 import subprocess
 import tempfile
@@ -6,11 +10,7 @@ import pandas as pd
 
 from scripts.utils.constants import ROWS_TO_SAMPLE, RANDOM_SEED
 from scripts.utils.path import get_directory_from_root
-from scripts.utils.setup import setup
 from scripts.utils.data_enrichment import generate_random_address
-
-print("Setting up the environment...")
-setup()
 
 # Kaggle API command
 command = "kaggle datasets download -d ahmedshahriarsakib/usa-real-estate-dataset"
