@@ -3,58 +3,84 @@ from typing import List
 
 from data.batches import DataCleaningBatch
 from data.checklists.data_cleaning.item_ids import DataCleaningItemId
-from experiments.errors.generic_error import GenericError
 from experiments.errors.solve_dependency_error import SolveDependencyError
+from experiments.model.checklist_item import BaseChecklistItem
 
 
 class BaseDependency(ABC):
 
-    def __init__(self):
+    def __init__(self, batches: List[str], causing_dependency_ids: List[str], dependent_ids: List[str]):
+        self.batches = batches
+        self.causing_dependency_ids = causing_dependency_ids
+        self.dependent_ids = dependent_ids
+        self.solved = False
         pass
 
-    @abstractmethod
     def get_batches(self) -> List[str]:
-        raise GenericError("You should not be here.")
+        return self.batches
+
+    def get_causing_dependency_ids(self) -> List[str]:
+        return self.causing_dependency_ids
+
+    def get_dependent_ids(self) -> List[str]:
+        return self.dependent_ids
+
+    def is_solved(self) -> bool:
+        return self.solved
 
     @abstractmethod
-    def get_causing_dependency(self):
-        raise GenericError("You should not be here.")
+    def solve(self, causing_dependency_items: List[BaseChecklistItem], dependent_items: List[BaseChecklistItem]):
+        self.solved = True
 
-    @abstractmethod
-    def get_dependent(self):
-        raise GenericError("You should not be here.")
+    def reset(self):
+        self.solved = False
 
 
 class DataCleaningDependency(BaseDependency):
 
-    def __init__(self, batches: List[DataCleaningBatch], causing_dependency: DataCleaningItemId, dependent: List[DataCleaningItemId]) -> None:
-        super().__init__()
-        self.batches = batches
-        self.causing_dependency = causing_dependency
-        self.dependent = dependent
-        self.solved = False
+    def __init__(self, batches: List[DataCleaningBatch], causing_dependency: DataCleaningItemId, dependents: List[DataCleaningItemId]) -> None:
+        batches_str = [batch.name for batch in batches]
+        causing_dependency_ids = [causing_dependency.name]
+        dependent_ids = [dependent.name for dependent in dependents]
+        super().__init__(batches_str, causing_dependency_ids, dependent_ids)
 
-    def get_batches(self) -> List[str]:
-        return [batch.name for batch in self.batches]
-
-    def get_causing_dependency(self) -> DataCleaningItemId:
-        return self.causing_dependency
-
-    def get_dependent(self) -> List[DataCleaningItemId]:
-        return self.dependent
-
-    def is_solved(self):
-        return self.solved
-
-    def solve(self):
-        if not self.solved:
-            self.solved = True
+    def solve(self, causing_dependency_items: List[BaseChecklistItem], dependent_items: List[BaseChecklistItem]) -> None:
+        if not self.is_solved():
+            causing_dependency = True
+            for causing_dependency_item in causing_dependency_items:
+                causing_dependency = causing_dependency and (not causing_dependency_item.is_checked())
+            if causing_dependency:
+                for dependent_item in dependent_items:
+                    dependent_item.disable()
         else:
             raise SolveDependencyError(
-                causing_dependency=self.causing_dependency.name,
-                dependent=[dependent.name for dependent in self.dependent],
+                causing_dependency_ids=self.causing_dependency_ids,
+                dependent_ids=self.dependent_ids,
                 reason="you already solved this dependency"
             )
+        super().solve(causing_dependency_items, dependent_items)
 
-    def reset(self):
-        self.solved = False
+class DataCleaningSpecificityDependency(BaseDependency):
+
+    def __init__(self, batches: List[DataCleaningBatch], causing_dependencies: List[DataCleaningItemId], dependent: DataCleaningItemId) -> None:
+        batches_str = [batch.name for batch in batches]
+        causing_dependency_ids = [causing_dependency.name for causing_dependency in causing_dependencies]
+        dependent_ids = [dependent.name]
+        super().__init__(batches_str, causing_dependency_ids, dependent_ids)
+
+    def solve(self, causing_dependency_items: List[BaseChecklistItem], dependent_items: List[BaseChecklistItem]) -> None:
+        if not self.is_solved():
+            should_disable = True
+            for causing_dependency_item in causing_dependency_items:
+                if causing_dependency_item.is_checked():
+                    should_disable = False
+            if should_disable:
+                for dependent_item in dependent_items:
+                    dependent_item.disable()
+        else:
+            raise SolveDependencyError(
+                causing_dependency_ids=self.causing_dependency_ids,
+                dependent_ids=self.dependent_ids,
+                reason="you already solved this dependency"
+            )
+        super().solve(causing_dependency_items, dependent_items)

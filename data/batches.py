@@ -13,6 +13,7 @@ class DataCleaningBatch(Enum):
     CONSEQUENTIALITY_MISSING_VALUES_SOLUTION = auto()
     CONSEQUENTIALITY_MISSING_VALUES_ALL_KINDS = auto()
     CONSEQUENTIALITY_DIRTY_SOLUTION = auto()
+    SPECIFICITY_BATCH = auto()
 
 class DataProfilingBatch(Enum):
     COMPLETENESS_GENERAL = auto()
