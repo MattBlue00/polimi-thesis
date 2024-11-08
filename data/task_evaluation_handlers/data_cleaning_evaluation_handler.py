@@ -1,6 +1,7 @@
 from data.batches import DataCleaningBatch
 from data.checklists.data_cleaning.data_cleaning_consequentiality_checklist import DataCleaningConsequentialityChecklist
 from data.checklists.data_cleaning.data_cleaning_completeness_checklist import DataCleaningCompletenessChecklist
+from data.checklists.data_cleaning.data_cleaning_prescriptivity_checklist import DataCleaningPrescriptivityChecklist
 from data.checklists.data_cleaning.item_ids import DataCleaningItemId
 from experiments.model.dependency import DataCleaningDependency
 from experiments.model.task_evaluation_handler import BaseTaskEvaluationHandler
@@ -13,319 +14,370 @@ class DataCleaningEvaluationHandler(BaseTaskEvaluationHandler):
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_BROKERED_BY,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_BROKERED_BY,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_BROKERED_BY,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_BROKERED_BY,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_BROKERED_BY
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_BROKERED_BY,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_BROKERED_BY
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_STATUS,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_STATUS,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_STATUS,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_STATUS,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_STATUS
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_STATUS,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_STATUS
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_PRICE,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_PRICE,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_PRICE,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_PRICE,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_PRICE
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_PRICE,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_PRICE
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_BED,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_BED,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_BED,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_BED,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_BED
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_BED,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_BED
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_BATH,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_BATH,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_BATH,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_BATH,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_BATH
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_BATH,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_BATH
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_ACRE_LOT,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_ACRE_LOT,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_ACRE_LOT,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_ACRE_LOT,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_ACRE_LOT
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_ACRE_LOT,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_ACRE_LOT
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_STREET,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_STREET,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_STREET,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_STREET,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_STREET
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_STREET,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_STREET
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_CITY,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_CITY,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_CITY,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_CITY,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_CITY
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_CITY,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_CITY
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_STATE,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_STATE,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_STATE,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_STATE,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_STATE
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_STATE,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_STATE
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_ZIP_CODE,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_ZIP_CODE,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_ZIP_CODE,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_ZIP_CODE,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_ZIP_CODE
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_ZIP_CODE,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_ZIP_CODE
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_HOUSE_SIZE,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_HOUSE_SIZE,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_HOUSE_SIZE,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_HOUSE_SIZE,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_HOUSE_SIZE
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_HOUSE_SIZE,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_HOUSE_SIZE
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_MISSING_VALUES_SOLUTION_PREV_SOLD_DATE,
                 dependent=[
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_SOLUTION_PREV_SOLD_DATE,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_ALL_KINDS_PREV_SOLD_DATE,
                     DataCleaningItemId.ACCURACY_MISSING_VALUES_OPTIMAL_PREV_SOLD_DATE,
-                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_PREV_SOLD_DATE
+                    DataCleaningItemId.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION_PREV_SOLD_DATE,
+                    DataCleaningItemId.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION_PREV_SOLD_DATE
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_BROKERED_BY,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_BROKERED_BY,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_BROKERED_BY,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_BROKERED_BY
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_BROKERED_BY,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_BROKERED_BY
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_STATUS,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_STATUS,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_STATUS,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_STATUS
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_STATUS,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_STATUS
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_PRICE,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_PRICE,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_PRICE,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_PRICE
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_PRICE,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_PRICE
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_BED,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_BED,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_BED,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_BED
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_BED,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_BED
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_BATH,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_BATH,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_BATH,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_BATH
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_BATH,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_BATH
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_ACRE_LOT,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_ACRE_LOT,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_ACRE_LOT,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_ACRE_LOT
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_ACRE_LOT,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_ACRE_LOT
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_STREET,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_STREET,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_STREET,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_STREET
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_STREET,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_STREET
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_CITY,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_CITY,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_CITY,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_CITY
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_CITY,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_CITY
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_STATE,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_STATE,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_STATE,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_STATE
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_STATE,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_STATE
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_ZIP_CODE,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_ZIP_CODE,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_ZIP_CODE,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_ZIP_CODE
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_ZIP_CODE,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_ZIP_CODE
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_HOUSE_SIZE,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_HOUSE_SIZE,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_HOUSE_SIZE,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_HOUSE_SIZE
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_HOUSE_SIZE,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_HOUSE_SIZE
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_DIRTY_SOLUTION_PREV_SOLD_DATE,
                 dependent=[
                     DataCleaningItemId.ACCURACY_DIRTY_SOLUTION_PREV_SOLD_DATE,
                     DataCleaningItemId.ACCURACY_DIRTY_OPTIMAL_PREV_SOLD_DATE,
-                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_PREV_SOLD_DATE
+                    DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_PREV_SOLD_DATE,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_PREV_SOLD_DATE
                 ]
             ),
             DataCleaningDependency(
                 batches=[
                     DataCleaningBatch.ACCURACY_DIRTY_SOLUTION,
-                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION
+                    DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
+                    DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION
                 ],
                 causing_dependency=DataCleaningItemId.COMPLETENESS_SOLUTION_NON_EXACT_DUPLICATES,
                 dependent=[
                     DataCleaningItemId.ACCURACY_SOLUTION_NON_EXACT_DUPLICATES,
                     DataCleaningItemId.ACCURACY_OPTIMAL_NON_EXACT_DUPLICATES,
-                    DataCleaningItemId.CONSEQUENTIALITY_SOLUTION_NON_EXACT_DUPLICATES
+                    DataCleaningItemId.CONSEQUENTIALITY_SOLUTION_NON_EXACT_DUPLICATES,
+                    DataCleaningItemId.PRESCRIPTIVITY_DIRTY_SOLUTION_DUPLICATES
                 ]
             )
         ]
         checklists = [
             DataCleaningCompletenessChecklist(),
-            #DataCleaningAccuracyChecklist()
-            DataCleaningConsequentialityChecklist()
+            #DataCleaningAccuracyChecklist(),
+            #DataCleaningConsequentialityChecklist(),
+            DataCleaningPrescriptivityChecklist(),
         ]
         super().__init__(checklists, dependencies)
