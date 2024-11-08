@@ -52,13 +52,13 @@ class DataCleaningDependency(BaseDependency):
             if causing_dependency:
                 for dependent_item in dependent_items:
                     dependent_item.disable()
+                super().solve(causing_dependency_items, dependent_items)
         else:
             raise SolveDependencyError(
                 causing_dependency_ids=self.causing_dependency_ids,
                 dependent_ids=self.dependent_ids,
                 reason="you already solved this dependency"
             )
-        super().solve(causing_dependency_items, dependent_items)
 
 class DataCleaningSpecificityDependency(BaseDependency):
 
@@ -74,13 +74,13 @@ class DataCleaningSpecificityDependency(BaseDependency):
             for causing_dependency_item in causing_dependency_items:
                 if causing_dependency_item.is_checked():
                     should_disable = False
-            if should_disable:
+            if len(causing_dependency_items) != 0 and should_disable:
                 for dependent_item in dependent_items:
                     dependent_item.disable()
+                super().solve(causing_dependency_items, dependent_items)
         else:
             raise SolveDependencyError(
                 causing_dependency_ids=self.causing_dependency_ids,
                 dependent_ids=self.dependent_ids,
                 reason="you already solved this dependency"
             )
-        super().solve(causing_dependency_items, dependent_items)

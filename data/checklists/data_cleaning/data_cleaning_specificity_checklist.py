@@ -33,13 +33,12 @@ class DataCleaningSpecificityChecklist(BaseChecklist):
 You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 Keep in mind that there are only three types of missing values: '-', '' and NaN. Any other character or combination of characters must not be considered a missing value (for example, negative values are NOT to be considered missing values).
 
-A solution is said to be GENERAL if and only if the SAME solution for a problem that is present for n columns is given to ALL n columns. Otherwise, i.e. in the case at least two different solutions are provided for the same kind of problem that is present for more than one column, the solutions are said to be SPECIFIC.
-
-Keep also in mind that applying the same solution to a subset of columns (e.g. thanks to a for loop) counts as a specific solution, and not as a general one, only if not all the columns that have the problem that is being solved are targeted. For example, if there are outliers in 4 columns and the for loop targets only 3, and the remaining has a different solution, the solutions are to be considered specific.
-                """,
+A set of solutions is said to be SPECIFIC if and only if, for the same kind of problem that is present for n columns, ALL n columns are given a different solution, tailored for the needs of that specific column. Otherwise, i.e. in the case at least two columns are being handled, for the same problem, with the same solution, the solutions for a given kind of problem are said to be GENERAL.
+Notice that if the solution for a problem is split into multiple parts, they ALL need to be specific for the set of solutions to be considered specific. This means that, for example, if there's a line of code that handles a certain type of missing value for all the columns and then all the columns' other missing values are handled specifically, the set of solutions must still be considered GENERAL.
+Keep also in mind that, typically, for loops that encompass different columns are clear signals of GENERAL solutions.               """,
                 user_message=
                 """
-Consider if the piece of text I will give you provides a solution that is specific for the various columns of the dataset or general for every column of the dataset for the following problems:
+Consider if the piece of text I will give you provides a set of solutions that are specific for the various columns of the dataset or general for every column of the dataset for the following problems:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to each of the above statements based on the fact that the solutions are general (0) or specific (1). Answer with only a list of ordered, whitespace-separated numbers.
