@@ -377,7 +377,7 @@ The answer must be given considering this text:
 You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 Keep in mind that there are only three types of missing values: '-', '' and NaN. Any other character or combination of characters must not be considered a missing value (for example, negative values are NOT to be considered missing values).
 
-Keep also in mind that if there are actions that are computed on the whole dataset and that address each one of the three types of missing values, you must evaluate each statement with a score of 1. Examples of such table-wise actions are replacements of '-' and/or '' with NaN performed on an entire dataframe in a single line of code.
+Keep also in mind that if there are actions that are computed on the whole dataset and that address each one of the three types of missing values, you must evaluate each statement with a score of 1. Examples of such table-wise actions are replacements of '-' and '' with NaN performed on an entire dataframe in a single or a few lines of code.
 
 Keep also in mind that if there are actions that convert the data type of a column with functions that explicitly mention the \"errors='coerce'\" parameter (e.g. to_numeric, to_datetime, etc. and NOT astype), then all the types of missing values are handled for that specific column.
                 """,
