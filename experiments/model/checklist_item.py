@@ -7,6 +7,7 @@ from data.checklists.data_profiling.item_ids import DataProfilingItemId
 from experiments.errors.check_item_error import CheckItemError
 from experiments.errors.disable_item_error import DisableItemError
 
+
 class BaseChecklistItem(ABC):
 
     def __init__(self, item_id: str, batch: str, content: str) -> None:
@@ -28,6 +29,7 @@ class BaseChecklistItem(ABC):
     def disable(self) -> None:
         if not self.is_checked() and self.is_enabled():
             self.enabled = False
+            #print("Disabled: " + self.id)
         else:
             if self.is_checked():
                 raise DisableItemError(self.id, "it has been checked")

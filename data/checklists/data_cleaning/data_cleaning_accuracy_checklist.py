@@ -376,10 +376,18 @@ The answer must be given considering this text:
                 """
 You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 Keep in mind that there are only three types of missing values: '-', '' and NaN. Any other character or combination of characters must not be considered a missing value (for example, negative values are NOT to be considered missing values).
+You will be asked to evaluate a text that should contain some actions, for each column, that handle all the three kinds of missing values, according to the fact that they actually do take into account all of them (score of 1) or not (score of 0). The only case in which you are allowed to assign a score of 1 and not all the kinds of missing values are explicitly handled is when the text suggests to transform two of the three kinds of missing values into the remaining one.
 
-Keep also in mind that if there are actions that are computed on the whole dataset and that address each one of the three types of missing values, you must evaluate each statement with a score of 1. Examples of such table-wise actions are replacements of '-' and '' with NaN performed on an entire dataframe in a single or a few lines of code.
+Keep also in mind that if there are actions that are computed on the whole dataset and that address each one of the three types of missing values, you must evaluate each statement with a score of 1. 
 
-Keep also in mind that if there are actions that convert the data type of a column with functions that explicitly mention the \"errors='coerce'\" parameter (e.g. to_numeric, to_datetime, etc. and NOT astype), then all the types of missing values are handled for that specific column.
+Keep also in mind that if there are actions that convert the data type of a column with functions that explicitly mention the "errors='coerce'" parameter (e.g. to_numeric, to_datetime, etc. and NOT astype), then all the types of missing values are handled for that specific column. PAY ATTENTION that data type conversions that DO NOT EXPLICITLY MENTION the parameter "errors='coerce'" DO NOT take into accout all the kinds of missing values, hence you must assign to the statement of the related column a score of 0. Therefore, any other parameter different from "errors='coerce'" must make you assign a score of 0 to the statement related to the analyzed column.
+Any other solution that is different from data type conversions with the parameter "errors='coerce'" must explicitly mention the kinds of missing values they are handling in order to be considered.
+
+REMEMBER! If, for a given column, the text does not explicitly mention how to handle ALL the following values:
+- NaN
+- '-'
+- '' (empty values)
+And if, for the same given column, the text does not perform data type conversions while EXPLICITING the "errors='coerce'" parameter (because it is NOT a default parameter), you must evaluate the statement related to that column with a score of 0.
                 """,
                 user_message=
                 """
