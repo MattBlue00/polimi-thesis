@@ -202,7 +202,10 @@ class DataCleaningConsequentialityChecklist(BaseChecklist):
                 """
 You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
-You must consider a solution to a problem as CONSEQUENTIAL if there is an obvious cause-effect relationship between a problem and the solution proposed to solve that problem, especially if code is given, REGARDLESS of the fact that the proposed solution actually solves the problem and REGARDLESS of the fact that the solution is given in a clear and unambiguous way. For this reason, for example, if a piece of text wants to solve the problem of missing values for a specific column by performing a data type conversion with the parameter "errors='coerce'", the cause-effect relationship is NOT consequential, because only an expert user knows that such a parameter is able to handle also missing or wrong values during a data type conversion (which is a different task with respect to the task of solving the problem of missing values).
+You must consider a solution to a problem as CONSEQUENTIAL if there is an obvious cause-effect relationship between a problem and the solution proposed to solve that problem, especially if code is given, REGARDLESS of the fact that the proposed solution actually solves the problem and REGARDLESS of the fact that the solution is given in a clear and unambiguous way. 
+
+Keep in mind that if a piece of text wants to solve the problem of missing values for a specific column by performing a data type conversion with the parameter "errors='coerce'", the corresponding statement MUST be graded as 0. This condition MUST prevail on the other ones.
+It is NOT considered a consequential solution.
 
 Keep in mind that you MUST consider a solution as CONSEQUENTIAL even if it does NOT provide a DIRECT way to solve a problem or if it is NOT clear, as long that a user can easily link a solution proposal to the effect it is intended to obtain. Therefore, solutions that do not directly address and solve a problem MIGHT STILL BE CONSEQUENTIAL if the user can clearly understand which problem a solution proposal is trying to solve.
                 """,

@@ -897,8 +897,8 @@ class DataCleaningEvaluationHandler(BaseTaskEvaluationHandler):
         ]
         checklists = [
             DataCleaningCompletenessChecklist(),
-            #DataCleaningAccuracyChecklist(),
-            #DataCleaningConsequentialityChecklist(),
-            DataCleaningPrescriptivityChecklist()
+            DataCleaningAccuracyChecklist(),
+            DataCleaningConsequentialityChecklist(),
+            #DataCleaningPrescriptivityChecklist()
         ]
         super().__init__(checklists, dependencies)
