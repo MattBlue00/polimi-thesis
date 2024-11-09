@@ -53,6 +53,10 @@ Then, the set of solutions is SPECIFIC, because the text analyzes the problem fo
 
 Notice that, if there is AT LEAST one solution to a problem that is applied to all columns (e.g. table-wise replacement of '-'), then the problem is handled in a GENERAL way. IT DOES NOT MATTER if there are other alternative/complementary solutions that are specific for each column: as long as there's even one part of a problem that is handled in a general way, then the problem is said to be handled in a general way.
 Notice that if a problem is handled with for loop that involves more than one column, then the problem is handled in a GENERAL way.
+Analogously, if the same solution is given in a textual form for a subset of columns, then the problem is handled in a GENERAL way, even if more subsets, each with its own solution, are defined.
+For example, if the text says:
+For categorical columns like col1 and col2, do something. For numerical columns like col3 and col4, do something else.
+Then the problem is handled in a GENERAL way.
                 """,
                 user_message=
                 """

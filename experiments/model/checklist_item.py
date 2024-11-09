@@ -29,7 +29,7 @@ class BaseChecklistItem(ABC):
     def disable(self) -> None:
         if not self.is_checked() and self.is_enabled():
             self.enabled = False
-            print("Disabled: " + self.id)
+            #print("Disabled: " + self.id)
         else:
             if self.is_checked():
                 raise DisableItemError(self.id, "it has been checked")
