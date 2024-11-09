@@ -18,17 +18,9 @@ class BaseTaskEvaluationHandler(ABC):
         print("Batches: " + batches_str)
         for dependency in self.dependencies:
             if (not dependency.is_solved()) and len(set(dependency.get_batches()).intersection(set(batches))) > 0:
-                causing_dependency = dependency.get_causing_dependency()
-                causing_dependency_items = [item for item in may_cause_dependency_items if item.get_id() == causing_dependency.name]
-                if not len(causing_dependency_items) == 0:
-                    if not causing_dependency_items[0].is_checked():
-                        dependent = dependency.get_dependent()
-                        dependent_str = [d.name for d in dependent]
-                        dependent_items = [item for item in may_be_dependent_items if item.get_id() in dependent_str]
-                        for dependent_item in dependent_items:
-                            dependent_item.disable()
-                            print("Disabled: " + dependent_item.get_id())
-                        dependency.solve()
+                causing_dependency_items = [item for item in may_cause_dependency_items if item.get_id() in dependency.get_causing_dependency_ids()]
+                dependent_items = [item for item in may_be_dependent_items if item.get_id() in dependency.get_dependent_ids()]
+                dependency.solve(causing_dependency_items, dependent_items)
 
     def evaluate(self, text: str, llm: BaseLLM) -> None:
         for checklist in self.checklists:
