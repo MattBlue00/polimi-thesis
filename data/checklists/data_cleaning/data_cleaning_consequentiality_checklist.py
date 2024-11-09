@@ -238,7 +238,7 @@ Keep in mind that you MUST consider a solution as CONSEQUENTIAL even if it does 
                 """,
                 user_message=
                 """
-Consider if the piece of text I will give you provides a CONSEQUENTIAL solution for the following problems:
+Consider if the piece of text I will give you provides a CONSEQUENTIAL solution that encompasses all the three types of missing values for the following columns:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
