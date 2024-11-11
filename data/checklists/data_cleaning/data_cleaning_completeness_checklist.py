@@ -194,4 +194,4 @@ The answer must be given considering this text:
                 """
             )
         ]
-        super().__init__("Data Cleaning - Completeness", items, prompts)
+        super().__init__("Completeness", items, prompts)

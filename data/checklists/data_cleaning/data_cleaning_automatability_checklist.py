@@ -199,4 +199,4 @@ The answer must be given considering this text:
                 """
             )
         ]
-        super().__init__("Data Cleaning - Automatability", items, prompts)
+        super().__init__("Automatability", items, prompts)

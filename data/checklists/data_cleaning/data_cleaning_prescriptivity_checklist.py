@@ -212,4 +212,4 @@ The answer must be given considering this text:
                 """
             ),
         ]
-        super().__init__("Data Cleaning - Prescriptivity", items, prompts)
+        super().__init__("Prescriptivity", items, prompts)

@@ -451,4 +451,4 @@ The answer must be given considering this text:
                 """
             )
         ]
-        super().__init__("Data Cleaning - Accuracy", items, prompts)
+        super().__init__("Accuracy", items, prompts)
