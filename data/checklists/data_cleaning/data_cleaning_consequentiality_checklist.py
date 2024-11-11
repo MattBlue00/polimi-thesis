@@ -172,7 +172,7 @@ class DataCleaningConsequentialityChecklist(BaseChecklist):
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_STATE,
                 batch=DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
-                content="'state' column: presence of format inconsistencies (some states are abbreviated)."
+                content="'state' column: presence of format inconsistencies (some states are abbreviated while others are not)."
             ),
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_ZIP_CODE,
@@ -207,7 +207,7 @@ You must consider a solution to a problem as CONSEQUENTIAL if there is an obviou
 Keep in mind that if a piece of text wants to solve the problem of missing values for a specific column by performing a data type conversion with the parameter "errors='coerce'", the corresponding statement MUST be graded as 0. This condition MUST prevail on the other ones.
 It is NOT considered a consequential solution.
 
-Keep in mind that you MUST consider a solution as CONSEQUENTIAL even if it does NOT provide a DIRECT way to solve a problem or if it is NOT clear, as long that a user can easily link a solution proposal to the effect it is intended to obtain. Therefore, solutions that do not directly address and solve a problem MIGHT STILL BE CONSEQUENTIAL if the user can clearly understand which problem a solution proposal is trying to solve.
+Keep in mind that you MUST consider a solution as CONSEQUENTIAL even if it does NOT provide a DIRECT way to solve a problem or if it is NOT clear, as long that a user can easily link a solution proposal to the effect it is intended to obtain. Therefore, solutions that do not directly address and solve a problem MIGHT STILL BE CONSEQUENTIAL if the user can clearly understand which problem a solution proposal is trying to solve. Therefore, even "non-solutions" where the proposal is to "leave everything as is" can still be considered as CONSEQUENTIAL.
                 """,
                 user_message=
                 """
