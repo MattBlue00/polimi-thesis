@@ -44,14 +44,17 @@ class DataCleaningDependency(BaseDependency):
         dependent_ids = [dependent.name for dependent in dependents]
         super().__init__(batches_str, causing_dependency_ids, dependent_ids)
 
-    def solve(self, causing_dependency_items: List[BaseChecklistItem], dependent_items: List[BaseChecklistItem]) -> None:
+    def solve(self, causing_dependency_items: List[BaseChecklistItem],
+              dependent_items: List[BaseChecklistItem]) -> None:
         if not self.is_solved():
             causing_dependency = True
             for causing_dependency_item in causing_dependency_items:
                 causing_dependency = causing_dependency and (not causing_dependency_item.is_checked())
+
             if causing_dependency:
-                for dependent_item in dependent_items:
-                    dependent_item.disable()
+                for causing_dependency_item in causing_dependency_items:
+                    for dependent_item in dependent_items:
+                        dependent_item.disable()
                 super().solve(causing_dependency_items, dependent_items)
         else:
             raise SolveDependencyError(

@@ -88,7 +88,7 @@ for dataset in datasets:
 
                 with open(os.path.join(prompt_dir, rf), 'r', encoding='utf-8') as file:
 
-                    print("Evaluating response: " + rf)
+                    print("\nEvaluating response: " + rf)
                     file_content = file.read()
                     llm_response_filtered = filter_llm_response(file_content)
 
