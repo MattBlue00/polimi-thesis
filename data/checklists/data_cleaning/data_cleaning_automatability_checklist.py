@@ -146,9 +146,15 @@ Keep in mind that there are only three types of missing values: '-', '' and NaN.
 You will be given a text that should contain some solutions for various problems and you have to evaluate whether, for each of the problems you will be given, the solution that you can find in the text, as it is in the text, is automatable or not.
 
 A solution for a problem is said to be AUTOMATABLE if some code that (at least partially) implements it is provided. However, if the text does not provide a solution strategy but directly the cleaned row/column/dataset, then you must evaluate with a score of 1 all the statements that deal with some of the data that have been given in the cleaned (portion of) dataset.
-Therefore, if a text is made of ONLY lines of code (including the eventual Python comments), then you can safely evaluate all the statements with a score of 1.
+Therefore, if a text is made of ONLY lines of code (including the eventual Python comments), then you can safely evaluate all the statements with a score of 1. Remember that any piece of text between "```python" and "```" must be considered as code.
 Analogously, if a text is made of ONLY text and NO line of code, EXCLUDING the case in which some cleaned row/column/dataset is explicitly provided, then you can safely evaluate all the statements with a score of 0.
-Remember that it is NOT ENOUGH to say how to fix some values in order for a solution to be automatable: IF NO CODE IS GIVEN, a solution is automatable IF AND ONLY IF there is clearly a CLEAN (portion of) dataset that has all the problems related to that solution fixed. If this is not the case (and no code is given), then the solution is not automatable and you must evaluate the related statement with a score of 0.
+Remember that, IF NO CODE IS GIVEN, it is NOT ENOUGH to say how to fix some values in order for a solution to be automatable: a solution is automatable IF AND ONLY IF there is clearly a CLEAN (portion of) dataset that has all the problems related to that solution fixed. If this is not the case (and no code is given), then the solution is not automatable and you must evaluate the related statement with a score of 0.
+
+Keep also in mind that you should not care about the fact that a specific column is mentioned or not while handling missing values: you may evaluate the related statement with a score of 1 as long as there is some piece of code that implicitly takes care about them.
+
+Keep also in mind you that you must evaluate a solution for a column with a score of 1 even if the code handles only ONE kind of missing value for that column (i.e. if there is an EXPLICIT solution for handling NaN values, but not other types of missing values, the solution is still valid and must be evaluated with a score of 1).
+
+Keep also in mind that if there is code that handles missing values on the whole dataset, addressing AT LEAST one kind of missing value, you must evaluate each statement with a score of 1. Examples of such table-wise actions are replacements of '-' and/or '' with NaN performed on an entire dataframe in a single line of code. In such a case, every statement related to the presence of missing values must be evaluated with a score of 1.
                 """,
                 user_message=
                 """
@@ -172,9 +178,14 @@ Keep in mind that handling non-exact duplicates means finding pairs of rows that
 You will be given a text that should contain some solutions for various problems and you have to evaluate whether, for each of the problems you will be given, the solution that you can find in the text, as it is in the text, is automatable or not.
 
 A solution for a problem is said to be AUTOMATABLE if some code that (at least partially) implements it is provided. However, if the text does not provide a solution strategy but directly the cleaned row/column/dataset, then you must evaluate with a score of 1 all the statements that deal with some of the data that have been given in the cleaned (portion of) dataset.
-Therefore, if a text is made of ONLY lines of code (including the eventual Python comments), then you can safely evaluate all the statements with a score of 1.
+Therefore, if a text is made of ONLY lines of code (including the eventual Python comments), then you can safely evaluate all the statements with a score of 1. Remember that any piece of text between "```python" and "```" must be considered as code.
 Analogously, if a text is made of ONLY text and NO line of code, EXCLUDING the case in which some cleaned row/column/dataset is explicitly provided, then you can safely evaluate all the statements with a score of 0.
-Remember that it is NOT ENOUGH to say how to fix some values in order for a solution to be automatable: IF NO CODE IS GIVEN, a solution is automatable IF AND ONLY IF there is clearly a CLEAN (portion of) dataset that has all the problems related to that solution fixed. If this is not the case (and no code is given), then the solution is not automatable and you must evaluate the related statement with a score of 0.
+Remember that, IF NO CODE IS GIVEN, it is NOT ENOUGH to say how to fix some values in order for a solution to be automatable: a solution is automatable IF AND ONLY IF there is clearly a CLEAN (portion of) dataset that has all the problems related to that solution fixed. If this is not the case (and no code is given), then the solution is not automatable and you must evaluate the related statement with a score of 0.
+
+PAY ATTENTION to this important rule: if you have to evaluate a statement that refers to a specific column, and that specific column is never mentioned in the code, then you can safely evaluate the statement related to that column with a score of 0.
+Also, PAY ATTENTION to the fact that it is not enough that a column is mentioned in the code to evaluate the statement related to that column with a score of 1: indeed, the problem that is specified in the statement must be addressed in some way, even if in an inaccurate way or in an unclear way, to assign a score of 1.
+
+REMEMBER: no code and no (at least partially) cleaned dataset - in the sense that it is not complete but it fully solves the problem of at least one statement - means that you MUST evaluate ALL the statements with a score of 0.
                 """,
                 user_message=
                 """

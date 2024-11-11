@@ -145,7 +145,7 @@ Keep in mind that there are only three types of missing values: '-', '' and NaN.
 
 You will be given a text to evaluate based on whether it proposes a solution or not for a given set of problems.
 
-Keep also in mind that you should not care about the fact that a specific column is mentioned or not while handling missing values: you may evaluate a statement with a score of 1 as long as there is some piece of text that implicitly takes care about them.
+Keep also in mind that you should not care about the fact that a specific column is mentioned or not while handling missing values: you may evaluate the related statement with a score of 1 as long as there is some piece of text that implicitly takes care about them.
 
 Keep also in mind you that you must evaluate a solution for a column with a score of 1 even if only ONE kind of missing value is handled for that column (i.e. if there is an EXPLICIT solution for handling NaN values, but not other types of missing values, the solution is still valid and must be evaluated with a score of 1).
 
