@@ -140,7 +140,7 @@ class DataCleaningPrescriptivityChecklist(BaseChecklist):
                 batch=DataCleaningBatch.PRESCRIPTIVITY_MISSING_VALUES_SOLUTION.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 Keep in mind that there are only three types of missing values: '-', '' and NaN. Any other character or combination of characters must not be considered a missing value (for example, negative values are NOT to be considered missing values).
 
@@ -172,7 +172,7 @@ The answer must be given considering this text:
                 batch=DataCleaningBatch.PRESCRIPTIVITY_DIRTY_SOLUTION.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 Keep in mind that a PRESCRIPTIVE solution strategy is defined as a solution strategy that allows the user to clearly follow one solution path. This means that if the solution proposes two different strategies with no criteria that allow users to choose one solution over another, such a solution strategy is NOT prescriptive. However, if a solution path lets user choose between two SIMILAR concepts, such as between "Unknown", NaN, None, or any other placeholder, or between mean and median, then the solution is still prescriptive as the user is entitled to choose between the different nuances that such proposals bring with themselves.
 Examples of valid criteria that allow users to choose between two alternatives within a solution are: "if data is crucial", "if a large percentage is missing". In this case, the user has the information they need to make a decision, thus the solution MUST be considered prescriptive.

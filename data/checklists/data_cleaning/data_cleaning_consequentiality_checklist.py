@@ -200,7 +200,7 @@ class DataCleaningConsequentialityChecklist(BaseChecklist):
                 batch=DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_SOLUTION.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 You must consider a solution to a problem as CONSEQUENTIAL if there is an obvious cause-effect relationship between a problem and the solution proposed to solve that problem, especially if code is given, REGARDLESS of the fact that the proposed solution actually solves the problem and REGARDLESS of the fact that the solution is given in a clear and unambiguous way. 
 
@@ -224,7 +224,7 @@ The answer must be given considering this text:
                 batch=DataCleaningBatch.CONSEQUENTIALITY_MISSING_VALUES_ALL_KINDS.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 Keep in mind that there are only three types of missing values: '-', '' and NaN. Any other character or combination of characters must not be considered a missing value (for example, negative values are NOT to be considered missing values).
 
@@ -251,7 +251,7 @@ The answer must be given considering this text:
                 batch=DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 You must consider a solution to a problem as CONSEQUENTIAL if there is an obvious cause-effect relationship between a problem and the solution proposed to solve that problem, especially if code is given, REGARDLESS of the fact that the proposed solution actually solves the problem and REGARDLESS of the fact that the solution is given in a clear and unambiguous way. For this reason, for example, if a piece of text wants to solve the fact that some prices have a currency and others don't by performing a data type conversion to a numeric type with the parameter "errors='coerce'", the cause-effect relationship is NOT consequential, because only an expert user knows that such a parameter is able to transform non-numeric values into NaN values during a data type conversion (which is a different task with respect to the task of solving the prices in different formats).
                 """,

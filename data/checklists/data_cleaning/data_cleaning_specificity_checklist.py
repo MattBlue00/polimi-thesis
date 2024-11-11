@@ -30,7 +30,7 @@ class DataCleaningSpecificityChecklist(BaseChecklist):
                 batch=DataCleaningBatch.SPECIFICITY_BATCH.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 Keep in mind that there are only three types of missing values: '-', '' and NaN. Any other character or combination of characters must not be considered a missing value (for example, negative values are NOT to be considered missing values).
 Remember that data type conversions with the parameter "errors='coerce'" handle ALL the mentioned kinds of missing values.
 You will be given a text that you will have to evaluate based on the fact that some proposed solutions are specific (score of 1) or general (score of 0).
