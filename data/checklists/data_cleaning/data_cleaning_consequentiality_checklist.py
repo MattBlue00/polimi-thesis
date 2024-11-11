@@ -132,7 +132,7 @@ class DataCleaningConsequentialityChecklist(BaseChecklist):
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_BROKERED_BY,
                 batch=DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
-                content="'brokered_by' column: presence of full names in a list of numerical IDs."
+                content="'brokered_by' column: presence of full names (strings) in a list of numerical IDs."
             ),
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_STATUS,
@@ -172,7 +172,7 @@ class DataCleaningConsequentialityChecklist(BaseChecklist):
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_STATE,
                 batch=DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
-                content="'state' column: presence of format inconsistencies (some states are abbreviated while others are not)."
+                content="'state' column: presence of format inconsistencies (some states are abbreviated while others are not, so there is the need for standardization)."
             ),
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_ZIP_CODE,
@@ -253,7 +253,8 @@ The answer must be given considering this text:
                 """
 You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
-You must consider a solution to a problem as CONSEQUENTIAL if there is an obvious cause-effect relationship between a problem and the solution proposed to solve that problem, especially if code is given, REGARDLESS of the fact that the proposed solution actually solves the problem and REGARDLESS of the fact that the solution is given in a clear and unambiguous way. For this reason, for example, if a piece of text wants to solve the fact that some prices have a currency and others don't by performing a data type conversion to a numeric type with the parameter "errors='coerce'", the cause-effect relationship is NOT consequential, because only an expert user knows that such a parameter is able to transform non-numeric values into NaN values during a data type conversion (which is a different task with respect to the task of solving the prices in different formats).
+You must consider a solution to a problem as CONSEQUENTIAL if there is an obvious cause-effect relationship between a problem and the solution proposed to solve that problem, especially if code is given, REGARDLESS of the fact that the proposed solution actually solves the problem and REGARDLESS of the fact that the solution is given in a clear and unambiguous way. For this reason, for example, if a piece of text wants to solve the fact that some prices have a currency and others don't by performing a data type conversion to a numeric type with the parameter "errors='coerce'", the cause-effect relationship is NOT consequential, because only an expert user knows that such a parameter is able to transform non-numeric values into NaN values during a data type conversion (which is a different task with respect to the task of solving the prices in different formats). 
+Solutions can be presented as a piece of text, as code or sometimes as both. FOCUS and if both text and code are present, evaluate BOTH of them.         
                 """,
                 user_message=
                 """
