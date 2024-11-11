@@ -324,7 +324,7 @@ class DataCleaningAccuracyChecklist(BaseChecklist):
                 batch=DataCleaningBatch.ACCURACY_MISSING_VALUES_SOLUTION.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 Keep in mind that there are only three types of missing values: '-', '' and NaN. Any other character or combination of characters must not be considered a missing value (for example, negative values are NOT to be considered missing values).
 
 A solution is valid if it addresses and solves a given problem. Notice that the fact that a solution is not explicitly mentioned but is implicit in some actions does not affect the fact that it is valid.
@@ -347,7 +347,7 @@ The answer must be given considering this text:
                 batch=DataCleaningBatch.ACCURACY_DIRTY_SOLUTION.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 Keep in mind that handling non-exact duplicates means finding pairs of rows that are slightly different but share the same values for a meaningful subset of columns that acts as a unique column combination.
 Keep also in mind that you should not care about the fact that a specific column is mentioned or not: you may consider a fact as true as long as there is some piece of text that correctly takes care about it.
@@ -374,7 +374,7 @@ The answer must be given considering this text:
                 batch=DataCleaningBatch.ACCURACY_MISSING_VALUES_ALL_KINDS.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 Keep in mind that there are only three types of missing values: '-', '' and NaN. Any other character or combination of characters must not be considered a missing value (for example, negative values are NOT to be considered missing values).
 You will be asked to evaluate a text that should contain some actions, for each column, that handle all the three kinds of missing values, according to the fact that they actually do take into account all of them (score of 1) or not (score of 0). The only case in which you are allowed to assign a score of 1 and not all the kinds of missing values are explicitly handled is when the text suggests to transform two of the three kinds of missing values into the remaining one.
 
@@ -404,7 +404,7 @@ The answer must be given considering this text:
                 batch=DataCleaningBatch.ACCURACY_MISSING_VALUES_OPTIMAL.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 Keep in mind that there are only three types of missing values: '-', '' and NaN. Any other character or combination of characters must not be considered a missing value (for example, negative values are NOT to be considered missing values).
 
@@ -428,7 +428,7 @@ The answer must be given considering this text:
                 batch=DataCleaningBatch.ACCURACY_DIRTY_OPTIMAL.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 Keep in mind that handling non-exact duplicates means finding pairs of rows that are slightly different but share the same values for a meaningful subset of columns that acts as a unique column combination. Notice that removing duplicates is NOT equivalent to merging duplicates, as the latter involves combining the two non-exact duplicates into a new, reconciled row.
 Keep also in mind that you should not care about the fact that a specific column is mentioned or not: you may consider a fact as true as long as there is some piece of text that correctly takes care about it.

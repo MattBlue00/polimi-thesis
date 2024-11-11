@@ -139,7 +139,7 @@ class DataCleaningAutomatabilityChecklist(BaseChecklist):
                 batch=DataCleaningBatch.AUTOMATABILITY_MISSING_VALUES_SOLUTION.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 Keep in mind that there are only three types of missing values: '-', '' and NaN. Any other character or combination of characters must not be considered a missing value (for example, negative values are NOT to be considered missing values).
 
@@ -165,7 +165,7 @@ The answer must be given considering this text:
                 batch=DataCleaningBatch.AUTOMATABILITY_DIRTY_SOLUTION.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 Keep in mind that handling non-exact duplicates means finding pairs of rows that are slightly different but share the same values for a meaningful subset of columns that acts as a unique column combination.
 
