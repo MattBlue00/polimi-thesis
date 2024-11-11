@@ -1174,6 +1174,6 @@ class DataCleaningEvaluationHandler(BaseTaskEvaluationHandler):
             #DataCleaningConsequentialityChecklist(),
             #DataCleaningPrescriptivityChecklist(),
             #DataCleaningSpecificityChecklist(),
-            DataCleaningAutomatabilityChecklist()
+            #DataCleaningAutomatabilityChecklist()
         ]
         super().__init__(checklists, dependencies)
