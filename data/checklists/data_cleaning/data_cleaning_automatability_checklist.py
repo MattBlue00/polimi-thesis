@@ -147,7 +147,8 @@ You will be given a text that should contain some solutions for various problems
 
 A solution for a problem is said to be AUTOMATABLE if some code that (at least partially) implements it is provided. However, if the text does not provide a solution strategy but directly the cleaned row/column/dataset, then you must evaluate with a score of 1 all the statements that deal with some of the data that have been given in the cleaned (portion of) dataset.
 Therefore, if a text is made of ONLY lines of code (including the eventual Python comments), then you can safely evaluate all the statements with a score of 1.
-Analogously, if a text is made of ONLY text and NO line of code, EXCLUDING the case in which some cleaned row/column/dataset is provided, then you can safely evaluate all the statements with a score of 0.
+Analogously, if a text is made of ONLY text and NO line of code, EXCLUDING the case in which some cleaned row/column/dataset is explicitly provided, then you can safely evaluate all the statements with a score of 0.
+Remember that it is NOT ENOUGH to say how to fix some values in order for a solution to be automatable: IF NO CODE IS GIVEN, a solution is automatable IF AND ONLY IF there is clearly a CLEAN (portion of) dataset that has all the problems related to that solution fixed. If this is not the case (and no code is given), then the solution is not automatable and you must evaluate the related statement with a score of 0.
                 """,
                 user_message=
                 """
@@ -172,7 +173,8 @@ You will be given a text that should contain some solutions for various problems
 
 A solution for a problem is said to be AUTOMATABLE if some code that (at least partially) implements it is provided. However, if the text does not provide a solution strategy but directly the cleaned row/column/dataset, then you must evaluate with a score of 1 all the statements that deal with some of the data that have been given in the cleaned (portion of) dataset.
 Therefore, if a text is made of ONLY lines of code (including the eventual Python comments), then you can safely evaluate all the statements with a score of 1.
-Analogously, if a text is made of ONLY text and NO line of code, EXCLUDING the case in which some cleaned row/column/dataset is provided, then you can safely evaluate all the statements with a score of 0.
+Analogously, if a text is made of ONLY text and NO line of code, EXCLUDING the case in which some cleaned row/column/dataset is explicitly provided, then you can safely evaluate all the statements with a score of 0.
+Remember that it is NOT ENOUGH to say how to fix some values in order for a solution to be automatable: IF NO CODE IS GIVEN, a solution is automatable IF AND ONLY IF there is clearly a CLEAN (portion of) dataset that has all the problems related to that solution fixed. If this is not the case (and no code is given), then the solution is not automatable and you must evaluate the related statement with a score of 0.
                 """,
                 user_message=
                 """

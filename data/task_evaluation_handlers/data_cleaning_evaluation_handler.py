@@ -1170,8 +1170,8 @@ class DataCleaningEvaluationHandler(BaseTaskEvaluationHandler):
         ]
         checklists = [
             DataCleaningCompletenessChecklist(),
-            DataCleaningAccuracyChecklist(),
-            DataCleaningConsequentialityChecklist(),
+            #DataCleaningAccuracyChecklist(),
+            #DataCleaningConsequentialityChecklist(),
             #DataCleaningPrescriptivityChecklist(),
             #DataCleaningSpecificityChecklist(),
             #DataCleaningAutomatabilityChecklist()
