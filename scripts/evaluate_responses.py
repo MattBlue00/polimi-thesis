@@ -93,7 +93,7 @@ for dataset in datasets:
 
                     temp_scores = []
                     for _ in range(NUM_SUCCESSFUL_TRIES):
-                        handler.evaluate(llm_response_filtered, get_llm("GPT"))
+                        handler.evaluate(llm_response_filtered, get_llm("GPT"), os.path.basename(dataset_dir))
                         temp_scores.append(handler.get_scores())
                         handler.reset()
 
