@@ -506,6 +506,7 @@ You are working on a dataset with these columns: brokered_by, status, price, bed
 You will be given a text to evaluate based on whether some given facts are mentioned or not.
 
 Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
+Remember that even if data types are often given as clear, standalone information, sometimes it may happen that they are mentioned in a less evident way inside a sentence: if the text states that a column contains a given type of values, without explicitly mentioning that it contains only that kind of values, you can still assume that such type is a valid data type for that column. However, please be sure of the fact that a proper type is provided: you shouldn't infer it by means of other information.
                 """,
                 user_message=
                 """
@@ -526,7 +527,8 @@ You are working on a dataset with these columns: brokered_by, status, price, bed
 
 You will be given a text to evaluate based on whether some given facts are mentioned or not.
 
-Keep also in mind that a column description is a textual description of the semantic meaning of the values contained in that column. For example, valid column descriptions are "number of bedrooms" for the 'bed' column and "lot size in acres" for the 'acre_lot' column. Other pieces of information about columns, such as data quality issues (e.g. outliers, consistency issues, missing values), data types, and descriptive statistics, MUST NOT be considered column descriptions.
+Keep also in mind that a column description is a textual description of the semantic meaning of the values contained in that column. For example, valid column descriptions are "number of bedrooms" for the 'bed' column and "lot size in acres" for the 'acre_lot' column.
+Other pieces of information about columns, such as data quality issues (e.g. outliers, consistency issues, missing values), data types, and descriptive statistics, MUST NOT be considered column descriptions. Furthermore, information that is related to the values but not strictly related to the "domain" of the column does NOT provide a column description: for example, if the text says that the 'city' column has "various city names across different states", even though the information may be correct and pertain to the domain, the sentence does not provide a valid column description since it is an information that is dataset-dependent and not general with respect to the meaning of the column. 
 Plus, a good column description should be clearly identified in the text: so, if you struggle to find a clear sentence that directly describes the meaning of a column, it is likely that there is no column description for that column.
                 """,
                 user_message=
