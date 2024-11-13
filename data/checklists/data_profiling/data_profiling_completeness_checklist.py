@@ -526,9 +526,8 @@ You are working on a dataset with these columns: brokered_by, status, price, bed
 
 You will be given a text to evaluate based on whether some given facts are mentioned or not.
 
-Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
-
-Keep also in mind that a column description is a (short) description of the meaning of the values contained in that column, thus is related to the "domain" of that column. For example, valid column descriptions are "number of bedrooms" for the 'bed' column and "lot size in acres" for the 'acre_lot' column. Other pieces of information about columns, such as data quality issues, data types, and descriptive statistics, MUST NOT be considered column descriptions. 
+Keep also in mind that a column description is a textual description of the semantic meaning of the values contained in that column. For example, valid column descriptions are "number of bedrooms" for the 'bed' column and "lot size in acres" for the 'acre_lot' column. Other pieces of information about columns, such as data quality issues (e.g. outliers, consistency issues, missing values), data types, and descriptive statistics, MUST NOT be considered column descriptions.
+Plus, a good column description should be clearly identified in the text: so, if you struggle to find a clear sentence that directly describes the meaning of a column, it is likely that there is no column description for that column.
                 """,
                 user_message=
                 """
