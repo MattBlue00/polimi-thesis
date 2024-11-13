@@ -53,7 +53,7 @@ for dataset in datasets:
 
     for task in tasks:
 
-        if task == "data_profiling": #FIXME
+        if task == "data_cleaning": #FIXME
             continue
 
         task_dir = get_directory_from_dir_name(dataset_dir, task)
@@ -81,7 +81,7 @@ for dataset in datasets:
 
             scores[os.path.basename(dataset_dir)][os.path.basename(task_dir)][os.path.basename(prompt_dir)] = {}
 
-            handler = DataCleaningEvaluationHandler()
+            handler = DataProfilingEvaluationHandler()
 
             for rf in response_files:
 
