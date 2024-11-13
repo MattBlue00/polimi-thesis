@@ -279,98 +279,175 @@ class DataProfilingCompletenessChecklist(BaseChecklist):
                 content ="'prev_sold_date' column: column description."
             ),
             DataProfilingChecklistItem(
-                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_MIN,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
-                content="'price' column: minimum value."
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_RANGE,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
+                content="'price' column: range (interval between minimum value and maximum value)."
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_MEAN,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
                 content="'price' column: mean value."
             ),
             DataProfilingChecklistItem(
-                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_MAX,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
-                content="'price' column: maximum value."
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_MEDIAN,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
+                content="'price' column: median value."
             ),
             DataProfilingChecklistItem(
-                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_MIN,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
-                content="'bed' column: minimum value."
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_RANGE,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
+                content="'bed' column: range (interval between minimum value and maximum value)."
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_MEAN,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
                 content="'bed' column: mean value."
             ),
             DataProfilingChecklistItem(
-                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_MAX,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
-                content="'bed' column: maximum value."
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_MEDIAN,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
+                content="'bed' column: median value."
             ),
             DataProfilingChecklistItem(
-                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_MIN,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
-                content="'bath' column: minimum value."
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_RANGE,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
+                content="'bath' column: range (interval between minimum value and maximum value)."
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_MEAN,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
                 content="'bath' column: mean value."
             ),
             DataProfilingChecklistItem(
-                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_MAX,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
-                content="'bath' column: maximum value."
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_MEDIAN,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
+                content="'bath' column: median value."
             ),
             DataProfilingChecklistItem(
-                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_MIN,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
-                content="'acre_lot' column: minimum value."
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_RANGE,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
+                content="'acre_lot' column: range (interval between minimum value and maximum value)."
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_MEAN,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
                 content="'acre_lot' column: mean value."
             ),
             DataProfilingChecklistItem(
-                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_MAX,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
-                content="'acre_lot' column: maximum value."
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_MEDIAN,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
+                content="'acre_lot' column: median value."
             ),
             DataProfilingChecklistItem(
-                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MIN,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
-                content="'house_size' column: minimum value."
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_RANGE,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
+                content="'house_size' column: range (interval between minimum value and maximum value)."
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MEAN,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
                 content="'house_size' column: mean value."
             ),
             DataProfilingChecklistItem(
-                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MAX,
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS,
-                content="'house_size' column: maximum value."
-            )
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MEDIAN,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY,
+                content="'house_size' column: median value."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_QUARTILES,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'price' column: quartiles or percentiles."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_STD_DEV,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'price' column: standard deviation or variance."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_PLOT,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'price' column: distribution plots."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_QUARTILES,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'bed' column: quartiles or percentiles."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_STD_DEV,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'bed' column: standard deviation or variance."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_PLOT,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'bed' column: distribution plots."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_QUARTILES,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'bath' column: quartiles or percentiles."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_STD_DEV,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'bath' column: standard deviation or variance."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_PLOT,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'bath' column: distribution plots."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_QUARTILES,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'acre_lot' column: quartiles or percentiles."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_STD_DEV,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'acre_lot' column: standard deviation or variance."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_PLOT,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'acre_lot' column: distribution plots."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_QUARTILES,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'house_size' column: quartiles or percentiles."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_STD_DEV,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'house_size' column: standard deviation or variance."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_PLOT,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
+                content="'house_size' column: distribution plots."
+            ),
         ]
         prompts = [
             EvaluationPrompt(
                 batch=DataProfilingBatch.COMPLETENESS_GENERAL.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
-                
-Keep in mind that a general description of the dataset must not depend on any column and must stand alone per se, giving an overview of the dataset and not of the columns.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
-Keep also in mind that general numbers about the dataset (i.e. columns number, rows number, total missing values number, exact duplicate rows number) must be EXPLICITLY given and MUST NOT be inferred from other pieces of information.
+You will be given a text to evaluate based on whether some given facts are mentioned or not.
+
+Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
+
+Keep also in mind that a general description of the dataset must not depend on any column and must stand alone per se, giving an overview of the dataset and not of the columns.
                 """,
                 user_message=
                 """
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are not mentioned (0) or mentioned (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -380,14 +457,20 @@ The answer must be given considering this text:
                 batch=DataProfilingBatch.COMPLETENESS_MISSING_VALUES.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+
+You will be given a text to evaluate based on whether some given facts are mentioned or not.
+
+Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
+
+Keep also in mind that it is not necessary to explicitly mention a column in order to evaluate a missing values statement with a score of 1: for example, if the text suggests to calculate the missing values for every column without explicitly mentioning each one of them, then you must still evaluate each missing values statement with a score of 1.
                 """,
                 user_message=
                 """
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are not mentioned (0) or mentioned (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -397,14 +480,18 @@ The answer must be given considering this text:
                 batch=DataProfilingBatch.COMPLETENESS_DISTINCT_VALUES.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+
+You will be given a text to evaluate based on whether some given facts are mentioned or not.
+
+Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
                 """,
                 user_message=
                 """
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are not mentioned (0) or mentioned (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -414,14 +501,18 @@ The answer must be given considering this text:
                 batch=DataProfilingBatch.COMPLETENESS_DATA_TYPES.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+
+You will be given a text to evaluate based on whether some given facts are mentioned or not.
+
+Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
                 """,
                 user_message=
                 """
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are not mentioned (0) or mentioned (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -431,35 +522,67 @@ The answer must be given considering this text:
                 batch=DataProfilingBatch.COMPLETENESS_COLUMN_DESCRIPTIONS.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+
+You will be given a text to evaluate based on whether some given facts are mentioned or not.
+
+Keep also in mind that a column description is a textual description of the semantic meaning of the values contained in that column. For example, valid column descriptions are "number of bedrooms" for the 'bed' column and "lot size in acres" for the 'acre_lot' column. Other pieces of information about columns, such as data quality issues (e.g. outliers, consistency issues, missing values), data types, and descriptive statistics, MUST NOT be considered column descriptions.
+Plus, a good column description should be clearly identified in the text: so, if you struggle to find a clear sentence that directly describes the meaning of a column, it is likely that there is no column description for that column.
                 """,
                 user_message=
                 """
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are not mentioned (0) or mentioned (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
                 """
             ),
             EvaluationPrompt(
-                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS.name,
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_EASY.name,
                 system_message=
                 """
-You are working on a dataset with 12 columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+
+You will be given a text to evaluate based on whether some given facts are mentioned or not.
+
+Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
+
+Keep also in mind that calculating the range of values for a specific (numeric) column is equivalent to calculating the minimum and maximum values for that column. Hence, if the text suggests to calculate or calculates the minimum and maximum values for a column, the range statement related to that column must be evaluated with a score of 1.
                 """,
                 user_message=
                 """
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are not mentioned (0) or mentioned (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+The answer must be given considering this text:
+
+{llm_response_filtered}
+                """
+            ),
+            EvaluationPrompt(
+                batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD.name,
+                system_message=
+                """
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+
+You will be given a text to evaluate based on whether some given facts are mentioned or not.
+
+Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
+                """,
+                user_message=
+                """
+Consider if the piece of text I will give you mentions these facts:
+{bullet_checklist}
+
+Assign a score of 0 or 1 to each of the above statements based on the fact that they are not mentioned (0) or mentioned (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
                 """
             )
         ]
-        super().__init__("Data Profiling - Completeness", items, prompts)
+        super().__init__("Completeness", items, prompts)
