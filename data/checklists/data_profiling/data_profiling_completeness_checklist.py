@@ -464,6 +464,7 @@ You will be given a text to evaluate based on whether some given facts are menti
 Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
 
 Keep also in mind that it is not necessary to explicitly mention a column in order to evaluate a missing values statement with a score of 1: for example, if the text suggests to calculate the missing values for every column without explicitly mentioning each one of them, then you must still evaluate each missing values statement with a score of 1.
+However, if the text does not handle missing values in a general way, you need to have an explicit mention of missing values for a column in order to assign the related statement a score of 1. This means that just mentioning that a column has "-", "" or NaN values is not enough to say that it handles missing values, as the text needs to explicitly recognize them as missing values.
                 """,
                 user_message=
                 """
