@@ -462,6 +462,8 @@ You are working on a dataset with these columns: brokered_by, status, price, bed
 You will be given a text to evaluate based on whether some given facts are mentioned or not.
 
 Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
+
+Keep also in mind that it is not necessary to explicitly mention a column in order to evaluate a missing values statement with a score of 1: for example, if the text suggests to calculate the missing values for every column without explicitly mentioning each one of them, then you must still evaluate each missing values statement with a score of 1.
                 """,
                 user_message=
                 """
@@ -548,6 +550,8 @@ You are working on a dataset with these columns: brokered_by, status, price, bed
 You will be given a text to evaluate based on whether some given facts are mentioned or not.
 
 Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
+
+Keep also in mind that calculating the range of values for a specific (numeric) column is equivalent to calculating the minimum and maximum values for that column. Hence, if the text suggests to calculate or calculates the minimum and maximum values for a column, the range statement related to that column must be evaluated with a score of 1.
                 """,
                 user_message=
                 """
