@@ -64,13 +64,18 @@ class BaseChecklist(ABC):
         return [item for item in self.items if prompt_batch == item.get_batch() and item.is_enabled()]
 
 
-    def evaluate(self, text: str, llm: BaseLLM):
+    def evaluate(self, text: str, llm: BaseLLM, dataset_id: str):
         for prompt in self.prompts:
             print("Evaluating batch: " + prompt.batch)
             enabled_items = self._build_enabled_items_list(prompt.batch)
             if len(enabled_items) == 0:
                 continue
-            bullet_checklist = _build_bullet_list_from_items(enabled_items)
+            enabled_items_copy = []
+            for item in enabled_items:
+                enabled_items_copy.append(item.copy())
+            for item in enabled_items_copy:
+                item.prepare(dataset_id)
+            bullet_checklist = _build_bullet_list_from_items(enabled_items_copy)
             prompt_copy = prompt.copy()
             prompt_copy.user_message = prompt_copy.user_message.replace("{bullet_checklist}", bullet_checklist).replace("{llm_response_filtered}", text)
             while True:

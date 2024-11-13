@@ -268,4 +268,4 @@ The answer must be given considering this text:
                 """
             ),
         ]
-        super().__init__("Data Cleaning - Consequentiality", items, prompts)
+        super().__init__("Consequentiality", items, prompts)

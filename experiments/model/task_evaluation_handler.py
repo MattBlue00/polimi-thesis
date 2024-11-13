@@ -22,10 +22,10 @@ class BaseTaskEvaluationHandler(ABC):
                 dependent_items = [item for item in may_be_dependent_items if item.get_id() in dependency.get_dependent_ids()]
                 dependency.solve(causing_dependency_items, dependent_items)
 
-    def evaluate(self, text: str, llm: BaseLLM) -> None:
+    def evaluate(self, text: str, llm: BaseLLM, dataset_id: str) -> None:
         for checklist in self.checklists:
             print("Evaluating " + checklist.name)
-            checklist.evaluate(text, llm)
+            checklist.evaluate(text, llm, dataset_id)
             for other_checklist in self.checklists:
                 if not other_checklist.is_evaluated():
                     self._solve_dependencies(other_checklist.get_batches(), checklist.get_items(), other_checklist.get_items())
