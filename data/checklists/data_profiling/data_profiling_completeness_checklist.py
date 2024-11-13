@@ -440,7 +440,7 @@ You will be given a text to evaluate based on whether some given facts are menti
 
 Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
 
-Keep also in mind that a general description of the dataset must not depend on any column and must stand alone per se, giving an overview of the dataset and not of the columns.
+Keep also in mind that a general description of the dataset is a text description of the semantic meaning of the dataset rows. It must not depend on any column and must stand alone per se, giving an overview of the dataset and not of the columns.
                 """,
                 user_message=
                 """
@@ -554,6 +554,8 @@ You will be given a text to evaluate based on whether some given facts are menti
 Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
 
 Keep also in mind that calculating the range of values for a specific (numeric) column is equivalent to calculating the minimum and maximum values for that column. Hence, if the text suggests to calculate or calculates the minimum and maximum values for a column, the range statement related to that column must be evaluated with a score of 1.
+
+Pay attention to the fact that you must accept ranges that go from the *actual* minimum to the *actual* maximum: it does not matter if these values are not actually calculated or specified, but you cannot accept ranges that encompass only a subset of values, such as the most common values.
                 """,
                 user_message=
                 """
