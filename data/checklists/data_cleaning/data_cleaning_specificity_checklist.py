@@ -77,4 +77,4 @@ The answer must be given considering this text:
                 """
             ),
         ]
-        super().__init__("Data Cleaning - Specificity", items, prompts)
+        super().__init__("Specificity", items, prompts)

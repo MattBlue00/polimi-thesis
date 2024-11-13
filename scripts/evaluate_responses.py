@@ -1,5 +1,4 @@
 import os
-import pprint
 
 from data.llms import get_llm
 from data.task_evaluation_handlers.data_cleaning_evaluation_handler import DataCleaningEvaluationHandler
@@ -7,7 +6,7 @@ from data.task_evaluation_handlers.data_profiling_evaluation_handler import Data
 from scripts.utils.constants import NUM_SUCCESSFUL_TRIES
 from scripts.utils.fetch_datasets import load_dirty_datasets
 from scripts.utils.path import get_directory_from_root, get_directory_from_dir_name
-from scripts.utils.scores import get_mean_scores
+from scripts.utils.scores import get_mean_and_variance, print_sorted_scores
 from scripts.utils.setup import setup
 from scripts.utils.text_filter import filter_llm_response
 
@@ -94,13 +93,13 @@ for dataset in datasets:
 
                     temp_scores = []
                     for _ in range(NUM_SUCCESSFUL_TRIES):
-                        handler.evaluate(llm_response_filtered, get_llm("GPT"))
+                        handler.evaluate(llm_response_filtered, get_llm("GPT"), os.path.basename(dataset_dir))
                         temp_scores.append(handler.get_scores())
                         handler.reset()
 
-                    scores[os.path.basename(dataset_dir)][os.path.basename(task_dir)][os.path.basename(prompt_dir)][os.path.basename(rf)] = get_mean_scores(temp_scores)
+                    scores[os.path.basename(dataset_dir)][os.path.basename(task_dir)][os.path.basename(prompt_dir)][os.path.basename(rf)] = get_mean_and_variance(temp_scores)
 
-pprint.pprint(scores)
+print_sorted_scores(scores)
 
 '''
 evaluations_dir = get_directory_from_root(__file__, 'evaluations')  # responses directory
