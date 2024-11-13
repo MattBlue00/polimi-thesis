@@ -320,15 +320,6 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
                 batches=[
                     DataProfilingBatch.ACCURACY_DATA_TYPES
                 ],
-                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_STATUS,
-                dependents=[
-                    DataProfilingItemId.ACCURACY_DATA_TYPES_STATUS,
-                ]
-            ),
-            DataProfilingDependency(
-                batches=[
-                    DataProfilingBatch.ACCURACY_DATA_TYPES
-                ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_BED,
                 dependents=[
                     DataProfilingItemId.ACCURACY_DATA_TYPES_BED,

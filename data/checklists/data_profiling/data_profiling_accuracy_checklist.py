@@ -435,11 +435,6 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 content="'prev_sold_date' column: describes how to visualize the frequencies."
             ),
             DataProfilingChecklistItem(
-                item=DataProfilingItemId.ACCURACY_VISUALIZE_FREQUENCIES_PREV_SOLD_DATE,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
-                content="'prev_sold_date' column: describes how to visualize the frequencies."
-            ),
-            DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_PRICE_MIN,
                 batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
                 content="'price' column: minimum value is {content_value}.",
@@ -723,7 +718,7 @@ Keep also in mind that a general description of the dataset must not depend on a
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -744,7 +739,7 @@ Keep in mind that any information that is requested can be given in any form, be
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -765,7 +760,7 @@ Keep in mind that any information that is requested can be given in any form, be
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -786,7 +781,7 @@ Keep in mind that any information that is requested can be given in any form, be
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -799,15 +794,13 @@ The answer must be given considering this text:
 You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
 You will be given a text to evaluate based on whether some given facts are true or false.
-
-Keep in mind that any information that is requested can be given in any form, be it a number/datum, a piece of text, or a code snippet that helps obtain that information, but is MUST be accurate and correct.
                 """,
                 user_message=
                 """
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -828,7 +821,7 @@ Keep in mind that any information that is requested can be given in any form, be
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are true (0) or false (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are true (0) or false (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -849,7 +842,7 @@ Keep in mind that any information that is requested can be given in any form, be
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
