@@ -16,22 +16,22 @@ class DataProfilingCompletenessChecklist(BaseChecklist):
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.COMPLETENESS_GENERAL_COLUMNS,
                 batch=DataProfilingBatch.COMPLETENESS_GENERAL,
-                content="explicit columns number."
+                content="columns number."
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.COMPLETENESS_GENERAL_ROWS,
                 batch=DataProfilingBatch.COMPLETENESS_GENERAL,
-                content="explicit rows number."
+                content="rows number."
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.COMPLETENESS_GENERAL_MISSING_VALUES,
                 batch=DataProfilingBatch.COMPLETENESS_GENERAL,
-                content="explicit total missing values number."
+                content="total missing values number."
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.COMPLETENESS_GENERAL_DUPLICATES,
                 batch=DataProfilingBatch.COMPLETENESS_GENERAL,
-                content="explicit exact duplicate rows number."
+                content="exact duplicate rows number."
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.COMPLETENESS_GENERAL_DEPENDENCIES,
