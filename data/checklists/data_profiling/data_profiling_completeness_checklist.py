@@ -440,7 +440,7 @@ You will be given a text to evaluate based on whether some given facts are menti
 
 Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
 
-Keep also in mind that a general description of the dataset must not depend on any column and must stand alone per se, giving an overview of the dataset and not of the columns.
+Keep also in mind that a general description of the dataset is a text description of the semantic meaning of the dataset rows. It must not depend on any column and must stand alone per se, giving an overview of the dataset and not of the columns.
                 """,
                 user_message=
                 """
@@ -464,6 +464,7 @@ You will be given a text to evaluate based on whether some given facts are menti
 Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
 
 Keep also in mind that it is not necessary to explicitly mention a column in order to evaluate a missing values statement with a score of 1: for example, if the text suggests to calculate the missing values for every column without explicitly mentioning each one of them, then you must still evaluate each missing values statement with a score of 1.
+However, if the text does not handle missing values in a general way, you need to have an explicit mention of missing values for a column in order to assign the related statement a score of 1. This means that just mentioning that a column has "-", "" or NaN values is not enough to say that it handles missing values, as the text needs to explicitly recognize them as missing values.
                 """,
                 user_message=
                 """
@@ -506,6 +507,7 @@ You are working on a dataset with these columns: brokered_by, status, price, bed
 You will be given a text to evaluate based on whether some given facts are mentioned or not.
 
 Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
+Remember that even if data types are often given as clear, standalone information, sometimes it may happen that they are mentioned in a less evident way inside a sentence: if the text states that a column contains a given type of values, without explicitly mentioning that it contains only that kind of values, you can still assume that such type is a valid data type for that column. However, please be sure of the fact that a proper type is provided: you shouldn't infer it by means of other information.
                 """,
                 user_message=
                 """
@@ -526,7 +528,8 @@ You are working on a dataset with these columns: brokered_by, status, price, bed
 
 You will be given a text to evaluate based on whether some given facts are mentioned or not.
 
-Keep also in mind that a column description is a textual description of the semantic meaning of the values contained in that column. For example, valid column descriptions are "number of bedrooms" for the 'bed' column and "lot size in acres" for the 'acre_lot' column. Other pieces of information about columns, such as data quality issues (e.g. outliers, consistency issues, missing values), data types, and descriptive statistics, MUST NOT be considered column descriptions.
+Keep also in mind that a column description is a textual description of the semantic meaning of the values contained in that column. For example, valid column descriptions are "number of bedrooms" for the 'bed' column and "lot size in acres" for the 'acre_lot' column.
+Other pieces of information about columns, such as data quality issues (e.g. outliers, consistency issues, missing values), data types, and descriptive statistics, MUST NOT be considered column descriptions. Furthermore, information that is related to the values but not strictly related to the "domain" of the column does NOT provide a column description: for example, if the text says that the 'city' column has "various city names across different states", even though the information may be correct and pertain to the domain, the sentence does not provide a valid column description since it is an information that is dataset-dependent and not general with respect to the meaning of the column. 
 Plus, a good column description should be clearly identified in the text: so, if you struggle to find a clear sentence that directly describes the meaning of a column, it is likely that there is no column description for that column.
                 """,
                 user_message=
@@ -551,6 +554,8 @@ You will be given a text to evaluate based on whether some given facts are menti
 Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
 
 Keep also in mind that calculating the range of values for a specific (numeric) column is equivalent to calculating the minimum and maximum values for that column. Hence, if the text suggests to calculate or calculates the minimum and maximum values for a column, the range statement related to that column must be evaluated with a score of 1.
+
+Pay attention to the fact that you must accept ranges that go from the *actual* minimum to the *actual* maximum: it does not matter if these values are not actually calculated or specified, but you cannot accept ranges that encompass only a subset of values, such as the most common values.
                 """,
                 user_message=
                 """
