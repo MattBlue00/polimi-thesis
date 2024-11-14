@@ -247,7 +247,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_DATA_TYPES_BROKERED_BY,
                 batch=DataProfilingBatch.ACCURACY_DATA_TYPES,
-                content="'brokered_by' column: Text/String/Mixed (it's a list of numerical IDs, with some full names as strings)."
+                content="'brokered_by' column: Text or String or Mixed (it's a list of numerical IDs, with some full names as strings, so one of the three options is acceptable)."
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_DATA_TYPES_STATUS,
@@ -853,6 +853,8 @@ You are working on a dataset with these columns: brokered_by, status, price, bed
 You will be given a text to evaluate based on whether some given facts are true or false.
 
 Keep in mind that any information that is requested can be given in any form, be it a number/datum, a piece of text, or a code snippet that helps obtain that information, but is MUST be accurate and correct.
+              
+You MUST evaluate EACH ONE of the provided statements.
               """,
                 user_message=
                 """
@@ -860,6 +862,7 @@ Consider if the piece of text I will give you mentions these data types for thes
 {bullet_checklist}
 
 Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Before outputting the result, you MUST check that the number of zeroes and ones corresponds to the number of statements to evaluate.
 The answer must be given considering this text:
 
 {llm_response_filtered}

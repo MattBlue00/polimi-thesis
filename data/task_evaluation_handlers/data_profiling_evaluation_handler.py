@@ -1713,6 +1713,6 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
         checklists = [
             DataProfilingCompletenessChecklist(),
             DataProfilingAccuracyChecklist(),
-            #DataProfilingAutomatabilityChecklist(),
+            DataProfilingAutomatabilityChecklist(),
         ]
         super().__init__(checklists, dependencies)
