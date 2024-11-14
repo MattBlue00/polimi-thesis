@@ -53,9 +53,6 @@ for dataset in datasets:
 
     for task in tasks:
 
-        if task == "data_cleaning": #FIXME
-            continue
-
         task_dir = get_directory_from_dir_name(dataset_dir, task)
         if not os.path.exists(task_dir):
             raise Exception(

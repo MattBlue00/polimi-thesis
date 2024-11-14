@@ -81,4 +81,4 @@ class DataProfilingChecklistItem(BaseChecklistItem):
 
     def prepare(self, dataset_id: str) -> None:
         if self.content_values is not None:
-            self.content.replace("{content_value}", self.content_values[dataset_id])
+            self.content = self.content.replace("{content_value}", self.content_values[dataset_id])
