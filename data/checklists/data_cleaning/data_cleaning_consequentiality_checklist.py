@@ -137,7 +137,7 @@ class DataCleaningConsequentialityChecklist(BaseChecklist):
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_STATUS,
                 batch=DataCleaningBatch.CONSEQUENTIALITY_DIRTY_SOLUTION,
-                content="'status' column: presence of format inconsistencies ('s' stands for 'sold', 'f' stands for 'for_sale')."
+                content="'status' column: presence of format inconsistencies ('s' stands for 'sold', 'f' stands for 'for_sale', which need standardizing)."
             ),
             DataCleaningChecklistItem(
                 item=DataCleaningItemId.CONSEQUENTIALITY_DIRTY_SOLUTION_PRICE,
@@ -202,16 +202,15 @@ class DataCleaningConsequentialityChecklist(BaseChecklist):
                 """
 You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
-You must consider a solution to a problem as CONSEQUENTIAL if there is an obvious cause-effect relationship between a problem and the solution proposed to solve that problem, especially if code is given, REGARDLESS of the fact that the proposed solution actually solves the problem and REGARDLESS of the fact that the solution is given in a clear and unambiguous way. 
-
-Keep in mind that if a piece of text wants to solve the problem of missing values for a specific column by performing a data type conversion with the parameter "errors='coerce'", the corresponding statement MUST be graded as 0. This condition MUST prevail on the other ones.
-It is NOT considered a consequential solution.
-
-Keep in mind that you MUST consider a solution as CONSEQUENTIAL even if it does NOT provide a DIRECT way to solve a problem or if it is NOT clear, as long that a user can easily link a solution proposal to the effect it is intended to obtain. Therefore, solutions that do not directly address and solve a problem MIGHT STILL BE CONSEQUENTIAL if the user can clearly understand which problem a solution proposal is trying to solve. Therefore, even "non-solutions" where the proposal is to "leave everything as is" can still be considered as CONSEQUENTIAL.
+You must consider a proposed solution to a problem as CLEAR, if the provided solution addresses the problem in a clear way. A clear solution must be graded with a score of 1.
+           
+Keep in mind that if a piece of text wants to solve the problem of missing values for a specific column by performing a data type conversion with the parameter "errors='coerce'" (this parameter must be EXPLICIT for this condition to apply), the corresponding statement MUST be graded as 0. This condition MUST prevail on the other ones. 
+  
+If the solution does NOT specifically address missing values for a specific column (unless a general approach is used, where there are operations performed on the whole dataset/dataframe), the corresponding statements must be graded as 0.
                 """,
                 user_message=
                 """
-Consider if the piece of text I will give you provides a CONSEQUENTIAL solution for the following problems:
+Consider if the piece of text I will give you provides a clear solution for the following problems:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
@@ -230,15 +229,13 @@ Keep in mind that there are only three types of missing values: '-', '' and NaN.
 
 Keep also in mind that if there are actions that are computed on the whole dataset and that address each one of the three types of missing values, you must evaluate each statement with a score of 1. Examples of such table-wise actions are replacements of '-' and '' with NaN performed on an entire dataframe in a single or a few lines of code.
 
-Keep also in mind that if there are actions that convert the data type of a column with functions that explicitly mention the \"errors='coerce'\" parameter (e.g. to_numeric, to_datetime, etc. and NOT astype), then all the types of missing values are handled for that specific column.
+Keep also in mind that if there are actions that convert the data type of a column with functions that explicitly mention the "errors='coerce'" parameter (e.g. to_numeric, to_datetime, etc. and NOT astype), then all the types of missing values are handled for that specific column.
 
-You must consider a solution to a problem as CONSEQUENTIAL if there is an obvious cause-effect relationship between a problem and the solution proposed to solve that problem, especially if code is given, REGARDLESS of the fact that the proposed solution actually solves the problem and REGARDLESS of the fact that the solution is given in a clear and unambiguous way. For this reason, for example, if a piece of text wants to solve the problem of handling all kinds of missing values for a specific column by performing a data type conversion with the parameter "errors='coerce'", the cause-effect relationship is NOT consequential, because only an expert user knows that such a parameter is able to handle also any missing or wrong values during a data type conversion (which is a different task with respect to the task of handling all the different kinds of missing values).
-
-Keep in mind that you MUST consider a solution as CONSEQUENTIAL even if it does NOT provide a DIRECT way to solve a problem or if it is NOT clear, as long that a user can easily link a solution proposal to the effect it is intended to obtain. Therefore, solutions that do not directly address and solve a problem MIGHT STILL BE CONSEQUENTIAL if the user can clearly understand which problem a solution proposal is trying to solve.
+You must consider a proposed solution to a problem as CLEAR, if the provided solution addresses the problem in a clear way. A clear solution must be graded with a score of 1.
                 """,
                 user_message=
                 """
-Consider if the piece of text I will give you provides a CONSEQUENTIAL solution that encompasses all the three types of missing values for the following columns:
+Consider if the piece of text I will give you provides a clear solution that encompasses all the three types of missing values for the following columns:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
@@ -253,18 +250,17 @@ The answer must be given considering this text:
                 """
 You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
 
-You must consider a solution to a problem as CONSEQUENTIAL if there is an obvious cause-effect relationship between a problem and the solution proposed to solve that problem, especially if code is given, REGARDLESS of the fact that the proposed solution actually solves the problem and REGARDLESS of the fact that the solution is given in a clear and unambiguous way. For this reason, for example, if a piece of text wants to solve the fact that some prices have a currency and others don't by performing a data type conversion to a numeric type with the parameter "errors='coerce'", the cause-effect relationship is NOT consequential, because only an expert user knows that such a parameter is able to transform non-numeric values into NaN values during a data type conversion (which is a different task with respect to the task of solving the prices in different formats). 
-Solutions can be presented as a piece of text, as code or sometimes as both. FOCUS and if both text and code are present, evaluate BOTH of them.         
+You must consider a proposed solution to a problem as CLEAR, if the provided solution addresses the problem in a clear way. A clear solution must be graded with a score of 1.       
                 """,
                 user_message=
                 """
-Consider if the piece of text I will give you provides a CONSEQUENTIAL solution for the following problems:
+Consider if the piece of text I will give you provides a clear solution for the following problems:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to each of the above statements based on the fact that they are false or true. You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
-{llm_response_filtered}
+{llm_response_filtered} 
                 """
             ),
         ]

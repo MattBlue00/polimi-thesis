@@ -3,7 +3,7 @@ ROWS_TO_SAMPLE = 100
 # fixing seed for reproducibility
 RANDOM_SEED = 42
 # number of successful tries per each evaluation
-NUM_SUCCESSFUL_TRIES = 1
+NUM_SUCCESSFUL_TRIES = 3
 
 LLM_INPUT_COSTS = {
     "GPT": 0.0000025,
