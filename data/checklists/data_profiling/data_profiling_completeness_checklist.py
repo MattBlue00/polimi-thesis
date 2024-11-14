@@ -428,6 +428,41 @@ class DataProfilingCompletenessChecklist(BaseChecklist):
                 batch=DataProfilingBatch.COMPLETENESS_VALUE_DISTRIBUTIONS_HARD,
                 content="'house_size' column: distribution plots."
             ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_FREQUENCIES_BROKERED_BY,
+                batch=DataProfilingBatch.COMPLETENESS_FREQUENCIES,
+                content="'brokered_by' column."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_FREQUENCIES_STATUS,
+                batch=DataProfilingBatch.COMPLETENESS_FREQUENCIES,
+                content="'status' column."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_FREQUENCIES_STREET,
+                batch=DataProfilingBatch.COMPLETENESS_FREQUENCIES,
+                content="'street' column."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_FREQUENCIES_CITY,
+                batch=DataProfilingBatch.COMPLETENESS_FREQUENCIES,
+                content="'city' column."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_FREQUENCIES_STATE,
+                batch=DataProfilingBatch.COMPLETENESS_FREQUENCIES,
+                content="'state' column."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_FREQUENCIES_ZIP_CODE,
+                batch=DataProfilingBatch.COMPLETENESS_FREQUENCIES,
+                content="'zip_code' column."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.COMPLETENESS_FREQUENCIES_PREV_SOLD_DATE,
+                batch=DataProfilingBatch.COMPLETENESS_FREQUENCIES,
+                content="'prev_sold_date' column."
+            ),
         ]
         prompts = [
             EvaluationPrompt(
@@ -588,6 +623,27 @@ The answer must be given considering this text:
 
 {llm_response_filtered}
                 """
-            )
+            ),
+            EvaluationPrompt(
+                batch=DataProfilingBatch.COMPLETENESS_FREQUENCIES.name,
+                system_message=
+                """
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+
+You will be given a text to evaluate based on whether some given facts are mentioned or not.
+
+Keep in mind that any information that is requested can be given in any form to be considered mentioned, be it a number/datum, a piece of text, or a code snippet that helps obtain that information.
+                """,
+                user_message=
+                """
+Consider if the piece of text I will give you mentions the frequencies of these columns:
+{bullet_checklist}
+
+Assign a score of 0 or 1 to each of the above statements based on the fact that the frequencies are not mentioned (0) or mentioned (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+The answer must be given considering this text:
+
+{llm_response_filtered}
+                """
+            ),
         ]
         super().__init__("Completeness", items, prompts)

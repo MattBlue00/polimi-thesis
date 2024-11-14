@@ -78,7 +78,7 @@ class BaseChecklist(ABC):
             bullet_checklist = _build_bullet_list_from_items(enabled_items_copy)
             prompt_copy = prompt.copy()
             prompt_copy.user_message = prompt_copy.user_message.replace("{bullet_checklist}", bullet_checklist).replace("{llm_response_filtered}", text)
-            #print(prompt_copy.user_message)
+            print(prompt_copy.user_message)
             while True:
                 try:
                     response = llm.get_response(prompt_copy).strip()

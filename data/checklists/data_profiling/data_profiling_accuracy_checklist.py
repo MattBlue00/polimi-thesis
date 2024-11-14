@@ -29,9 +29,9 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_GENERAL_MISSING_VALUES,
                 batch=DataProfilingBatch.ACCURACY_GENERAL,
-                content="total missing values number/percentage: {content_value}.",
+                content="total missing values number or percentage: {content_value}.",
                 content_values={
-                    "df_dirty_10": "134 - 10%"
+                    "df_dirty_10": "134 or 10%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -57,7 +57,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'brokered_by' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "5 - 4,55%"
+                    "df_dirty_10": "5 or 4,55%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -65,7 +65,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'status' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "6 - 5,45%"
+                    "df_dirty_10": "6 or 5,45%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -73,7 +73,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'price' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "10 - 9,09%"
+                    "df_dirty_10": "10 or 9,09%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -81,7 +81,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'bed' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "13 - 11,82%"
+                    "df_dirty_10": "13 or 11,82%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -89,7 +89,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'bath' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "12 - 11%"
+                    "df_dirty_10": "12 or 11%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -97,7 +97,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'acre_lot' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "13 - 11,82%"
+                    "df_dirty_10": "13 or 11,82%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -105,7 +105,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'street' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "13 - 11,82%"
+                    "df_dirty_10": "13 or 11,82%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -113,7 +113,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'city' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "11 - 10%"
+                    "df_dirty_10": "11 or 10%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -121,7 +121,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'state' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "41 - 37,27%"
+                    "df_dirty_10": "41 or 37,27%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -129,7 +129,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'zip_code' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "15 - 13,64%"
+                    "df_dirty_10": "15 or 13,64%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -137,7 +137,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'house_size' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "14 - 12,73%"
+                    "df_dirty_10": "14 or 12,73%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -145,7 +145,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_MISSING_VALUES,
                 content="'prev_sold_date' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "10 - 9,09%"
+                    "df_dirty_10": "10 or 9,09%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -153,7 +153,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'brokered_by' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "93 - 84,55%"
+                    "df_dirty_10": "93 or 84,55%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -161,7 +161,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'status' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "5 - 4,55%"
+                    "df_dirty_10": "5 or 4,55%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -169,7 +169,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'price' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "76 - 69,09%"
+                    "df_dirty_10": "76 or 69,09%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -177,7 +177,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'bed' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "7 - 6,36%"
+                    "df_dirty_10": "7 or 6,36%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -185,7 +185,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'bath' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "7 - 6,36%"
+                    "df_dirty_10": "7 or 6,36%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -193,7 +193,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'acre_lot' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "53 - 48,18%"
+                    "df_dirty_10": "53 or 48,18%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -201,7 +201,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'street' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "89 - 80,91%"
+                    "df_dirty_10": "89 or 80,91%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -209,7 +209,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'city' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "84 - 76,36%"
+                    "df_dirty_10": "84 or 76,36%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -217,7 +217,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'state' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "41 - 37,27%"
+                    "df_dirty_10": "41 or 37,27%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -225,7 +225,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'zip_code' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "88 - 80.0%"
+                    "df_dirty_10": "88 or 80.0%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -233,7 +233,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'house_size' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "88 - 80.0%"
+                    "df_dirty_10": "88 or 80.0%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -241,7 +241,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_DISTINCT_VALUES,
                 content="'prev_sold_date' column: {content_value}.",
                 content_values={
-                    "df_dirty_10": "85 - 77,27%"
+                    "df_dirty_10": "85 or 77,27%"
                 }
             ),
             DataProfilingChecklistItem(
@@ -436,7 +436,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_PRICE_MIN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE,
                 content="'price' column: minimum value is {content_value}.",
                 content_values={
                     "df_dirty_10": "69900"
@@ -444,7 +444,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_PRICE_MAX,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE,
                 content="'price' column: maximum value is {content_value}.",
                 content_values={
                     "df_dirty_10": "2450000"
@@ -452,7 +452,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_PRICE_MEAN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN,
                 content="'price' column: mean value is {content_value}.",
                 content_values={
                     "df_dirty_10": "481344.375"
@@ -460,7 +460,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_PRICE_MEDIAN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN,
                 content="'price' column: median value is {content_value}.",
                 content_values={
                     "df_dirty_10": "375000"
@@ -468,7 +468,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_BED_MIN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE,
                 content="'bed' column: minimum value is {content_value}.",
                 content_values={
                     "df_dirty_10": "1"
@@ -476,7 +476,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_BED_MAX,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE,
                 content="'bed' column: maximum value is {content_value}.",
                 content_values={
                     "df_dirty_10": "9999 (even 6 is acceptable)"
@@ -484,7 +484,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_BED_MEAN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN,
                 content="'bed' column: mean value is {content_value}.",
                 content_values={
                     "df_dirty_10": "1033.814"
@@ -492,7 +492,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_BED_MEDIAN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN,
                 content="'bed' column: median value is {content_value}.",
                 content_values={
                     "df_dirty_10": "3"
@@ -500,7 +500,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_BATH_MIN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE,
                 content="'bath' column: minimum value is {content_value}.",
                 content_values={
                     "df_dirty_10": "0 (even 1 is acceptable)"
@@ -508,7 +508,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_BATH_MAX,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE,
                 content="'bath' column: maximum value is {content_value}.",
                 content_values={
                     "df_dirty_10": "6"
@@ -516,7 +516,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_BATH_MEAN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN,
                 content="'bath' column: mean value is {content_value}.",
                 content_values={
                     "df_dirty_10": "2.265"
@@ -524,7 +524,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_BATH_MEDIAN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN,
                 content="'bath' column: median value is {content_value}.",
                 content_values={
                     "df_dirty_10": "2"
@@ -532,7 +532,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_ACRE_LOT_MIN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE,
                 content="'acre_lot' column: minimum value is {content_value}.",
                 content_values={
                     "df_dirty_10": "-1,56"
@@ -540,7 +540,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_ACRE_LOT_MAX,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE,
                 content="'acre_lot' column: maximum value is {content_value}.",
                 content_values={
                     "df_dirty_10": "35"
@@ -548,7 +548,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_ACRE_LOT_MEAN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN,
                 content="'acre_lot' column: mean value is {content_value}.",
                 content_values={
                     "df_dirty_10": "1.265"
@@ -556,7 +556,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_ACRE_LOT_MEDIAN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN,
                 content="'acre_lot' column: median value is {content_value}.",
                 content_values={
                     "df_dirty_10": "0.21"
@@ -564,7 +564,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MIN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE,
                 content="'house_size' column: minimum value is {content_value}.",
                 content_values={
                     "df_dirty_10": "4.699e-05"
@@ -572,7 +572,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MAX,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE,
                 content="'house_size' column: maximum value is {content_value}.",
                 content_values={
                     "df_dirty_10": "5828"
@@ -580,7 +580,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MEAN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN,
                 content="'house_size' column: mean value is {content_value}.",
                 content_values={
                     "df_dirty_10": "1965.375"
@@ -588,7 +588,7 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
             ),
             DataProfilingChecklistItem(
                 item=DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MEDIAN,
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN,
                 content="'house_size' column: median value is {content_value}.",
                 content_values={
                     "df_dirty_10": "1879.5"
@@ -699,6 +699,76 @@ class DataProfilingAccuracyChecklist(BaseChecklist):
                 batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_HARD,
                 content="'house_size' column: distribution plots are present."
             ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_CALCULATE_FREQUENCIES_BROKERED_BY,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'brokered_by' column: there is code or a textual description on how to calculate the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_VISUALIZE_FREQUENCIES_BROKERED_BY,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'brokered_by' column: there is code or a textual description on how to visualize the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_CALCULATE_FREQUENCIES_STATUS,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'status' column: there is code or a textual description on how to calculate the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_VISUALIZE_FREQUENCIES_STATUS,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'status' column: there is code or a textual description on how to visualize the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_CALCULATE_FREQUENCIES_STREET,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'street' column: there is code or a textual description on how to calculate the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_VISUALIZE_FREQUENCIES_STREET,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'street' column: there is code or a textual description on how to visualize the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_CALCULATE_FREQUENCIES_CITY,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'city' column: there is code or a textual description on how to calculate the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_VISUALIZE_FREQUENCIES_CITY,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'city' column: there is code or a textual description on how to visualize the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_CALCULATE_FREQUENCIES_STATE,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'state' column: there is code or a textual description on how to calculate the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_VISUALIZE_FREQUENCIES_STATE,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'state' column: there is code or a textual description on how to visualize the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_CALCULATE_FREQUENCIES_ZIP_CODE,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'zip_code' column: there is code or a textual description on how to calculate the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_VISUALIZE_FREQUENCIES_ZIP_CODE,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'zip_code' column: there is code or a textual description on how to visualize the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_CALCULATE_FREQUENCIES_PREV_SOLD_DATE,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'prev_sold_date' column: there is code or a textual description on how to calculate the frequencies."
+            ),
+            DataProfilingChecklistItem(
+                item=DataProfilingItemId.ACCURACY_VISUALIZE_FREQUENCIES_PREV_SOLD_DATE,
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES,
+                content="'prev_sold_date' column: there is code or a textual description on how to visualize the frequencies."
+            ),
         ]
         prompts = [
             EvaluationPrompt(
@@ -719,6 +789,7 @@ Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Before outputting the result, you MUST check that the number of zeroes and ones corresponds to the number of statements to evaluate.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -736,10 +807,11 @@ Keep in mind that any information that is requested can be given in any form, be
                 """,
                 user_message=
                 """
-Consider if the piece of text I will give you mentions these facts:
+Consider if the piece of text I will give you mentions these numbers or percentages about the missing values of these columns:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Before outputting the result, you MUST check that the number of zeroes and ones corresponds to the number of statements to evaluate.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -754,13 +826,19 @@ You are working on a dataset with these columns: brokered_by, status, price, bed
 You will be given a text to evaluate based on whether some given facts are true or false.
 
 Keep in mind that any information that is requested can be given in any form, be it a number/datum, a piece of text, or a code snippet that helps obtain that information, but is MUST be accurate and correct.  
+                
+You will be asked to consider if a given piece of text mentions the number OR percentages of distinct values in a list of columns. 
+If the text provides both the number and the percentage of distinct values, compare both with the ones present in the statements. IF they are the same values assign score 1, otherwise assign 0. Evaluate as a unique statement, do NOT separate as percentages and numbers.
+If the text provides only one between the number and the percentage of distinct values, compare the present value with the corresponding one in the statements. IF it is the same value assign score 1, otherwise assign 0. Evaluate as a unique statement, do NOT separate as percentages and numbers.
+If the text doesn't provide anything, not even a piece of code, assign 0.
                 """,
                 user_message=
                 """
-Consider if the piece of text I will give you mentions these facts:
+Consider if the piece of text I will give you mentions these numbers or percentages about the distinct values of these columns:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Before outputting the result, you MUST check that the number of zeroes and ones corresponds to the number of statements to evaluate.
 The answer must be given considering this text:
 
 {llm_response_filtered}
@@ -778,7 +856,7 @@ Keep in mind that any information that is requested can be given in any form, be
               """,
                 user_message=
                 """
-Consider if the piece of text I will give you mentions these facts:
+Consider if the piece of text I will give you mentions these data types for these columns:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
@@ -797,17 +875,18 @@ You will be given a text to evaluate based on whether some given facts are true 
                 """,
                 user_message=
                 """
-Consider if the piece of text I will give you mentions these facts:
+Consider if the piece of text I will give you mentions these column descriptions for these columns:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Before outputting the result, you MUST check that the number of zeroes and ones corresponds to the number of statements to evaluate.
 The answer must be given considering this text:
 
 {llm_response_filtered}
                 """
             ),
             EvaluationPrompt(
-                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY.name,
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE.name,
                 system_message=
                 """
 You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
@@ -818,14 +897,36 @@ Keep in mind that any information that is requested can be given in any form, be
                 """,
                 user_message=
                 """
-Consider if the piece of text I will give you mentions these facts:
+Consider if the piece of text I will give you mentions these facts about value distributions:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 Before outputting the result, you MUST check that the number of zeroes and ones corresponds to the number of statements to evaluate.
 The answer must be given considering this text:
 
-"{llm_response_filtered}".
+{llm_response_filtered}.
+                """
+            ),
+            EvaluationPrompt(
+                batch=DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN.name,
+                system_message=
+                """
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+
+You will be given a text to evaluate based on whether some given facts are true or false.
+
+Keep in mind that any information that is requested can be given in any form, be it a number/datum, a piece of text, or a code snippet that helps obtain that information, but is MUST be accurate and correct.
+                """,
+                user_message=
+                """
+Consider if the piece of text I will give you mentions these facts about value distributions:
+{bullet_checklist}
+
+Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Before outputting the result, you MUST check that the number of zeroes and ones corresponds to the number of statements to evaluate.
+The answer must be given considering this text:
+
+{llm_response_filtered}.
                 """
             ),
             EvaluationPrompt(
@@ -840,14 +941,37 @@ Keep in mind that any information that is requested can be given in any form, be
                 """,
                 user_message=
                 """
-Consider if the piece of text I will give you mentions these facts:
+Consider if the piece of text I will give you mentions these facts about value distributions:
 {bullet_checklist}
 
 Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Before outputting the result, you MUST check that the number of zeroes and ones corresponds to the number of statements to evaluate.
 The answer must be given considering this text:
 
 {llm_response_filtered}
                 """
-            )
+            ),
+            EvaluationPrompt(
+                batch=DataProfilingBatch.ACCURACY_FREQUENCIES.name,
+                system_message=
+                """
+You are working on a dataset with these columns: brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date. Assume that there is a dataframe containing the whole dataset.
+
+You will be given a text to evaluate based on whether some given facts are mentioned or not.
+
+Keep in mind that any information that is requested can be given in any form, be it a number/datum, a piece of text, or a code snippet that helps obtain that information, but is MUST be accurate and correct.
+                """,
+                user_message=
+                """
+Consider if the piece of text I will give you mentions these facts about value frequencies for these columns:
+{bullet_checklist}
+
+Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Before outputting the result, you MUST check that the number of zeroes and ones corresponds to the number of statements to evaluate.
+The answer must be given considering this text:
+
+{llm_response_filtered}
+                """
+            ),
         ]
         super().__init__("Accuracy", items, prompts)

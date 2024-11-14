@@ -1,5 +1,6 @@
 from data.batches import DataProfilingBatch
 from data.checklists.data_profiling.data_profiling_accuracy_checklist import DataProfilingAccuracyChecklist
+from data.checklists.data_profiling.data_profiling_automatability_checklist import DataProfilingAutomatabilityChecklist
 from data.checklists.data_profiling.data_profiling_completeness_checklist import DataProfilingCompletenessChecklist
 from data.checklists.data_profiling.item_ids import DataProfilingItemId
 from experiments.model.dependency import DataProfilingDependency
@@ -633,7 +634,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_RANGE,
                 dependents=[
@@ -642,7 +643,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_RANGE,
                 dependents=[
@@ -651,7 +652,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_MEAN,
                 dependents=[
@@ -660,7 +661,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_MEDIAN,
                 dependents=[
@@ -669,7 +670,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_RANGE,
                 dependents=[
@@ -678,7 +679,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_RANGE,
                 dependents=[
@@ -687,7 +688,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_MEAN,
                 dependents=[
@@ -696,7 +697,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_MEDIAN,
                 dependents=[
@@ -705,7 +706,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_RANGE,
                 dependents=[
@@ -714,7 +715,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_RANGE,
                 dependents=[
@@ -723,7 +724,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_MEAN,
                 dependents=[
@@ -732,7 +733,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_MEDIAN,
                 dependents=[
@@ -741,7 +742,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_RANGE,
                 dependents=[
@@ -750,7 +751,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_RANGE,
                 dependents=[
@@ -759,7 +760,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_MEAN,
                 dependents=[
@@ -768,7 +769,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_MEDIAN,
                 dependents=[
@@ -777,7 +778,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_RANGE,
                 dependents=[
@@ -786,7 +787,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_RANGE
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_RANGE,
                 dependents=[
@@ -795,7 +796,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MEAN,
                 dependents=[
@@ -804,7 +805,7 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
             ),
             DataProfilingDependency(
                 batches=[
-                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_EASY
+                    DataProfilingBatch.ACCURACY_VALUE_DISTRIBUTIONS_MEAN_MEDIAN
                 ],
                 causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MEDIAN,
                 dependents=[
@@ -947,9 +948,771 @@ class DataProfilingEvaluationHandler(BaseTaskEvaluationHandler):
                     DataProfilingItemId.ACCURACY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_PLOT,
                 ]
             ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_GENERAL
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_GENERAL_COLUMNS,
+                dependents=[
+                        DataProfilingItemId.AUTOMATABILITY_GENERAL_COLUMNS,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_GENERAL
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_GENERAL_ROWS,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_GENERAL_ROWS,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_GENERAL
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_GENERAL_MISSING_VALUES,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_GENERAL_MISSING_VALUES,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_GENERAL
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_GENERAL_DUPLICATES,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_GENERAL_DUPLICATES,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_GENERAL
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_GENERAL_DEPENDENCIES,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_GENERAL_DEPENDENCIES,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_BROKERED_BY,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_BROKERED_BY,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_STATUS,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_STATUS,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_PRICE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_PRICE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_BED,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_BED,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_BATH,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_BATH,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_ACRE_LOT,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_ACRE_LOT,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_STREET,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_STREET,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_CITY,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_CITY,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_STATE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_STATE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_ZIP_CODE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_ZIP_CODE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_HOUSE_SIZE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_HOUSE_SIZE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_MISSING_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_MISSING_VALUES_PREV_SOLD_DATE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_MISSING_VALUES_PREV_SOLD_DATE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_BROKERED_BY,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_BROKERED_BY,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_STATUS,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_STATUS,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_PRICE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_PRICE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_BED,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_BED,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_BATH,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_BATH,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_ACRE_LOT,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_ACRE_LOT,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_STREET,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_STREET,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_CITY,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_CITY,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_STATE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_STATE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_ZIP_CODE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_ZIP_CODE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_HOUSE_SIZE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_HOUSE_SIZE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DISTINCT_VALUES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DISTINCT_VALUES_PREV_SOLD_DATE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DISTINCT_VALUES_PREV_SOLD_DATE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_BROKERED_BY,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_BROKERED_BY,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_STATUS,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_STATUS,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_PRICE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_PRICE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_BED,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_BED,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_BATH,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_BATH,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_ACRE_LOT,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_ACRE_LOT,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_STREET,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_STREET,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_CITY,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_CITY,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_STATE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_STATE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_ZIP_CODE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_ZIP_CODE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_HOUSE_SIZE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_HOUSE_SIZE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_DATA_TYPES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_DATA_TYPES_PREV_SOLD_DATE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_DATA_TYPES_PREV_SOLD_DATE,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_RANGE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_PRICE_MIN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_RANGE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_PRICE_MAX,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_MEAN,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_PRICE_MEAN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_MEDIAN,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_PRICE_MEDIAN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_RANGE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BED_MIN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_RANGE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BED_MAX,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_MEAN,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BED_MEAN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_MEDIAN,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BED_MEDIAN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_RANGE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BATH_MIN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_RANGE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BATH_MAX,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_MEAN,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BATH_MEAN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_MEDIAN,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BATH_MEDIAN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_RANGE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_ACRE_LOT_MIN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_RANGE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_ACRE_LOT_MAX,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_MEAN,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_ACRE_LOT_MEAN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_MEDIAN,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_ACRE_LOT_MEDIAN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_RANGE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MIN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_RANGE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MAX,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MEAN,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MEAN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_EASY
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MEDIAN,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_MEDIAN,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_QUARTILES,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_PRICE_QUARTILES,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_STD_DEV,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_PRICE_STD_DEV,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_PRICE_PLOT,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_PRICE_PLOT,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_QUARTILES,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BED_QUARTILES,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_STD_DEV,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BED_STD_DEV,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BED_PLOT,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BED_PLOT,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_QUARTILES,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BATH_QUARTILES,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_STD_DEV,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BATH_STD_DEV,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_BATH_PLOT,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_BATH_PLOT,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_QUARTILES,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_ACRE_LOT_QUARTILES,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_STD_DEV,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_ACRE_LOT_STD_DEV,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_ACRE_LOT_PLOT,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_ACRE_LOT_PLOT,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_QUARTILES,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_QUARTILES,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_STD_DEV,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_STD_DEV,
+                ]
+            ),
+
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HARD
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_VALUE_DISTRIBUTIONS_HOUSE_SIZE_PLOT,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_VALUE_DISTRIBUTIONS_HOUSE_SIZE_PLOT,
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_FREQUENCIES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_FREQUENCIES_BROKERED_BY,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_FREQUENCIES_BROKERED_BY
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_FREQUENCIES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_FREQUENCIES_STATUS,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_FREQUENCIES_STATUS
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_FREQUENCIES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_FREQUENCIES_STREET,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_FREQUENCIES_STREET
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_FREQUENCIES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_FREQUENCIES_CITY,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_FREQUENCIES_CITY
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_FREQUENCIES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_FREQUENCIES_STATE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_FREQUENCIES_STATE
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_FREQUENCIES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_FREQUENCIES_ZIP_CODE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_FREQUENCIES_ZIP_CODE
+                ]
+            ),
+            DataProfilingDependency(
+                batches=[
+                    DataProfilingBatch.AUTOMATABILITY_FREQUENCIES
+                ],
+                causing_dependency=DataProfilingItemId.COMPLETENESS_FREQUENCIES_PREV_SOLD_DATE,
+                dependents=[
+                    DataProfilingItemId.AUTOMATABILITY_FREQUENCIES_PREV_SOLD_DATE
+                ]
+            ),
         ]
         checklists = [
             DataProfilingCompletenessChecklist(),
-            DataProfilingAccuracyChecklist()
+            DataProfilingAccuracyChecklist(),
+            #DataProfilingAutomatabilityChecklist(),
         ]
         super().__init__(checklists, dependencies)
