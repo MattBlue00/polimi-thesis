@@ -1,25 +1,24 @@
 import os
+import pprint
 
-from data.llms import get_llm
-from data.task_evaluation_handlers.data_cleaning_evaluation_handler import DataCleaningEvaluationHandler
-from data.task_evaluation_handlers.data_profiling_evaluation_handler import DataProfilingEvaluationHandler
-from scripts.utils.constants import NUM_SUCCESSFUL_TRIES
+from data.tasks import get_prompt
+from scripts.utils.constants import LLM_INPUT_COSTS, LLM_OUTPUT_COSTS
 from scripts.utils.fetch_datasets import load_dirty_datasets
 from scripts.utils.path import get_directory_from_root, get_directory_from_dir_name
-from scripts.utils.scores import get_mean_and_variance, print_sorted_scores
 from scripts.utils.setup import setup
 from scripts.utils.text_filter import filter_llm_response
 
-setup(dotenv=True)
+setup()
+
+import tiktoken
+
+encoding = tiktoken.encoding_for_model("gpt-4o")
 
 responses_dir = get_directory_from_root(__file__, 'responses')  # responses directory
 
-# if responses directory does not exist, create it
 if not os.path.exists(responses_dir):
     raise Exception(
         "There is no 'responses' directory to work with. Consider running 'python -m scripts.get_responses_from_llms' before running this script.")
-
-scores = {}
 
 datasets = [d for d in os.listdir(responses_dir) if os.path.isdir(os.path.join(responses_dir, d))]
 
@@ -30,13 +29,16 @@ for dataset in datasets:
         raise Exception(
             "There is no dataset directory to work with. Consider running 'python -m scripts.get_responses_from_llms' before running this script.")
 
+    dataset_name = os.path.basename(dataset_dir)
+
     datasets_dir = get_directory_from_root(__file__, os.path.join("datasets", "dirty"))  # datasets directory
     if not os.path.exists(datasets_dir):
         raise Exception(
             "There is no 'datasets/dirty' directory to work with. Consider running 'python -m scripts.get_dirty_datasets' before running this script.")
 
     dataset_obj = None
-    ds = load_dirty_datasets(datasets_dir, "df_dirty_10") # FIXME: aggiustare secondo parametro quando avremo più datasets
+    ds = load_dirty_datasets(datasets_dir,
+                             "df_dirty_10")  # FIXME: aggiustare secondo parametro quando avremo più datasets
     for d in ds:
         if d.id == dataset:
             dataset_obj = d
@@ -44,27 +46,20 @@ for dataset in datasets:
     if dataset_obj is None:
         raise Exception("Dataset not found")
 
-    print("Evaluating dataset " + os.path.basename(dataset_dir))
-
-    scores[os.path.basename(dataset_dir)] = {}
-
     tasks = [t for t in os.listdir(dataset_dir) if os.path.isdir(os.path.join(dataset_dir, t))]
 
     for task in tasks:
-
-        if task == "data_cleaning": #FIXME
-            continue
 
         task_dir = get_directory_from_dir_name(dataset_dir, task)
         if not os.path.exists(task_dir):
             raise Exception(
                 "There is no task directory to work with. Consider running 'python -m scripts.get_responses_from_llms' before running this script.")
 
-        print("Evaluating task " + os.path.basename(task_dir))
+        task_name = os.path.basename(task_dir)
+
+        responses_costs = {}
 
         prompts = [p for p in os.listdir(task_dir) if os.path.isdir(os.path.join(task_dir, p))]
-
-        scores[os.path.basename(dataset_dir)][os.path.basename(task_dir)] = {}
 
         for prompt in prompts:
 
@@ -73,51 +68,29 @@ for dataset in datasets:
                 raise Exception(
                     "There is no prompt directory to work with. Consider running 'python -m scripts.get_responses_from_llms' before running this script.")
 
-            print("-" * 50)
-            print("Evaluating prompt " + os.path.basename(prompt_dir))
-
             response_files = [r for r in os.listdir(prompt_dir) if os.path.isfile(os.path.join(prompt_dir, r))]
-
-            scores[os.path.basename(dataset_dir)][os.path.basename(task_dir)][os.path.basename(prompt_dir)] = {}
-
-            handler = DataProfilingEvaluationHandler()
 
             for rf in response_files:
 
                 with open(os.path.join(prompt_dir, rf), 'r', encoding='utf-8') as file:
 
-                    print("\nEvaluating response: " + rf)
+                    prompt = get_prompt(os.path.basename(task_dir), os.path.basename(prompt_dir))
+                    prompt_copy = prompt.copy()
+                    prompt_copy.user_message = prompt_copy.user_message.replace("{{csv_text}}", dataset_obj.df.to_string())
+                    if prompt.system_message is not None:
+                        prompt_str = prompt_copy.system_message + "\n" + prompt_copy.user_message
+                    else:
+                        prompt_str = prompt_copy.user_message
+
                     file_content = file.read()
                     llm_response_filtered = filter_llm_response(file_content)
 
-                    temp_scores = []
-                    for _ in range(NUM_SUCCESSFUL_TRIES):
-                        handler.evaluate(llm_response_filtered, get_llm("GPT"), os.path.basename(dataset_dir))
-                        temp_scores.append(handler.get_scores())
-                        handler.reset()
+                    input_tokens = len(encoding.encode(prompt_str))
+                    output_tokens = len(encoding.encode(llm_response_filtered))
 
-                    scores[os.path.basename(dataset_dir)][os.path.basename(task_dir)][os.path.basename(prompt_dir)][os.path.splitext(os.path.basename(rf))[0]] = get_mean_and_variance(temp_scores)
+                    llm_name = os.path.splitext(os.path.basename(rf))[0]
+                    responses_costs[llm_name] = responses_costs.get(llm_name, 0) + (input_tokens * LLM_INPUT_COSTS[llm_name]) + (output_tokens * LLM_OUTPUT_COSTS[llm_name])
 
-print_sorted_scores(scores)
-
-'''
-evaluations_dir = get_directory_from_root(__file__, 'evaluations')  # responses directory
-
-# if evaluations directory does not exist, create it
-if not os.path.exists(evaluations_dir):
-    os.makedirs(evaluations_dir)
-
-dataset_eval_dir = get_directory_from_dir_name(evaluations_dir, dataset)
-if not os.path.exists(dataset_eval_dir):
-    os.makedirs(dataset_eval_dir)
-
-task_eval_dir = get_directory_from_dir_name(dataset_eval_dir, task)
-if not os.path.exists(task_eval_dir):
-    os.makedirs(task_eval_dir)
-
-prompt_eval_dir = get_directory_from_dir_name(task_eval_dir, prompt)
-if not os.path.exists(prompt_eval_dir):
-    os.makedirs(prompt_eval_dir)
-
-print("Evaluating responses...")
-'''
+        print(f"Responses mean costs for {dataset_name}, {task_name}:")
+        responses_mean_costs = {k: v / len(prompts) for k, v in responses_costs.items()}
+        pprint.pprint(responses_costs)

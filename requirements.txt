@@ -1,7 +1,6 @@
 pandas
 numpy
 kaggle
-deepeval
 openai
 google-generativeai
 python-dotenv
@@ -9,3 +8,4 @@ mistralai
 transformers
 torch
 anthropic
+tiktoken

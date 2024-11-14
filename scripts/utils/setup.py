@@ -7,6 +7,7 @@ import google.generativeai as genai
 from scripts.utils.constants import RANDOM_SEED
 
 def setup(dotenv=False):
+    print("Setting up the environment...")
     _setup_seed()
     if dotenv:
         load_dotenv()

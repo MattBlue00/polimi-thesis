@@ -1,6 +1,5 @@
 from scripts.utils.setup import setup
 
-print("Setting up the environment...")
 setup(dotenv=True)
 
 import concurrent.futures
@@ -50,14 +49,15 @@ for dataset in datasets:
             if not os.path.exists(prompt_dir):
                 os.makedirs(prompt_dir)
 
-            prompt.user_message = prompt.user_message.replace("{{csv_text}}", dataset.df.to_string())
+            prompt_copy = prompt.copy()
+            prompt_copy.user_message = prompt_copy.user_message.replace("{{csv_text}}", dataset.df.to_string())
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 futures = {}
 
                 print("Asking LLMs...")
                 for llm in llms:
-                  futures[executor.submit(llm.get_response, prompt)] = llm.name
+                  futures[executor.submit(llm.get_response, prompt_copy)] = llm.name
 
                 responses = []
 
@@ -76,7 +76,7 @@ for dataset in datasets:
                 with open(file_path, 'w') as f:
                     f.write(response)
 
-            print("Finished prompt " + str(prompt.id))
+            print("Finished prompt " + str(prompt_copy.id))
 
         print("Finished task " + task.name)
 
