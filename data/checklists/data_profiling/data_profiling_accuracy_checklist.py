@@ -821,10 +821,11 @@ Keep in mind that any information that is requested can be given in any form, be
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are true (0) or false (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Before outputting the result, you MUST check that the number of zeroes and ones corresponds to the number of statements to evaluate.
 The answer must be given considering this text:
 
-{llm_response_filtered}
+"{llm_response_filtered}".
                 """
             ),
             EvaluationPrompt(
@@ -842,7 +843,7 @@ Keep in mind that any information that is requested can be given in any form, be
 Consider if the piece of text I will give you mentions these facts:
 {bullet_checklist}
 
-Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
+Assign a score of 0 or 1 to EACH ONE of the above statements based on the fact that they are false (0) or true (1). You MUST answer with ONLY a list of ordered, whitespace-separated numbers. You MUST avoid any textual comment.
 The answer must be given considering this text:
 
 {llm_response_filtered}
