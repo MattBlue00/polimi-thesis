@@ -7,7 +7,7 @@ import os
 from scripts.utils.data_pollution import make_dirty, shuffle_dataset
 from scripts.utils.path import get_directory_from_root
 
-percentages = [0.1, 0.5]
+percentages = [0.1, 0.3, 0.5]
 
 datasets_dir = get_directory_from_root(__file__, 'datasets')  # datasets directory
 
