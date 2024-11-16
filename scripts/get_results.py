@@ -1,6 +1,5 @@
 from scripts.utils.setup import setup
 
-print("Setting up the environment...")
 setup()
 
 import os

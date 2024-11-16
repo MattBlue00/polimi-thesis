@@ -1,0 +1,61 @@
+```python
+import pandas as pd
+import numpy as np
+from sklearn.impute import SimpleImputer
+
+df = pd.read_csv("your_data.csv")  # Replace your_data.csv with the actual file name
+
+# Convert price to numeric
+df['price'] = df['price'].str.replace(r'[$,]', '', regex=True).astype(float)
+
+# Convert bed and bath to numeric, coercing errors to NaN
+df['bed'] = pd.to_numeric(df['bed'], errors='coerce')
+df['bath'] = pd.to_numeric(df['bath'], errors='coerce')
+
+# Convert acre_lot to numeric
+df['acre_lot'] = pd.to_numeric(df['acre_lot'], errors='coerce')
+
+# Convert house_size to numeric
+df['house_size'] = pd.to_numeric(df['house_size'], errors='coerce')
+
+# Convert prev_sold_date to datetime, coercing errors to NaN
+df['prev_sold_date'] = pd.to_datetime(df['prev_sold_date'], errors='coerce', format='%m/%d/%y')
+
+# Impute numerical features using median
+numerical_cols = ['price', 'bed', 'bath', 'acre_lot', 'house_size']
+numerical_imputer = SimpleImputer(strategy='median')
+df[numerical_cols] = numerical_imputer.fit_transform(df[numerical_cols])
+
+
+# Impute categorical features using most frequent value
+categorical_cols = ['brokered_by', 'status', 'street', 'city', 'state', 'zip_code']
+categorical_imputer = SimpleImputer(strategy='most_frequent')
+df[categorical_cols] = categorical_imputer.fit_transform(df[categorical_cols])
+
+# Impute dates with the most frequent date (a more sophisticated approach might be needed for dates)
+date_imputer = SimpleImputer(strategy='most_frequent')
+df['prev_sold_date'] = date_imputer.fit_transform(df[['prev_sold_date']])
+
+
+print(df.head())  # Display the first few rows of the imputed DataFrame
+#df.to_csv("imputed_data.csv", index=False) # Save to a new CSV file
+
+```
+
+
+Key improvements and explanations:
+
+1. **Data Type Conversion:** The code now explicitly converts `price`, `bed`, `bath`, `acre_lot`, `house_size`, and `prev_sold_date` to the correct data types (numeric and datetime).  This is crucial for proper imputation and analysis. The `errors='coerce'` argument handles invalid entries by converting them to `NaN`, which can then be imputed.  The date format is specified for `prev_sold_date`.
+
+2. **Strategic Imputation:**  Numerical columns are imputed using the `median` (more robust to outliers than the mean). Categorical columns are imputed using the `most_frequent` value (mode).  This is a common and generally effective approach for categorical data.
+
+3. **Separate Imputers:** The code now uses separate `SimpleImputer` instances for numerical and categorical data. This is best practice as it prevents the imputer from trying to calculate the median of categorical values or the mode of numerical values.
+
+4. **Date Imputation:**  Dates are now handled using the most frequent date.  While this is a simple approach, for more sophisticated date imputation, you might consider using a forward fill, backward fill, or interpolation based on the surrounding dates.
+
+5. **Clearer Code:** The code is organized into logical blocks with comments explaining each step.
+
+6. **Output and Saving:** The code prints the first few rows of the imputed DataFrame to show the results and includes a commented-out line to save the imputed data to a new CSV file ("imputed_data.csv").  Uncomment this line if you want to save the results.
+
+
+Remember to replace `"your_data.csv"` with the actual name of your CSV file.  This improved code provides a more robust and accurate imputation strategy for your dataset.  You can further refine the imputation process by exploring more advanced techniques if needed, especially for the date column.

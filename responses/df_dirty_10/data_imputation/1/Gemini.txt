@@ -1,0 +1,78 @@
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("your_data.csv")  # Replace your_data.csv with the actual file name
+
+# Convert price to numeric, handling '$' and ','
+df['price'] = df['price'].astype(str).str.replace(r'[$,]', '', regex=True)
+df['price'] = pd.to_numeric(df['price'], errors='coerce')
+
+# Convert bed and bath to numeric
+df['bed'] = pd.to_numeric(df['bed'], errors='coerce')
+df['bath'] = pd.to_numeric(df['bath'], errors='coerce')
+
+# Convert acre_lot to numeric
+df['acre_lot'] = pd.to_numeric(df['acre_lot'], errors='coerce')
+
+# Convert house_size to numeric
+df['house_size'] = pd.to_numeric(df['house_size'], errors='coerce')
+
+# Convert prev_sold_date to datetime
+df['prev_sold_date'] = pd.to_datetime(df['prev_sold_date'], errors='coerce')
+
+# Convert zip_code to string (to handle leading zeros)
+df['zip_code'] = df['zip_code'].astype(str)
+
+
+# Imputation Strategies:
+
+# 1. Numerical Features (price, bed, bath, acre_lot, house_size):  Median imputation
+for col in ['price', 'bed', 'bath', 'acre_lot', 'house_size']:
+    df[col] = df[col].fillna(df[col].median())
+
+# 2. Categorical Features (brokered_by, status, street, city, state, zip_code): Mode imputation
+for col in ['brokered_by', 'status', 'street', 'city', 'state', 'zip_code']:
+    df[col] = df[col].fillna(df[col].mode()[0])  # Use mode()[0] to get the first mode value
+
+
+# 3. Date Feature (prev_sold_date):  Forward fill/Backward fill
+df['prev_sold_date'] = df['prev_sold_date'].fillna(method='ffill').fillna(method='bfill')
+
+
+# Data Cleaning after Imputation:
+
+# Clean 'status' column
+df['status'] = df['status'].str.strip().str.lower()
+df['status'] = df['status'].replace({'s': 'sold', 'f': 'for_sale', '-': np.nan})  # Standardize and handle '-'
+df['status'] = df['status'].fillna(df['status'].mode()[0])
+
+# Clean 'bed', 'bath' columns (remove 9999 outliers)
+for col in ['bed', 'bath']:
+    median_val = df[col].median()
+    df.loc[df[col] == 9999, col] = median_val
+
+# Clean '-' values in other columns (replace with NaN then impute with mode)
+for col in ['brokered_by', 'street', 'city', 'state', 'zip_code', 'house_size', 'acre_lot', 'price']:
+    df[col] = df[col].replace('-', np.nan)
+    df[col] = df[col].fillna(df[col].mode()[0] if df[col].dtype == 'O' else df[col].median())
+
+
+print(df.head())
+# Save the imputed dataframe
+df.to_csv("imputed_data.csv", index=False)
+
+```
+
+
+Key improvements:
+
+* **Handles various data types:** The code now correctly imputes numerical, categorical, and date features using appropriate strategies.
+* **Cleans data before and after imputation:** Addresses issues like '$', ',', and '-' characters in the data, as well as outliers like '9999'.  This ensures more accurate imputation and overall data quality.
+* **More robust mode imputation:** Uses `mode()[0]` to handle cases where there might be multiple modes.
+* **Date imputation:** Uses forward fill and then backward fill to handle missing dates more effectively.
+* **Converts zip_code to string:**  Important to preserve leading zeros if they exist in your zip codes.
+* **Saves imputed data:** Writes the cleaned and imputed data to a new CSV file.
+
+
+Remember to replace `"your_data.csv"` with the actual name of your CSV file.  This improved code provides a more comprehensive and robust approach to data imputation and cleaning for your dataset.

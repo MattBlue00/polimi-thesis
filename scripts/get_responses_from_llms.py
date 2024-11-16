@@ -1,6 +1,5 @@
 from scripts.utils.setup import setup
 
-print("Setting up the environment...")
 setup(dotenv=True)
 
 import concurrent.futures
@@ -18,7 +17,7 @@ datasets_dir = get_directory_from_root(__file__, os.path.join("datasets", "dirty
 if not os.path.exists(datasets_dir):
     raise Exception("There is no 'datasets/dirty' directory to work with. Consider running 'python -m scripts.get_dirty_datasets' before running this script.")
 
-datasets = load_dirty_datasets(datasets_dir, "df_dirty_10") # FIXME: aggiustare secondo parametro quando avremo più datasets
+datasets = load_dirty_datasets(datasets_dir, "df_dirty_") # FIXME: aggiustare secondo parametro quando avremo più datasets
 
 responses_dir = get_directory_from_root(__file__, 'responses')  # responses directory
 
@@ -36,6 +35,9 @@ for dataset in datasets:
 
     for task in tasks:
 
+        if task.name != "data_imputation":
+            continue
+
         print("Starting task " + task.name)
 
         task_dir = get_directory_from_dir_name(dataset_dir, task.name)
@@ -50,14 +52,17 @@ for dataset in datasets:
             if not os.path.exists(prompt_dir):
                 os.makedirs(prompt_dir)
 
-            prompt.user_message = prompt.user_message.replace("{{csv_text}}", dataset.df.to_string())
+            prompt_copy = prompt.copy()
+            prompt_copy.user_message = prompt_copy.user_message.replace("{{csv_text}}", dataset.df.to_string())
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 futures = {}
 
                 print("Asking LLMs...")
                 for llm in llms:
-                  futures[executor.submit(llm.get_response, prompt)] = llm.name
+                    if llm.name != "Gemini":
+                        continue
+                    futures[executor.submit(llm.get_response, prompt_copy)] = llm.name
 
                 responses = []
 
@@ -76,7 +81,7 @@ for dataset in datasets:
                 with open(file_path, 'w') as f:
                     f.write(response)
 
-            print("Finished prompt " + str(prompt.id))
+            print("Finished prompt " + str(prompt_copy.id))
 
         print("Finished task " + task.name)
 
