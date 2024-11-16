@@ -1,0 +1,65 @@
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("your_data.csv")  # Replace your_data.csv with the actual file name
+
+# --- Data Cleaning and Imputation ---
+
+# 1. Price: Remove '$' and convert to numeric
+df['price'] = df['price'].astype(str).str.replace('$', '', regex=False)
+df['price'] = pd.to_numeric(df['price'], errors='coerce')
+
+# 2. Status: Impute missing values with the mode (most frequent)
+df['status'] = df['status'].fillna(df['status'].mode()[0])
+
+# 3. Bed, Bath: Impute missing values with the median (robust to outliers)
+df['bed'] = df['bed'].replace('-', np.nan).replace('9999', np.nan).astype(float)
+df['bed'] = df['bed'].fillna(df['bed'].median())
+
+df['bath'] = df['bath'].replace('-', np.nan).replace('9999', np.nan).astype(float)
+df['bath'] = df['bath'].fillna(df['bath'].median())
+
+
+# 4. acre_lot: Impute missing values with the mean (if distribution is roughly normal)
+df['acre_lot'] = df['acre_lot'].replace('-', np.nan).astype(float)
+df['acre_lot'] = df['acre_lot'].fillna(df['acre_lot'].mean())
+
+# 5. house_size:  Handle '-' and convert to numeric, then impute with median
+df['house_size'] = df['house_size'].replace('-', np.nan).astype(float)
+df['house_size'] = df['house_size'].fillna(df['house_size'].median())
+
+# 6. prev_sold_date: Convert to datetime and handle missing values (strategy depends on your analysis)
+df['prev_sold_date'] = pd.to_datetime(df['prev_sold_date'], errors='coerce')
+# Options for prev_sold_date:
+# df['prev_sold_date'] = df['prev_sold_date'].fillna(method='ffill')  # Forward fill
+# df['prev_sold_date'] = df['prev_sold_date'].fillna(method='bfill')  # Backward fill
+# df['prev_sold_date'] = df['prev_sold_date'].fillna(pd.Timestamp.min) # Set to a default date
+
+
+# 7. Categorical features (street, city, state, zip_code, brokered_by):
+# Impute with a placeholder like "Unknown" or the most frequent category
+for col in ['street', 'city', 'state', 'zip_code', 'brokered_by']:
+    df[col] = df[col].fillna(df[col].mode()[0] if len(df[col].mode()) > 0 else "Unknown")  # Use mode if available, else "Unknown"
+
+
+# --- Save the cleaned data ---
+df.to_csv("cleaned_data.csv", index=False)
+
+print(df.info())  # Check the data types and non-null counts after cleaning
+```
+
+
+Key improvements and explanations:
+
+* **Handles '-' and '9999' as missing values:** These are common placeholders for missing data and need to be treated as such.
+* **Type conversion:**  Ensures correct data types for numerical features like `price` and `house_size`.
+* **More robust imputation:** Uses median for `bed`, `bath`, and `house_size` as these are often skewed and median is less sensitive to outliers than mean.  Mean is used for `acre_lot` assuming a roughly normal distribution (you can check this assumption).
+* **Categorical imputation:**  Uses the mode (most frequent value) or "Unknown" for missing categorical data.  This is generally a good approach unless you have a specific reason to use a different strategy.
+* **Date handling:** Converts `prev_sold_date` to datetime objects.  Provides options for handling missing dates (forward fill, backward fill, or a default date). Choose the method that makes the most sense for your analysis.
+* **Clearer code:** Improved variable names and comments make the code easier to understand and maintain.
+* **Error handling:** Uses `errors='coerce'` with `pd.to_numeric` to handle any values that can't be converted to numbers, preventing errors.
+* **Checks data after cleaning:** The `df.info()` line prints a summary of the cleaned DataFrame, showing the data types and non-null counts for each column. This is crucial for verifying that the cleaning and imputation have worked as expected.
+
+
+Remember to replace `"your_data.csv"` with the actual name of your CSV file.  After running this code, the cleaned data will be saved in a new file called `"cleaned_data.csv"`.  You can then use this cleaned data for your analysis.

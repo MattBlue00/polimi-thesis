@@ -17,7 +17,7 @@ datasets_dir = get_directory_from_root(__file__, os.path.join("datasets", "dirty
 if not os.path.exists(datasets_dir):
     raise Exception("There is no 'datasets/dirty' directory to work with. Consider running 'python -m scripts.get_dirty_datasets' before running this script.")
 
-datasets = load_dirty_datasets(datasets_dir, "df_dirty_10") # FIXME: aggiustare secondo parametro quando avremo più datasets
+datasets = load_dirty_datasets(datasets_dir, "df_dirty_") # FIXME: aggiustare secondo parametro quando avremo più datasets
 
 responses_dir = get_directory_from_root(__file__, 'responses')  # responses directory
 
@@ -34,6 +34,9 @@ for dataset in datasets:
         os.makedirs(dataset_dir)
 
     for task in tasks:
+
+        if task.name != "data_imputation":
+            continue
 
         print("Starting task " + task.name)
 
@@ -57,7 +60,9 @@ for dataset in datasets:
 
                 print("Asking LLMs...")
                 for llm in llms:
-                  futures[executor.submit(llm.get_response, prompt_copy)] = llm.name
+                    if llm.name != "Gemini":
+                        continue
+                    futures[executor.submit(llm.get_response, prompt_copy)] = llm.name
 
                 responses = []
 
