@@ -1,0 +1,91 @@
+I'll help you clean this dataset. Here are the steps we should take:
+
+1. Handle missing values (NaN, '-', empty strings)
+2. Standardize formats (especially for dates and prices)
+3. Remove duplicates
+4. Fix inconsistent values
+5. Convert data types appropriately
+
+Here's the Python code to clean this dataset:
+
+```python
+import pandas as pd
+import numpy as np
+
+def clean_data(df):
+    # Create a copy of the dataframe
+    df_clean = df.copy()
+    
+    # Replace '-' and empty strings with NaN
+    df_clean = df_clean.replace(['-', ''], np.nan)
+    
+    # Clean price column
+    df_clean['price'] = df_clean['price'].apply(lambda x: str(x).replace('$', '').replace(',', '') if pd.notnull(x) else x)
+    df_clean['price'] = pd.to_numeric(df_clean['price'], errors='coerce')
+    
+    # Clean bed and bath columns
+    df_clean['bed'] = pd.to_numeric(df_clean['bed'], errors='coerce')
+    df_clean['bath'] = pd.to_numeric(df_clean['bath'], errors='coerce')
+    
+    # Replace unrealistic values (e.g., 9999 beds)
+    df_clean.loc[df_clean['bed'] > 20, 'bed'] = np.nan
+    
+    # Clean acre_lot column
+    df_clean['acre_lot'] = pd.to_numeric(df_clean['acre_lot'], errors='coerce')
+    
+    # Standardize status values
+    status_map = {
+        's': 'sold',
+        'f': 'for_sale'
+    }
+    df_clean['status'] = df_clean['status'].map(lambda x: status_map.get(x, x))
+    
+    # Clean house_size (convert to numeric)
+    df_clean['house_size'] = pd.to_numeric(df_clean['house_size'], errors='coerce')
+    
+    # Standardize date format
+    def standardize_date(date_str):
+        if pd.isna(date_str):
+            return np.nan
+        try:
+            return pd.to_datetime(date_str)
+        except:
+            return np.nan
+    
+    df_clean['prev_sold_date'] = df_clean['prev_sold_date'].apply(standardize_date)
+    
+    # Clean state column (standardize to two-letter codes)
+    df_clean['state'] = df_clean['state'].apply(lambda x: str(x).strip() if pd.notnull(x) else x)
+    
+    # Clean zip_code (convert to string to preserve leading zeros)
+    df_clean['zip_code'] = df_clean['zip_code'].astype(str).apply(lambda x: x if x != 'nan' else np.nan)
+    
+    # Remove duplicates
+    df_clean = df_clean.drop_duplicates()
+    
+    return df_clean
+```
+
+To use this cleaning function:
+
+```python
+cleaned_df = clean_data(df)
+```
+
+This cleaning process will:
+1. Convert prices to numeric values without currency symbols
+2. Standardize status values
+3. Convert bed/bath counts to numeric values and remove unrealistic values
+4. Standardize dates
+5. Clean up location data
+6. Remove duplicates
+7. Convert house size to numeric values
+8. Handle missing values consistently
+
+After cleaning, you might want to:
+1. Check for remaining inconsistencies
+2. Decide how to handle the remaining missing values (either drop them or impute them)
+3. Validate the cleaned data against business rules
+4. Create any derived features you might need
+
+Would you like me to show you how to perform any specific cleaning task in more detail?

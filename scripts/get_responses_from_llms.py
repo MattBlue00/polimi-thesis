@@ -27,6 +27,9 @@ if not os.path.exists(responses_dir):
 
 for dataset in datasets:
 
+    if dataset.id == "df_dirty_10": # FIXME
+        continue
+
     print("Starting dataset " + str(dataset.id))
 
     dataset_dir = get_directory_from_dir_name(responses_dir, dataset.id)
@@ -35,7 +38,7 @@ for dataset in datasets:
 
     for task in tasks:
 
-        if task.name != "data_imputation":
+        if task.name == "data_imputation": # FIXME
             continue
 
         print("Starting task " + task.name)
@@ -45,6 +48,9 @@ for dataset in datasets:
             os.makedirs(task_dir)
 
         for prompt in task.prompts:
+
+            if prompt.id != 1: # FIXME
+                continue
 
             print("Starting prompt " + str(prompt.id))
 
@@ -60,7 +66,7 @@ for dataset in datasets:
 
                 print("Asking LLMs...")
                 for llm in llms:
-                    if llm.name != "Gemini":
+                    if llm.name == "GPT":
                         continue
                     futures[executor.submit(llm.get_response, prompt_copy)] = llm.name
 
