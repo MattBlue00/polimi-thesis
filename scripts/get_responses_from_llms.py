@@ -35,7 +35,7 @@ for dataset in datasets:
 
     for task in tasks:
 
-        if task.name != "data_imputation":
+        if task.name != "data_deduplication": #fixme
             continue
 
         print("Starting task " + task.name)
@@ -45,6 +45,9 @@ for dataset in datasets:
             os.makedirs(task_dir)
 
         for prompt in task.prompts:
+
+            if prompt.id != 1: #fixme
+                continue
 
             print("Starting prompt " + str(prompt.id))
 
@@ -60,7 +63,7 @@ for dataset in datasets:
 
                 print("Asking LLMs...")
                 for llm in llms:
-                    if llm.name != "Gemini":
+                    if llm.name == "GPT": #fixme
                         continue
                     futures[executor.submit(llm.get_response, prompt_copy)] = llm.name
 
