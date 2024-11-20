@@ -35,7 +35,7 @@ for dataset in datasets:
 
     for task in tasks:
 
-        if task.name != "data_deduplication": #fixme
+        if task.name != "outlier_detection": #fixme
             continue
 
         print("Starting task " + task.name)
