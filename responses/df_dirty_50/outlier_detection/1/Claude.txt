@@ -1,0 +1,73 @@
+I'll help you detect outliers in the numerical columns of this dataset. Here's how we can approach this:
+
+1. First, we'll identify the numerical columns (price, bed, bath, acre_lot, house_size)
+2. We'll use the Interquartile Range (IQR) method to detect outliers
+3. For price, we'll need to clean the data first by removing the '$' and converting to numeric
+
+Here's a Python script to do this:
+
+```python
+import pandas as pd
+import numpy as np
+
+# Convert price to numeric, removing '$' and ',' characters
+def clean_price(price):
+    if isinstance(price, str):
+        return float(price.replace('$', '').replace(',', ''))
+    return price
+
+# Function to detect outliers using IQR method
+def detect_outliers(df, column):
+    Q1 = df[column].quantile(0.25)
+    Q3 = df[column].quantile(0.75)
+    IQR = Q3 - Q1
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+    outliers = df[(df[column] < lower_bound) | (df[column] > upper_bound)][column]
+    return outliers, lower_bound, upper_bound
+
+# Clean price data
+df['price'] = df['price'].apply(clean_price)
+
+# Numerical columns to check for outliers
+numerical_columns = ['price', 'bed', 'bath', 'acre_lot', 'house_size']
+
+# Detect outliers for each numerical column
+for column in numerical_columns:
+    # Convert to numeric if not already
+    df[column] = pd.to_numeric(df[column], errors='coerce')
+    
+    # Remove negative values which are likely errors
+    df[column] = df[column].apply(lambda x: np.nan if x is not None and x < 0 else x)
+    
+    # Skip if all values are NaN
+    if df[column].isna().all():
+        print(f"\nNo valid data in {column} column")
+        continue
+        
+    outliers, lower_bound, upper_bound = detect_outliers(df, column)
+    
+    print(f"\nOutliers in {column}:")
+    print(f"Number of outliers: {len(outliers)}")
+    print(f"Lower bound: {lower_bound:.2f}")
+    print(f"Upper bound: {upper_bound:.2f}")
+    print("Outlier values:")
+    print(outliers)
+```
+
+This will identify:
+1. Values that fall below Q1 - 1.5*IQR
+2. Values that fall above Q3 + 1.5*IQR
+
+For each numerical column, you'll see:
+- The number of outliers
+- The lower and upper bounds for what's considered "normal" data
+- The actual outlier values
+
+Some notes:
+- The value 9999 in 'bed' column appears to be a placeholder and should probably be treated as missing data
+- Negative values in 'acre_lot' are likely errors and should be investigated
+- Some very high prices might be legitimate luxury properties rather than true outliers
+- Missing values (NaN) are excluded from the outlier detection
+
+Would you like me to run this analysis on your dataset and show you the specific results?
