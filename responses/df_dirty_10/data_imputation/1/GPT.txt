@@ -1,0 +1,65 @@
+Data imputation involves filling in missing or inconsistent values in a dataset. Given the dataset you provided, we can perform several types of imputation based on the nature of the data and the columns involved. Here's a step-by-step approach to handle the missing and inconsistent data:
+
+### 1. **Identify Missing Values:**
+First, let's identify which columns have missing values and the nature of these missing values.
+
+### 2. **Impute Missing Values:**
+
+#### **Numerical Columns:**
+- **`price`:** Convert all prices to numerical values by removing any non-numeric characters (like `$`) and then fill missing values with the median or mean price.
+- **`bed`, `bath`, `acre_lot`, `house_size`:** For these columns, you can fill missing values with the median of the column, as these are typically skewed distributions.
+
+#### **Categorical Columns:**
+- **`brokered_by`, `status`, `street`, `city`, `state`, `zip_code`:** For categorical columns, you can fill missing values with the mode (most frequent value) of the column. Alternatively, you can use a placeholder like "Unknown" if the mode is not appropriate.
+
+#### **Special Cases:**
+- **`prev_sold_date`:** For missing dates, you can either leave them as missing if they are not critical for analysis or fill them with a placeholder date like "1900-01-01" to indicate missingness.
+
+### 3. **Handle Inconsistent Data:**
+- **`state`:** Standardize state names and abbreviations. For example, convert "TX" to "Texas".
+- **`zip_code`:** Ensure all zip codes are in a consistent format, possibly converting them to strings to handle leading zeros.
+
+### 4. **Example Code for Imputation:**
+
+Here's a Python example using pandas to perform these imputations:
+
+```python
+import pandas as pd
+import numpy as np
+
+# Assuming df is your DataFrame
+df = pd.read_csv('your_dataset.csv')  # Replace with your actual data loading method
+
+# Convert price to numeric
+df['price'] = df['price'].replace('[\$,]', '', regex=True).astype(float)
+
+# Fill missing numerical values with median
+numerical_cols = ['price', 'bed', 'bath', 'acre_lot', 'house_size']
+for col in numerical_cols:
+    df[col] = df[col].fillna(df[col].median())
+
+# Fill missing categorical values with mode
+categorical_cols = ['brokered_by', 'status', 'street', 'city', 'state', 'zip_code']
+for col in categorical_cols:
+    df[col] = df[col].fillna(df[col].mode()[0])
+
+# Handle inconsistent state names
+state_mapping = {'TX': 'Texas', 'NC': 'North Carolina', 'SC': 'South Carolina', 'PA': 'Pennsylvania', 'MN': 'Minnesota'}
+df['state'] = df['state'].replace(state_mapping)
+
+# Fill missing dates with a placeholder
+df['prev_sold_date'] = df['prev_sold_date'].fillna('1900-01-01')
+
+# Convert zip_code to string to handle leading zeros
+df['zip_code'] = df['zip_code'].astype(str).str.zfill(5)
+
+# Display the cleaned DataFrame
+print(df.head())
+```
+
+### 5. **Considerations:**
+- Ensure that the imputation method is appropriate for your analysis. For example, using the median for numerical data is robust to outliers.
+- For categorical data, using the mode is a simple approach, but consider the context of your data to decide if this is appropriate.
+- Always validate the imputed data to ensure it makes sense in the context of your analysis.
+
+This approach should help you clean and impute missing values in your dataset effectively.

@@ -35,7 +35,7 @@ for dataset in datasets:
 
     for task in tasks:
 
-        if task.name != "outlier_detection": #fixme
+        if task.name == "data_cleaning" or task.name == "data_profiling" : #fixme
             continue
 
         print("Starting task " + task.name)
@@ -63,7 +63,7 @@ for dataset in datasets:
 
                 print("Asking LLMs...")
                 for llm in llms:
-                    if llm.name == "GPT": #fixme
+                    if llm.name != "GPT": #fixme
                         continue
                     futures[executor.submit(llm.get_response, prompt_copy)] = llm.name
 
