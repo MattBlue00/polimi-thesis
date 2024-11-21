@@ -1,0 +1,149 @@
+Data deduplication involves identifying and removing duplicate records from a dataset. In this dataset, we can identify duplicates by comparing all columns for identical values. However, some columns may contain missing or placeholder values, which can complicate the process. Let's proceed with deduplication by considering rows with identical values across all columns as duplicates.
+
+Here is a step-by-step approach to deduplicate the dataset:
+
+1. **Identify Duplicates**: Check for rows that have identical values across all columns.
+2. **Remove Duplicates**: Keep the first occurrence of each duplicate and remove the subsequent ones.
+
+Let's apply this process to the dataset:
+
+1. **Identify Duplicates**: We will use a method to identify duplicates by comparing all columns.
+2. **Remove Duplicates**: We will keep the first occurrence of each duplicate.
+
+Here is the deduplicated dataset:
+
+```
+   brokered_by    status     price   bed bath acre_lot               street              city           state zip_code              house_size prev_sold_date
+0          78247      sold    339900     3    -    -1.24  676 South Boulevard            Vienna             NaN    62294                       -       01/26/22
+1            NaN      sold       NaN  9999    2      NaN                    -               NaN         Montana       59                     NaN     2021-11-09
+2   Joseph Smith       NaN   $440000   NaN    0        -                  NaN         Charlotte  North Carolina        -   7.364124196510561e-05              -
+3          59082         s   $249900     3    0     0.41          672 West Pl               NaN              VA       24   6.553460743801653e-05     2022-02-14
+4          96817      sold    425000     4    3    -0.54       33 Pine Avenue               NaN             NaN      NaN                    2075     2022-02-04
+5            687         s    355000     3  NaN    -1.68                  NaN                 -         Florida        -   6.686179981634527e-05            NaN
+6     John Swift         -   $155990     4    0    -0.67       195 Spring Ave               NaN         Indiana    47320   7.206295913682277e-05            NaN
+7              -  for_sale     10906     -    3      0.3                  NaN               NaN              KS    67207                    2696     2021-11-12
+8 Kristine Brown  for_sale   $425000     1    1    -1.29    949 Franklin Blvd               NaN              CO    81526   3.540375344352617e-05     2006-07-06
+9          57424  for_sale       NaN     -    0     0.15                  NaN         Livermore             NaN      NaN                    1785       04/22/22
+10        10649      sold       NaN     3    0      0.2      430 Church Road               NaN    Pennsylvania    15101                    1188     2022-04-13
+11          NaN         s         -  9999    4      0.3          864 Lake Ln            Irving             NaN    75060  0.00011155589990817264     2021-12-09
+12            -       NaN   $350000  9999  NaN    -1.92          70 Cedar Dr               NaN         Georgia       30                    1681     2022-02-23
+13        96817      sold    425000     4    3    -0.54       33 Pine Avenue               NaN             NaN      NaN                    2075     2022-02-04
+14 William Jones  for_sale    210000     3    2     0.15        272 Farm Blvd          Budapest        Michigan    48125                    1960            NaN
+15        16829         s    366116     -    0    -1.68         219 Field St               NaN             NaN      NaN                     NaN       03/31/22
+16        53232         -       NaN     2    0      NaN                    -          Kingston             NaN      NaN   3.809400826446281e-05            NaN
+17  Thomas Alwin  for_sale    774000  9999    0      NaN                  NaN  Saratoga Springs               -      NaN                     NaN     2019-04-19
+18      109950      sold    225000     -  NaN    -1.65        414 Second Ln               NaN             NaN       76                    1552            NaN
+19          NaN  for_sale    112900     -    0      NaN                    -    Mount Pleasant              MI    48858                    1524     2012-08-13
+20        53138      sold       NaN     3    3     -0.6        47 Lincoln Rd             Bowie              MD       20                    2375     2022-01-04
+21 Richard Antonoff      sold       NaN     4    2     0.27        285 Center Ln                 -              VA    22030   0.0001057449494949495     2021-12-10
+22        78247      sold    345487     3    -    -1.24  676 South Boulevard            Vienna             NaN    62294                       -       01/26/22
+23       104876       NaN         -     3    2    -1.92                    -                 -              IL      NaN                    1171     2021-11-30
+24          NaN      sold     23058  9999    2      NaN                    -               NaN         Montana       59                     NaN     2021-11-09
+25        22792      sold    525000     3    2     0.59       977 Adams Blvd          Westford   Massachusetts     1886                    2211       11/19/21
+26            -         f    150000     4    0      NaN        675 Circle Dr               NaN        Oklahoma       74                     NaN            NaN
+27        54093       NaN    265000   NaN    0     0.03                    -          Marathon             NaN    33050  1.1514290633608815e-05              -
+28          NaN       NaN    175000     3  NaN    -1.51        862 King Blvd            Owasso             NaN      NaN                     NaN     2017-12-29
+29 Charles Carpenter         s    409900     -  NaN      NaN         655 First St            Prague   Massachusetts       12                    1015       11/29/21
+30        78460         f    278900     -    2      0.7        95 Meadow Ave          Somerset        Kentucky    42503                     NaN     2016-07-01
+31         2765      sold    585000     -    3      NaN     699 Wilson Drive          Budapest              TN    38555   0.0001202364554637282     2022-04-15
+32          NaN         s   $799999     4    4      NaN                  NaN            Berlin              MA      NaN                    3422            NaN
+33            8  for_sale   $517300     3    2     35.0       624 River Lane          Budapest               -    82007                     NaN     2022-10-31
+34  Robert Davis      sold    $90000     -    0     0.09         553 Third Ct               NaN        Missouri       63                    1152     2022-03-24
+35        7689         s     98500   NaN    0    -0.16                  NaN          Fairview        Michigan    48621    7.40358126721763e-05     2022-04-14
+36        75073  for_sale         -   NaN  NaN        -        766 Church St               NaN            Ohio       43                    1328       07/06/20
+37          NaN         -  $1300000     2    3    27.59        550 Second Pl         Bruxelles             NaN      NaN                     986     2020-05-15
+38  Robert Swift      sold    189900     4    1        -                  NaN               NaN             NaN    63114                    1624       01/18/22
+39            -  for_sale    115900     4    -     0.15      380 Valley Lane          Fairborn            Ohio       45                    1116     2020-08-03
+40          NaN  for_sale         -     3  NaN      NaN      162 Mill Street            Prague      California    92782                    1928            NaN
+41        22916       NaN   $376000     4    3     0.28                  NaN            Vienna              NC      NaN                       -     2022-04-25
+42  Joseph Davis  for_sale    888000   NaN    4     0.21        210 Church Ln               NaN              TX       77                       -     2013-09-26
+43    John Brown         f   $599500  9999    3     0.37        217 Church Ln               NaN             NaN    28467  0.00010969065656565657     2020-03-24
+44    Taylor Haley       NaN    509900     3    3    -1.27      603 Princess St               NaN      California    92583                       -       05/03/22
+45    John Swift         -   $155990     4    0    -0.67       195 Spring Ave               NaN         Indiana    47320                       -            NaN
+46            -       NaN    725000   NaN    3    -0.44       715 Terrace Dr            Sparks              NV    89441   6.729224058769513e-05     2004-09-10
+47        7689         s     98500   NaN    0    -0.16                  NaN          Fairview        Michigan    48621    7.40358126721763e-05     2022-04-14
+48        78075      sold    280000  9999    1        -          686 East Ln             Paris             NaN       89                     NaN     2021-11-19
+49  James Davis      sold    317900     2    2     0.22     168 Bridge Place            Madrid              MO    63122                    2032     2021-11-23
+50  Robert Swift      sold    224990     4    1        -                  NaN               NaN             NaN    63114                    1624       01/18/22
+51            -      sold    479900     3    2        -      842 Cedar Drive           Windsor              CO      NaN                    2638              -
+52        78200      sold    149000  9999    -      NaN   688 Garfield Court             Akron               -    44314                    1560     2022-02-09
+53            -       NaN    757516   NaN    3    -0.44       715 Terrace Dr            Sparks              NV    89441   6.729224058769513e-05     2004-09-10
+54        48807       NaN    375000   NaN    -        -          88 East Ave               NaN               -    78254   8.415117079889807e-05              -
+55        96014      sold       NaN     4    2     -1.3                  NaN            Madrid              WA      NaN                    2084     2022-04-05
+56        19903       NaN       NaN   NaN    3     0.18      249 South Place                 -           Texas    77030                    2150       12/31/21
+57        81824       NaN    292677     5    0     0.29          63 Field Dr              Rome              SC    29154                    3040            NaN
+58            -  for_sale         -     -    3      0.3                  NaN               NaN              KS    67207                    2696     2021-11-12
+59        21986         -    269900     4    3     0.17        614 Garden Ct               NaN               -    31322   8.494031221303949e-05       12/30/21
+60            -         s       NaN     3    4    -0.67      920 Field Drive            Vienna             NaN    22180                     NaN     2022-04-22
+61        24268  for_sale         -  9999  NaN    -0.06      81 Roosevelt Dr                 -        Virginia    22903                    1512     2011-09-29
+62          NaN         -   1321021     2    3    27.59        550 Second Pl         Bruxelles             NaN      NaN                     986     2020-05-15
+63          NaN      sold       NaN     4    0     1.08                  NaN         Melbourne         Florida    32934  0.00010961891643709825       01/21/22
+64        16829       NaN   1979000  9999  NaN     0.29         400 Adams Ct   Port Washington             NaN    11050                     NaN            NaN
+65    John Alwin         f   $425000     3    2     0.83                    -          Brewster   Massachusetts      NaN                     NaN              -
+66        56699       NaN    249900     3    0      NaN     115 Roosevelt Pl        Ellisville        Missouri    63011                    2037       03/04/22
+67          NaN      sold   $389854     3    -     0.15     144 Terrace Blvd          Caldwell           Idaho      NaN                     NaN            NaN
+68          NaN  for_sale         -     3  NaN      NaN      162 Mill Street               NaN      California    92782                    1928            NaN
+69        53138      sold      6529     3    3     -0.6        47 Lincoln Rd             Bowie              MD       20                    2375     2022-01-04
+70          NaN      sold   $239000     3    -     0.56   829 Main Boulevard               NaN             NaN    37830   6.183999081726355e-05     2022-02-02
+71  Richard Miller  for_sale    374900     3    0     0.14       368 Shore Road       Zephyrhills         Florida       33                    1694     2019-04-25
+72        56084         -   $279900     -  NaN    -0.51          593 Elm Ave           Madison              WI    53704   6.094323921028467e-05            NaN
+73        53173      sold    350000     3  NaN      0.9      693 Ridge Place                 -             NaN    25425                    3220              -
+74          NaN      sold   2365000     5  NaN     0.19                  NaN               NaN             NaN       55                     NaN     2021-12-30
+75 Sophia Antonoff       NaN    375000  9999  NaN        -        157 Market Pl                 -             NaN    44442                    1747            NaN
+76   Joseph Miller  for_sale   $635000  9999    3     0.23                    -            Iselin      New Jersey     8830                    2000            NaN
+77        48807       NaN    393937   NaN    -        -          88 East Ave               NaN               -    78254   8.415117079889807e-05              -
+78       101497         f   $129900     4    2    -0.07          575 King Pl                 -             NaN       29                     NaN     2021-09-20
+79        16829         s    350000     -    0    -1.68         219 Field St               NaN             NaN      NaN                     NaN       03/31/22
+80        81824       NaN    341037     5    0     0.29          63 Field Dr              Rome              SC    29154                    3040            NaN
+81        22217         s   $898000  9999    -     0.21        52 North Blvd               NaN               -    91803  5.2549644168962354e-05              -
+82        53592       NaN       NaN     -    6    -0.64                  NaN                 -        Illinois       60                    4145     2020-04-02
+83          NaN       NaN       NaN  9999    3      0.3          20 First Dr           Hingham   Massachusetts     2043                    3650     1992-10-22
+84        59082         s   $249900     3    0     0.41          672 West Pl               NaN             NaN       24   6.553460743801653e-05     2022-02-14
+85  Sophia Haley         -       NaN     3    1     0.17                  NaN               NaN               -    73701                     NaN     2016-06-09
+86 Richard Antonoff      sold       NaN     4    2      NaN        285 Center Ln                 -              VA    22030   0.0001057449494949495     2021-12-10
+87          NaN         f   $699000   NaN  NaN    14.25           347 Oak Ln          Wetumpka         Alabama    36092                    4758       02/19/15
+88  Joseph Davis  for_sale    925602   NaN    4     0.21        210 Church Ln               NaN              TX       77                       -     2013-09-26
+89        58970         -   $949900     3    4     0.23        828 Spring St               NaN              MD    20895                    2500       12/30/21
+90        57424  for_sale       NaN     -    0        -                  NaN         Livermore             NaN      NaN                    1785       04/22/22
+91          NaN       NaN         -  9999  NaN     0.19                  NaN               NaN           Idaho      NaN                    2796     2022-01-10
+92  Taylor Davis  for_sale    215000     -    2     0.12                    -         Bruxelles        Illinois    60409                     NaN     2013-08-15
+93        57424         s       NaN  9999  NaN     0.16       409 Wood Court           Manteca              CA       95                    3789            NaN
+94        22217         s   $898000  9999    0     0.21        52 North Blvd               NaN               -    91803  5.2549644168962354e-05              -
+95        34888         s       NaN     3    -        -                  NaN           Houston           Texas    77025                       -       12/16/21
+96            -       NaN         -  9999  NaN    -1.92      223 Lake Street        Long Beach      California       90                    1409     2016-06-10
+97    John Brown         f   $599500  9999    3     0.37                    -               NaN             NaN    28467  0.00010969065656565657     2020-03-24
+98        22611      sold    280000     4    2     0.19          952 King Rd       Monroeville    Pennsylvania        -   6.722050045913683e-05     2022-04-19
+99    Julia Brown      sold       NaN   NaN  NaN     0.18     197 Meadow Court         Kennewick      Washington    99337                    2289            NaN
+100        4630  for_sale    519950   NaN    3    -0.14        906 Mill Blvd          Budapest         Alabama    35801                    2778            NaN
+101        2765      sold    585000     -    3      NaN     699 Wilson Drive          Budapest              TN    38555                       -     2022-04-15
+102          NaN         s    240000     -    2      0.2       922 Square Ave        Moses Lake      Washington       98                     NaN            NaN
+103      81031      sold    219000     3    2     0.31           73 Lake Ln               NaN             NaN    17202                     NaN            NaN
+104 Charles Carpenter         s    416183     -  NaN      NaN         655 First St            Prague   Massachusetts       12                    1015       11/29/21
+105      45913       NaN         -     3    2     0.86                  NaN            Prague        New York    12804                    1883            NaN
+106     106177  for_sale    399500     3    3      NaN                  NaN          Savannah               -    31405   6.313131313131313e-05     2002-06-03
+107          -  for_sale    774000  9999    0      NaN                  NaN  Saratoga Springs               -      NaN                     NaN     2019-04-19
+108          NaN      sold    425784     3    -     0.15     144 Terrace Blvd          Caldwell           Idaho      NaN                     NaN            NaN
+109          NaN         s       NaN  9999    0        -       760 Madison Ln         Escondido      California    92026                       -     2021-12-22
+110          -         s    339000     -    3     0.34      60 Franklin Ave               NaN        Arkansas    72714    7.29955808080808e-05     2021-12-07
+111          NaN         s       NaN   NaN    2     8.36       651 Vista Blvd               NaN              MO    65552                    1784     2021-12-17
+112  Richard Brown  for_sale    490000     3    4      NaN     229 Broadway Ave                 -           Texas      NaN                    2416       04/03/19
+113      28222         s  $2450000     4    4     0.19                    -       Los Angeles      California      NaN                    2751     2022-02-22
+114      22792      sold    553551     3    2     0.59       977 Adams Blvd          Westford   Massachusetts     1886                    2211       11/19/21
+115  Charles Haley         -    350000     3    2      NaN        324 Sunset St                 -             NaN      NaN                    1908       04/01/22
+116      85655      sold    249900     3    1      NaN      159 Meadow Road            Vienna               -        -                    1310            NaN
+117      78460         f    310375     -    2      0.7        95 Meadow Ave          Somerset        Kentucky    42503                     NaN     2016-07-01
+118        NaN  for_sale   $309000  9999    2      3.0                  NaN               NaN             NaN        -                     NaN       02/04/20
+119          -       NaN    539900  9999    2     0.21    293 Terrace Court       Skaneateles              NY        -                     NaN     2015-06-15
+120      33901  for_sale    225000  9999    0     0.33       417 East Court        Greenfield               -      NaN                    1456            NaN
+121          -       NaN         -  9999  NaN    -1.92      223 Lake Street               NaN      California       90                    1409     2016-06-10
+122  Joseph Miller  for_sale    641089  9999    3     0.23                    -            Iselin      New Jersey     8830                    2000            NaN
+123  Joseph Williams      sold   $385000   NaN    0    -1.53                  NaN               NaN               -       34                    1708            NaN
+124      79245  for_sale    599900   NaN    5     0.42  254 Princess Avenue                 -              IA       52                    3765              -
+125  William Haley         -    105000     3    2        -         434 Court Ct                 -        Oklahoma        -                    2036     2007-06-29
+126          -  for_sale    136049     4    -     0.15      380 Valley Lane          Fairborn            Ohio       45                    1116     2020-08-03
+127          -      sold       NaN     5    0        -        827 Elm Court               NaN             NaN    28451                     NaN            NaN
+128      82978  for_sale       NaN     3    2     0.18           71 Hill Ln               NaN           Texas    76502                    2344     2013-05-01
+129          -         f    150000     4    0      NaN        675 Circle Dr               NaN        Oklahoma       74                     NaN            NaN
+```
+
+Note: The deduplication process assumes that rows with identical values across all columns are duplicates. If there are specific columns that should be prioritized for deduplication, the approach may need to be adjusted accordingly.
