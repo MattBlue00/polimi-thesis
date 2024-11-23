@@ -262,18 +262,14 @@ def shuffle_dataset(df, percentage, help_dir):
     return df_shuffled
 
 
-def make_data_standardization_dirty(df, percentage, seed=None):
+def make_data_standardization_dirty(df, percentage):
     """
     Introduce modifiche sporche ai dati con una percentuale specificata.
-    Garantisce la riproducibilità tramite un seed.
 
     :param df: Il DataFrame da sporcare
     :param percentage: Percentuale di valori da modificare
-    :param seed: Seed per la riproducibilità
     :return: Il DataFrame modificato
     """
-    if seed is not None:
-        random.seed(seed)  # Imposta il seed per tutte le operazioni random
 
     print("Injecting data standardization issues with a pollution percentage of " + str(percentage * 100) + "%...")
 
@@ -283,36 +279,36 @@ def make_data_standardization_dirty(df, percentage, seed=None):
     df['house_size'] = df['house_size'].astype('object')
 
     # replaces some numeric prices with strings with the dollar sign
-    for idx in generate_random_indices(df, percentage, seed):
+    for idx in generate_random_indices(df, percentage):
         original_price = df.at[idx, 'price']
         df.at[idx, 'price'] = f"${original_price}"
 
     # replaces some status values with the initial letter
-    for idx in generate_random_indices(df, percentage, seed):
+    for idx in generate_random_indices(df, percentage):
         original_status = df.at[idx, 'status']
         df.at[idx, 'status'] = original_status[0] if original_status else ""
 
-    replace_values(df, 'bed', percentage, seed=seed)
-    replace_values(df, 'bath', percentage, seed=seed)
+    replace_values(df, 'bed', percentage)
+    replace_values(df, 'bath', percentage)
 
     # replaces some street abbreviations with the long version (e.g. blvd -> boulevard)
-    for idx in generate_random_indices(df, percentage, seed):
+    for idx in generate_random_indices(df, percentage):
         original_street = df.at[idx, 'street']
         df.at[idx, 'street'] = expand_abbreviation(original_street)
 
     # replaces some state names with their official abbreviation
-    for idx in generate_random_indices(df, percentage, seed):
+    for idx in generate_random_indices(df, percentage):
         original_state = df.at[idx, 'state']
         df.at[idx, 'state'] = abbreviate_state(original_state)
 
     # changes the unit of measurement (from square feet to square miles)
-    for idx in generate_random_indices(df, percentage, seed):
+    for idx in generate_random_indices(df, percentage):
         original_house_size = df.at[idx, 'house_size']
         modified_house_size = original_house_size / 27878400
         df.at[idx, 'house_size'] = modified_house_size
 
     # changes the date format
-    for idx in generate_random_indices(df, percentage, seed):
+    for idx in generate_random_indices(df, percentage):
         original_date_str = df.at[idx, 'prev_sold_date']
         if original_date_str:
             # Convert the original date string to a datetime object
@@ -326,11 +322,11 @@ def make_data_standardization_dirty(df, percentage, seed=None):
     return df
 
 
-def replace_values(df, column, percentage, seed):
+def replace_values(df, column, percentage):
     print(
         f"Injecting alternated replacements in column '{column}' with a pollution percentage of {percentage * 100}%...")
 
-    for idx in generate_random_indices(df, percentage, seed):
+    for idx in generate_random_indices(df, percentage):
         original_value = df.at[idx, column]
 
         if original_value == 1:
@@ -350,3 +346,66 @@ def replace_values(df, column, percentage, seed):
 
         elif original_value == 6:
             df.at[idx, column] = "six"
+
+
+def inject_duplicates(df, percentage):
+    """
+    Introduce duplicati e triplicati nel dataframe, aggiungendo una colonna `duplicate` per tracciare gli indici delle righe duplicate.
+
+    :param df: Il DataFrame originale.
+    :param percentage: Percentuale di righe da duplicare o triplicare.
+    :return: Il DataFrame con i duplicati e triplicati aggiunti e la colonna `duplicate`.
+    """
+
+    print(f"Injecting duplicates with a percentage of {percentage * 100}%...")
+
+    # Aggiungi la colonna 'duplicate' inizializzandola con -1
+    df['duplicate'] = -1  # -1 significa che non ha duplicati
+
+    # Numero totale di righe da duplicare
+    num_rows_to_duplicate = int(percentage * len(df))
+
+    # Calcola quante righe duplicare una sola volta e quante triplicare
+    num_single_duplicates = int(num_rows_to_duplicate * 0.6)
+    num_triple_duplicates = int(num_rows_to_duplicate * 0.2)
+
+    # Seleziona casualmente le righe da duplicare e triplicare
+    single_duplicate_rows = df.sample(n=num_single_duplicates, random_state=RANDOM_SEED).copy()
+    remaining_rows = df.drop(single_duplicate_rows.index)
+    triple_duplicate_rows = remaining_rows.sample(n=num_triple_duplicates, random_state=RANDOM_SEED + 1).copy()
+
+    # Aggiungi le righe duplicate una sola volta
+    for idx in single_duplicate_rows.index:
+        # Copia la riga
+        duplicate_row = df.loc[idx].copy()
+
+        # Trova il nuovo indice per il duplicato
+        new_idx = len(df)
+
+        # Aggiorna la colonna 'duplicate' per l'originale e il duplicato
+        df.at[idx, 'duplicate'] = new_idx
+        duplicate_row['duplicate'] = idx
+
+        # Aggiungi il duplicato al DataFrame
+        df = pd.concat([df, duplicate_row.to_frame().T], ignore_index=True)
+
+    # Aggiungi le righe triplicate
+    for idx in triple_duplicate_rows.index:
+        # Copia la riga due volte
+        duplicate_row1 = df.loc[idx].copy()
+        duplicate_row2 = df.loc[idx].copy()
+
+        # Trova i nuovi indici per i duplicati
+        new_idx1 = len(df)
+        new_idx2 = new_idx1 + 1
+
+        # Aggiorna la colonna 'duplicate' per l'originale e i duplicati
+        df.at[idx, 'duplicate'] = f"{new_idx1},{new_idx2}"
+        duplicate_row1['duplicate'] = f"{idx},{new_idx2}"
+        duplicate_row2['duplicate'] = f"{idx},{new_idx1}"
+
+        # Aggiungi i duplicati al DataFrame
+        df = pd.concat([df, duplicate_row1.to_frame().T, duplicate_row2.to_frame().T], ignore_index=True)
+
+    print(f"Added {num_rows_to_duplicate} duplicates (including single and triple duplicates).")
+    return df
