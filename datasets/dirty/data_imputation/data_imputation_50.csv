@@ -1,0 +1,101 @@
+brokered_by,status,price,bed,bath,acre_lot,street,city,state,zip_code,house_size,prev_sold_date
+,-,,,1.0,-1,655 First St,,Massachusetts,-1,1015.0,
+109978,-,760000,-1,2.0,,-,,,,,2021-12-22
+109987,Unknown,490000,,4.0,-1,229 Broadway Ave,Corpus Christi,Texas,,-1.0,2019-04-03
+53173,sold,350000,3,,0.9,Unknown,Unknown,,25425,,
+,sold,,-1,,0.06,,Alexandria,Virginia,,,
+,Unknown,-1,,,-1,Unknown,Spokane,Washington,99207,2084.0,-
+101497,Unknown,129900,4,,1.95,575 King Pl,Eastover,South Carolina,29044,2128.0,2021-09-20
+,for_sale,-1,,2.0,0.83,-,,Massachusetts,2631,1368.0,-
+53016,-,239000,3,,0.56,-,Oak Ridge,-,37830,,2022-02-02
+,,725000,-1,3.0,1.04,,Sparks,,-1,1876.0,2004-09-10
+,,749000,,-1,0.27,Unknown,Fairfax,Virginia,22030,,
+,,398000,3,,,,-,Illinois,-1,1171.0,2021-11-30
+,Unknown,278900,3,2.0,,95 Meadow Ave,Somerset,Unknown,-1,-1,2016-07-01
+,-,-1,3,-1,0.14,368 Shore Rd,-,Florida,33542,1694.0,2019-04-25
+81311,Unknown,575000,5,-1,-1,,-,,-1,,2022-04-22
+-1,-,,2,-1,,550 Second Pl,Julian,Unknown,,986.0,
+,for_sale,550000,3,2.0,-1,81 Roosevelt Dr,Charlottesville,Unknown,22903,1512.0,2011-09-29
+31355,sold,-1,5,,,-,,-,55424,4905.0,-
+-1,-,479000,,3.0,,47 Lincoln Rd,Bowie,-,20720,,2022-01-04
+-1,-,-1,-1,3.0,0.07,,Unknown,North Carolina,-1,-1.0,-
+78184,Unknown,385000,-1,,,Unknown,North Port,Florida,,1708.0,-
+81671,sold,,,,8.36,651 Vista Blvd,Unknown,-,65552,1784.0,-
+,,115900,-1,1.0,0.15,380 Valley Ln,Unknown,Ohio,,1116.0,2020-08-03
+28222,,2450000,-1,4.0,0.19,,Unknown,-,90064,2751.0,Unknown
+8,Unknown,,3,-1,,Unknown,-,Wyoming,82007,,
+-1,sold,-1,,-1,,168 Bridge Pl,-,-,63122,2032.0,2021-11-23
+,for_sale,-1,,2.0,-1,277 Princess Dr,Livermore,California,,1785.0,2022-04-22
+-1,-,,,4.0,0.3,864 Lake Ln,Irving,Texas,75060,-1,2021-12-09
+-1,sold,,-1,2.0,,842 Cedar Dr,Unknown,Colorado,80550,2638.0,Unknown
+106177,for_sale,399500,,-1,,411 Wilson Ave,,Georgia,,,2002-06-03
+,for_sale,,5,3.0,-1,217 Church Ln,Calabash,North Carolina,28467,3058.0,-
+-1,Unknown,249900,3,2.0,0.41,672 West Pl,Stuarts Draft,Virginia,,1827.0,
+4630,for_sale,,4,3.0,,Unknown,Huntsville,,,2778.0,
+,Unknown,-1,-1,-1.0,9.0,-,Fairview,Michigan,48621,2064.0,2022-04-14
+-1,sold,600000,4,-1,1.08,763 Adams Pl,Melbourne,Unknown,32934,3056.0,-
+,sold,689900,3,,0.07,Unknown,Vienna,Virginia,22180,2075.0,2022-04-22
+53232,for_sale,330000,2,-1,0.3,Unknown,Kingston,,12401,,Unknown
+45913,-,,,,,94 Washington Ave,Queensbury,-,12804,,2021-11-23
+45807,,,,2.0,,Unknown,-,-,44442,1747.0,1991-04-17
+-1,,,-1,,,-,Wichita,Unknown,67207,2696.0,-
+,sold,,4,2.0,,Unknown,Great Falls,-,59405,-1,2021-11-09
+22611,for_sale,215000,3,,0.12,-,-,Illinois,,-1,Unknown
+,,,3,,4.44,699 Wilson Dr,Crossville,,38555,3352.0,
+56699,sold,-1,,,0.29,,Unknown,Missouri,-1,2037.0,2022-03-04
+,-,1075000,-1,,0.06,162 Mill St,Unknown,,-1,,2011-11-14
+,Unknown,525000,,,0.59,977 Adams Blvd,Westford,Unknown,1886,2211.0,2021-11-19
+15757,Unknown,-1,3,,-1,520 View Rd,,Oklahoma,,1333.0,2016-06-09
+-1,for_sale,,3,2.0,,862 King Blvd,-,Unknown,,,2017-12-29
+34888,sold,-1,3,2.0,0.22,383 Market St,Unknown,Texas,77025,-1,2021-12-16
+,sold,269900,4,-1,-1,614 Garden Ct,Pooler,Georgia,31322,2368.0,Unknown
+107955,for_sale,2199000,,-1,0.3,20 First Dr,-,-,,,1992-10-22
+22721,sold,799999,,-1,0.15,900 Baker Ln,,Massachusetts,,,Unknown
+76215,sold,339000,3,,0.34,Unknown,Bella Vista,Unknown,72714,,Unknown
+-1,for_sale,-1,3,-1,0.2,88 East Ave,-,Unknown,78254,-1,Unknown
+53592,for_sale,,4,,-1,779 Third Blvd,Mchenry,,60050,4145.0,2020-04-02
+,,339900,,2.0,0.28,,Troy,-,62294,-1,-
+687,Unknown,355000,3,2.0,0.19,-,-,,-1,,-
+22611,,280000,4,,0.19,952 King Rd,Unknown,-,15146,-1,
+57424,sold,,,5.0,-1,409 Wood Ct,Manteca,,95337,3789.0,2022-02-18
+23017,sold,240000,3,2.0,0.2,Unknown,Moses Lake,Unknown,,1670.0,2022-03-09
+79245,for_sale,,,5.0,-1,254 Princess Ave,Bettendorf,Iowa,52722,-1,2016-11-21
+86329,for_sale,699000,4,5.0,,-,Wetumpka,Alabama,36092,4758.0,2015-02-19
+-1,,,,,,-,San Jacinto,Unknown,,-1,Unknown
+81031,Unknown,219000,,2.0,,,Chambersburg,Pennsylvania,17202,1189.0,2021-11-24
+10437,sold,350000,3,2.0,1.07,70 Cedar Dr,,Georgia,,1681.0,
+,sold,,4,3.0,0.28,73 Franklin Rd,Unknown,North Carolina,-1,-1,Unknown
+,sold,,,,0.06,686 East Ln,-,Nevada,-1,,Unknown
+22671,-,90000,-1,2.0,,Unknown,,Missouri,63115,,
+19903,sold,,3,3.0,,249 South Pl,Houston,Texas,77030,-1,-
+,,,,3.0,0.21,,Albany,,47320,2009.0,2020-06-19
+,for_sale,-1,,-1,,675 Circle Dr,Hulbert,Oklahoma,,-1,2018-04-19
+53177,for_sale,105000,,,0.24,-,Unknown,Oklahoma,,2036.0,-
+-1,for_sale,635000,3,3.0,0.23,885 Washington Ave,Iselin,Unknown,,,-
+,-,,-1,,0.29,Unknown,Sumter,South Carolina,29154,,
+19415,for_sale,309000,-1,-1,3.0,820 View Ln,Unknown,Wisconsin,,2025.0,2020-02-04
+108243,sold,499000,3,3.0,0.18,,,,,2289.0,2022-03-30
+,sold,,-1,,,-,,Unknown,,1574.0,
+-1,sold,189900,4,,0.28,286 Bridge Ln,,Missouri,63114,1624.0,-
+54093,-,265000,,1.0,,-,-,Florida,,321.0,Unknown
+58970,,-1,3,4.0,-1,-,Kensington,,-1,2500.0,Unknown
+-1,Unknown,774000,-1,4.0,0.35,668 Maple Ave,,,-1,,2019-04-19
+,for_sale,425000,1,1.0,0.58,949 Franklin Blvd,-,-,-1,,Unknown
+33901,for_sale,225000,,2.0,-1,417 East Ct,Greenfield,-,,,Unknown
+-1,-,,4,2.0,0.18,-,-,Texas,,,2022-03-31
+53673,for_sale,112900,-1,2.0,0.5,-,Mount Pleasant,Michigan,48858,,2012-08-13
+,-,,6,6.0,,,Port Washington,New York,,5828.0,2017-05-05
+45936,,-1,3,,-1.0,293 Terrace Ct,Skaneateles,Unknown,,1918.0,-
+85655,sold,,3,1.0,,159 Meadow Rd,Unknown,Unknown,,,Unknown
+-1,for_sale,1150000,3,2.0,-1,-,Unknown,California,90802,,2016-06-10
+75073,Unknown,375000,3,1.0,,Unknown,Unknown,Ohio,43206,,2020-07-06
+,sold,-1,,2.0,-1.0,52 North Blvd,Unknown,Unknown,,,2022-04-08
+5145,Unknown,,3,,,59 Park Blvd,,-,-1,2796.0,2022-01-10
+82978,-,-1,,,,71 Hill Ln,-,Unknown,76502,,
+,,,3,,0.23,Unknown,,Texas,,-1,2022-01-19
+56084,Unknown,279900,2,2.0,,593 Elm Ave,Madison,Wisconsin,-1,,-
+,,219900,3,,0.2,,Allison Park,-,-1,,2022-04-13
+,for_sale,,,,,,,Texas,77082,4156.0,2013-09-26
+22562,-,210000,,2.0,0.15,,Dearborn Heights,Michigan,,-1,Unknown
+78200,sold,,3,-1,,Unknown,Akron,,44314,1560.0,2022-02-09
+78167,sold,,,2.0,0.15,,-,-,55426,1908.0,
