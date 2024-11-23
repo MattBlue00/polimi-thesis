@@ -260,3 +260,93 @@ def shuffle_dataset(df, percentage, help_dir):
     df_shuffled = df_shuffled.drop(columns=['original_index'])
 
     return df_shuffled
+
+
+def make_data_standardization_dirty(df, percentage, seed=None):
+    """
+    Introduce modifiche sporche ai dati con una percentuale specificata.
+    Garantisce la riproducibilità tramite un seed.
+
+    :param df: Il DataFrame da sporcare
+    :param percentage: Percentuale di valori da modificare
+    :param seed: Seed per la riproducibilità
+    :return: Il DataFrame modificato
+    """
+    if seed is not None:
+        random.seed(seed)  # Imposta il seed per tutte le operazioni random
+
+    print("Injecting data standardization issues with a pollution percentage of " + str(percentage * 100) + "%...")
+
+    df['price'] = df['price'].astype('object')
+    df['bed'] = df['bed'].astype('object')
+    df['bath'] = df['bath'].astype('object')
+    df['house_size'] = df['house_size'].astype('object')
+
+    # replaces some numeric prices with strings with the dollar sign
+    for idx in generate_random_indices(df, percentage, seed):
+        original_price = df.at[idx, 'price']
+        df.at[idx, 'price'] = f"${original_price}"
+
+    # replaces some status values with the initial letter
+    for idx in generate_random_indices(df, percentage, seed):
+        original_status = df.at[idx, 'status']
+        df.at[idx, 'status'] = original_status[0] if original_status else ""
+
+    replace_values(df, 'bed', percentage, seed=seed)
+    replace_values(df, 'bath', percentage, seed=seed)
+
+    # replaces some street abbreviations with the long version (e.g. blvd -> boulevard)
+    for idx in generate_random_indices(df, percentage, seed):
+        original_street = df.at[idx, 'street']
+        df.at[idx, 'street'] = expand_abbreviation(original_street)
+
+    # replaces some state names with their official abbreviation
+    for idx in generate_random_indices(df, percentage, seed):
+        original_state = df.at[idx, 'state']
+        df.at[idx, 'state'] = abbreviate_state(original_state)
+
+    # changes the unit of measurement (from square feet to square miles)
+    for idx in generate_random_indices(df, percentage, seed):
+        original_house_size = df.at[idx, 'house_size']
+        modified_house_size = original_house_size / 27878400
+        df.at[idx, 'house_size'] = modified_house_size
+
+    # changes the date format
+    for idx in generate_random_indices(df, percentage, seed):
+        original_date_str = df.at[idx, 'prev_sold_date']
+        if original_date_str:
+            # Convert the original date string to a datetime object
+            original_date = datetime.strptime(original_date_str, '%Y-%m-%d')
+            # Format the date as mm/dd/yy
+            modified_date_str = original_date.strftime('%m/%d/%y')
+            # Update the value in the DataFrame
+            df.at[idx, 'prev_sold_date'] = modified_date_str
+
+    print("Done!")
+    return df
+
+
+def replace_values(df, column, percentage, seed):
+    print(
+        f"Injecting alternated replacements in column '{column}' with a pollution percentage of {percentage * 100}%...")
+
+    for idx in generate_random_indices(df, percentage, seed):
+        original_value = df.at[idx, column]
+
+        if original_value == 1:
+            df.at[idx, column] = "one"
+
+        elif original_value == 2:
+            df.at[idx, column] = "two"
+
+        elif original_value == 3:
+            df.at[idx, column] = "three"
+
+        elif original_value == 4:
+            df.at[idx, column] = "four"
+
+        elif original_value == 5:
+            df.at[idx, column] = "five"
+
+        elif original_value == 6:
+            df.at[idx, column] = "six"
