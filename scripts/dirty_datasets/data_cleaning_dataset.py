@@ -22,6 +22,9 @@ os.makedirs(dirty_datasets_dir, exist_ok=True)
 data_cleaning_dir = os.path.join(dirty_datasets_dir, 'data_cleaning')
 os.makedirs(data_cleaning_dir, exist_ok=True)
 
+data_cleaning_no_dirty_duplicates_dir = os.path.join(data_cleaning_dir, 'no_dirty_duplicates')
+os.makedirs(data_cleaning_no_dirty_duplicates_dir, exist_ok=True)
+
 # create dirty datasets
 for perc in PERCENTAGES:
     # copy the original dataset
@@ -36,7 +39,7 @@ for perc in PERCENTAGES:
     duplicated_df = inject_duplicates(df_modified, perc / 100)
 
     # save to CSV
-    cleaning_path = os.path.join(data_cleaning_dir, f'data_cleaning_{str(perc)}.csv')
+    cleaning_path = os.path.join(data_cleaning_no_dirty_duplicates_dir, f'data_cleaning_{str(perc)}.csv')
     duplicated_df.to_csv(cleaning_path, index=False)
 
     print(f"Data Cleaning {perc}% dataset was created.")

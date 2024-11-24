@@ -10,7 +10,7 @@ nan,,,Unknown,11,nan,655 First Street,Unknown,MA,nan,3.640811524334252e-05,,109
 53016,-,239000,9,-,0.56,-,Oak Ridge,-,37830,Unknown,2022-02-02,"148,149"
 -1,Unknown,5879300,,3,0.0066,-,Sparks,,,1876.0,2004-09-10,128
 nan,-,27800,Unknown,Unknown,0.0087,,Fairfax,Virginia,22030,Unknown,Unknown,108
-nan,Unknown,$9317000,12,Unknown,,-,,IL,-1,3.5152662993572085e-06,11/30/21,-1
+nan,Unknown,$9317000,12,Unknown,,-,,IL,-1,3.5511363636363636e-06,11/30/21,-1
 -1,Unknown,25700,10,2,nan,95 Meadow Ave,Somerset,-,nan,Unknown,2016-07-01,118
 ,Unknown,,11,Unknown,0.14,368 Shore Road,,FL,33542,3.945707070707071e-06,04/25/19,-1
 81311,,$575000,10,,-1,Unknown,-,-,,,04/22/22,-1
@@ -19,7 +19,7 @@ nan,f,$5382700,three,two,-1,81 Roosevelt Drive,Charlottesville,,22903,5.42355371
 31355,s,-,five,Unknown,nan,,Unknown,,55424,0.00029757805325987145,-,-1
 -1,Unknown,61900,-,3,nan,47 Lincoln Rd,Bowie,,20720,-,2022-01-04,110
 ,,,-,9,65.0,-,-,NC,,-,Unknown,-1
-78184,Unknown,$385000,,Unknown,nan,,North Port,FL,-1,2.90547520661157e-06,,"138,139"
+78184,Unknown,$385000,,Unknown,nan,,North Port,FL,-1,2.9413452708907252e-06,,"138,139"
 81671,sold,Unknown,-,Unknown,46.0,651 Vista Blvd,-,-,65552,120.0,,-1
 nan,-,$56600,,one,61.0,380 Valley Lane,-,OH,-1,4.003099173553719e-05,08/03/20,106
 28222,,2450000,,4,60.0,,-,Unknown,90064,2751.0,Unknown,-1
@@ -32,8 +32,8 @@ nan,-,$56600,,one,61.0,380 Valley Lane,-,OH,-1,4.003099173553719e-05,08/03/20,10
 nan,for_sale,-,5,9,-1,217 Church Ln,Calabash,North Carolina,28467,3058.0,,111
 ,Unknown,$5200,8,two,0.41,672 West Place,Stuarts Draft,VA,,6.553460743801653e-05,,119
 4630,for_sale,,4,12,nan,,Huntsville,Unknown,-1,2778.0,,-1
--1,,Unknown,Unknown,-,0.0045,Unknown,Fairview,Michigan,48621,17.0,2022-04-14,113
--1,sold,20564600,4,-,1.08,763 Adams Pl,Melbourne,Unknown,32934,83.0,-,-1
+-1,,Unknown,Unknown,-,0.0045,Unknown,Fairview,Michigan,48621,18.0,2022-04-14,113
+-1,sold,20564600,4,-,1.08,763 Adams Pl,Melbourne,Unknown,32934,84.0,-,-1
 nan,s,$2703400,three,-,0.07,-,Vienna,VA,22180,0.0003252338728191001,04/22/22,-1
 53232,for_sale,330000,2,,0.3,-,Kingston,-,12401,-,,-1
 45913,Unknown,Unknown,,-,-1,94 Washington Ave,Queensbury,,12804,-,2021-11-23,-1
@@ -97,7 +97,7 @@ nan,s,Unknown,,7,,52 North Boulevard,Unknown,-,nan,Unknown,04/08/22,114
 ,,$16752300,8,,0.2,Unknown,Allison Park,,nan,-,04/13/22,-1
 -1,for_sale,Unknown,-,,-1,,Unknown,Texas,77082,7890.0,2013-09-26,127
 22562,,$210000,,two,53.0,Unknown,Dearborn Heights,MI,,-,,-1
-78200,sold,-,3,,-1,Unknown,Akron,-,44314,40.0,2022-02-09,-1
+78200,sold,-,3,,-1,Unknown,Akron,-,44314,41.0,2022-02-09,-1
 78167,s,-,Unknown,7,0.006,-,Unknown,Unknown,55426,6.84400826446281e-05,Unknown,-1
 ,-,-,8,7,0.18,-,Unknown,Texas,,,2022-03-31,83
 ,f,Unknown,three,,0.2,88 East Avenue,Unknown,Unknown,78254,,,53
@@ -112,7 +112,7 @@ nan,,,Unknown,11,nan,655 First Street,Unknown,MA,nan,3.640811524334252e-05,,0
 -1,Unknown,61900,-,3,nan,47 Lincoln Rd,Bowie,,20720,-,2022-01-04,18
 nan,for_sale,-,5,9,-1,217 Church Ln,Calabash,North Carolina,28467,3058.0,,30
 ,-,,,,0.014,,Sumter,South Carolina,29154,Unknown,Unknown,73
--1,,Unknown,Unknown,-,0.0045,Unknown,Fairview,Michigan,48621,17.0,2022-04-14,33
+-1,,Unknown,Unknown,-,0.0045,Unknown,Fairview,Michigan,48621,18.0,2022-04-14,33
 nan,s,Unknown,,7,,52 North Boulevard,Unknown,-,nan,Unknown,04/08/22,90
 ,s,Unknown,Unknown,-,6.1e-06,,Alexandria,VA,nan,-,-,4
 ,sold,,Unknown,-,-1,-,-,,nan,9646.0,,76
@@ -137,8 +137,8 @@ nan,sold,-,4,8,,,Great Falls,-,59405,-,2021-11-09,40
 10437,s,$350000,three,two,1.07,70 Cedar Drive,Unknown,GA,,6.029757805325987e-05,-,"64,134"
 79245,for_sale,Unknown,-,7,nan,254 Princess Ave,Bettendorf,Iowa,52722,-,2016-11-21,"60,137"
 79245,for_sale,Unknown,-,7,nan,254 Princess Ave,Bettendorf,Iowa,52722,-,2016-11-21,"60,136"
-78184,Unknown,$385000,,Unknown,nan,,North Port,FL,-1,2.90547520661157e-06,,"20,139"
-78184,Unknown,$385000,,Unknown,nan,,North Port,FL,-1,2.90547520661157e-06,,"20,138"
+78184,Unknown,$385000,,Unknown,nan,,North Port,FL,-1,2.9413452708907252e-06,,"20,139"
+78184,Unknown,$385000,,Unknown,nan,,North Port,FL,-1,2.9413452708907252e-06,,"20,138"
 ,for_sale,Unknown,Unknown,12,0.0064,Unknown,,Massachusetts,2631,1368.0,,"7,141"
 ,for_sale,Unknown,Unknown,12,0.0064,Unknown,,Massachusetts,2631,1368.0,,"7,140"
 82978,-,,Unknown,-,-1,71 Hill Ln,-,-,76502,,Unknown,"92,143"

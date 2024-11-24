@@ -70,7 +70,7 @@ brokered_by,status,price,bed,bath,acre_lot,street,city,state,zip_code,house_size
 19903,sold,849500,3,3,0.18,249 South Pl,Houston,Texas,77030,2150.0,2021-12-31
 105798,for_sale,155990,7,3,0.21,195 Spring Ave,Albany,Indiana,47320,2009.0,2020-06-19
 52946,for_sale,2500,4,2,10.0,675 Circle Dr,Hulbert,Oklahoma,74441,1896.0,2018-04-19
-53177,for_sale,105000,3,2,0.24,434 Court Ct,Woodward,Oklahoma,73801,15.0,2007-06-29
+53177,for_sale,105000,3,2,0.24,434 Court Ct,Woodward,Oklahoma,73801,16.0,2007-06-29
 103967,for_sale,635000,3,3,0.23,885 Washington Ave,Iselin,New Jersey,8830,2000.0,2019-02-28
 81824,sold,292677,5,3,0.29,63 Field Dr,Sumter,South Carolina,29154,8940.0,2021-12-22
 19415,for_sale,309000,3,2,3.0,820 View Ln,Ojibwa,Wisconsin,54862,2025.0,2020-02-04
