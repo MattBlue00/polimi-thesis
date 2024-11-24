@@ -9,10 +9,10 @@ brokered_by,status,price,bed,bath,acre_lot,street,city,state,zip_code,house_size
 10726,for_sale,13553800,3,7,0.0045,226 Square Rd,Brewster,Massachusetts,2631,1368.0,2001-07-06
 53016,sold,239000,10,2,0.56,829 Main Blvd,Oak Ridge,Tennessee,37830,9087.0,2022-02-02
 65293,for_sale,17419500,10,3,0.01,715 Terrace Dr,Sparks,Nevada,89441,1876.0,2004-09-10
-81316,sold,60200,8,2,0.015,285 Center Ln,Fairfax,Virginia,22030,5.8,2021-12-10
+81316,sold,60200,8,2,0.015,285 Center Ln,Fairfax,Virginia,22030,6.7,2021-12-10
 104876,sold,14840700,8,2,0.11,981 Harbor Ave,Chicago,Illinois,60659,90.0,2021-11-30
 78460,for_sale,7200,7,2,0.7,95 Meadow Ave,Somerset,Kentucky,42503,1923.0,2016-07-01
-102016,for_sale,19389200,10,9,0.14,368 Shore Rd,Zephyrhills,Florida,33542,6.4,2019-04-25
+102016,for_sale,19389200,10,9,0.14,368 Shore Rd,Zephyrhills,Florida,33542,7.4,2019-04-25
 81311,sold,575000,8,4,0.22,827 Elm Ct,Leland,North Carolina,28451,9085.0,2022-04-22
 32769,for_sale,16585600,10,12,27.59,550 Second Pl,Julian,California,92036,120.0,2020-05-15
 24268,for_sale,19724800,3,2,0.22,81 Roosevelt Dr,Charlottesville,Virginia,22903,1512.0,2011-09-29
@@ -23,12 +23,12 @@ brokered_by,status,price,bed,bath,acre_lot,street,city,state,zip_code,house_size
 81671,sold,325000,3,8,67.0,651 Vista Blvd,Plato,Missouri,65552,140.0,2021-12-17
 81112,for_sale,56700,12,1,62.0,380 Valley Ln,Fairborn,Ohio,45324,1116.0,2020-08-03
 28222,sold,2450000,10,4,48.0,687 Wilson Ave,Los Angeles,California,90064,2751.0,2022-02-22
-8,for_sale,517300,9,9,35.0,624 River Ln,Cheyenne,Wyoming,82007,69.0,2022-10-31
+8,for_sale,517300,9,9,35.0,624 River Ln,Cheyenne,Wyoming,82007,70.0,2022-10-31
 75016,sold,20101800,2,11,51.0,168 Bridge Pl,Kirkwood,Missouri,63122,10350.0,2021-11-23
 57424,for_sale,68500,3,12,0.0052,277 Princess Dr,Livermore,California,94550,1785.0,2022-04-22
 3479,sold,14692700,8,7,48.0,864 Lake Ln,Irving,Texas,75060,3110.0,2021-12-09
 2177,sold,14848700,3,12,50.0,842 Cedar Dr,Windsor,Colorado,80550,2638.0,2022-03-18
-106177,for_sale,399500,3,3,53.0,411 Wilson Ave,Savannah,Georgia,31405,26.0,2002-06-03
+106177,for_sale,399500,3,3,53.0,411 Wilson Ave,Savannah,Georgia,31405,27.0,2002-06-03
 20385,for_sale,7200,5,11,0.37,217 Church Ln,Calabash,North Carolina,28467,3058.0,2020-03-24
 59082,sold,52600,12,2,0.41,672 West Pl,Stuarts Draft,Virginia,24477,1827.0,2022-02-14
 4630,for_sale,519950,4,11,0.13,906 Mill Blvd,Huntsville,Alabama,35801,2778.0,2020-03-09
@@ -36,14 +36,14 @@ brokered_by,status,price,bed,bath,acre_lot,street,city,state,zip_code,house_size
 26543,sold,11737600,4,3,1.08,763 Adams Pl,Melbourne,Florida,32934,89.0,2022-01-21
 84534,sold,4990900,3,4,0.07,920 Field Dr,Vienna,Virginia,22180,10870.0,2022-04-22
 53232,for_sale,330000,2,1,0.3,225 Broadway Ct,Kingston,New York,12401,10170.0,2014-07-01
-45913,sold,250000,7,10,0.00014,94 Washington Ave,Queensbury,New York,12804,24.0,2021-11-23
+45913,sold,250000,7,10,0.00014,94 Washington Ave,Queensbury,New York,12804,25.0,2021-11-23
 45807,for_sale,375000,8,11,0.0015,157 Market Pl,New Middletown,Ohio,44442,1747.0,1991-04-17
 53556,for_sale,60200,10,12,55.0,611 Hill Pl,Wichita,Kansas,67207,110.0,2021-11-12
 26012,sold,5918400,4,8,0.13,391 Bridge Rd,Great Falls,Montana,59405,1632.0,2021-11-09
 22611,for_sale,215000,3,2,0.12,995 Maple Ave,Calumet City,Illinois,60409,8157.0,2013-08-15
 2765,sold,49700,12,9,4.44,699 Wilson Dr,Crossville,Tennessee,38555,8813.0,2022-04-15
 56699,sold,249900,3,10,68.0,115 Roosevelt Pl,Ellisville,Missouri,63011,10210.0,2022-03-04
-84529,for_sale,2100,7,3,66.0,162 Mill St,Tustin,California,92782,59.0,2011-11-14
+84529,for_sale,2100,7,3,66.0,162 Mill St,Tustin,California,92782,60.0,2011-11-14
 22792,sold,34600,10,2,0.0079,977 Adams Blvd,Westford,Massachusetts,1886,11090.0,2021-11-19
 15757,for_sale,69900,10,8,0.17,520 View Rd,Enid,Oklahoma,73701,8069.0,2016-06-09
 92736,for_sale,8820000,3,9,0.26,862 King Blvd,Owasso,Oklahoma,74055,1144.0,2017-12-29
@@ -52,7 +52,7 @@ brokered_by,status,price,bed,bath,acre_lot,street,city,state,zip_code,house_size
 107955,for_sale,2199000,3,3,45.0,20 First Dr,Hingham,Massachusetts,2043,160.0,1992-10-22
 22721,sold,799999,4,4,0.0043,900 Baker Ln,Natick,Massachusetts,1760,57.0,2022-04-05
 76215,sold,339000,3,3,0.34,60 Franklin Ave,Bella Vista,Arkansas,72714,150.0,2021-12-07
-48807,for_sale,23000,3,9,0.2,88 East Ave,San Antonio,Texas,78254,57.0,2004-05-14
+48807,for_sale,23000,3,9,0.2,88 East Ave,San Antonio,Texas,78254,58.0,2004-05-14
 53592,for_sale,619900,4,8,2.1,779 Third Blvd,Mchenry,Illinois,60050,10700.0,2020-04-02
 78247,sold,24300,8,2,47.0,676 South Blvd,Troy,Illinois,62294,1613.0,2022-01-26
 687,sold,355000,8,2,0.19,272 Terrace Ln,Orlando,Florida,32828,1864.0,2021-12-08
@@ -73,7 +73,7 @@ brokered_by,status,price,bed,bath,acre_lot,street,city,state,zip_code,house_size
 53177,for_sale,105000,3,2,47.0,434 Court Ct,Woodward,Oklahoma,73801,150.0,2007-06-29
 103967,for_sale,17555000,3,3,0.23,885 Washington Ave,Iselin,New Jersey,8830,2000.0,2019-02-28
 81824,sold,64600,7,11,0.0016,63 Field Dr,Sumter,South Carolina,29154,59.0,2021-12-22
-19415,for_sale,309000,3,2,0.012,820 View Ln,Ojibwa,Wisconsin,54862,38.0,2020-02-04
+19415,for_sale,309000,3,2,0.012,820 View Ln,Ojibwa,Wisconsin,54862,39.0,2020-02-04
 108243,sold,499000,3,3,0.18,197 Meadow Ct,Kennewick,Washington,99337,2289.0,2022-03-30
 68269,sold,3200,3,11,0.014,144 Terrace Blvd,Caldwell,Idaho,83605,8957.0,2021-12-17
 53377,sold,33800,4,1,0.28,286 Bridge Ln,Saint Louis,Missouri,63114,8820.0,2022-01-18
@@ -92,10 +92,10 @@ brokered_by,status,price,bed,bath,acre_lot,street,city,state,zip_code,house_size
 22217,sold,23400,3,10,49.0,52 North Blvd,Alhambra,California,91803,1465.0,2022-04-08
 5145,sold,750000,7,8,0.19,59 Park Blvd,Meridian,Idaho,83642,11330.0,2022-01-10
 82978,for_sale,335000,7,11,0.0081,71 Hill Ln,Temple,Texas,76502,8370.0,2013-05-01
-109950,sold,23618000,10,11,0.23,414 Second Ln,Fort Worth,Texas,76133,28.0,2022-01-19
+109950,sold,23618000,10,11,0.23,414 Second Ln,Fort Worth,Texas,76133,29.0,2022-01-19
 56084,sold,279900,11,2,0.16,593 Elm Ave,Madison,Wisconsin,53704,1699.0,2021-12-17
 10649,sold,13226700,10,2,0.2,430 Church Rd,Allison Park,Pennsylvania,15101,150.0,2022-04-13
 104873,for_sale,21412200,4,7,69.0,210 Church Ln,Houston,Texas,77082,7454.0,2013-09-26
 22562,for_sale,210000,8,2,51.0,272 Farm Blvd,Dearborn Heights,Michigan,48125,1960.0,2010-10-14
-78200,sold,149000,3,11,0.15,688 Garfield Ct,Akron,Ohio,44314,6.7,2022-02-09
+78200,sold,149000,3,11,0.15,688 Garfield Ct,Akron,Ohio,44314,7.7,2022-02-09
 78167,sold,350000,3,8,0.0093,324 Sunset St,Saint Louis Park,Minnesota,55426,1908.0,2022-04-01

@@ -9,10 +9,10 @@ nan,-,$25700,,one,nan,655 First Street,Unknown,MA,nan,3.640811524334252e-05,,109
 10726,for_sale,,-,10,50.0,226 Square Rd,Brewster,Massachusetts,2631,1368.0,2001-07-06,-1
 53016,sold,239000,3,-,0.56,-,Oak Ridge,-,37830,,2022-02-02,-1
 ,Unknown,21315900,Unknown,3,61.0,,Sparks,Nevada,89441,1876.0,2004-09-10,-1
-,sold,54100,-,Unknown,56.0,Unknown,Fairfax,Virginia,22030,86.0,Unknown,108
+,sold,54100,-,Unknown,56.0,Unknown,Fairfax,Virginia,22030,87.0,Unknown,108
 104876,,$398000,11,-,0.11,-,-,IL,nan,0.0003795052800734619,11/30/21,-1
 nan,,22598300,9,2,,95 Meadow Ave,Somerset,-,-1,1923.0,2016-07-01,-1
-102016,Unknown,$374900,7,,0.14,368 Shore Road,-,FL,33542,5.73921028466483e-07,04/25/19,-1
+102016,Unknown,$374900,7,,0.14,368 Shore Road,-,FL,33542,6.097910927456382e-07,04/25/19,-1
 81311,s,$575000,five,,nan,827 Elm Court,Leland,-,-1,Unknown,04/22/22,-1
 -1,Unknown,14344000,11,Unknown,27.59,550 Second Pl,Julian,Unknown,nan,9389.0,2020-05-15,-1
 24268,for_sale,550000,3,2,0.22,81 Roosevelt Dr,Charlottesville,Unknown,22903,1512.0,2011-09-29,-1
@@ -33,12 +33,12 @@ nan,for_sale,Unknown,-,11,0.0042,277 Princess Dr,Livermore,California,94550,1785
 nan,s,$19252400,three,two,0.41,672 West Place,Stuarts Draft,VA,24477,6.553460743801653e-05,02/14/22,-1
 4630,for_sale,519950,4,3,nan,906 Mill Blvd,Huntsville,Alabama,,2778.0,-,-1
 ,sold,,Unknown,,0.0081,,Fairview,Michigan,48621,18.0,2022-04-14,113
-26543,sold,600000,4,Unknown,1.08,763 Adams Pl,Melbourne,,32934,29.0,Unknown,-1
+26543,sold,600000,4,Unknown,1.08,763 Adams Pl,Melbourne,,32934,30.0,Unknown,-1
 84534,s,$689900,three,four,0.07,920 Field Drive,Vienna,VA,22180,7.443038337924701e-05,04/22/22,-1
 53232,for_sale,330000,2,1,0.3,225 Broadway Ct,Kingston,New York,12401,-,2014-07-01,-1
 45913,,Unknown,-,Unknown,nan,94 Washington Ave,Queensbury,New York,12804,Unknown,2021-11-23,-1
 45807,Unknown,,,12,,Unknown,New Middletown,-,44442,1747.0,1991-04-17,-1
-,for_sale,,5,Unknown,0.3,,Wichita,Unknown,67207,2.4,Unknown,105
+,for_sale,,5,Unknown,0.3,,Wichita,Unknown,67207,3.4,Unknown,105
 ,sold,2535000,4,2,,-,Great Falls,,59405,Unknown,2021-11-09,-1
 22611,for_sale,215000,3,2,0.12,995 Maple Ave,-,Illinois,60409,1304.0,2013-08-15,-1
 nan,sold,-,3,10,4.44,699 Wilson Dr,Crossville,Tennessee,38555,3352.0,-,-1
@@ -52,7 +52,7 @@ nan,sold,-,3,10,4.44,699 Wilson Dr,Crossville,Tennessee,38555,3352.0,-,-1
 107955,for_sale,2199000,3,-,0.3,20 First Dr,,,2043,,1992-10-22,-1
 22721,sold,799999,,,0.011,900 Baker Ln,Unknown,Massachusetts,,,2022-04-05,-1
 76215,sold,339000,3,-,0.34,-,Bella Vista,-,72714,11060.0,-,-1
--1,f,$43200,three,-,0.2,88 East Avenue,San Antonio,Unknown,78254,3.5870064279155188e-06,05/14/04,101
+-1,f,$43200,three,-,0.2,88 East Avenue,San Antonio,Unknown,78254,3.945707070707071e-06,05/14/04,101
 53592,f,Unknown,four,,-1,779 Third Boulevard,Mchenry,IL,60050,0.0003705377640036731,04/02/20,-1
 ,Unknown,11367400,11,2,0.28,676 South Blvd,Troy,Illinois,62294,-,,-1
 687,,355000,7,2,0.19,-,,Florida,,Unknown,-,"120,121"
@@ -100,14 +100,14 @@ nan,for_sale,-,4,12,nan,Unknown,Houston,Texas,77082,4156.0,2013-09-26,-1
 78200,sold,149000,3,,0.15,,Akron,-,44314,140.0,2022-02-09,-1
 78167,sold,-,Unknown,12,0.011,324 Sunset St,Unknown,Minnesota,55426,1908.0,2022-04-01,-1
 -1,-,69600,7,2,0.18,,Unknown,Texas,,Unknown,2022-03-31,83
--1,f,$43200,three,-,0.2,88 East Avenue,San Antonio,Unknown,78254,3.5870064279155188e-06,05/14/04,53
+-1,f,$43200,three,-,0.2,88 East Avenue,San Antonio,Unknown,78254,3.945707070707071e-06,05/14/04,53
 ,for_sale,-,Unknown,,45.0,675 Circle Dr,Hulbert,Oklahoma,74441,7294.0,2018-04-19,70
 -1,sold,6500,Unknown,2,46.0,977 Adams Blvd,Westford,Massachusetts,1886,2211.0,2021-11-19,45
 -1,,39400,7,-,0.06,162 Mill St,Tustin,,nan,,2011-11-14,44
-,for_sale,,5,Unknown,0.3,,Wichita,Unknown,67207,2.4,Unknown,39
+,for_sale,,5,Unknown,0.3,,Wichita,Unknown,67207,3.4,Unknown,39
 -1,,61000,7,1,0.15,380 Valley Ln,Unknown,Ohio,45324,1116.0,2020-08-03,22
 nan,for_sale,47900,6,4,0.35,668 Maple Ave,Saratoga Springs,Unknown,-1,3625.0,2019-04-19,80
-,sold,54100,-,Unknown,56.0,Unknown,Fairfax,Virginia,22030,86.0,Unknown,10
+,sold,54100,-,Unknown,56.0,Unknown,Fairfax,Virginia,22030,87.0,Unknown,10
 nan,-,$25700,,one,nan,655 First Street,Unknown,MA,nan,3.640811524334252e-05,,0
 nan,sold,56600,-,3,,47 Lincoln Rd,Bowie,-,20720,-,2022-01-04,18
 ,for_sale,-,5,11,-1,217 Church Ln,Calabash,North Carolina,28467,3058.0,Unknown,30

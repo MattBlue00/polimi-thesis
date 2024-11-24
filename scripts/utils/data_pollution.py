@@ -477,7 +477,7 @@ def make_outlier_detection_dirty(df, perc):
     min_value = df['house_size'].min()
     max_value = df['house_size'].max()
     house_size_outliers_low = [
-        round_to_significant_figures(random.uniform(0, min_value / 2), sig_figs=2)
+        round_to_significant_figures(random.uniform(1, min_value / 2), sig_figs=2)
         for _ in range(len(indices_to_replace_low))
     ]
     df.loc[indices_to_replace_low, 'house_size'] = house_size_outliers_low
