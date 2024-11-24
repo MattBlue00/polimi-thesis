@@ -7,6 +7,8 @@ from datetime import datetime
 
 from scripts.utils.constants import RANDOM_SEED
 from scripts.utils.data_sampling import generate_random_indices
+from scripts.utils.math import round_to_significant_figures, divide_number
+
 
 def generate_random_name():
     first_names = ["James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Charles", "Thomas", "Julia", "Sophia", "Anne", "Louise", "Kristine", "Taylor"]
@@ -319,7 +321,6 @@ def make_data_standardization_dirty(df, percentage):
             df.at[idx, 'prev_sold_date'] = modified_date_str
 
     print("Done!")
-    return df
 
 
 def replace_values(df, column, percentage):
@@ -409,3 +410,113 @@ def inject_duplicates(df, percentage):
 
     print(f"Added {num_rows_to_duplicate} duplicates (including single and triple duplicates).")
     return df
+
+def make_outlier_detection_dirty(df, perc):
+    # number of rows to replace
+    n_rows_to_replace = int(len(df) * perc)
+
+    indices_to_replace = {}
+    for i, col in enumerate(['price', 'bed', 'bath', 'acre_lot', 'house_size']):
+        # randomly chooses the rows to replace
+        indices_to_replace[col] = df.sample(n=n_rows_to_replace, random_state=RANDOM_SEED + i).index
+
+    # PRICE OUTLIERS
+
+    # indices of low and high price outliers
+    indices_to_replace_low = indices_to_replace['price'][:len(indices_to_replace['price']) // 2]
+    indices_to_replace_high = indices_to_replace['price'][len(indices_to_replace['price']) // 2:]
+
+    # price outliers injection
+    min_value = df['price'].min()
+    max_value = df['price'].max()
+    price_outliers_low = [random.randint(0, int(min_value // 100)) * 100 for _ in range(len(indices_to_replace_low))]
+    df.loc[indices_to_replace_low, 'price'] = price_outliers_low
+    price_outliers_high = [random.randint(int(max_value // 100), int(max_value * 10 // 100)) * 100 for _ in
+                           range(len(indices_to_replace_high))]
+    df.loc[indices_to_replace_high, 'price'] = price_outliers_high
+
+    # BED OUTLIERS
+
+    max_value = df['bed'].max()
+    bed_outliers = [random.randint(max_value + 1, max_value * 2) for _ in range(len(indices_to_replace['bed']))]
+    df.loc[indices_to_replace['bed'], 'bed'] = bed_outliers
+
+    # BATH OUTLIERS
+
+    max_value = df['bath'].max()
+    bath_outliers = [random.randint(max_value + 1, max_value * 2) for _ in range(len(indices_to_replace['bath']))]
+    df.loc[indices_to_replace['bath'], 'bath'] = bath_outliers
+
+    # ACRE_LOT OUTLIERS
+
+    # indices of low and high acre_lot outliers
+    indices_to_replace_low = indices_to_replace['acre_lot'][:len(indices_to_replace['acre_lot']) // 2]
+    indices_to_replace_high = indices_to_replace['acre_lot'][len(indices_to_replace['acre_lot']) // 2:]
+
+    # acre_lot outliers injection
+    min_value = df['acre_lot'].min()
+    max_value = df['acre_lot'].max()
+    acre_lot_outliers_low = [
+        round_to_significant_figures(random.uniform(0, min_value / 2), sig_figs=2)
+        for _ in range(len(indices_to_replace_low))
+    ]
+    df.loc[indices_to_replace_low, 'acre_lot'] = acre_lot_outliers_low
+    acre_lot_outliers_high = [
+        round_to_significant_figures(random.uniform(max_value * 1.25, max_value * 2), sig_figs=2)
+        for _ in range(len(indices_to_replace_high))
+    ]
+    df.loc[indices_to_replace_high, 'acre_lot'] = acre_lot_outliers_high
+
+    # HOUSE_SIZE OUTLIERS
+
+    # indices of low and high house_size outliers
+    indices_to_replace_low = indices_to_replace['house_size'][:len(indices_to_replace['house_size']) // 2]
+    indices_to_replace_high = indices_to_replace['house_size'][len(indices_to_replace['house_size']) // 2:]
+
+    # house_size outliers injection
+    min_value = df['house_size'].min()
+    max_value = df['house_size'].max()
+    house_size_outliers_low = [
+        round_to_significant_figures(random.uniform(0, min_value / 2), sig_figs=2)
+        for _ in range(len(indices_to_replace_low))
+    ]
+    df.loc[indices_to_replace_low, 'house_size'] = house_size_outliers_low
+    house_size_outliers_high = [
+        round_to_significant_figures(random.uniform(max_value * 1.25, max_value * 2), sig_figs=4)
+        for _ in range(len(indices_to_replace_high))
+    ]
+    df.loc[indices_to_replace_high, 'house_size'] = house_size_outliers_high
+
+def make_data_imputation_dirty(df, perc):
+    # number of rows to replace
+    n_rows_to_replace = int(len(df) * perc)
+
+    distributions = divide_number(int(perc * 100), 3)
+
+    for i, col in enumerate(df.columns):
+
+        # randomly chooses the rows to replace
+        indices_to_replace = df.sample(n=n_rows_to_replace, random_state=RANDOM_SEED + i).index
+
+        missing_values = []
+
+        col_type = df[col].dtype
+        if col_type == object:
+            # For object columns, we will use a mix of "-","Unknown", and ""
+            missing_values.extend(["-" for _ in range(distributions[0])])
+            missing_values.extend(["Unknown" for _ in range(distributions[1])])
+            missing_values.extend(["" for _ in range(distributions[2])])
+        elif col_type == float or col_type == int:
+            # For numerical columns, we will use np.nan, -1, and ""
+            missing_values.extend(["nan" for _ in range(distributions[0])])
+            missing_values.extend([-1 for _ in range(distributions[1])])
+            missing_values.extend(["" for _ in range(distributions[2])])
+        else:
+            raise ValueError(f"Unknown type: {col_type}.")
+
+        # Shuffle the missing values list to distribute them randomly
+        random.shuffle(missing_values)
+
+        # Replacing the selected rows with corresponding missing values
+        for idx, missing_value in zip(indices_to_replace, missing_values):
+            df.loc[idx, col] = missing_value
