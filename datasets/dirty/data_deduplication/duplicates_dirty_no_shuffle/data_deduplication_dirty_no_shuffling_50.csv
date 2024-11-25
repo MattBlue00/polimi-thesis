@@ -124,7 +124,7 @@ brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size
 58424;for_sale;999500;4;3;0.16;277 Princess;Livemore;Californa;94650;1786;2022-3-22;26
 22765;sold;586000;4;4;4.45;698 Wilson Dr;Crosvile;Tennesse;38554;3353;2022-4-16;42
 10579;for_sale;156000;5;4;0.22;194 Spring Ave;Albani;Indians;47330;2010;2020-6-20;69
-32768;for_sale;1350000;3;4;27.60;550 Second ;Juliane;Californis;92046;987;2010-5-15;15
+32768;for_sale;1350000;3;4;27.60;550 Second;Juliane;Californis;92046;987;2010-5-15;15
 26011;sold;259000;3;1;0.12;391 Bridge;Great Fall;Mentana;59406;1633;2021-11-10;40
 10487;for_sale;890000;3;3;0.20;211 Church Ln;Huston;Texass;77083;4157;2012-9-26;96
 65393;for_sale;730000;4;4;1.05;715 Terrace;Spark;Navada;89442;1875;2005-9-10;9
@@ -135,10 +135,10 @@ brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size
 54093;for_sale;265000;1;1;0.03;896 Sunset Ct;Marathon;Florida;33050;321;2004-09-20;78,132
 10437;sold;350000;3;2;1.07;70 Cedar Dr;Cumming;Georgia;30041;1681;2022-02-23;64,135
 10437;sold;350000;3;2;1.07;70 Cedar Dr;Cumming;Georgia;30041;1681;2022-02-23;64,134
-79245;for_sale;599900;5;5;0.42;254 Princess Ave;Bettendorf;Iowa;52722;3765;2016-11-21;60,137
-79245;for_sale;599900;5;5;0.42;254 Princess Ave;Bettendorf;Iowa;52722;3765;2016-11-21;60,136
-78184;sold;385000;3;3;0.23;390 Madison Ct;North Port;Florida;34286;1708;2022-03-18;20,139
-78184;sold;385000;3;3;0.23;390 Madison Ct;North Port;Florida;34286;1708;2022-03-18;20,138
+79244;for_sale;600000;4;4;0.43;254 Princess ;Betendorf;Iowah;57722;3766;2016-11-20;60,137
+79345;for_sale;599000;5;4;0.41;255 Princess Ave;Bettendorfs;iowa;5272;3770;2015-11-21;60,136
+8184;sold;385500;2;2;0.24;390 Madison ;North Ports;Florids;34287;1710;2022-4-18;20,139
+78185;sold;380000;4;2;0.22;391 Madison Ct;North Porte;Florid;34386;1705;2022-3-19;20,138
 10725;for_sale;420000;4;3;0.84;226 Square;Brewste;Masachusetts;26311;1370;2001-7-7;7,141
 10724;for_sale;425500;2;1;0.82;227 Square Rd;Brester;Massachusets;2632;1365;2001-7-5;7,140
 82988;for_sale;335500;4;3;0.19;71 Hill;Teple;Texass;76503;2345;2012-5-1;92,143
@@ -148,4 +148,4 @@ brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size
 23018;sold;24000;4;3;0.22;922 Square;Mose Lake;Washingtom;98887;1671;2022-3-8;59,147
 23027;sold;245000;2;1;0.19;921 Square Ave;Moses Lakes;washington;9837;1669;2022-4-9;59,146
 53015;sold;240000;4;3;0.57;829 Main Boulevard;Oaky Ridge;Tennesse;3783;1720;2023-2-2;8,149
-53017;sold;239500;2;1;0.55;829 Main ;Oaks Ridge;Tennesee;37831;1725;2022-2-3;8,148
+53017;sold;239500;2;1;0.55;829 Main;Oaks Ridge;Tennesee;37831;1725;2022-2-3;8,148
