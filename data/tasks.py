@@ -116,6 +116,33 @@ tasks = [
             )
         ]
     ),
+    Task(
+        name="data_wrangling",
+        prompts=[
+            QuestionPrompt(
+                prompt_id=1,
+                user_message="Consider this dataset:\n{{csv_text}}\nCan you do data wrangling on it?"
+            ),
+        ]
+    ),
+    Task(
+        name="data_standardization",
+        prompts=[
+            QuestionPrompt(
+                prompt_id=1,
+                user_message="Consider this dataset:\n{{csv_text}}\nCan you do data standardization on it?"
+            ),
+        ]
+    ),
+    Task(
+        name="dependency_discovery",
+        prompts=[
+            QuestionPrompt(
+                prompt_id=1,
+                user_message="Consider this dataset:\n{{csv_text}}\nCan you do dependency discovery on it?"
+            ),
+        ]
+    ),
 ]
 
 def get_prompt(task_name, prompt_id):
