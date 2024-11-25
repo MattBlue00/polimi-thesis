@@ -121,8 +121,8 @@ brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size
 3479;sold;419000;5;4;0.3;864 Lake Ln;Irving;Texas;75060;3110;2021-12-09;27,118
 687;sold;355000;3;2;0.19;272 Terrace Ln;Orlando;Florida;32828;1864;2021-12-08;56,121
 687;sold;355000;3;2;0.19;272 Terrace Ln;Orlando;Florida;32828;1864;2021-12-08;56,120
-53173;sold;350000;3;2;0.9;693 Ridge Pl;Harpers Ferry;West Virginia;25425;3220;2021-12-10;3,123
-53173;sold;350000;3;2;0.9;693 Ridge Pl;Harpers Ferry;West Virginia;25425;3220;2021-12-10;3,122
+53373;sold;35000;4;3;0.99;6903 Ridge Pl;Harper Ferry;W. Virginia;254254;3200;2021-12-12;3,123
+531373;sold;355000;2;1;9.9;693 Ridge;Harpers F.;West-Virginia;2525;3222;2020-12-10;3,122
 222562;for_sale;2110000;4;3;0.155;2772 Farm Blvd;Deerborn Heights;Micigan;48185;1961;2001-10-14;97,125
 2562;for_sale;21000;4;3;0.1;272 Far Blvd;Dearborn Height;michigan;48225;2000;0201-10-14;97,124
 5684;sold;280000;3;3;0.61;503 Elm Ave;Maddison;Wisconsinn;54704;1700;2021-12-18;94,127
