@@ -89,7 +89,7 @@ brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size
 86329;for_sale;699000;4;5;14.25;347 Oak Ln;Wetumpka;Alabama;36092;4758;2015-02-19;-1
 56184;sold;279990;1;1;0.166;593 Elm;Medison;Wishconsin;53604;169;2021-112-17;72,24
 58970;sold;949900;3;4;0.23;828 Spring St;Kensington;Maryland;20895;2500;2021-12-30;-1
-53173;sold;350000;3;2;0.9;693 Ridge Pl;Harpers Ferry;West Virginia;25425;3220;2021-12-10;73,101
+53373;sold;35000;4;3;0.99;6903 Ridge Pl;Harper Ferry;W. Virginia;254254;3200;2021-12-12;73,101
 5145;sold;750000;3;4;0.19;59 Park Blvd;Meridian;Idaho;83642;2796;2022-01-10;53,122
 22611;for_sale;215000;3;2;0.12;995 Maple Ave;Calumet City;Illinois;60409;1304;2013-08-15;-1
 57424;sold;935000;5;5;0.16;409 Wood Ct;Manteca;California;95337;3789;2022-02-18;-1
@@ -100,7 +100,7 @@ brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size
 22611;sold;280000;4;2;0.19;952 King Rd;Monroeville;Pennsylvania;15146;1874;2022-04-19;-1
 108243;sold;499000;3;3;0.18;197 Meadow Ct;Kennewick;Washington;99337;2289;2022-03-30;-1
 4630;for_sale;519950;4;3;0.13;906 Mill Blvd;Huntsville;Alabama;35801;2778;2020-03-09;-1
-53173;sold;350000;3;2;0.9;693 Ridge Pl;Harpers Ferry;West Virginia;25425;3220;2021-12-10;73,90
+531373;sold;355000;2;1;9.9;693 Ridge;Harpers F.;West-Virginia;2525;3222;2020-12-10;73,90
 23017;sold;240000;3;2;0.2;922 Square Ave;Moses Lake;Washington;98837;1670;2022-03-09;-1
 81031;sold;219000;3;2;0.31;73 Lake Ln;Chambersburg;Pennsylvania;17202;1189;2021-11-24;-1
 946891;sold;40900;3;2;21.2;655 First Street;Stocbridg;massachusetts;12620;101;2021-11-290;29
