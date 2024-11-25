@@ -1,0 +1,151 @@
+brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size;prev_sold_date;duplicate
+;-;;;;14.0;;Sumter;South Carolina;29154.0;Unknown;Unknown;106
+-1.0;Unknown;61900;-;3;;47 Lincoln Rd;Bowie;;20720.0;-;2022-01-04;10
+-1.0;Unknown;25800;9;3;;95 Meadow;Somersete;-;;Unknown;2016-8-1;11
+54093.0;-;265000;Unknown;1;;;-;Florida;-1.0;321.0;-;19,46
+;sold;;Unknown;-;-1.0;-;-;;;9646.0;;139
+;Unknown;$5200;8;two;0.41;672 West Place;Stuarts Draft;VA;;6.553460743801653e-05;;98
+10437.0;s;$350000;three;two;1.07;70 Cedar Drive;Unknown;GA;;6.029757805325987e-05;-;93,94
+;for_sale;Unknown;Unknown;13;0.0066;Unknown;;Massachusett;26311.0;1370.0;;87,133
+19903.0;s;-;three;9;-1.0;249 South Place;Houston;TX;77030.0;;Unknown;-1
+33901.0;f;$225000;-;two;;417 East Court;Greenfield;Unknown;-1.0;Unknown;Unknown;-1
+-1.0;Unknown;62000;-;4;;47 Lincoln ;Bowi;;207200.0;-;2022-1-5;1
+-1.0;Unknown;25700;10;2;;95 Meadow Ave;Somerset;-;;Unknown;2016-07-01;2
+53232.0;for_sale;330000;2;;0.3;-;Kingston;-;12401.0;-;;-1
+-1.0;Unknown;5879300;;3;0.0066;-;Sparks;;;1876.0;2004-09-10;23
+;;;-;9;65.0;-;-;NC;;-;Unknown;-1
+687.0;Unknown;355000;12;2;0.19;;Unknown;Unknown;;-;-;-1
+-1.0;;11800;;Unknown;46.0;162 Mill St;;;;Unknown;2011-11-14;58
+-1.0;-;-;;11;0.0092;-;Albany;-;47320.0;7.206295913682277e-05;06/19/20;127
+-1.0;Unknown;9400;-;2;49.0;-;Troy;Unknown;62294.0;Unknown;-;91
+54093.0;-;265000;Unknown;1;;;-;Florida;-1.0;321.0;-;3,46
+106177.0;f;$399500;;Unknown;;411 Wilson Avenue;Unknown;GA;-1.0;;06/03/02;-1
+-1.0;for_sale;Unknown;-;;-1.0;;Unknown;Texaa;76082.0;7891.0;2113-9-26;50
+-1.0;for_sale;;Unknown;11;;277 Princess Dr;Livermore;California;;1785.0;2022-04-22;54
+-1.0;Unknown;5880000;;4;0.0067;-;Spark;;;1875.0;2005-9-10;13
+86329.0;for_sale;699000;4;5;;Unknown;Wetumpka;Alabama;36092.0;4758.0;2015-02-19;116,136
+34889.0;sold;Unknown;2;10;0.21;383 Market ;-;Texaa;77024.0;-;2021-12-17;124,130
+;-;27800;Unknown;Unknown;0.0087;;Fairfax;Virginia;22030.0;Unknown;Unknown;44
+82988.0;-;;Unknown;-;-1.0;71 Hill ;-;-;76501.0;;Unknown;148,40
+;Unknown;27000;-;Unknown;7.0;977 Adams Blvd;Westford;Unknown;1886.0;9657.0;2021-11-19;137
+;for_sale;-;5;9;-1.0;217 Church Ln;Calabash;North Carolina;28467.0;3058.0;;80
+;-;$56600;;one;61.0;380 Valley Lane;-;OH;-1.0;4.003099173553719e-05;08/03/20;146
+;-;-;7;-;;550 Second Pl;Julian;;-1.0;130.0;;99
+;sold;Unknown;4;10;0.28;73 Franklin Rd;Unknown;North Carolina;-1.0;-;-;-1
+;Unknown;$9317000;12;Unknown;;-;;IL;-1.0;3.5511363636363636e-06;11/30/21;-1
+-1.0;Unknown;;8;Unknown;4.44;699 Wilson Dr;Crossville;Unknown;38555.0;7566.0;Unknown;60
+23117.0;sold;250000;4;3;0.21;Unknown;Mose Lake;Unknown;;1672.0;2012-3-9;119,117
+22721.0;s;$799999;-;;0.0082;900 Baker Lane;-;MA;;-;-;-1
+-1.0;;-;-;9;57.0;864 Lake Lane;Irving;TX;75060.0;;12/09/21;-1
+;s;Unknown;Unknown;-;6.1e-06;;Alexandria;VA;;-;-;113
+4630.0;for_sale;;4;12;;;Huntsville;Unknown;-1.0;2778.0;;-1
+82977.0;-;;Unknown;-;-1.0;71 Hill Lane;-;-;765022.0;;Unknown;148,27
+;;Unknown;9;7;;;Port Washington;New York;;5828.0;2017-05-05;-1
+45936.0;;-;12;-;;293 Terrace Court;Skaneateles;;;0.00032717085629017445;Unknown;-1
+;f;$5382700;three;two;-1.0;81 Roosevelt Drive;Charlottesville;;22903.0;5.4235537190082644e-05;09/29/11;-1
+;-;27800;Unknown;Unknown;0.0087;;Fairfax;Virginia;22030.0;Unknown;Unknown;26
+;f;$12128700;one;one;0.58;949 Franklin Boulevard;Unknown;-;;;Unknown;-1
+54093.0;-;265000;Unknown;1;;;-;Florida;-1.0;321.0;-;3,19
+70245.0;for_sale;Unknown;-;8;;255 Princess Ave;Bettemdorf;Iowah;527722.0;-;2016-11-20;59,104
+108243.0;s;$499000;three;three;0.18;Unknown;;Unknown;-1.0;8.210657713498622e-05;03/30/22;-1
+;;;Unknown;11;;655 First Street;Unknown;MA;;3.640811524334252e-05;;53
+-1.0;for_sale;Unknown;-;;-1.0;;Unknown;Texas;77082.0;7890.0;2013-09-26;21
+-1.0;-;;-;;;Unknown;Wichita;-;67207.0;150.0;;65
+;sold;;;Unknown;66.0;686 East Ln;Unknown;Nevada;;;Unknown;-1
+;;;Unknown;11;;655 First Street;Unknown;MA;;3.640811524334252e-05;;49
+-1.0;for_sale;;Unknown;10;;277 Princess ;Livemore;california;;1786.0;2022-5-22;22
+22671.0;;$90000;-;two;;;-;MO;63115.0;;-;-1
+;s;;;9;;842 Cedar Drive;;CO;80550.0;9.462522956841138e-05;;-1
+;sold;-;4;8;;;Great Falls;-;59405.0;-;2021-11-09;111
+-1.0;;11800;;Unknown;46.0;162 Mill St;;;;Unknown;2011-11-14;16
+79245.0;for_sale;Unknown;-;7;;254 Princess Ave;Bettendorf;Iowa;52722.0;-;2016-11-21;104,47
+-1.0;Unknown;;7;Unknown;4.4;698 Wilson Dr;Crossvile;Unknown;3855.0;7566.5;Unknown;34
+8.0;-;Unknown;8;Unknown;;Unknown;-;WY;82007.0;;Unknown;-1
+-1.0;s;-;-;;-1.0;168 Bridge Place;-;Unknown;63122.0;0.00031142389807162533;11/23/21;-1
+28222.0;;2450000;;4;60.0;;-;Unknown;90064.0;2751.0;Unknown;-1
+56084.0;-;$279900;8;two;-1.0;593 Elm Avenue;Madison;WI;-1.0;Unknown;-;-1
+-1.0;-;;-;;;Unknown;Wichita;-;67207.0;150.0;;51
+;;$16752300;8;;0.2;Unknown;Allison Park;;;-;04/13/22;-1
+-1.0;s;$50500;five;;0.29;286 Bridge ;Unknown;mo;6314.0;0.000395646808999081;Unknown;84
+;for_sale;Unknown;3;7;-1.0;862 King Blvd;Unknown;-;;-;2017-12-29;-1
+22562.0;;$210000;;two;53.0;Unknown;Dearborn Heights;MI;;-;;-1
+-1.0;;Unknown;Unknown;-;0.5;Unknown;Faireview;Michigam;48611.0;18.05;2022-5-14;71
+-1.0;;Unknown;Unknown;-;0.0045;Unknown;Fairview;Michigan;48621.0;18.0;2022-04-14;70
+7884.0;Unknown;$390000;;Unknown;;;North Portt;Florida;-1.0;2.9413452708907252e-05;;144,115
+;f;Unknown;three;;0.2;88 East Avenue;Unknown;Unknown;78254.0;;;77
+;Unknown;-;Unknown;;;-;San Jacinto;-;;;Unknown;-1
+53673.0;f;$112900;-;two;14.0;-;Mount Pleasant;MI;48858.0;Unknown;08/13/12;-1
+553016.0;-;240000;8;-;0.55;-;Oaks Ridge;-;38830.0;Unknown;2222-2-2;96,143
+;f;Unknown;three;;0.2;88 East Avenue;Unknown;Unknown;78254.0;;;73
+;-;-;;;;Unknown;Spokane;WA;99207.0;0.00032648932506887054;;-1
+;;-;7;-;0.23;Unknown;;TX;-1.0;Unknown;01/19/22;-1
+;for_sale;-;6;8;-1.0;218 Church Ln;Calabas;North Carol.;28466.0;3059.0;;29
+;sold;4422400;4;-;;614 Garden Ct;Pooler;Georgia;31322.0;9838.0;-;-1
+;s;$2703400;three;-;0.07;-;Vienna;VA;22180.0;0.0003252338728191001;04/22/22;-1
+;;15900;Unknown;4;44.0;668 Maple Ave;;-;-1.0;Unknown;2019-04-19;126
+-1.0;s;$50000;four;;0.28;286 Bridge Lane;Unknown;MO;63114.0;0.00039564680899908174;Unknown;67
+-1.0;sold;20564600;4;-;1.08;763 Adams Pl;Melbourne;Unknown;32934.0;84.0;-;-1
+;s;Unknown;;6;;53 North Boulevard;Unknown;-;;Unknown;04/08/23;123
+;for_sale;Unknown;Unknown;12;0.0064;Unknown;;Massachusetts;2631.0;1368.0;;133,7
+56699.0;s;-;;-;50.0;Unknown;;MO;;0.00030435749540863176;03/04/22;-1
+;for_sale;;Unknown;;;675 Circle Dr;Hulbert;Oklahoma;-1.0;;2018-04-19;149
+78200.0;sold;-;3;;-1.0;Unknown;Akron;-;44314.0;41.0;2022-02-09;-1
+-1.0;Unknown;9500;-;3;50.0;-;Troye;Unknown;62295.0;Unknown;-;18
+;-;-;8;7;0.18;-;Unknown;Texas;;;2022-03-31;107
+10437.0;s;$350000;three;two;1.07;70 Cedar Drive;Unknown;GA;;6.029757805325987e-05;-;6,94
+10437.0;s;$350000;three;two;1.07;70 Cedar Drive;Unknown;GA;;6.029757805325987e-05;-;6,93
+75073.0;;$375000;10;one;-1.0;Unknown;;OH;43206.0;Unknown;07/06/20;-1
+53016.0;-;239000;9;-;0.56;-;Oak Ridge;-;37830.0;Unknown;2022-02-02;76,143
+;Unknown;;11;Unknown;0.14;368 Shore Road;;FL;33542.0;3.945707070707071e-06;04/25/19;-1
+;Unknown;$52000;7;three;0.42;673 West Place;Stuart Draft;Va;;6.553460743801653e-04;;5
+;-;-;6;-;;55 Second Pl;Juliane;;-1.0;131.0;;31
+53173.0;s;$350000;three;-;0.9;Unknown;;Unknown;25425.0;Unknown;;-1
+31355.0;s;-;five;Unknown;;;Unknown;;55424.0;0.00029757805325987145;-;-1
+45807.0;Unknown;;-;9;;;;Unknown;44442.0;6.266500229568411e-05;04/17/91;-1
+-1.0;for_sale;19151500;3;3;0.23;885 Washington Ave;Iselin;;;-;Unknown;131
+79244.0;for_sale;Unknown;-;6;;254 Princess ;Betendorf;iowa;5272.0;-;2016-10-21;59,47
+101497.0;-;$129900;10;-;1.95;575 King Place;Eastover;SC;29044.0;0.0003719725665748393;09/20/21;-1
+;-;;;;15.0;;Sunter;Suth Carolina;29254.0;Unknown;Unknown;0
+;-;-;8;7;0.18;-;Unknown;Texas;;;2022-03-31;92
+109987.0;Unknown;$490000;-;four;-1.0;229 Broadway Avenue;Corpus Christi;TX;;;04/03/19;-1
+81031.0;-;219000;;2;;;Chambersburg;Pennsylvania;17202.0;1189.0;2021-11-24;-1
+53592.0;f;Unknown;four;Unknown;;779 Third Boulevard;Mchenry;;60050.0;0.00034306129476584024;04/02/20;-1
+;sold;-;5;7;;;Great Fall;-;59505.0;-;2011-11-9;57
+107955.0;for_sale;2199000;-;-;55.0;20 First Dr;-;;-1.0;;1992-10-22;-1
+;s;Unknown;Unknown;-;6.2e-06;;Alexandra;va;;-;-;38
+15757.0;-;;8;-;;520 View Road;Unknown;OK;;0.00036121154729109277;06/09/16;-1
+78184.0;Unknown;$385500;;Unknown;;;North Ports;fl;-1.0;2.94134527089072e-06;;144,72
+86329.0;for_sale;699000;4;5;;Unknown;Wetumpka;Alabama;36092.0;4758.0;2015-02-19;136,24
+23018.0;sold;245000;2;3;0.22;Unknown;Moses Lakes;Unknown;;1671.0;2022-4-9;119,35
+58970.0;-;Unknown;8;12;-1.0;-;Kensington;;;8.967516069788796e-05;-;-1
+23017.0;sold;240000;3;2;0.2;Unknown;Moses Lake;Unknown;;1670.0;2022-03-09;35,117
+5145.0;Unknown;-;7;;;59 Park Blvd;;-;;10630.0;2022-01-10;-1
+22611.0;for_sale;215000;3;Unknown;0.12;;-;Illinois;-1.0;;-;-1
+57424.0;s;;Unknown;12;-1.0;409 Wood Court;Manteca;Unknown;95337.0;0.00013591167355371902;02/18/22;-1
+;s;Unknown;;7;;52 North Boulevard;Unknown;-;;Unknown;04/08/22;86
+34888.0;sold;Unknown;3;11;0.22;383 Market St;-;Texas;77025.0;-;2021-12-16;130,25
+-1.0;f;$64900;three;two;;-;Unknown;CA;90802.0;-;06/10/16;142
+;;15900;Unknown;4;44.0;668 Maple Ave;;-;-1.0;Unknown;2019-04-19;83
+-1.0;-;-;;10;0.009;-;Albani;-;47322.0;7.2062959136822e-05;06/18/20;17
+81671.0;sold;Unknown;-;Unknown;46.0;651 Vista Blvd;-;-;65552.0;120.0;;-1
+22611.0;Unknown;$280000;9;Unknown;0.19;952 King Road;;;15146.0;Unknown;-;-1
+3488.0;sold;Unknown;4;10;0.23;384 Market St;-;Texass;77026.0;-;2021-11-16;124,25
+-1.0;for_sale;19152500;4;4;0.25;885 Washington ;Iseline;;;-;Unknown;103
+45913.0;Unknown;Unknown;;-;-1.0;94 Washington Ave;Queensbury;;12804.0;-;2021-11-23;-1
+;for_sale;Unknown;Unknown;10;0.0062;Unknown;;Masachusets;2630.0;1367.0;;87,7
+109978.0;;760000;Unknown;2;;-;;;;-;2021-12-22;-1
+76215.0;sold;339000;3;;0.34;-;Bella Vista;-;72714.0;Unknown;-;-1
+86329.0;for_sale;699000;4;5;;Unknown;Wetumpka;Alabama;36092.0;4758.0;2015-02-19;116,24
+;Unknown;27000;-;Unknown;7.0;977 Adams Blvd;Westford;Unknown;1886.0;9657.0;2021-11-19;28
+78167.0;s;-;Unknown;7;6.0;-;Unknown;Unknown;55426.0;6.84400826446281e-05;Unknown;-1
+;sold;;Unknown;-;-1.0;-;-;;;9650.0;;4
+85655.0;sold;Unknown;3;10;-1.0;159 Meadow Rd;-;Unknown;;Unknown;Unknown;-1
+19415.0;for_sale;309000;Unknown;Unknown;0.0098;820 View Ln;;Wisconsin;-1.0;140.0;2020-02-04;-1
+-1.0;f;$65000;two;three;;-;Unknown;ca;90801.0;-;06/10/17;125
+53017.0;-;239500;10;-;0.57;-;Oak Ride;-;37730.0;Unknown;2022-2-1;96,76
+78184.0;Unknown;$385000;;Unknown;;;North Port;FL;-1.0;2.9413452708907252e-06;;72,115
+53177.0;f;$105000;Unknown;Unknown;63.0;Unknown;-;OK;;4.304407713498622e-06;-;-1
+;-;$56600;;one;61.0;380 Valley Lane;-;OH;-1.0;4.003099173553719e-05;08/03/20;30
+81311.0;;$575000;10;;-1.0;Unknown;-;-;;;04/22/22;-1
+82978.0;-;;Unknown;-;-1.0;71 Hill Ln;-;-;76502.0;;Unknown;40,27
+;for_sale;;Unknown;;;675 Circle Dr;Hulbert;Oklahoma;-1.0;;2018-04-19;89
