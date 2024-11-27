@@ -1,0 +1,48 @@
+I can help you with data imputation for this dataset. Here's how we can approach it:
+
+1. For numerical columns (price, bed, bath, acre_lot, house_size):
+- Replace -1 values with NaN first
+- Use median imputation for missing values
+- Ensure values make sense (e.g., no negative values)
+
+2. For categorical columns (brokered_by, status, street, city, state, zip_code):
+- Replace 'Unknown' and '-' with NaN
+- Use mode imputation for missing values
+- For street addresses, we might want to keep them as NaN if missing
+
+3. For dates (prev_sold_date):
+- Replace 'Unknown' with NaN
+- Use median date for missing values
+
+Would you like me to proceed with the actual imputation? I can write Python code using pandas to perform these operations and show you the results.
+
+Here's a basic outline of how we'd do it:
+
+```python
+import pandas as pd
+import numpy as np
+from datetime import datetime
+
+# Read the data
+df = pd.read_csv('your_data.csv')
+
+# Replace -1 and 'Unknown' with NaN
+df = df.replace([-1, 'Unknown', '-'], np.nan)
+
+# Numeric columns imputation
+numeric_columns = ['price', 'bed', 'bath', 'acre_lot', 'house_size']
+for col in numeric_columns:
+    df[col] = pd.to_numeric(df[col], errors='coerce')
+    df[col] = df[col].fillna(df[col].median())
+
+# Categorical columns imputation
+categorical_columns = ['brokered_by', 'status', 'city', 'state', 'zip_code']
+for col in categorical_columns:
+    df[col] = df[col].fillna(df[col].mode()[0])
+
+# Date imputation
+df['prev_sold_date'] = pd.to_datetime(df['prev_sold_date'], errors='coerce')
+df['prev_sold_date'] = df['prev_sold_date'].fillna(df['prev_sold_date'].median())
+```
+
+Would you like me to execute this code and show you the results?

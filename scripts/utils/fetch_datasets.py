@@ -1,6 +1,5 @@
 import os
 import re
-import pandas as pd
 
 from experiments.model.dataset import Dataset
 
@@ -27,12 +26,16 @@ def load_dirty_datasets(directory):
   for filename in os.listdir(directory):
     if filename.endswith(".csv"):
       filepath = os.path.join(directory, filename)
-      df = pd.read_csv(filepath)
       percentage = get_dirtiness_from_filename(filename)
       dataset = Dataset(
           dataset_id=os.path.splitext(filename)[0],
-          df=df,
+          content_string=read_csv_as_string(filepath),
           dirty_percentage=percentage
       )
       dirty_datasets.append(dataset)
   return dirty_datasets
+
+def read_csv_as_string(filepath):
+  # Legge il file CSV come stringa pura
+  with open(filepath, "r", encoding="utf-8") as f:
+    return f.read()

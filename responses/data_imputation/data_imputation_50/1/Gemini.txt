@@ -1,0 +1,78 @@
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("your_data.csv")  # Replace your_data.csv with the actual file name
+
+# Convert relevant columns to numeric, coercing errors to NaN
+numeric_cols = ['price', 'bed', 'bath', 'acre_lot', 'zip_code', 'house_size']
+for col in numeric_cols:
+    df[col] = pd.to_numeric(df[col], errors='coerce')
+
+# Convert prev_sold_date to datetime, coercing errors to NaT
+df['prev_sold_date'] = pd.to_datetime(df['prev_sold_date'], errors='coerce')
+
+# --- Imputation Strategies ---
+
+# 1. Simple Imputation (Mean/Median/Mode)
+
+# For numeric features with relatively normal distributions, use mean/median
+df['price'].fillna(df['price'].median(), inplace=True)
+df['house_size'].fillna(df['house_size'].median(), inplace=True)
+df['acre_lot'].fillna(df['acre_lot'].median(), inplace=True)  # Median is less sensitive to outliers for acre_lot
+
+# For discrete numeric features or those with skewed distributions, use median/mode
+df['bed'].fillna(df['bed'].median(), inplace=True)
+df['bath'].fillna(df['bath'].median(), inplace=True)
+
+
+# 2. Categorical Imputation (Mode/Constant)
+df['brokered_by'].fillna("Unknown", inplace=True) # Or drop if brokered_by is not important
+df['status'].fillna("Unknown", inplace=True) # Or drop if too many missing values
+df['street'].fillna("Unknown", inplace=True) # Or drop if too many missing values
+df['city'].fillna("Unknown", inplace=True) # Or drop if too many missing values
+df['state'].fillna("Unknown", inplace=True) # Or drop if too many missing values
+df['zip_code'].fillna(-1, inplace=True) # Use -1 or another placeholder for missing zip codes
+
+
+# 3. More Advanced Imputation (Considered if necessary based on data analysis)
+
+# a. K-Nearest Neighbors Imputation:  Good for numeric features with complex relationships
+# from sklearn.impute import KNNImputer
+# imputer = KNNImputer(n_neighbors=5)  # Adjust n_neighbors as needed
+# df[numeric_cols] = imputer.fit_transform(df[numeric_cols])
+
+# b. Iterative Imputation:  Models each feature with missing values as a function of other features
+# from sklearn.experimental import enable_iterative_imputer
+# from sklearn.impute import IterativeImputer
+# imp = IterativeImputer(max_iter=10, random_state=0) # Adjust max_iter as needed
+# df[numeric_cols] = imp.fit_transform(df[numeric_cols])
+
+
+# 4. Date Imputation (Forward/Backward fill or a specific date)
+# If prev_sold_date is important, consider forward/backward fill or imputing with a placeholder date
+# df['prev_sold_date'].fillna(method='ffill', inplace=True)  # Forward fill
+# df['prev_sold_date'].fillna(method='bfill', inplace=True)  # Backward fill
+
+
+# --- Save the imputed data ---
+df.to_csv("imputed_data.csv", index=False)  # Save to a new CSV file
+
+print(df.head())  # Display the first few rows of the imputed data
+```
+
+
+Key improvements and explanations:
+
+* **Handles Errors:** Uses `pd.to_numeric(errors='coerce')` and `pd.to_datetime(errors='coerce')` to convert data types correctly and handle non-numeric/date values gracefully by converting them to NaN.
+* **Strategic Imputation:**  Uses different imputation strategies (mean/median/mode) based on the nature of the data (numeric/categorical, distribution).  Median is preferred for 'price' and 'acre_lot' due to potential outliers.
+* **Categorical Imputation:**  Uses mode or a constant value ("Unknown") for categorical features.  You can choose to drop columns with excessive missing values if they are not crucial.
+* **Advanced Imputation (Optional):** Includes examples of KNN and Iterative Imputation for more complex scenarios, but these should be used judiciously and after careful consideration.
+* **Date Imputation (Optional):** Provides options for handling missing dates (forward/backward fill or placeholder).
+* **Zip Code Handling:**  Uses -1 as a placeholder for missing zip codes, which is better than imputing with the mean/median, as zip codes are categorical.
+* **Clearer Comments:**  Improved comments explain the rationale behind each imputation choice.
+* **Saves Imputed Data:** Saves the imputed DataFrame to a new CSV file ("imputed_data.csv").
+
+
+
+Remember to replace `"your_data.csv"` with the actual name of your CSV file.  Also, carefully analyze your data to determine the most appropriate imputation strategy for each column.  The provided code offers a good starting point, but you might need to adjust it based on your specific needs and the characteristics of your dataset.

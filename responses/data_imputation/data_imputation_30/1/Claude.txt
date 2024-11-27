@@ -1,0 +1,28 @@
+I can help you with data imputation for this dataset. There are several approaches we can take, depending on the type of data and the nature of missing values. Here's a suggested approach:
+
+1. For numerical columns (price, bed, bath, acre_lot, house_size):
+- Replace -1 with NaN first
+- Use median imputation for these values
+- For house prices, we might want to consider using a regression model based on other features
+
+2. For categorical columns (brokered_by, status, street, city, state):
+- Replace '-' and 'Unknown' with NaN
+- Use mode imputation (most frequent value)
+
+3. For date columns (prev_sold_date):
+- Replace 'Unknown' with NaN
+- Use median date
+
+4. For zip_code:
+- Replace -1 with NaN
+- Could be imputed based on city/state combinations where possible
+- Otherwise use mode imputation
+
+Would you like me to proceed with implementing this imputation strategy? I can provide the Python code using pandas and scikit-learn to perform these operations.
+
+Also, before proceeding, I should mention that some columns might benefit from more sophisticated imputation methods like:
+- KNN imputation
+- Iterative imputation (MICE)
+- Using relationships between variables (e.g., using city to predict zip code)
+
+Which approach would you prefer to see implemented?

@@ -1,0 +1,96 @@
+```python
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = """brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size;prev_sold_date
+... (your data here) ..."""  # Paste your data here
+df = pd.read_csv(pd.StringIO(data), sep=';')
+
+# Data Cleaning
+
+# 1. Handle Missing Values:
+
+# Replace '-' and 'Unknown' with NaN for easier handling
+df.replace(['-', 'Unknown'], np.nan, inplace=True)
+
+# For numerical columns, consider imputation or removal based on the extent of missing data
+# Here's an example of filling missing 'bed' and 'bath' with the median:
+for col in ['bed', 'bath', 'acre_lot', 'house_size']:
+    if df[col].dtype != 'object':  # Check if the column is numeric
+        df[col] = pd.to_numeric(df[col], errors='coerce')  # Convert to numeric, handling errors
+        df[col].fillna(df[col].median(), inplace=True)  # Fill NaNs with the median
+
+
+# 2. Data Type Conversion:
+
+# Price: Remove '$', commas, and convert to numeric
+df['price'] = df['price'].astype(str).str.replace(r'[$,]', '', regex=True)
+df['price'] = pd.to_numeric(df['price'], errors='coerce')
+
+# Bed and Bath: Convert to numeric, handle variations like 'two', 'three', etc.
+num_dict = {'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5}
+for col in ['bed', 'bath']:
+    df[col] = df[col].replace(num_dict)
+    df[col] = pd.to_numeric(df[col], errors='coerce')
+
+# Acre_lot: Convert to numeric
+df['acre_lot'] = pd.to_numeric(df['acre_lot'], errors='coerce')
+
+# Zip Code: Convert to string (to preserve leading zeros if needed)
+df['zip_code'] = df['zip_code'].astype(str).str.replace(r'\.0$', '', regex=True)  # Remove trailing .0
+
+# House Size: Convert to numeric
+df['house_size'] = pd.to_numeric(df['house_size'], errors='coerce')
+
+# Prev Sold Date: Convert to datetime
+df['prev_sold_date'] = pd.to_datetime(df['prev_sold_date'], format='%Y-%m-%d', errors='coerce')
+df['prev_sold_date'] = pd.to_datetime(df['prev_sold_date'], format='%m/%d/%y', errors='coerce') # Handle other format
+
+
+# 3. Address Standardization (if needed):
+# You might need more advanced techniques for address standardization, but here's a basic example:
+df['state'] = df['state'].str.upper()  # Standardize state abbreviations
+
+
+# 4. Status: Standardize categories
+df['status'] = df['status'].str.lower()
+df['status'] = df['status'].replace({'s': 'sold', 'f': 'for_sale'})
+
+
+# 5. Outlier Handling (if needed):
+# Analyze numerical columns for outliers and decide on a strategy (e.g., capping, removal)
+
+
+# 6. Drop Duplicates (if needed):
+df.drop_duplicates(inplace=True)
+
+
+# 7. Drop rows with excessive missing values (if needed):
+#  A threshold can be set, for example, drop rows with more than 50% missing values
+threshold = len(df.columns) * 0.5
+df.dropna(thresh=threshold, inplace=True)
+
+
+# Display cleaned data (or save to a new CSV)
+print(df.info())
+print(df.head())
+
+# Save to CSV
+# df.to_csv('cleaned_real_estate_data.csv', index=False)
+
+```
+
+Key improvements and explanations:
+
+* **Handling Missing Values:**  Replaces placeholders like "-" and "Unknown" with `np.nan` for consistent missing value representation.  Uses median imputation for numerical features like 'bed', 'bath', 'acre_lot', and 'house_size'. You can adjust the imputation strategy (mean, mode, etc.) or remove rows with many missing values depending on your analysis goals.
+* **Data Type Conversion:** Converts 'price', 'bed', 'bath', 'acre_lot', 'zip_code', 'house_size', and 'prev_sold_date' to their appropriate data types. Handles variations in 'price' (dollar signs, commas) and 'bed'/'bath' (word representations).  Handles multiple date formats.
+* **Address Standardization:** Converts state abbreviations to uppercase for consistency.  For more robust address cleaning, consider using external libraries like `usaddress`.
+* **Status Standardization:** Converts 'status' to lowercase and standardizes abbreviations (e.g., 's' to 'sold').
+* **Duplicate Removal:** Removes duplicate rows.
+* **Rows with Excessive Missing Values:** Drops rows that have more than a certain percentage of missing values (defined by the `threshold`).
+* **Error Handling:** Uses `errors='coerce'` in `pd.to_numeric` to handle conversion errors gracefully (invalid values become `NaN`).
+* **Informative Output:**  Prints `df.info()` to show the cleaned data types and missing value counts and `df.head()` to preview the cleaned data.  Includes code to save the cleaned data to a new CSV file.
+
+
+This improved code provides a more comprehensive and robust data cleaning process, addressing various issues in the dataset and making it ready for further analysis or modeling. Remember to adapt the imputation and outlier handling strategies based on the specific requirements of your project.

@@ -1,0 +1,48 @@
+Outlier detection is a process used to identify data points that deviate significantly from the rest of the dataset. In the context of real estate data, outliers can be identified based on various attributes such as price, house size, number of bedrooms, number of bathrooms, and lot size. Here, I'll outline a basic approach to detect outliers in this dataset using the price attribute as an example:
+
+### Steps for Outlier Detection
+
+1. **Visual Inspection**: Use visualizations like box plots or scatter plots to get an initial sense of potential outliers.
+
+2. **Statistical Methods**: Calculate statistical measures such as the Interquartile Range (IQR) to identify outliers.
+
+3. **Z-Score Method**: Calculate the Z-score for each data point to identify how many standard deviations away it is from the mean.
+
+### Example: Detecting Outliers in Price
+
+#### 1. Visual Inspection
+- **Box Plot**: A box plot can help visualize the distribution of prices and identify any points that fall outside the typical range.
+
+#### 2. Statistical Methods
+- **Interquartile Range (IQR)**: 
+  - Calculate the first quartile (Q1) and the third quartile (Q3) of the price data.
+  - Compute the IQR: \( \text{IQR} = Q3 - Q1 \).
+  - Define outliers as any data points below \( Q1 - 1.5 \times \text{IQR} \) or above \( Q3 + 1.5 \times \text{IQR} \).
+
+#### 3. Z-Score Method
+- **Z-Score Calculation**:
+  - Calculate the mean and standard deviation of the price data.
+  - Compute the Z-score for each price: \( Z = \frac{(X - \text{mean})}{\text{std deviation}} \).
+  - Define outliers as any data points with a Z-score greater than 3 or less than -3.
+
+### Applying the Methods
+
+Let's apply the IQR method to the price data:
+
+1. **Calculate Quartiles**:
+   - Sort the price data and find Q1 and Q3.
+   - For this dataset, let's assume Q1 is $250,000 and Q3 is $600,000 (these are hypothetical values for illustration).
+
+2. **Compute IQR**:
+   - \( \text{IQR} = 600,000 - 250,000 = 350,000 \).
+
+3. **Determine Outlier Boundaries**:
+   - Lower Bound: \( 250,000 - 1.5 \times 350,000 = -275,000 \) (not applicable since price can't be negative).
+   - Upper Bound: \( 600,000 + 1.5 \times 350,000 = 1,125,000 \).
+
+4. **Identify Outliers**:
+   - Any price above $1,125,000 is considered an outlier.
+
+### Conclusion
+
+Using the IQR method, you can identify properties with prices above $1,125,000 as potential outliers. You can apply similar methods to other attributes like house size or lot size to detect outliers in those dimensions as well. For a more comprehensive analysis, consider using multiple attributes and advanced techniques like clustering or machine learning models.

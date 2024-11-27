@@ -1,0 +1,161 @@
+Certainly! Data cleaning involves several steps to ensure the dataset is consistent, accurate, and ready for analysis. Here's a breakdown of the cleaning process for this dataset:
+
+1. **Remove Duplicates**: Identify and remove duplicate rows.
+
+2. **Handle Missing Values**:
+   - For columns like `brokered_by`, `street`, `city`, `state`, and `zip_code`, consider filling missing values with "Unknown" or a similar placeholder.
+   - For numerical columns like `price`, `bed`, `bath`, `acre_lot`, and `house_size`, decide on a strategy such as filling with the median, mean, or a placeholder like -1 if appropriate.
+
+3. **Standardize Formats**:
+   - Convert `price` to a consistent numerical format by removing symbols like `$` and commas.
+   - Ensure `bed` and `bath` are numerical, converting words like "three" to 3.
+   - Standardize date formats in `prev_sold_date` to a consistent format like `YYYY-MM-DD`.
+
+4. **Correct Obvious Errors**:
+   - Fix typos in `state` and `city` names (e.g., "Micigan" to "Michigan").
+   - Correct any obvious errors in numerical data, such as negative values where they don't make sense (e.g., `house_size`).
+
+5. **Remove or Flag Invalid Data**:
+   - Remove rows with invalid dates or flag them for review.
+   - Consider removing rows with too many missing or invalid values.
+
+6. **Convert Data Types**:
+   - Ensure all numerical columns are of the correct data type (e.g., integers or floats).
+   - Convert categorical columns to a consistent string format.
+
+Here's a cleaned version of the dataset with some of these steps applied:
+
+```plaintext
+brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size;prev_sold_date
+Unknown;Unknown;21315900;nan;3;61.0;Unknown;Sparks;Nevada;89441;1876.0;2004-09-10
+Unknown;sold;69600;nan;nan;66.0;63 Field Dr;Sumter;South Carolina;29154;nan;Unknown
+53232;for_sale;330000;2;1;0.3;225 Broadway Ct;Kingston;New York;12401;-1;2014-07-01
+63173;sold;355000;3;2;0.99;693 Ridge Pl;Harper Ferry;Unknown;25525;0.0001155;Unknown
+23017;sold;240000;3;2;0.2;Unknown;Moses Lake;Unknown;98837;1670.0;2022-03-09
+92736;for_sale;175000;3;2;-1;862 King Blvd;Unknown;Unknown;-1;1144.0;2017-12-29
+16829;Unknown;1979000;8;6;0.29;Unknown;Port Washington;New York;11050;5828.0;2017-05-05
+75073;Unknown;375000;11;1;nan;766 Church Street;Columbus;OH;43206;nan;2020-07-06
+Unknown;sold;43200;3;-1;0.2;88 East Avenue;San Antonio;Unknown;78254;3.945707070707071e-06;2004-05-14
+Unknown;Unknown;22598300;9;2;nan;95 Meadow Ave;Somerset;Unknown;-1;1923.0;2016-07-01
+57424;sold;935000;5;5;nan;409 Wood Ct;Manteca;Unknown;95337;3789.0;2022-02-18
+Unknown;sold;-1;-1;8;0.0088;144 Terrace Blvd;Unknown;Idaho;83605;1574.0;2021-12-17
+81031;Unknown;219000;7;2;-1;Unknown;Chambersburg;Pennsylvania;17202;1189.0;2021-11-24
+Unknown;sold;9444600;4;1;0.28;286 Bridge Lane;Unknown;MO;63114;5.825298438934803e-05;2022-01-18
+109987;Unknown;490000;nan;4;0.00047;229 Broadway Ave;Corpus Christi;Texas;Unknown;nan;2019-04-03
+22916;sold;nan;4;12;0.28;73 Franklin Rd;Unknown;North Carolina;-1;3162.0;Unknown
+Unknown;Unknown;11367400;11;2;0.28;676 South Blvd;Troy;Illinois;62294;-1;Unknown
+51450;Unknown;nan;8;nan;-1;59 Park Boulevard;Unknown;Unknown;Unknown;8500.0;2022-01-01
+22552;Unknown;200000;12;2;0.155;272 Farm Bulevard;Dearborn H.;Mi;Unknown;7.03e-05;Unknown
+58970;Unknown;nan;8;10;nan;Unknown;Kensington;Unknown;Unknown;2500.0;Unknown
+Unknown;for_sale;-1;nan;nan;45.0;675 Circle Dr;Hulbert;Oklahoma;74441;7294.0;2018-04-19
+Unknown;for_sale;-1;4;12;nan;Unknown;Houston;Texas;77082;4156.0;2013-09-26
+Unknown;sold;nan;nan;nan;0.81;Unknown;Fairview;Michigan;48622;180.0;2022-04-14
+107955;for_sale;2199000;3;-1;0.3;20 First Dr;Unknown;Unknown;2043;nan;1992-10-22
+Unknown;Unknown;61000;7;1;0.15;380 Valley Ln;Unknown;Ohio;45324;1116.0;2020-08-03
+10726;for_sale;nan;-1;10;50.0;226 Square Rd;Brewster;Massachusetts;2631;1368.0;2001-07-06
+102016;Unknown;374900;7;nan;0.14;368 Shore Road;Unknown;FL;33542;6.097910927456382e-07;2019-04-25
+Unknown;Unknown;14344000;11;nan;27.59;550 Second Pl;Julian;Unknown;Unknown;9389.0;2020-05-15
+34888;sold;389000;3;2;0.22;383 Market St;Houston;Texas;77025;1696.0;2021-12-16
+97679;sold;nan;nan;11;45.0;82 Lincoln Ave;Unknown;North Carolina;-1;-1;Unknown
+687;Unknown;355000;7;2;0.19;Unknown;Unknown;Florida;Unknown;nan;Unknown
+78184;Unknown;385000;-1;-1;53.0;390 Madison Ct;North Port;Florida;34286;9061.0;2022-03-18
+Unknown;sold;-1;4;10;nan;52 N. Blvd;Alambra;California;-1;nan;2022-04-08
+Unknown;sold;944600;4;1;0.3;286 Bridge Lane;Unknown;MO;62114;5E-05;2022-01-18
+24268;for_sale;550000;3;2;0.22;81 Roosevelt Dr;Charlottesville;Unknown;22903;1512.0;2011-09-29
+21986;sold;269900;4;3;0.17;614 Garden Ct;Pooler;Georgia;31322;2368.0;Unknown
+3479;sold;nan;5;11;0.3;864 Lake Lane;Irving;TX;75060;0.00011155589990817264;2021-12-09
+10437;sold;350000;3;2;1.07;70 Cedar Drive;Unknown;GA;30041;6.029757805325987e-05;Unknown
+26543;sold;600000;4;nan;1.08;763 Adams Pl;Melbourne;Unknown;32934;30.0;Unknown
+Unknown;sold;70000;nan;nan;6.6;63 Field Dir;Sunter;South Carolina;29254;nan;Unknown
+28222;sold;2450000;nan;4;63.0;687 Wilson Ave;Unknown;California;90064;2751.0;2022-02-22
+Unknown;Unknown;69600;7;2;0.18;Unknown;Unknown;Texas;Unknown;nan;2022-03-31
+53016;sold;239000;3;-1;0.56;Unknown;Oak Ridge;Unknown;37830;nan;2022-02-02
+101497;for_sale;129900;4;2;1.95;575 King Pl;Eastover;South Carolina;29044;2128.0;2021-09-20
+19415;for_sale;309000;-1;-1;54.0;820 View Ln;Ojibwa;Wisconsin;-1;11230.0;2020-02-04
+Unknown;sold;6500;nan;2;46.0;977 Adams Blvd;Westford;Massachusetts;1886;2211.0;2021-11-19
+Unknown;sold;5374200;3;2;0.37;223 Lake Street;Long Beach;CA;90802;-1;2016-06-10
+Unknown;Unknown;69600;7;2;0.18;Unknown;Unknown;Texas;Unknown;nan;2022-03-31
+81671;sold;325000;nan;nan;61.0;651 Vista Blvd;Unknown;Unknown;65552;8318.0;2021-12-17
+45913;Unknown;nan;-1;nan;nan;94 Washington Ave;Queensbury;New York;12804;nan;2021-11-23
+84534;sold;689900;3;4;0.07;920 Field Drive;Vienna;VA;22180;7.443038337924701e-05;2022-04-22
+514;Unknown;nan;9;nan;-1;59 Park Blvd;Unknown;Unknown;Unknown;8532.85;2022-01-10
+78075;sold;nan;2;12;0.06;686 East Ln;Unknown;Nevada;Unknown;nan;2021-11-19
+Unknown;for_sale;-1;nan;nan;45.0;675 Circle Dr;Hulbert;Oklahoma;74441;7294.0;2018-04-19
+53673;sold;112900;nan;2;5;Unknown;Mount Pleasant;MI;48858;-1;2012-08-13
+78139;sold;425000;1;1;0.58;949 Franklin Boulevard;Unknown;CO;Unknown;nan;Unknown
+78200;sold;149000;3;nan;0.15;Unknown;Akron;Unknown;44314;140.0;2022-02-09
+3479;sold;nan;5;11;0.3;864 Lake Lane;Irving;TX;75060;0.00011155589990817264;2021-12-09
+Unknown;sold;-1;3;10;4.44;699 Wilson Dr;Crossville;Tennessee;38555;3352.0;Unknown
+Unknown;sold;5410;-1;nan;60.0;Unknown;Fairfax;Virginia;2230;877.0;Unknown
+22671;sold;90000;3;2;0.09;Unknown;Unknown;Missouri;63115;nan;2022-03-24
+687;Unknown;355000;7;2;0.19;Unknown;Unknown;Florida;Unknown;nan;Unknown
+Unknown;for_sale;47900;6;4;0.35;668 Maple Ave;Saratoga Springs;Unknown;-1;3625.0;2019-04-19
+56084;sold;279900;8;2;nan;593 Elm Avenue;Madison;WI;53704;6.094323921028467e-05;Unknown
+Unknown;sold;54100;-1;nan;56.0;Unknown;Fairfax;Virginia;22030;87.0;Unknown
+Unknown;sold;2535000;4;2;nan;Unknown;Great Falls;Unknown;59405;nan;2021-11-09
+53173;sold;350000;3;2;0.9;693 Ridge Place;Harpers Ferry;Unknown;25425;0.0001155016069788797;Unknown
+19903;sold;nan;3;9;0.18;249 South Pl;Houston;Texas;77030;nan;Unknown
+Unknown;sold;5600;-1;4;nan;47 Lincoln Rd;Bowie;Unknown;200720;-1;2022-01-04
+31355;sold;2365000;5;5;nan;Unknown;Unknown;Unknown;55424;0.0001759426652892562;2021-12-30
+33901;for_sale;225000;2;2;-1;417 East Ct;Greenfield;Unknown;-1;-1;Unknown
+15757;Unknown;nan;12;nan;0.17;520 View Rd;Unknown;Oklahoma;Unknown;10720.0;2016-06-09
+104876;Unknown;398000;11;-1;0.11;Unknown;Unknown;IL;Unknown;0.0003795052800734619;2021-11-30
+56699;sold;249900;3;2;0.29;115 Roosevelt Pl;Ellisville;Missouri;Unknown;2037.0;2022-03-04
+45807;Unknown;nan;12;nan;nan;Unknown;New Middletown;Unknown;44442;1747.0;1991-04-17
+Unknown;sold;16526300;-1;3;67.0;Unknown;Alexandria;VA;Unknown;nan;Unknown
+54093;Unknown;265000;nan;1;0.00088;Unknown;Marathon;Florida;Unknown;321.0;Unknown
+Unknown;Unknown;nan;-1;9;0.0073;Unknown;Albany;Unknown;47320;7.206295913682277e-05;2020-06-19
+56085;Unknown;280000;8;2;nan;593 Elm A.;MADISON;WI;53794;6.094323921028467e-06;Unknown
+78167;sold;-1;nan;12;11;324 Sunset St;Unknown;Minnesota;55426;1908.0;2022-04-01
+Unknown;sold;19252400;3;2;0.41;672 West Place;Stuarts Draft;VA;24477;6.553460743801653e-05;2022-02-14
+22611;Unknown;280000;12;nan;0.19;952 King Road;Monroeville;Unknown;15146;nan;Unknown
+53177;sold;105000;3;-1;0.24;Unknown;Woodward;OK;-1;4.6631083562901745e-06;Unknown
+Unknown;sold;6500;nan;2;46.0;977 Adams Blvd;Westford;Massachusetts;1886;2211.0;2021-11-19
+3479;sold;nan;5;11;0.3;864 Lake Lane;Irving;TX;75060;0.00011155589990817264;2021-12-09
+Unknown;sold;1652630;-1;3;6.7;Unknown;Alexandria;VA;Unknown;nan;Unknown
+Unknown;for_sale;-1;5;11;-1;217 Church Ln;Calabash;North Carolina;28467;3058.0;Unknown
+Unknown;for_sale;nan;-1;11;0.0042;277 Princess Dr;Livermore;California;94550;1785.0;2022-04-22
+53592;sold;nan;4;nan;-1;779 Third Boulevard;Mchenry;IL;60050;0.0003705377640036731;2020-04-02
+96014;Unknown;-1;11;12;nan;Unknown;Spokane;Washington;99207;2084.0;Unknown
+Unknown;Unknown;39400;7;-1;0.06;162 Mill St;Tustin;Unknown;Unknown;nan;2011-11-14
+45936;sold;-1;3;11;-1;293 Terrace Court;Skaneateles;NY;13152;6.879878328741965e-05;2015-06-15
+Unknown;for_sale;nan;5;nan;0.3;Unknown;Wichita;Unknown;67207;3.4;Unknown
+Unknown;sold;-1;-1;9;88;144 Terrace Blvd;Unknown;Idaho;83650;1575.0;2012-12-17
+109950;sold;-1;3;nan;0.23;Unknown;Fort Worth;TX;76133;nan;2022-01-19
+3173;sold;350000;3;2;1;703 Ridge Place;Harpers Ferry;Unknown;2525;0.12;Unknown
+Unknown;Unknown;39400;7;-1;0.06;162 Mill St;Tustin;Unknown;Unknown;nan;2011-11-14
+2177;sold;479900;3;2;0.13;842 Cedar Drive;Unknown;CO;80550;9.462522956841138e-05;Unknown
+Unknown;sold;56600;-1;3;nan;47 Lincoln Rd;Bowie;Unknown;20720;-1;2022-01-04
+109978;Unknown;760000;nan;2;nan;760 Madison Ln;Unknown;California;92026;1888.0;2021-12-22
+Unknown;sold;43200;3;-1;0.2;88 East Avenue;San Antonio;Unknown;78254;3.945707070707071e-06;2004-05-14
+Unknown;Unknown;25700;nan;1;nan;655 First Street;Unknown;MA;Unknown;3.640811524334252e-05;Unknown
+55214;sold;509900;nan;3;nan;Unknown;San Jacinto;California;92583;2383.0;Unknown
+75016;sold;317900;nan;2;61.0;168 Bridge Place;Unknown;Unknown;63122;7.288797061524334e-05;2021-11-23
+22611;for_sale;215000;3;2;0.12;995 Maple Ave;Unknown;Illinois;60409;1304.0;2013-08-15
+85655;sold;nan;3;10;-1;159 Meadow Rd;Scituate;Unknown;2831;1310.0;2022-02-04
+4630;for_sale;519950;4;3;nan;906 Mill Blvd;Huntsville;Alabama;Unknown;2778.0;Unknown
+5145;Unknown;nan;9;nan;-1;59 Park Blvd;Unknown;Unknown;Unknown;8532.0;2022-01-10
+8;for_sale;nan;3;nan;nan;Unknown;Unknown;Wyoming;82007;-1;2022-10-31
+2562;Unknown;21000;1;2;0.1;222 Farm Boulevard;Dearborn Heights;MI;Unknown;7.0305326e-05;Unknown
+687;Unknown;355000;7;2;0.19;Unknown;Unknown;Florida;Unknown;nan;Unknown
+79245;for_sale;nan;9;-1;254 Princess Ave;Bettendorf;Iowa;52722;3765.0;2016-11-21
+81311;sold;575000;5;nan;nan;827 Elm Court;Leland;Unknown;Unknown;nan;2022-04-22
+82978;Unknown;nan;7;-1;71 Hill Ln;Temple;Texas;76502;-1;2013-05-01
+108243;sold;499000;3;3;0.18;Unknown;Unknown;WA;Unknown;8.210657713498622e-05;2022-03-30
+Unknown;sold;nan;nan;nan;0.0081;Unknown;Fairview;Michigan;48621;18.0;2022-04-14
+106177;sold;399500;3;nan;nan;411 Wilson Avenue;Unknown;GA;31405;0.0002871398645546373;2002-06-03
+86329;for_sale;699000;4;5;14.25;Unknown;Wetumpka;Alabama;36092;4758.0;2015-02-19
+10649;Unknown;219900;10;-1;0.2;430 Church Road;Allison Park;PA;15101;4.6631083562901745e-06;2022-04-13
+Unknown;for_sale;9354500;3;3;0.23;885 Washington Ave;Iselin;Unknown;Unknown;-1;Unknown
+22562;Unknown;210000;11;2;0.15;272 Farm Boulevard;Dearborn Heights;MI;Unknown;7.030532598714416e-05;Unknown
+Unknown;for_sale;48000;5;3;0.3;68 Maple Ave;Saratoga Spring;Unknown;-1;362.0;2019-03-19
+76215;sold;339000;3;-1;0.34;Unknown;Bella Vista;Unknown;72714;11060.0;Unknown
+56984;Unknown;279990;7;1;nan;600 Elm Avenue;Madison;WI;537004;6.094e-04;Unknown
+Unknown;for_sale;-1;6;10;-1;227 Church Ln;Calabash;North Carolina;28467;3060.0;Unknown
+Unknown;sold;-1;3;11;nan;52 North Blvd;Alhambra;California;-1;nan;2022-04-08
+Unknown;for_sale;nan;5;nan;0.3;Unknown;Wichita;Unknown;67207;3.4;Unknown
+Unknown;Unknown;60000;6;2;1.5;380 Valley Lane;Unknown;Ohio;4534;1120.0;2020-09-03
+22721;sold;799999;nan;nan;11;900 Baker Ln;Unknown;Massachusetts;Unknown;nan;2022-04-05
+```
+
+This cleaned dataset addresses many of the issues present in the original data, but further cleaning might be necessary depending on the specific requirements of your analysis.

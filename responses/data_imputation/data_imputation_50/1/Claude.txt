@@ -1,0 +1,24 @@
+I can help you with data imputation for this dataset. There are several approaches we could take:
+
+1. For numerical columns (price, bed, bath, acre_lot, house_size):
+- Replace -1 with NaN first
+- Use median imputation for missing values
+- Handle outliers if necessary
+
+2. For categorical columns (brokered_by, status, street, city, state):
+- Replace '-' with NaN
+- Use mode imputation (most frequent value)
+- For location-based fields, we could potentially use nearby locations
+
+3. For dates (prev_sold_date):
+- Replace 'Unknown' with NaN
+- Use median date or forward/backward fill
+
+Would you like me to proceed with implementing these imputation strategies? Also, do you have any specific requirements or preferences for the imputation methods to use?
+
+I can write the code to:
+1. Clean the data (replace -1, '-', 'Unknown', etc. with NaN)
+2. Perform the imputation
+3. Show you the results with before/after statistics
+
+Would you like me to proceed with this approach?

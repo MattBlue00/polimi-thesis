@@ -5,11 +5,10 @@ setup(dotenv=True)
 
 import concurrent.futures
 import os
-import pandas as pd
 
 from data.llms import llms
 from data.tasks import tasks
-from scripts.utils.fetch_datasets import load_dirty_datasets
+from scripts.utils.fetch_datasets import load_dirty_datasets, read_csv_as_string
 from scripts.utils.path import get_directory_from_root, get_directory_from_dir_name
 
 # Load the datasets
@@ -23,7 +22,7 @@ if not os.path.exists(responses_dir):
 
 for task in tasks:
 
-    if task.name != "dependency_discovery" : #fixme
+    if task.name != "data_cleaning" : #fixme
         continue
 
     print("Starting task " + task.name)
@@ -36,7 +35,7 @@ for task in tasks:
         datasets = [
             Dataset(
                "dependency_discovery_dataset",
-                df=pd.read_csv(os.path.join(get_directory_from_root(__file__, "datasets"), "df_clean.csv")),
+                content_string=read_csv_as_string(os.path.join(get_directory_from_root(__file__, "datasets"), "df_clean.csv")),
                 dirty_percentage=0
             )
         ]
@@ -46,6 +45,9 @@ for task in tasks:
     task_dir = os.path.join(responses_dir, task.name)
 
     for dataset in datasets:
+
+        if str(dataset.dirty_percentage) != '10':
+            continue
 
         print("Starting dataset " + str(dataset.id))
 
@@ -64,11 +66,8 @@ for task in tasks:
             if not os.path.exists(prompt_dir):
                 os.makedirs(prompt_dir)
 
-            if 'duplicate' in dataset.df.columns:
-                dataset.df.drop_column('duplicate')
-
             prompt_copy = prompt.copy()
-            prompt_copy.user_message = prompt_copy.user_message.replace("{{csv_text}}", dataset.df.to_string())
+            prompt_copy.user_message = prompt_copy.user_message.replace("{{csv_text}}", dataset.content_string)
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 futures = {}

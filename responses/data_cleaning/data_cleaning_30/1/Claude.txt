@@ -1,0 +1,46 @@
+I'll help you identify the main data quality issues and suggest cleaning steps:
+
+1. Standardize Status values:
+- Convert variations like 's', 'f' to 'sold', 'for_sale'
+- Standardize 'Unknown' and '-' to a consistent null value
+
+2. Clean Price:
+- Remove '$' symbols
+- Convert string numbers to numeric
+- Handle invalid negative values
+- Remove commas from numbers
+
+3. Clean Bed/Bath:
+- Convert text numbers ('three', 'TWO', etc.) to numeric
+- Standardize capitalization
+- Remove invalid negative values
+- Convert nan/-1 to null
+
+4. Clean Acre_lot:
+- Remove invalid negative values
+- Convert scientific notation to decimal
+- Handle unrealistic values
+
+5. Address/Location fields:
+- Standardize state abbreviations
+- Fix misspellings in city names
+- Standardize street suffixes (Blvd/Boulevard, St/Street)
+- Replace 'Unknown' with null
+
+6. House_size:
+- Convert scientific notation to decimal
+- Remove invalid negative values
+- Handle unrealistic values
+
+7. Date formatting:
+- Standardize date format (YYYY-MM-DD)
+- Fix invalid dates
+- Convert varied formats (MM/DD/YY) to standard
+
+8. General cleaning:
+- Remove duplicate rows
+- Handle missing values consistently (convert '-', 'Unknown', 'nan' to null)
+- Fix data type issues
+- Remove leading/trailing spaces
+
+Would you like me to provide specific code to implement any of these cleaning steps?

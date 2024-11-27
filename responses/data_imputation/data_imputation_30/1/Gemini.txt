@@ -1,0 +1,79 @@
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("your_data.csv")  # Replace your_data.csv with the actual filename
+
+# Convert relevant columns to numeric, coercing errors to NaN
+numeric_cols = ['price', 'bed', 'bath', 'acre_lot', 'zip_code', 'house_size']
+for col in numeric_cols:
+    df[col] = pd.to_numeric(df[col], errors='coerce')
+
+# Impute missing 'price' based on 'bed', 'bath', 'house_size', and 'city'
+df['price'] = df.groupby(['bed', 'bath', 'city'])['price'].transform(lambda x: x.fillna(x.median()))
+df['price'] = df.groupby(['house_size', 'city'])['price'].transform(lambda x: x.fillna(x.median()))
+df['price'] = df['price'].fillna(df['price'].median())  # Final fallback to overall median
+
+
+# Impute missing 'bed' based on 'house_size' and 'city'
+df['bed'] = df.groupby(['house_size', 'city'])['bed'].transform(lambda x: x.fillna(x.median()))
+df['bed'] = df['bed'].fillna(df['bed'].median())
+
+# Impute missing 'bath' based on 'house_size', 'bed', and 'city'
+df['bath'] = df.groupby(['house_size', 'bed', 'city'])['bath'].transform(lambda x: x.fillna(x.median()))
+df['bath'] = df.groupby(['bed', 'city'])['bath'].transform(lambda x: x.fillna(x.median()))  # If house_size doesn't help
+df['bath'] = df['bath'].fillna(df['bath'].median())
+
+# Impute missing 'acre_lot' based on 'city'
+df['acre_lot'] = df.groupby('city')['acre_lot'].transform(lambda x: x.fillna(x.median()))
+df['acre_lot'] = df['acre_lot'].fillna(df['acre_lot'].median())
+
+# Impute missing 'house_size' based on 'bed', 'bath', and 'city'
+df['house_size'] = df.groupby(['bed', 'bath', 'city'])['house_size'].transform(lambda x: x.fillna(x.median()))
+df['house_size'] = df['house_size'].fillna(df['house_size'].median())
+
+# Impute missing 'zip_code' based on 'city' and 'state' (most reliable)
+df['zip_code'] = df.groupby(['city', 'state'])['zip_code'].transform(lambda x: x.fillna(x.median()))
+# If city/state combo doesn't have enough data, try just city:
+df['zip_code'] = df.groupby('city')['zip_code'].transform(lambda x: x.fillna(x.median()))
+df['zip_code'] = df['zip_code'].fillna(method='ffill').fillna(method='bfill') # Last resort: forward/backward fill
+
+
+# For 'prev_sold_date', if a large portion is missing, consider dropping the column.
+# Otherwise, imputing with a "not available" category or a specific date might be misleading.
+# Here, we'll replace missing values with 'Unknown':
+df['prev_sold_date'] = df['prev_sold_date'].fillna('Unknown')
+
+# For categorical features like 'city' and 'state', impute with 'Unknown'
+df['city'] = df['city'].fillna('Unknown')
+df['state'] = df['state'].fillna('Unknown')
+
+# For 'street', if missing, it's likely unknown, so impute with 'Unknown'
+df['street'] = df['street'].fillna('Unknown')
+
+# For 'status', impute with the mode (most frequent value)
+df['status'] = df['status'].fillna(df['status'].mode()[0])
+
+# For 'brokered_by', if it's an ID, consider dropping rows where it's missing if it's crucial.
+# If not crucial, you can impute with a placeholder like -1 or 'Unknown'.
+df['brokered_by'] = df['brokered_by'].fillna('Unknown')
+
+
+print(df.head())
+# df.to_csv("imputed_data.csv", index=False)  # Save the imputed data to a new CSV file
+```
+
+
+Key improvements and explanations:
+
+* **More Robust Numeric Imputation:** Uses grouped medians (by relevant features like city, bed, bath) for numeric columns, providing more contextually accurate imputations.  It uses a hierarchy of groupings to try and find the best imputation strategy.  Falls back to the overall median if group medians aren't available.
+* **Categorical Imputation:**  Uses "Unknown" for city, state, and street, which is more informative than simply dropping rows or using arbitrary values.  Uses the mode for 'status'.
+* **Zip Code Handling:**  Uses a hierarchical approach, first trying to impute based on city and state, then just city, and finally using forward/backward fill as a last resort. This is more sophisticated than just using the overall median or mode.
+* **`prev_sold_date` Strategy:**  Provides a clear strategy for handling missing dates, recommending filling with "Unknown" in this case.
+* **`brokered_by` Strategy:**  Provides guidance on how to handle this ID-like column, suggesting dropping rows if it's crucial or using a placeholder if not.
+* **Error Handling:** Uses `pd.to_numeric(errors='coerce')` to convert columns to numeric, gracefully handling non-numeric values by converting them to NaN.
+* **Clearer Comments:**  Explains the rationale behind each imputation step.
+* **Output and Saving:** Shows how to preview the imputed data and save it to a new CSV file.
+
+
+This improved code provides a more comprehensive and robust approach to data imputation, addressing various data types and missing data scenarios effectively. Remember to replace `"your_data.csv"` with the actual name of your CSV file.  You can then examine the imputed data and adjust the imputation strategies further if needed based on your specific domain knowledge and analysis goals.

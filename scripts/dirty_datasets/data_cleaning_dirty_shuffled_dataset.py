@@ -2,9 +2,8 @@ from scripts.utils.constants import RANDOM_SEED
 from scripts.utils.setup import setup
 setup()
 
-import pandas as pd
 import os
-
+import random
 from scripts.utils.path import get_directory_from_root
 
 '''
@@ -46,40 +45,98 @@ dirty_datasets_dir = os.path.join(task_dir, 'dirty_duplicates')
 if not os.path.exists(datasets_dir):
     raise Exception("There is no 'dirty_duplicates' directory to work with. Consider running 'python -m scripts.data_deduplication_dataset' before running this script.")
 
+columns_to_clean = ["price", "bed", "bath", "acre_lot", "house_size"]
+
 for percentage in percentages:
-    # Legge il dataset originale
+    # Legge il dataset originale come stringa
     csv_file = f"data_cleaning_{int(percentage * 100)}.csv"
     file_path = os.path.join(dirty_datasets_dir, csv_file)
-    df = pd.read_csv(file_path, delimiter=';')
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
 
-    # Aggiunge una nuova colonna 'old_index' che contiene gli indici originali
-    df['old_index'] = df.index
+    # Divide il contenuto in righe
+    rows = content.strip().split('\n')
+
+    # Estrae l'intestazione e i dati
+    header = rows[0]
+    data = rows[1:]
+
+    # Individua gli indici delle colonne da correggere
+    header_parts = header.split(';')
+    column_indices_to_clean = [header_parts.index(col) for col in columns_to_clean if col in header_parts]
+
+    # Funzione per pulire i valori nelle righe
+    def clean_row(row):
+        parts = row.split(';')
+        for col_index in column_indices_to_clean:
+            if parts[col_index] == "Unknown":
+                parts[col_index] = "nan"
+            elif parts[col_index] == "-":
+                parts[col_index] = "-1"
+        return ';'.join(parts)
+
+    # Pulisce i dati
+    cleaned_data = [clean_row(row) for row in data]
+
+    # Crea una lista di righe con gli indici originali
+    indexed_data = [(i, row) for i, row in enumerate(cleaned_data)]
 
     # Effettua lo shuffle casuale del dataset
-    shuffled_df = df.sample(frac=1, random_state=RANDOM_SEED).reset_index(drop=True)
+    random.seed(RANDOM_SEED+1)
+    shuffled_data = random.sample(indexed_data, len(indexed_data))
 
-    # Creiamo una mappatura tra vecchi indici e nuovi indici
-    old_to_new_index = {row['old_index']: new_index for new_index, row in shuffled_df.iterrows()}
+    # Crea una mappatura tra vecchi indici e nuovi indici
+    old_to_new_index = {old_index: new_index for new_index, (old_index, _) in enumerate(shuffled_data)}
 
-    # Funzione per aggiornare la colonna 'duplicate' utilizzando 'old_index'
-    def update_duplicates(value):
-        if value == -1 or value == "-1":  # Nessun duplicato
-            return -1
+    # Funzione per aggiornare la colonna 'duplicate'
+    def update_duplicates(row):
+        parts = row.split(';')  # Supponendo che il delimitatore sia ';'
+        duplicate_value = parts[-1]  # La colonna 'duplicate' è l'ultima
+        if duplicate_value == '-1' or duplicate_value == "-1":  # Nessun duplicato
+            return row
         else:
-            # Traduci i vecchi indici in nuovi indici
-            indices = map(int, str(value).split(','))
+            indices = map(int, duplicate_value.split(','))
             updated_indices = [old_to_new_index[i] for i in indices]
-            return ','.join(map(str, updated_indices))
+            parts[-1] = ','.join(map(str, updated_indices))
+            return ';'.join(parts)
 
-    # Applica la funzione alla colonna 'duplicate'
-    shuffled_df['duplicate'] = shuffled_df['duplicate'].apply(update_duplicates)
+    # Aggiorna i valori nella colonna 'duplicate'
+    updated_data = [update_duplicates(row) for _, row in shuffled_data]
 
-    # Rimuove la colonna temporanea 'old_index'
-    shuffled_df.drop(columns=['old_index'], inplace=True)
+    # Ricostruisce il contenuto del file CSV
+    shuffled_content = '\n'.join([header] + updated_data)
 
     # Salva il dataset aggiornato
     output_file = f"shuffled_dirty_dataset_{int(percentage * 100)}.csv"
     output_path = os.path.join(shuffled_dataset_dir, output_file)
-    shuffled_df.to_csv(output_path, sep=';', index=False)
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(shuffled_content)
 
     print(f"Dataset riorganizzato e salvato in {output_path}")
+
+    # === Rimuovi la colonna 'duplicate' e salva il nuovo dataset ===
+    # Determina l'indice della colonna 'duplicate'
+    duplicate_index = header_parts.index("duplicate")
+
+    # Rimuovi la colonna dall'intestazione
+    new_header = ';'.join([col for i, col in enumerate(header_parts) if i != duplicate_index])
+
+    # Funzione per rimuovere la colonna 'duplicate' dalle righe
+    def remove_duplicate_column(row):
+        parts = row.split(';')
+        new_parts = [value for i, value in enumerate(parts) if i != duplicate_index]
+        return ';'.join(new_parts)
+
+    # Applica la funzione a tutte le righe
+    new_data = [remove_duplicate_column(row) for row in updated_data]
+
+    # Ricostruisce il contenuto del nuovo file CSV
+    new_content = '\n'.join([new_header] + new_data)
+
+    # Salva il nuovo dataset nel percorso specificato
+    new_output_file = f"data_cleaning_{int(percentage * 100)}.csv"
+    new_output_path = os.path.join(task_dir, new_output_file)
+    with open(new_output_path, 'w', encoding='utf-8') as f:
+        f.write(new_content)
+
+    print(f"Dataset senza colonna 'duplicate' salvato in {new_output_path}")
