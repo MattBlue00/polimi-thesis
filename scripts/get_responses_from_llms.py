@@ -71,6 +71,7 @@ for task in tasks:
 
                 print("Asking LLMs...")
                 for llm in llms:
+                    if llm.name != "Gemini": continue
                     futures[executor.submit(llm.get_response, prompt_copy)] = llm.name
 
                 responses = []
