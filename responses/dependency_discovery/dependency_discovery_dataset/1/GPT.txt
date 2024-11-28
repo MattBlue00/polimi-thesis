@@ -1,0 +1,30 @@
+Dependency discovery involves identifying relationships between different attributes in a dataset. This can be useful for understanding the structure of the data, identifying potential redundancies, and improving data quality. Here are some potential dependencies and relationships that can be inferred from the dataset you provided:
+
+1. **Functional Dependencies**:
+   - `zip_code` → `city`, `state`: The zip code uniquely determines the city and state.
+   - `street`, `city`, `state`, `zip_code` → `brokered_by`, `status`, `price`, `bed`, `bath`, `acre_lot`, `house_size`, `prev_sold_date`: The combination of street, city, state, and zip code uniquely identifies a property, which in turn determines all other attributes of the property.
+
+2. **Partial Dependencies**:
+   - `state` → `city`: In some cases, a state can partially determine the city, but this is not a strict dependency as multiple cities exist within a state.
+   - `brokered_by` → `status`: A broker might have a tendency to handle properties that are either for sale or sold, but this is not a strict dependency.
+
+3. **Transitive Dependencies**:
+   - `zip_code` → `state` and `state` → `city`: This suggests a transitive dependency where the zip code can indirectly determine the city through the state.
+
+4. **Multivalued Dependencies**:
+   - There are no clear multivalued dependencies in this dataset, as each property is represented by a single row with unique attributes.
+
+5. **Candidate Keys**:
+   - A combination of `street`, `city`, `state`, and `zip_code` can serve as a candidate key for uniquely identifying each property.
+
+6. **Potential Redundancies**:
+   - `city` and `state` could be considered redundant if `zip_code` is always present and accurate, as the zip code can determine both the city and state.
+
+7. **Domain Constraints**:
+   - `price`, `bed`, `bath`, `acre_lot`, and `house_size` should be non-negative numbers.
+   - `status` should be either "sold" or "for_sale".
+
+8. **Temporal Dependencies**:
+   - `prev_sold_date` might have a temporal dependency with `status`, as properties with a recent `prev_sold_date` are more likely to have a status of "sold".
+
+These dependencies can be used to normalize the dataset, improve data integrity, and optimize queries. However, it's important to validate these dependencies with domain knowledge and additional data analysis.

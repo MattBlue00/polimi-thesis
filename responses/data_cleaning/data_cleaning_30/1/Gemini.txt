@@ -1,0 +1,133 @@
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("your_data.csv")  # Replace your_data.csv with the actual file name
+
+# --- Data Cleaning ---
+
+# 1. Handle Missing Values:
+
+# Replace empty strings and 'nan' with NaN
+df.replace(['', 'nan', '-'], np.nan, inplace=True)
+
+# 2. Data Type Conversion and Cleaning:
+
+# Price: Convert to numeric, handle '$' and other non-numeric characters
+df['price'] = df['price'].astype(str).str.replace(r'[$,]', '', regex=True)
+df['price'] = pd.to_numeric(df['price'], errors='coerce')  # errors='coerce' sets invalid parsing to NaN
+
+# Bed and Bath: Convert to numeric, handle textual representations
+def convert_to_numeric(value):
+    try:
+        return int(value)
+    except (ValueError, TypeError):
+        if isinstance(value, str):
+            value = value.lower()
+            if value in {'one': 1, 'two': 2, 'thre': 3, 'three': 3, 'four': 4, 'five': 5, 'une': 1, 'eigth': 8, 'tree': 3}:
+                return {'one': 1, 'two': 2, 'thre': 3, 'three': 3, 'four': 4, 'five': 5, 'une': 1, 'eigth': 8, 'tree': 3}[value]
+        return np.nan
+
+df['bed'] = df['bed'].apply(convert_to_numeric)
+df['bath'] = df['bath'].apply(convert_to_numeric)
+
+
+# Acre_lot: Convert to numeric
+df['acre_lot'] = pd.to_numeric(df['acre_lot'], errors='coerce')
+
+# House_size: Convert to numeric
+df['house_size'] = pd.to_numeric(df['house_size'], errors='coerce')
+
+# Prev_sold_date: Convert to datetime, handle different formats
+def convert_to_date(date_str):
+    if pd.isna(date_str):
+        return np.nan
+    try:
+        return pd.to_datetime(date_str)
+    except ValueError:
+        try:
+            return pd.to_datetime(date_str, format='%m/%d/%y')  # Handle format like 07/06/20
+        except ValueError:
+            return np.nan
+
+df['prev_sold_date'] = df['prev_sold_date'].apply(convert_to_date)
+
+# Zip_code: Convert to string (to preserve leading zeros if needed) and clean
+df['zip_code'] = df['zip_code'].astype(str).str.replace(r'\.0$', '', regex=True)  # Remove trailing .0
+df['zip_code'] = df['zip_code'].replace('nan', np.nan)  # Replace 'nan' string with NaN
+df['zip_code'] = df['zip_code'].replace('-1', np.nan)  # Replace '-1' string with NaN
+
+
+# State: Clean up inconsistencies (e.g., abbreviations, typos)
+df['state'] = df['state'].str.strip().str.upper()  # Standardize case
+state_mapping = {  # Example mapping for corrections (add more as needed)
+    'OH': 'OHIO',
+    'CA': 'CALIFORNIA',
+    'TX': 'TEXAS',
+    'GA': 'GEORGIA',
+    'CO': 'COLORADO',
+    'MO': 'MISSOURI',
+    'M0': 'MISSOURI',
+    'MA': 'MASSACHUSETTS',
+    'MI': 'MICHIGAN',
+    'FL': 'FLORIDA',
+    'VA': 'VIRGINIA',
+    'VI': 'VIRGIN ISLANDS',
+    'NY': 'NEW YORK',
+    'PA': 'PENNSYLVANIA',
+    'WA': 'WASHINGTON',
+    'IL': 'ILLINOIS',
+    'OK': 'OKLAHOMA',
+    'WI': 'WISCONSIN',
+    'W1': 'WISCONSIN',
+    'CALIFORNJA': 'CALIFORNIA',
+    'SOUTHCAROLINA': 'SOUTH CAROLINA',
+    'VIRGINIA': 'VIRGINIA',
+    'IDao': 'IDAHO',
+    'OAIO': 'OHIO',
+    'M1': 'MICHIGAN'
+}
+df['state'] = df['state'].replace(state_mapping)
+
+
+# Status: Clean up inconsistencies
+df['status'] = df['status'].str.strip().str.lower()
+status_mapping = {
+    's': 'sold',
+    'f': 'for_sale'
+}
+df['status'] = df['status'].replace(status_mapping)
+
+
+# 3. Outlier Detection and Handling (Example - adapt as needed):
+
+# For price, acre_lot, house_size, you might want to remove or cap extreme outliers
+# Example (remove prices above $10 million):
+# df = df[df['price'] <= 10000000]
+
+
+# --- Save the cleaned data ---
+df.to_csv("cleaned_data.csv", index=False)
+print(df.info())
+```
+
+
+Key improvements and explanations:
+
+* **Comprehensive NaN Handling:**  Handles empty strings, 'nan', and '-' consistently.
+* **Robust Numeric Conversion:** Uses functions and `errors='coerce'` to prevent errors during conversion and handle textual representations of numbers (like "three" bedrooms).
+* **Flexible Date Parsing:**  Handles multiple date formats using a custom function and exception handling.
+* **String Cleaning:** Cleans zip codes, standardizes state names (case, abbreviations, typos), and status.  The `state_mapping` dictionary is crucial for this – expand it with any other inconsistencies you find.
+* **Outlier Handling (Placeholder):** Includes a comment showing how you *could* remove or cap outliers.  You'll need to adapt this based on your specific data and domain knowledge.  Visualizing the data (histograms, box plots) is highly recommended to identify outliers.
+* **Type Safety:** Uses `.astype()` for explicit type conversions, which is good practice.
+* **Informative Output:** Prints `df.info()` to show the cleaned data types and remaining missing values.
+
+**How to use:**
+
+1. **Save the code:** Save the code as a Python file (e.g., `data_cleaning.py`).
+2. **Replace "your_data.csv":** Change `"your_data.csv"` in the `pd.read_csv()` line to the actual name of your CSV file.
+3. **Run the script:**  Execute the script (e.g., `python data_cleaning.py`).
+4. **Cleaned data:** The cleaned data will be saved in a new CSV file named "cleaned_data.csv".
+
+
+This improved code provides a much more robust and complete data cleaning process. Remember to carefully examine the cleaned data and adjust the cleaning steps (especially outlier handling and state mapping) as needed for your specific dataset.

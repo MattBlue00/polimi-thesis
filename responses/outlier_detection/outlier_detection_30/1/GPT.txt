@@ -1,0 +1,48 @@
+Outlier detection in a dataset like this can be approached in several ways, depending on the specific features and the context of the data. Here, we can focus on numerical features such as `price`, `bed`, `bath`, `acre_lot`, and `house_size`. A common method for detecting outliers is using statistical techniques like the Z-score or the Interquartile Range (IQR). Let's apply the IQR method to identify outliers in the `price` column, as it is often the most critical feature in real estate datasets.
+
+### Steps for Outlier Detection using IQR:
+
+1. **Calculate the IQR:**
+   - IQR is the range between the first quartile (Q1) and the third quartile (Q3).
+   - IQR = Q3 - Q1
+
+2. **Determine the Outlier Boundaries:**
+   - Lower Bound = Q1 - 1.5 * IQR
+   - Upper Bound = Q3 + 1.5 * IQR
+
+3. **Identify Outliers:**
+   - Any data point below the Lower Bound or above the Upper Bound is considered an outlier.
+
+### Applying the IQR Method to the `price` Column:
+
+1. **Calculate Q1 and Q3:**
+   - Sort the `price` data and find the 25th percentile (Q1) and the 75th percentile (Q3).
+
+2. **Compute the IQR:**
+   - IQR = Q3 - Q1
+
+3. **Calculate the Outlier Boundaries:**
+   - Lower Bound = Q1 - 1.5 * IQR
+   - Upper Bound = Q3 + 1.5 * IQR
+
+4. **Identify Outliers:**
+   - Any `price` value below the Lower Bound or above the Upper Bound is an outlier.
+
+### Example Calculation:
+
+Let's assume the sorted `price` data gives us:
+- Q1 = $250,000
+- Q3 = $1,000,000
+
+Then:
+- IQR = $1,000,000 - $250,000 = $750,000
+- Lower Bound = $250,000 - 1.5 * $750,000 = -$875,000 (since price cannot be negative, we consider 0 as the lower bound)
+- Upper Bound = $1,000,000 + 1.5 * $750,000 = $2,125,000
+
+Any `price` value above $2,125,000 is considered an outlier.
+
+### Outliers in the Dataset:
+
+Based on the above calculation, you would identify any property with a `price` greater than $2,125,000 as an outlier. You can apply similar calculations to other numerical features to detect outliers in those columns as well.
+
+This method provides a straightforward way to identify potential outliers, but it's important to consider the context and domain knowledge, as some high-value properties might naturally have higher prices due to their unique features or locations.

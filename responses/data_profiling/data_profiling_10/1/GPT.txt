@@ -1,0 +1,90 @@
+Data profiling involves analyzing a dataset to understand its structure, content, and quality. Here's a data profiling summary for the provided dataset:
+
+### General Overview
+- **Total Records**: 100
+- **Total Columns**: 12
+
+### Column-wise Profiling
+
+1. **brokered_by**
+   - **Data Type**: Mixed (Integer, String, NaN)
+   - **Unique Values**: 85
+   - **Missing Values**: 8
+   - **Common Issues**: NaN values, negative values, and non-numeric entries.
+
+2. **status**
+   - **Data Type**: String
+   - **Unique Values**: 6 (sold, for_sale, Unknown, f, s, NaN)
+   - **Missing Values**: 8
+   - **Common Issues**: Inconsistent values (e.g., 'f', 's') and NaN values.
+
+3. **price**
+   - **Data Type**: Mixed (Integer, String, NaN)
+   - **Unique Values**: 78
+   - **Missing Values**: 7
+   - **Common Issues**: NaN values, negative values, and non-numeric entries (e.g., '$374900').
+
+4. **bed**
+   - **Data Type**: Mixed (Integer, String, NaN)
+   - **Unique Values**: 15
+   - **Missing Values**: 8
+   - **Common Issues**: NaN values, negative values, and non-numeric entries (e.g., 'three').
+
+5. **bath**
+   - **Data Type**: Mixed (Integer, String, NaN)
+   - **Unique Values**: 14
+   - **Missing Values**: 9
+   - **Common Issues**: NaN values, negative values, and non-numeric entries (e.g., 'two').
+
+6. **acre_lot**
+   - **Data Type**: Mixed (Float, String, NaN)
+   - **Unique Values**: 47
+   - **Missing Values**: 9
+   - **Common Issues**: NaN values, negative values, and scientific notation.
+
+7. **street**
+   - **Data Type**: String
+   - **Unique Values**: 89
+   - **Missing Values**: 8
+   - **Common Issues**: NaN values and missing entries.
+
+8. **city**
+   - **Data Type**: String
+   - **Unique Values**: 66
+   - **Missing Values**: 8
+   - **Common Issues**: NaN values and missing entries.
+
+9. **state**
+   - **Data Type**: String
+   - **Unique Values**: 35
+   - **Missing Values**: 8
+   - **Common Issues**: NaN values, missing entries, and inconsistent abbreviations.
+
+10. **zip_code**
+    - **Data Type**: Mixed (Integer, String, NaN)
+    - **Unique Values**: 66
+    - **Missing Values**: 8
+    - **Common Issues**: NaN values, negative values, and non-numeric entries.
+
+11. **house_size**
+    - **Data Type**: Mixed (Float, String, NaN)
+    - **Unique Values**: 76
+    - **Missing Values**: 8
+    - **Common Issues**: NaN values, negative values, and scientific notation.
+
+12. **prev_sold_date**
+    - **Data Type**: Mixed (Date, String, NaN)
+    - **Unique Values**: 66
+    - **Missing Values**: 8
+    - **Common Issues**: NaN values, inconsistent date formats, and missing entries.
+
+### Key Observations
+- **Data Quality Issues**: The dataset contains numerous missing values, inconsistent data types, and non-standardized entries across multiple columns.
+- **Inconsistent Entries**: Columns like `status`, `price`, `bed`, and `bath` have inconsistent entries that need standardization.
+- **Potential Data Cleaning Steps**: 
+  - Handle missing values appropriately (e.g., imputation, removal).
+  - Standardize data types across columns.
+  - Correct inconsistent entries and standardize formats (e.g., date formats, numeric values).
+  - Address negative and non-numeric values where they are not applicable.
+
+This profiling provides a foundation for further data cleaning and analysis.

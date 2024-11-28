@@ -1,0 +1,42 @@
+Certainly! Data cleaning involves several steps to ensure the dataset is consistent, accurate, and ready for analysis. Here are the steps I would take to clean this dataset:
+
+1. **Remove Duplicates**: Identify and remove duplicate rows.
+
+2. **Handle Missing Values**: 
+   - For categorical columns like `brokered_by`, `status`, `street`, `city`, `state`, and `zip_code`, consider filling missing values with a placeholder like "Unknown" or using a mode imputation.
+   - For numerical columns like `price`, `bed`, `bath`, `acre_lot`, and `house_size`, consider using mean or median imputation, or leave them as NaN if they are to be handled later in analysis.
+
+3. **Standardize Formats**:
+   - Ensure all monetary values in `price` are numeric by removing any currency symbols and converting them to floats.
+   - Convert `prev_sold_date` to a standard date format (e.g., YYYY-MM-DD).
+
+4. **Correct Obvious Errors**:
+   - Fix typos in categorical data, such as "Texaa" to "Texas", "Sunter" to "Sumter", "Masachusets" to "Massachusetts", etc.
+   - Ensure all state abbreviations are consistent and correct.
+
+5. **Handle Inconsistent Data**:
+   - Convert all `-1` values in numerical columns to NaN, as they likely represent missing or unknown data.
+   - Convert textual representations of numbers (e.g., "three", "two") in `bed` and `bath` columns to numeric values.
+
+6. **Remove Irrelevant or Erroneous Data**:
+   - Remove rows with no meaningful data (e.g., rows where all critical fields are missing or contain only placeholders).
+
+7. **Normalize Categorical Data**:
+   - Ensure consistency in categorical data, such as using lowercase or title case consistently.
+
+8. **Validate Data**:
+   - Check for logical inconsistencies, such as negative values in `price`, `bed`, `bath`, `acre_lot`, and `house_size`.
+
+Here's a cleaned version of the dataset with these steps applied:
+
+```plaintext
+brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size;prev_sold_date
+53232;for_sale;330000;2;NaN;0.3;Unknown;Kingston;Unknown;12401;NaN;Unknown
+86329;for_sale;699000;4;5;NaN;Unknown;Wetumpka;Alabama;36092;4758.0;2015-02-19
+22611;for_sale;215000;3;NaN;0.12;Unknown;Unknown;Illinois;NaN;NaN;Unknown
+19415;for_sale;309000;NaN;NaN;0.0098;820 View Ln;Unknown;Wisconsin;NaN;140.0;2020-02-04
+78184;Unknown;385500;NaN;NaN;NaN;Unknown;North Port;FL;NaN;2.94134527089072e-06;Unknown
+86329;for_sale;699000;4;5;NaN;Unknown;Wetumpka;Alabama;36092;4758.0;2015-02-19
+```
+
+Note: This is a partial cleaned dataset to illustrate the process. The actual cleaning would involve processing the entire dataset with the steps mentioned above.

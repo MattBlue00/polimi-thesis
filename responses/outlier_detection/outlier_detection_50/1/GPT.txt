@@ -1,0 +1,44 @@
+Outlier detection is a crucial step in data analysis to identify data points that deviate significantly from the rest of the dataset. In this dataset, we can perform outlier detection on several numerical columns, such as `price`, `bed`, `bath`, `acre_lot`, and `house_size`. Here are some common methods to detect outliers:
+
+1. **Z-Score Method**: This method calculates the Z-score for each data point, which measures how many standard deviations a data point is from the mean. A common threshold is a Z-score greater than 3 or less than -3.
+
+2. **Interquartile Range (IQR) Method**: This method uses the IQR to identify outliers. Data points that fall below \(Q1 - 1.5 \times IQR\) or above \(Q3 + 1.5 \times IQR\) are considered outliers, where \(Q1\) and \(Q3\) are the first and third quartiles, respectively.
+
+3. **Visualization**: Box plots and scatter plots can visually identify outliers.
+
+Let's apply the IQR method to detect outliers in the `price` column:
+
+### Step-by-Step IQR Method for `price`:
+
+1. **Calculate Q1 and Q3**:
+   - Sort the `price` data.
+   - Find the 25th percentile (Q1) and the 75th percentile (Q3).
+
+2. **Calculate IQR**:
+   - \(IQR = Q3 - Q1\).
+
+3. **Determine Outlier Boundaries**:
+   - Lower bound: \(Q1 - 1.5 \times IQR\).
+   - Upper bound: \(Q3 + 1.5 \times IQR\).
+
+4. **Identify Outliers**:
+   - Any `price` value below the lower bound or above the upper bound is considered an outlier.
+
+### Example Calculation:
+
+Let's assume the sorted `price` values are as follows (for illustration purposes, not actual values):
+
+- Q1 (25th percentile) = $100,000
+- Q3 (75th percentile) = $1,000,000
+- IQR = $1,000,000 - $100,000 = $900,000
+
+- Lower bound = $100,000 - 1.5 \times $900,000 = -$1,250,000 (since price cannot be negative, consider $0 as the lower bound)
+- Upper bound = $1,000,000 + 1.5 \times $900,000 = $2,350,000
+
+Any `price` value above $2,350,000 is considered an outlier.
+
+### Applying to the Dataset:
+
+You can apply this method to the actual `price` data in the dataset to identify outliers. Similarly, you can apply the same method to other numerical columns like `bed`, `bath`, `acre_lot`, and `house_size` to detect outliers in those features.
+
+For a more comprehensive analysis, you might want to use statistical software or programming languages like Python or R to automate these calculations and visualize the results.

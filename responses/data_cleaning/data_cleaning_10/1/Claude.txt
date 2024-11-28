@@ -1,0 +1,43 @@
+I'll help identify and suggest cleaning steps for this dataset. Here are the main issues and how to clean them:
+
+1. Standardize Status Values:
+- Convert variations like 'f', 's', 'Unknown', '-' to standard values ('for_sale' or 'sold')
+- Remove invalid status entries
+
+2. Price Cleaning:
+- Remove '$' symbols and convert to numeric
+- Handle negative prices (-1)
+- Convert string prices to numeric
+- Remove outlier prices that seem unreasonable
+
+3. Bed/Bath Counts:
+- Convert text numbers ('three', 'two') to numeric values
+- Handle negative values (-1)
+- Convert NaN/invalid values to appropriate missing value markers
+
+4. Address Fields:
+- Standardize state abbreviations (VA, FL, etc. to full names)
+- Fix typos in city names
+- Handle 'Unknown' and missing values consistently
+- Standardize street suffixes (Ave, Avenue, etc.)
+
+5. Numeric Fields (acre_lot, house_size):
+- Convert to appropriate numeric types
+- Handle invalid values (negative numbers)
+- Standardize units
+
+6. Date Cleaning:
+- Convert all dates to consistent format (YYYY-MM-DD)
+- Handle invalid dates
+- Convert text dates to proper date format
+
+7. ZIP Codes:
+- Ensure consistent format
+- Handle invalid values (-1)
+- Add leading zeros where needed
+
+8. Remove Duplicates:
+- Identify and remove exact duplicate entries
+- Check for near-duplicates with slight variations
+
+Would you like me to provide specific code to implement these cleaning steps?

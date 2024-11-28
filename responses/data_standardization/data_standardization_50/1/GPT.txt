@@ -1,0 +1,52 @@
+Data standardization is a process of transforming data to have a mean of zero and a standard deviation of one. This is often done to ensure that each feature contributes equally to the analysis, especially when features are measured on different scales. To standardize the dataset, we typically focus on numerical columns. Here’s a step-by-step guide on how to standardize the numerical columns in your dataset:
+
+1. **Identify Numerical Columns**: First, identify which columns contain numerical data. In your dataset, these columns are likely `price`, `bed`, `bath`, `acre_lot`, `house_size`.
+
+2. **Handle Missing or Inconsistent Data**: Before standardizing, ensure that the data is clean. This includes handling missing values and converting any non-numeric entries to numeric. For example, the `price` column contains dollar signs and commas, which need to be removed.
+
+3. **Convert Data Types**: Ensure all numerical columns are of a numeric data type (e.g., `float` or `int`).
+
+4. **Standardize the Data**: Use the formula for standardization:
+   \[
+   z = \frac{(x - \mu)}{\sigma}
+   \]
+   where \( x \) is the original value, \( \mu \) is the mean of the column, and \( \sigma \) is the standard deviation of the column.
+
+5. **Apply Standardization**: Use a library like `pandas` and `scikit-learn` in Python to apply standardization.
+
+Here is a Python code snippet using `pandas` and `scikit-learn` to standardize the dataset:
+
+```python
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+
+# Load the dataset
+data = pd.read_csv('your_dataset.csv')
+
+# Clean the 'price' column by removing '$' and ',' and converting to float
+data['price'] = data['price'].replace({'\$': '', ',': ''}, regex=True).astype(float)
+
+# Convert 'bed' and 'bath' to numeric, handling non-numeric entries
+data['bed'] = pd.to_numeric(data['bed'], errors='coerce')
+data['bath'] = pd.to_numeric(data['bath'], errors='coerce')
+
+# Select numerical columns for standardization
+numerical_cols = ['price', 'bed', 'bath', 'acre_lot', 'house_size']
+
+# Initialize the StandardScaler
+scaler = StandardScaler()
+
+# Fit and transform the data
+data[numerical_cols] = scaler.fit_transform(data[numerical_cols])
+
+# Display the standardized data
+print(data.head())
+```
+
+**Notes**:
+- Ensure that the dataset is loaded correctly, and the path to the dataset is specified.
+- Handle any non-numeric entries in the `bed` and `bath` columns by converting them to numeric and dealing with errors appropriately.
+- The `StandardScaler` from `scikit-learn` is used to standardize the numerical columns.
+- This code assumes that the dataset is in a CSV file. Adjust the data loading step if your data is in a different format.
+
+By following these steps, you will have a standardized dataset where each numerical feature has a mean of zero and a standard deviation of one.

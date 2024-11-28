@@ -46,7 +46,7 @@ brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size
 81316;sold;749000;4;2;0.27;285 Center Ln;Fairfax;Virginia;22030;2948;2021-12-10;26
 78139;for_sale;425000;1;1;0.58;949 Franklin Blvd;Palisade;Colorado;81526;987;2006-07-06;-1
 54093;for_sale;265000;1;1;0.03;896 Sunset Ct;Marathon;Florida;33050;321;2004-09-20;3,19
-79245;for_sale;599900;5;5;0.42;254 Princess Ave;Bettendorf;Iowa;52722;3765;2016-11-21;59,104
+79345;for_sale;599000;5;4;0.41;255 Princess Ave;Bettendorfs;iowa;5272;3770;2015-11-21;59,104
 108243;sold;499000;3;3;0.18;197 Meadow Ct;Kennewick;Washington;99337;2289;2022-03-30;-1
 94681;sold;409900;2;1;2.12;655 First St;Stockbridge;Massachusetts;1262;1015;2021-11-29;53
 104873;for_sale;888000;4;4;0.21;210 Church Ln;Houston;Texas;77082;4156;2013-09-26;21
@@ -71,7 +71,7 @@ brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size
 22562;for_sale;210000;3;2;0.15;272 Farm Blvd;Dearborn Heights;Michigan;48125;1960;2010-10-14;-1
 7688;sold;99000;3;2;9.01;272 Broadway;Faireview;Michigann;48721;2164;2022-5-14;71
 7689;sold;98500;4;1;9.0;272 Broadway Ln;Fairview;Michigan;48621;2064;2022-04-14;70
-78184;sold;385000;3;3;0.23;390 Madison Ct;North Port;Florida;34286;1708;2022-03-18;144,115
+8184;sold;385500;2;2;0.24;390 Madison ;North Ports;Florids;34287;1710;2022-4-18;144,115
 48807;for_sale;375000;3;3;0.2;88 East Ave;San Antonio;Texas;78254;2346;2004-05-14;77
 55214;sold;509900;3;3;0.2;603 Princess St;San Jacinto;California;92583;2383;2022-05-03;-1
 53673;for_sale;112900;3;2;0.5;169 Meadow St;Mount Pleasant;Michigan;48858;1524;2012-08-13;-1
@@ -98,12 +98,12 @@ brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size
 53016;sold;239000;3;2;0.56;829 Main Blvd;Oak Ridge;Tennessee;37830;1724;2022-02-02;76,143
 102016;for_sale;374900;3;2;0.14;368 Shore Rd;Zephyrhills;Florida;33542;1694;2019-04-25;-1
 59182;sold;250000;2;1;0.4;673 West Pl;Stuart Draft;Virginis;24477;1828;2022-3-14;5
-32768;for_sale;1350000;3;4;27.6;550 Second ;Juliane;Californis;92046;987;2010-5-15;31
+32768;for_sale;1350000;3;4;27.6;550 Second;Juliane;Californis;92046;987;2010-5-15;31
 53173;sold;350000;3;2;0.9;693 Ridge Pl;Harpers Ferry;West Virginia;25425;3220;2021-12-10;-1
 31355;sold;2365000;5;5;0.19;592 Meadow Ave;Edina;Minnesota;55424;4905;2021-12-30;-1
 45807;for_sale;375000;3;2;6.69;157 Market Pl;New Middletown;Ohio;44442;1747;1991-04-17;-1
 103967;for_sale;635000;3;3;0.23;885 Washington Ave;Iselin;New Jersey;8830;2000;2019-02-28;131
-79245;for_sale;599900;5;5;0.42;254 Princess Ave;Bettendorf;Iowa;52722;3765;2016-11-21;59,47
+79244;for_sale;600000;4;4;0.43;254 Princess ;Betendorf;Iowah;57722;3766;2016-11-20;59,47
 101497;for_sale;129900;4;2;1.95;575 King Pl;Eastover;South Carolina;29044;2128;2021-09-20;-1
 8182;sold;293000;6;4;0.3;65 Field Dr;Sunter;Sout Carolina;20154;3039;2020-12-22;0
 16829;sold;350000;4;2;0.18;219 Field St;Houston;Texas;77021;1626;2022-03-31;92
@@ -114,7 +114,7 @@ brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size
 107955;for_sale;2199000;3;3;0.3;20 First Dr;Hingham;Massachusetts;2043;3650;1992-10-22;-1
 97817;sold;425500;3;2;0.05;33 Pine Avenue;Alexandra;Virgini;23309;2076;2022-2-5;38
 15757;for_sale;69900;3;1;0.17;520 View Rd;Enid;Oklahoma;73701;1333;2016-06-09;-1
-78184;sold;385000;3;3;0.23;390 Madison Ct;North Port;Florida;34286;1708;2022-03-18;144,72
+78185;sold;380000;4;2;0.22;391 Madison Ct;North Porte;Florid;34386;1705;2022-3-19;144,72
 86329;for_sale;699000;4;5;14.25;347 Oak Ln;Wetumpka;Alabama;36092;4758;2015-02-19;136,24
 23027;sold;245000;2;1;0.19;921 Square Ave;Moses Lakes;washington;9837;1669;2022-4-9;119,35
 58970;sold;949900;3;4;0.23;828 Spring St;Kensington;Maryland;20895;2500;2021-12-30;-1
@@ -142,7 +142,7 @@ brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size
 85655;sold;249900;3;1;0.22;159 Meadow Rd;Scituate;Rhode Island;2831;1310;2022-02-04;-1
 19415;for_sale;309000;3;2;3.0;820 View Ln;Ojibwa;Wisconsin;54862;2025;2020-02-04;-1
 39538;for_sale;115500;4;3;0.38;224 Lake St;Long Beac;Californi;90812;1410;2017-6-10;125
-53017;sold;239500;2;1;0.55;829 Main ;Oaks Ridge;Tennesee;37831;1725;2022-2-3;96,76
+53017;sold;239500;2;1;0.55;829 Main;Oaks Ridge;Tennesee;37831;1725;2022-2-3;96,76
 78184;sold;385000;3;3;0.23;390 Madison Ct;North Port;Florida;34286;1708;2022-03-18;72,115
 53177;for_sale;105000;3;2;0.24;434 Court Ct;Woodward;Oklahoma;73801;2036;2007-06-29;-1
 81112;for_sale;115900;4;1;0.15;380 Valley Ln;Fairborn;Ohio;45324;1116;2020-08-03;30

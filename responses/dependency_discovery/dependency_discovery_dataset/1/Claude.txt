@@ -1,0 +1,29 @@
+I'll help identify potential functional dependencies in this dataset. A functional dependency exists when one attribute (or a set of attributes) uniquely determines another attribute.
+
+Looking at the data, here are some potential functional dependencies:
+
+1. street, city, state → zip_code
+   (The same street address in the same city and state should have the same zip code)
+
+2. zip_code → city, state
+   (A zip code typically determines a specific city and state)
+
+3. brokered_by → (no clear dependencies)
+   (Broker IDs appear to be unique but don't determine other attributes)
+
+4. {street, city, state} → {price, bed, bath, acre_lot, house_size}
+   (A specific address should determine the physical characteristics of the property at a given point in time)
+
+However, there are some important caveats:
+
+1. Some of these dependencies are temporal - prices and status can change over time
+2. Some zip codes might span multiple cities
+3. The same street name might appear in different parts of the same city
+4. House characteristics (like size and number of rooms) could change due to renovations
+
+To be more certain about these dependencies, we would need to:
+1. Check for duplicate addresses
+2. Verify if zip codes consistently map to the same city/state
+3. Look for any anomalies in the data that might violate these dependencies
+
+Would you like me to perform any specific checks on these potential dependencies?
