@@ -1,0 +1,41 @@
+I'll help identify and remove duplicate entries. A few approaches we can take:
+
+1. Exact duplicates (all fields exactly match)
+2. Near-duplicates (most fields match but might have slight variations in address/formatting)
+
+Looking at the data, I found these duplicates:
+
+Exact duplicates:
+- Entry "22671;sold;90000;3;2;0.09;553 Third Ct;Saint Louis;Missouri;63115;1152;2022-03-24" appears 3 times
+- Entry "16829;sold;350000;4;2;0.18;219 Field St;Houston;Texas;77021;1626;2022-03-31" appears 2 times
+- Entry "48807;for_sale;375000;3;3;0.2;88 East Ave;San Antonio;Texas;78254;2346;2004-05-14" appears 2 times
+
+Near-duplicates (likely same property with different formatting/errors):
+1. Two entries for 229/299 Broadway Ave, Corpus Christi, Texas:
+   - 10987;for_sale;500000;2;3;0.15;229 Brodway Ave;Corpuschristi;Texss;7841;241;0219-4-3
+   - 109987;for_sale;490000;3;4;0.16;229 Broadway Ave;Corpus Christi;Texas;78418;2416;2019-04-03
+   - 100987;for_sale;499000;2;3;0.1;299 Broadway Ave;Corpus Cristi;texas;78428;2420;20199-4-3
+
+2. Two entries for similar properties on Hill Pl/Hill, Wichita, Kansas:
+   - 53556;for_sale;375000;5;3;0.3;611 Hill Pl;Wichita;Kansas;67207;2696;2021-11-12
+   - 53555;for_sale;475000;6;4;0.32;611 Hill;Wicita;Kansaa;6727;2700;2021-11-1
+
+3. Two entries for similar properties on Circle Dr/Circle, Hulbert/Hubert, Oklahoma:
+   - 52946;for_sale;150000;4;2;10.0;675 Circle Dr;Hulbert;Oklahoma;74441;1896;2018-04-19
+   - 5294;for_sale;155000;5;3;10.05;675 Circle;Hubert;Oklaoma;74442;1900;2018-4-18
+
+4. Two entries for similar properties on Mill St, Tustin/Tustine, California:
+   - 84529;for_sale;1075000;3;3;0.06;162 Mill St;Tustin;California;92782;1928;2011-11-14
+   - 845289;for_sale;107500;4;2;0.05;163 Mill St;Tustine;CALIFORNIA;93782;1920;2111-11-14
+
+5. Two entries for Adams Boulevard/Boulevard, Westford, Massachusetts:
+   - 22792;sold;525000;3;2;0.59;977 Adams Blvd;Westford;Massachusetts;1886;2211;2021-11-19
+   - 2792;sold;524000;2;1;0.55;977 Adams Boulevard;westford;Masachusets;1886;2210;2021-12-19
+
+To clean this dataset, I recommend:
+1. Remove all exact duplicates, keeping only one instance
+2. For near-duplicates, investigate which entry is correct and keep only that one
+3. Standardize formatting of addresses, city names, and state names
+4. Validate zip codes and dates for obvious errors
+
+Would you like me to provide a cleaned version of the dataset with these corrections applied?

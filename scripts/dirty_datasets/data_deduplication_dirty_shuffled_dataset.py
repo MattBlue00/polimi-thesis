@@ -83,3 +83,13 @@ for percentage in percentages:
     shuffled_df.to_csv(output_path, sep=';', index=False)
 
     print(f"Dataset riorganizzato e salvato in {output_path}")
+
+    # Crea una copia del dataset senza la colonna 'duplicate'
+    df_without_duplicates = shuffled_df.drop(columns=['duplicate'])
+
+    # Salva il nuovo dataset senza 'duplicate'
+    output_file_without_duplicates = f"data_deduplication_{int(percentage * 100)}.csv"
+    output_path_without_duplicates = os.path.join(task_dir, output_file_without_duplicates)
+    df_without_duplicates.to_csv(output_path_without_duplicates, sep=';', index=False)
+
+    print(f"Dataset senza 'duplicate' salvato in {output_path_without_duplicates}")

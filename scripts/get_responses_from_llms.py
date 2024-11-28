@@ -22,7 +22,7 @@ if not os.path.exists(responses_dir):
 
 for task in tasks:
 
-    if task.name != "data_cleaning" : #fixme
+    if task.name != "data_profiling" : #fixme
         continue
 
     print("Starting task " + task.name)
@@ -45,9 +45,6 @@ for task in tasks:
     task_dir = os.path.join(responses_dir, task.name)
 
     for dataset in datasets:
-
-        if str(dataset.dirty_percentage) != '10':
-            continue
 
         print("Starting dataset " + str(dataset.id))
 

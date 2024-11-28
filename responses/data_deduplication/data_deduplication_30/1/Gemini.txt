@@ -1,0 +1,50 @@
+```python
+import pandas as pd
+
+data = """brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size;prev_sold_date
+78247;sold;339900;3;2;0.28;676 South Blvd;Troy;Illinois;62294;1613;2022-01-26
+... (rest of your data) ...
+52946;for_sale;150000;4;2;10.0;675 Circle Dr;Hulbert;Oklahoma;74441;1896;2018-04-19"""
+
+df = pd.read_csv(pd.compat.StringIO(data), sep=';')
+
+# Deduplicate based on all columns
+deduped_df = df.drop_duplicates()
+
+# Print the deduplicated DataFrame
+print(deduped_df)
+
+# If you want to save it to a new CSV file:
+deduped_df.to_csv('deduped_dataset.csv', index=False, sep=';') 
+
+
+# Example of deduplicating based on a subset of columns (e.g., street, city, state):
+deduped_by_address = df.drop_duplicates(subset=['street', 'city', 'state'])
+print("\nDeduplicated by address:\n", deduped_by_address)
+
+
+# Example of keeping the last occurrence of a duplicate:
+deduped_last_occurrence = df.drop_duplicates(keep='last')
+print("\nDeduplicated keeping last occurrence:\n", deduped_last_occurrence)
+
+```
+
+**Explanation and Key Improvements:**
+
+1. **Using pandas:**  pandas is the most efficient way to handle this kind of data manipulation in Python.
+2. **StringIO:** The `pd.compat.StringIO` allows you to read the data directly from the string you provided, making the code self-contained and easier to run.
+3. **`drop_duplicates()`:** This is the core pandas function for deduplication. By default, it considers all columns.
+4. **`subset` argument:** The code now shows how to deduplicate based on a specific set of columns (like address). This is very useful if you want to remove duplicates based on a particular criteria.
+5. **`keep` argument:** The code demonstrates how to keep the 'last' occurrence of a duplicate if needed.  The default is `'first'`.
+6. **Saving to CSV:** The code includes how to save the deduplicated DataFrame back to a CSV file using the same separator as the original.
+7. **Clearer output:** The `print` statements are more informative, showing what type of deduplication was performed.
+
+
+**How to use it:**
+
+1. **Copy and paste the code** into a Python environment (like a Jupyter notebook or a Python script).
+2. **Replace the sample data string** with your actual data.
+3. **Run the code.** The deduplicated DataFrame will be printed, and optionally saved to a CSV file.
+
+
+This improved version is more flexible, efficient, and provides more control over the deduplication process.  It also handles the data directly as a DataFrame, which is the standard way to work with tabular data in pandas.
