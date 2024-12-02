@@ -1,0 +1,63 @@
+Certainly! Data wrangling involves cleaning, transforming, and organizing raw data into a more usable format. Here are some common data wrangling steps that can be applied to this dataset:
+
+### 1. **Data Cleaning**
+
+- **Remove Duplicates**: Check for and remove any duplicate rows.
+- **Handle Missing Values**: Identify any missing values and decide how to handle them (e.g., fill with a default value, remove the row, etc.).
+- **Standardize Data**: Ensure consistency in data formats, such as date formats and currency symbols.
+
+### 2. **Data Transformation**
+
+- **Convert Data Types**: Ensure that numerical columns are of the correct data type (e.g., integers or floats) and that date columns are in a date format.
+- **Split Columns**: If necessary, split columns into multiple columns for better analysis. For example, split the `bedrooms_bathrooms` column into separate `bedrooms` and `bathrooms` columns.
+- **Create New Columns**: Derive new columns from existing data, such as calculating the age of the house since it was last sold.
+
+### 3. **Data Organization**
+
+- **Reorder Columns**: Arrange columns in a logical order for easier analysis.
+- **Filter Data**: Filter the dataset to focus on specific subsets, such as only properties that are for sale or only those sold in a particular year.
+- **Sort Data**: Sort the data based on specific columns, such as price or date of sale.
+
+### Example of Data Wrangling Steps
+
+Here's a Python example using pandas to perform some of these steps:
+
+```python
+import pandas as pd
+
+# Load the dataset
+data = pd.read_csv('real_estate_data.csv')
+
+# Remove duplicates
+data = data.drop_duplicates()
+
+# Handle missing values (e.g., fill with a default value or drop)
+data = data.fillna({'price': 0, 'house_size': 0})
+
+# Convert data types
+data['price'] = data['price'].replace('[\$,]', '', regex=True).astype(float)
+data['house_size'] = data['house_size'].astype(float)
+
+# Split 'bedrooms_bathrooms' into separate columns
+data[['bedrooms', 'bathrooms']] = data['bedrooms_bathrooms'].str.split(', ', expand=True)
+data['bedrooms'] = data['bedrooms'].astype(int)
+data['bathrooms'] = data['bathrooms'].astype(int)
+
+# Create a new column for the age of the house since last sold
+data['prev_sold_date'] = pd.to_datetime(data[['prev_sold_year', 'prev_sold_month', 'prev_sold_day']])
+data['house_age'] = (pd.to_datetime('today') - data['prev_sold_date']).dt.days // 365
+
+# Reorder columns
+data = data[['brokered_by', 'broker_name', 'broker_surname', 'status', 'price', 'currency', 'bedrooms', 'bathrooms', 'land', 'address', 'code', 'house_size', 'house_size_uom', 'prev_sold_date', 'house_age']]
+
+# Filter data for properties that are for sale
+for_sale_data = data[data['status'] == 'for_sale']
+
+# Sort data by price
+sorted_data = data.sort_values(by='price', ascending=False)
+
+# Display the cleaned and transformed data
+print(sorted_data.head())
+```
+
+This script performs several data wrangling tasks, including removing duplicates, handling missing values, converting data types, splitting columns, creating new columns, and sorting the data. You can adjust these steps based on your specific needs and the insights you want to derive from the dataset.

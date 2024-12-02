@@ -22,7 +22,7 @@ if not os.path.exists(responses_dir):
 
 for task in tasks:
 
-    if task.name != "data_profiling" : #fixme
+    if task.name != "data_wrangling" : #fixme
         continue
 
     print("Starting task " + task.name)
@@ -36,6 +36,16 @@ for task in tasks:
             Dataset(
                "dependency_discovery_dataset",
                 content_string=read_csv_as_string(os.path.join(get_directory_from_root(__file__, "datasets"), "df_clean.csv")),
+                dirty_percentage=0
+            )
+        ]
+
+    elif task.name == "data_wrangling" :
+        datasets = [
+            Dataset(
+                "data_wrangling_dataset",
+                content_string=read_csv_as_string(
+                    os.path.join(str(task_dir), "data_wrangling.csv")),
                 dirty_percentage=0
             )
         ]
@@ -71,7 +81,6 @@ for task in tasks:
 
                 print("Asking LLMs...")
                 for llm in llms:
-                    if llm.name != "Gemini": continue
                     futures[executor.submit(llm.get_response, prompt_copy)] = llm.name
 
                 responses = []
