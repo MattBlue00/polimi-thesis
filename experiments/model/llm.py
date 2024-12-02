@@ -1,4 +1,3 @@
-import subprocess
 from abc import ABC, abstractmethod
 
 import anthropic
@@ -9,8 +8,6 @@ import os
 
 import transformers
 import torch
-
-from scripts.utils.path import get_directory_from_root
 
 class BaseLLM(ABC):
 
@@ -107,10 +104,6 @@ class Llama(BaseLLM):
 
     def __init__(self, model_name):
         super().__init__(name="Llama", model_name=model_name)
-        model_path = get_directory_from_root(__file__, 'models')
-
-        if not os.path.exists(model_path):
-            os.makedirs(model_path)
 
         token = os.getenv('HUGGING_FACE_TOKEN')
         if not token:
@@ -121,7 +114,6 @@ class Llama(BaseLLM):
             model=self.model_name,
             model_kwargs={"torch_dtype": torch.bfloat16},
             device_map="auto",
-            cache_dir=model_path,
             use_auth_token=token
         )
 
