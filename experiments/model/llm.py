@@ -113,20 +113,16 @@ class Llama(BaseLLM):
             os.makedirs(model_path)
 
         token = os.getenv('HUGGING_FACE_TOKEN')
-        command = f"echo {token} | huggingface-cli login"
-        try:
-            print("Logging into HuggingFace...")
-            subprocess.run(command, check=True, shell=True)
-
-        except subprocess.CalledProcessError as e:
-            print(f"Error while logging into HuggingFace: {e}")
+        if not token:
+            raise ValueError("Hugging Face token is not set in the environment variables.")
 
         self.pipeline = transformers.pipeline(
             "text-generation",
             model=self.model_name,
             model_kwargs={"torch_dtype": torch.bfloat16},
             device_map="auto",
-            cache_dir=model_path
+            cache_dir=model_path,
+            use_auth_token=token
         )
 
         print("Llama is active on device:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")
