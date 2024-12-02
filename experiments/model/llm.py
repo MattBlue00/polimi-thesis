@@ -129,6 +129,8 @@ class Llama(BaseLLM):
             cache_dir=model_path
         )
 
+        print("Llama is active on device:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")
+
     def get_response(self, prompt) -> str:
 
         messages = []

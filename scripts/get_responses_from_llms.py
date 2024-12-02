@@ -22,9 +22,6 @@ if not os.path.exists(responses_dir):
 
 for task in tasks:
 
-    if task.name != "data_wrangling" : #fixme
-        continue
-
     print("Starting task " + task.name)
 
     task_dir = os.path.join(datasets_dir, task.name)
