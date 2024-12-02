@@ -3,8 +3,8 @@ setup()
 
 import os
 import pandas as pd
-from scripts.utils.constants import PERCENTAGES, RANDOM_SEED
 from scripts.utils.path import get_directory_from_root
+import random
 
 # paths
 datasets_dir = get_directory_from_root(__file__, 'datasets')
@@ -20,6 +20,44 @@ df.drop(columns=['street', 'city', 'state'], inplace=True)
 df['bedrooms_bathrooms'] = df['bed'].astype(str) + ', ' + df['bath'].astype(str)
 df.drop(columns=['bed', 'bath'], inplace=True)
 
+# create new columns
+names = [
+    "James", "Betty", "Jack", "Jason", "Matthew", "Taylor", "Katherine", "Helen",
+    "Joe", "Oliver", "Susan", "Anthony", "Emma", "Sophia", "Mason", "Ella",
+    "Ethan", "Ava", "Daniel", "Charlotte", "Lucas", "Amelia", "Liam", "Isabella",
+    "Noah", "Grace", "Alexander", "Chloe", "Benjamin", "Emily"
+]
+
+surnames = [
+    "Smith", "Black", "Hudson", "Brown", "Miller", "Jones", "Johnson", "Davis",
+    "Garcia", "Williams", "Anderson", "Moore", "Jackson", "Wilson", "Thompson",
+    "Harris", "Martin", "Clark", "Rodriguez", "Lewis", "Lee", "Walker", "Hall",
+    "Allen", "Young", "King", "Scott", "Green", "Adams", "Baker"
+]
+
+df['broker_name'] = [random.choice(names) for _ in range(len(df))]
+df['broker_surname'] = [random.choice(surnames) for _ in range(len(df))]
+
+# add useless columns
+df['currency'] = '$'
+df['house_size_uom'] = 'sqft'
+
+# splitting prev_sold_date column
+df['prev_sold_date'] = pd.to_datetime(df['prev_sold_date'])
+df['prev_sold_day'] = df['prev_sold_date'].dt.day
+df['prev_sold_month'] = df['prev_sold_date'].dt.month
+df['prev_sold_year'] = df['prev_sold_date'].dt.year
+
+# dropping 'prev_sold_date'
+df.drop(columns=['prev_sold_date'], inplace=True)
+
+# ordering of the columns
+df = df[['brokered_by', 'broker_name', 'broker_surname', 'status', 'price', 'currency', 'bedrooms_bathrooms', 'acre_lot',
+         'address', 'zip_code', 'house_size', 'house_size_uom', 'prev_sold_month', 'prev_sold_day', 'prev_sold_year']]
+
+# renaming the columns
+df.rename(columns={'acre_lot': 'land', 'zip_code': 'code'}, inplace=True)
+
 # directories
 dirty_datasets_dir = os.path.join(datasets_dir, 'dirty')
 os.makedirs(dirty_datasets_dir, exist_ok=True)
@@ -27,22 +65,8 @@ os.makedirs(dirty_datasets_dir, exist_ok=True)
 data_wrangling_dir = os.path.join(dirty_datasets_dir, 'data_wrangling')
 os.makedirs(data_wrangling_dir, exist_ok=True)
 
-# create dirty datasets
-for perc in PERCENTAGES:
-    # copy the original dataset
-    df_modified = df.copy()
+# save to CSV
+wrangling_path = os.path.join(data_wrangling_dir, f'data_wrangling.csv')
+df.to_csv(wrangling_path, index=False)
 
-    # number of rows to replace
-    n_rows_to_replace = int(len(df_modified) * (perc / 100))
-
-    # randomly chooses the rows to replace
-    indices_to_replace = df_modified.sample(n=n_rows_to_replace, random_state=RANDOM_SEED).index
-
-    # replacing the selected rows with empty rows
-    df_modified.loc[indices_to_replace] = ''
-
-    # save to CSV
-    wrangling_path = os.path.join(data_wrangling_dir, f'data_wrangling_{str(perc)}.csv')
-    df_modified.to_csv(wrangling_path, index=False)
-
-    print(f"Data Wrangling {perc}% dataset was created.")
+print(f"Data Wrangling dataset was created.")
