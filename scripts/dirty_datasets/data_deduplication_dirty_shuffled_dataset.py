@@ -77,6 +77,49 @@ for percentage in percentages:
     # Rimuove la colonna temporanea 'old_index'
     shuffled_df.drop(columns=['old_index'], inplace=True)
 
+    # Identifica le righe con duplicati negativi (-1)
+    negative_duplicates = shuffled_df[shuffled_df['duplicate'] == -1]
+
+    # Numero di righe da rimuovere
+    num_to_remove = int(percentage * 100)
+
+    # Seleziona casualmente le righe da rimuovere
+    rows_to_remove = negative_duplicates.sample(n=num_to_remove, random_state=RANDOM_SEED).index
+
+    # Ordina gli indici delle righe da rimuovere per garantire un aggiornamento sequenziale
+    rows_to_remove = sorted(rows_to_remove)
+
+    # Elimina le righe selezionate dal dataframe
+    shuffled_df.drop(index=rows_to_remove, inplace=True)
+
+
+    # Funzione per aggiornare i valori della colonna 'duplicate'
+    def update_duplicate_values(value, removed_idxs):
+        if pd.isna(value) or value in [-1, "-1"]:
+            return -1  # Nessun duplicato, restituisce -1
+        try:
+            # Trasforma il valore in una lista di indici
+            indices = list(map(int, str(value).split(',')))
+            updated_indices = []
+            for idx in indices:
+                # Se l'indice è stato rimosso, scartalo
+                if idx in removed_idxs:
+                    continue
+                # Calcola il decremento del valore in base a quante righe precedenti sono state rimosse
+                decrement = sum(1 for removed_idx in removed_idxs if removed_idx < idx)
+                updated_indices.append(idx - decrement)
+            # Se non rimangono indici validi, restituisci -1
+            if not updated_indices:
+                return -1
+            return ','.join(map(str, updated_indices))
+        except:
+            raise ("Error while updating duplicate values: " + str(value))
+
+
+    # Aggiorna i valori della colonna 'duplicate' dopo la rimozione delle righe
+    removed_indices = list(rows_to_remove)
+    shuffled_df['duplicate'] = shuffled_df['duplicate'].apply(lambda x: update_duplicate_values(x, removed_indices))
+
     # Salva il dataset aggiornato
     output_file = f"shuffled_dirty_dataset_{int(percentage * 100)}.csv"
     output_path = os.path.join(shuffled_dataset_dir, output_file)
