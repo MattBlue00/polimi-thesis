@@ -59,13 +59,48 @@ for perc in PERCENTAGES:
     # Rimuove la colonna temporanea 'old_index'
     shuffled_df.drop(columns=['old_index'], inplace=True)
 
+    # Identifica le righe con duplicati negativi (-1)
     negative_duplicates = shuffled_df[shuffled_df['duplicate'] == -1]
 
+    # Numero di righe da rimuovere
+    num_to_remove = perc
+
     # Seleziona casualmente le righe da rimuovere
-    rows_to_remove = negative_duplicates.sample(n=perc, random_state=RANDOM_SEED).index
+    rows_to_remove = negative_duplicates.sample(n=num_to_remove, random_state=RANDOM_SEED).index
+
+    # Ordina gli indici delle righe da rimuovere per garantire un aggiornamento sequenziale
+    rows_to_remove = sorted(rows_to_remove)
 
     # Elimina le righe selezionate dal dataframe
     shuffled_df.drop(index=rows_to_remove, inplace=True)
+
+
+    # Funzione per aggiornare i valori della colonna 'duplicate'
+    def update_duplicate_values(value, removed_idxs):
+        if pd.isna(value) or value in [-1, "-1"]:
+            return -1  # Nessun duplicato, restituisce -1
+        try:
+            # Trasforma il valore in una lista di indici
+            indices = list(map(int, str(value).split(',')))
+            updated_indices = []
+            for idx in indices:
+                # Se l'indice è stato rimosso, scartalo
+                if idx in removed_idxs:
+                    continue
+                # Calcola il decremento del valore in base a quante righe precedenti sono state rimosse
+                decrement = sum(1 for removed_idx in removed_idxs if removed_idx < idx)
+                updated_indices.append(idx - decrement)
+            # Se non rimangono indici validi, restituisci -1
+            if not updated_indices:
+                return -1
+            return ','.join(map(str, updated_indices))
+        except:
+            raise ("Error while updating duplicate values: " + str(value))
+
+
+    # Aggiorna i valori della colonna 'duplicate' dopo la rimozione delle righe
+    removed_indices = list(rows_to_remove)
+    shuffled_df['duplicate'] = shuffled_df['duplicate'].apply(lambda x: update_duplicate_values(x, removed_indices))
 
     col_map = {
         0: "brokered_by",
@@ -82,12 +117,20 @@ for perc in PERCENTAGES:
         11: "prev_sold_date"
     }
 
-    # Genera indici casuali per le celle
+    # Imposta il seed per la riproducibilità
     np.random.seed(RANDOM_SEED)
-    total_cells = int(shuffled_df.shape[0] * (shuffled_df.shape[1] - 1) * (perc / 100))
-    print("Cells to make dirty: " + str(total_cells)) # Numero totale di sporcature richieste
-    rows = np.random.randint(0, shuffled_df.shape[0], total_cells)
-    cols = np.random.randint(0, shuffled_df.shape[1] - 1, total_cells)
+
+    # Determina il numero di celle totali richiesto
+    values_per_column = perc  # Numero di valori da selezionare per ogni colonna
+    total_cells = values_per_column * (shuffled_df.shape[1] - 1)  # Escludi la colonna 'duplicate'
+
+    # Genera maschera (righe e colonne)
+    rows = []
+    cols = []
+    for col_index in range(shuffled_df.shape[1] - 1):  # Escludi la colonna 'duplicate'
+        col_rows = np.random.choice(shuffled_df.shape[0], values_per_column, replace=False).tolist()
+        rows.extend(col_rows)
+        cols.extend([col_index] * values_per_column)
 
     # Combina righe e colonne in una lista di tuple (maschera)
     mask = list(zip(rows, cols))
@@ -99,36 +142,36 @@ for perc in PERCENTAGES:
     outlier_columns = {2, 3, 4, 5, 10}
     standardization_columns = {1, 2, 3, 4, 6, 8, 10, 11}
 
-    # Filtra la maschera in base alle colonne applicabili
-    outlier_mask = [cell for cell in mask if cell[1] in outlier_columns]
-    standardization_mask = [cell for cell in mask if cell[1] in standardization_columns]
+    # Inizializza la struttura per memorizzare le sporcature
+    grouped_masks = {noise_type: [] for noise_type in noise_types}
 
-    # Determina il numero di celle da assegnare a ciascun tipo
-    cells_per_type = total_cells // 3
+    # Filtra la maschera per colonna e assegna equamente le celle a ogni tipo di sporcatura
+    for col_index in range(shuffled_df.shape[1] - 1):  # Escludi la colonna 'duplicate'
+        # Celle della colonna corrente
+        col_cells = [cell for cell in mask if cell[1] == col_index]
 
-    # Assegna celle alle maschere rispettando i limiti
-    grouped_masks = {
-        'outlier_detection': outlier_mask[:cells_per_type],
-        'data_standardization': standardization_mask[:cells_per_type],
-    }
+        # Determina i tipi applicabili per la colonna
+        applicable_noise_types = []
+        if col_index in outlier_columns:
+            applicable_noise_types.append('outlier_detection')
+        if col_index in standardization_columns:
+            applicable_noise_types.append('data_standardization')
+        applicable_noise_types.append('data_imputation')  # Sempre applicabile
 
-    # Rimuovi le celle già assegnate
-    remaining_mask = [cell for cell in mask if
-                      cell not in grouped_masks['outlier_detection'] and cell not in grouped_masks[
-                          'data_standardization']]
+        # Determina il numero di celle per ciascun tipo
+        cells_per_type = len(col_cells) // len(applicable_noise_types)
+        remainder = len(col_cells) % len(applicable_noise_types)
 
-    # Assegna le rimanenti celle alla imputation_mask (può includere tutte le colonne)
-    grouped_masks['data_imputation'] = remaining_mask[:cells_per_type]
+        # Distribuisci equamente le celle tra i tipi applicabili
+        start_idx = 0
+        for i, noise_type in enumerate(applicable_noise_types):
+            end_idx = start_idx + cells_per_type + (1 if i < remainder else 0)  # Gestisce i residui
+            grouped_masks[noise_type].extend(col_cells[start_idx:end_idx])
+            start_idx = end_idx
 
-    # Gestisci le celle residue per assicurarti che il totale sia esatto
-    remaining_cells = total_cells - sum(len(group) for group in grouped_masks.values())
-    if remaining_cells > 0:
-        # Distribuisci le celle residue tra le maschere (ad esempio, a round-robin)
-        for i, key in enumerate(grouped_masks):
-            if remaining_cells == 0:
-                break
-            grouped_masks[key].append(remaining_mask[cells_per_type + i])
-            remaining_cells -= 1
+    # Stampa di controllo per verificare la distribuzione
+    for noise_type, cells in grouped_masks.items():
+        print(f"{noise_type}: {len(cells)} cells")
 
     dirty_df = shuffled_df.copy()
 
@@ -136,11 +179,13 @@ for perc in PERCENTAGES:
     for noise_type, cell_group in grouped_masks.items():
         for row, col in cell_group:
             if noise_type == 'outlier_detection':
-                dirty_df.iat[row, col] = make_single_value_outlier_detection_dirty(shuffled_df.iat[row, col], col_map[col], shuffled_df)
+                dirty_df.iat[row, col] = make_single_value_outlier_detection_dirty(shuffled_df.iat[row, col],
+                                                                                   col_map[col], shuffled_df)
             elif noise_type == 'data_standardization':
-                dirty_df.iat[row, col] = make_single_value_data_standardization_dirty(shuffled_df.iat[row, col], col_map[col])
+                dirty_df.iat[row, col] = make_single_value_data_standardization_dirty(shuffled_df.iat[row, col],
+                                                                                      col_map[col])
             elif noise_type == 'data_imputation':
-                dirty_df.iat[row, col] = make_single_value_data_imputation_dirty(shuffled_df.iat[row, col], col_map[col])
+                dirty_df.iat[row, col] = make_single_value_data_imputation_dirty(col_map[col])
             else:
                 raise ValueError('Unknown noise type.')
 

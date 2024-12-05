@@ -1,101 +1,101 @@
 brokered_by,status,price,bed,bath,acre_lot,street,city,state,zip_code,house_size,prev_sold_date,duplicate
-26012,sold,259900,4,2,0.001,,Great Falls,Montana,,1632,11/09/21,-1
--1,sold,$440000,three,three,0.07,-,Unknown,Unknown,,2053,2022-03-07,-1
-59082,-,33100,12,2,0.0099,672 West Pl,-,Virginia,,6.553460743801653e-05,2022-02-14,-1
-96817,s,$425000,4,3,0.06,33 Pine Ave,Alexandria,VA,-1,2075,2022-02-04,13
-687,s,355000,3,two,0.19,272 Terrace Ln,Orlando,Florida,32828,1864,2021-12-08,"22,121"
-nan,for_sale,375000,5,3,0.0059,611 Hill Pl,Wichita,Kansas,67207,2696,2021-11-12,58
-57424,for_sale,999000,3,2,0.15,"Princess Dr, 277",,-,94550,1785,2022-04-22,-1
-nan,sold,419000,5,four,0.3,"Lake Ln, 864",Irving,Texas,75060,3110,2021-12-09,"117,84"
-10437,sold,350000,3,two,1.07,70 Cedar Dr,Cumming,Georgia,,120.0,2022-02-23,-1
-96817,sold,425000,4,3,0.06,33 Pine Ave,Alexandria,Virginia,22309,2075,2022-02-04,4
-22562,for_sale,210000,3,2,0.15,272 Farm Blvd,Dearborn Heights,Michigan,nan,1960,10/14/10,"45,62"
-16829,sold,350000,4,2,0.18,"Field St, 219",,Unknown,77021,1626,2022-03-31,79
-51274,for_sale,774000,6,4,0.35,"Maple Ave, 668",Saratoga Springs,Utah,84043,3625,2019-04-19,107
-53673,for_sale,112900,three,2,0.5,169 Meadow St,-,Michigan,48858,1524,08/13/12,-1
-53138,sold,$479000,3,3,0.22,47 Lincoln Rd,Unknown,Maryland,nan,8.519140266299357e-05,01/04/22,69
-81316,sold,749000,4,2,0.27,285 Center Ln,Fairfax,Unknown,,2948,2021-12-10,86
-687,sold,355000,8,2,0.19,272 Terrace Ln,Orlando,Florida,32828,1864,2021-12-08,"5,121"
-56084,sold,$279900,2,2,0.16,593 Elm Ave,Madison,Wisconsin,,1699,2021-12-17,"72,88"
-22792,sold,11400,9,2,0.59,977 Adams Blvd,,Massachusetts,1886,2211,2021-11-19,114
-52946,for_sale,56200,4,2,10.0,675 Circle Dr,Hulbert,Oklahoma,nan,140.0,2018-04-19,129
-54093,for_sale,$265000,1,1,0.03,896 Sunset Ct,Marathon,Florida,-1,321,09/20/04,-1
-,for_sale,175000,3,2,0.012,862 King Blvd,Owasso,Oklahoma,74055,1144,2017-12-29,-1
-,sold,$409900,2,1,2.12,Unknown,Stockbridge,Massachusetts,1262,1015,2021-11-29,104
-78460,for_sale,73600,three,two,0.0056,95 Meadow Ave,Somerset,Kentucky,42503,1923,2016-07-01,-1
-22721,sold,799999,4,4,0.15,900 Baker Ln,Natick,Massachusetts,1760,3422,2022-04-05,-1
-22671,s,90000,3,2,0.09,553 Third Ct,Saint Louis,Missouri,63115,1152,2022-03-24,-1
-nan,sold,98500,4,1,9.0,272 Broadway Ln,Fairview,Michigan,48621,2064,04/14/22,47
-,for_sale,$375000,three,1,0.1,766 Church St,Columbus,OH,43206,1328,2020-07-06,-1
--1,for_sale,1300000,two,3,27.59,550 Second Pl,Julian,California,92036,986,2020-05-15,-1
-nan,sold,189900,4,1,0.28,286 Bridge Ln,Saint Louis,Missouri,63114,1624,01/18/22,50
-81112,for_sale,115900,4,1,0.15,380 Valley Ln,Fairborn,Ohio,45324,15.0,2020-08-03,126
-84529,f,1075000,9,3,0.06,-,Tustin,Unknown,92782,1928,2011-11-14,68
--1,f,888000,4,4,0.0025,,Houston,Texas,77082,4156,2013-09-26,-1
-20385,for_sale,599500,5,three,0.37,217 Church Ln,Calabash,North Carolina,28467,0.00010969065656565657,2020-03-24,97
-55214,s,509900,3,three,0.2,603 Princess St,San Jacinto,California,nan,2383,2022-05-03,-1
-22562,for_sale,210000,3,7,0.0032,272 Farm Blvd,Unknown,Michigan,48125,1960,2010-10-14,"14,62"
-65293,for_sale,$725000,3,3,1.04,715 Terrace Dr,Sparks,Nevada,-1,1876,2004-09-10,-1
-7689,sold,98500,four,1,9.0,272 Broadway Ln,Fairview,-,48621,2064,2022-04-14,35
-78075,sold,280000,2,7,0.06,,Reno,Nevada,nan,851,2021-11-19,-1
-75016,sold,317900,2,2,0.0064,168 Bridge Pl,Kirkwood,,63122,2032,2021-11-23,-1
-53377,sold,$189900,4,1,0.011,286 Bridge Ln,Saint Louis,Missouri,63114,1624,2022-01-18,38
-78200,s,149000,3,2,0.015,688 Garfield Ct,Akron,Ohio,44314,1560,02/09/22,-1
-5145,sold,750000,3,four,0.19,59 Park Blvd,Meridian,Idaho,83642,2796,2022-01-10,"91,122"
-48807,-,$375000,3,3,0.0089,88 East Ave,San Antonio,Texas,78254,8.415117079889807e-05,-,77
-81824,s,$292677,5,3,0.29,63 Field Dr,Sumter,South Carolina,29154,3040,2021-12-22,80
-53556,for_sale,375000,5,3,0.3,611 Hill Pl,Wichita,Kansas,67207,2696,2021-11-12,7
-21986,sold,269900,4,three,0.17,614 Garden Ct,Pooler,Georgia,nan,2368,12/30/21,-1
-22562,for_sale,210000,3,8,0.15,"Farm Blvd, 272",Dearborn Heights,Michigan,48125,1960,10/14/10,"14,45"
-16829,for_sale,$1979000,6,6,0.29,400 Adams Ct,Port Washington,New York,11050,5828,2017-05-05,-1
-10726,for_sale,$425000,3,2,0.83,226 Square Rd,Brewster,Massachusetts,2631,1368,2001-07-06,-1
-56699,sold,249900,three,2,0.004,115 Roosevelt Pl,-,Missouri,-1,2037,2022-03-04,-1
-68269,Unknown,$389854,11,7,0.15,144 Terrace Blvd,Caldwell,Idaho,-1,1574,2021-12-17,108
-84529,for_sale,1075000,3,three,0.06,162 Mill St,-,CA,92782,1928,2011-11-14,40
-53138,sold,65400,3,3,0.014,47 Lincoln Rd,Bowie,Maryland,-1,2375,2022-01-04,20
--1,sold,279900,2,2,0.16,593 Elm Ave,Madison,Unknown,53704,1699,2021-12-17,"24,88"
-nan,sold,350000,3,2,0.9,693 Ridge Pl,Harpers Ferry,West Virginia,-1,3220,2021-12-10,"90,101"
-31355,sold,2365000,5,5,0.19,592 Meadow Ave,Edina,Minnesota,-1,4905,12/30/21,-1
-45807,for_sale,375000,3,2,6.69,157 Market Pl,-,Ohio,,1747,1991-04-17,-1
-103967,for_sale,635000,3,10,0.23,Unknown,Unknown,Unknown,8830,2000,02/28/19,-1
-nan,for_sale,375000,3,3,0.2,"East Ave, 88",-,Texas,-1,2346,,54
-,sold,350000,4,2,0.18,219 Field St,Houston,Texas,77021,1626,2022-03-31,15
--1,s,$292677,five,three,0.29,63 Field Dr,Unknown,South Carolina,,120.0,12/22/21,57
-22217,s,898000,three,2,0.21,52 North Blvd,Alhambra,CA,91803,1465,2022-04-08,94
-107955,for_sale,2199000,3,3,0.3,"First Dr, 20",Hingham,MA,2043,3650,1992-10-22,-1
-,sold,419000,5,4,0.3,864 Lake Ln,Irving,Texas,75060,3110,12/09/21,"11,117"
-81316,sold,749000,4,2,0.27,285 Center Ln,Unknown,Virginia,22030,2948,2021-12-10,21
-86329,for_sale,699000,4,5,14.25,347 Oak Ln,Wetumpka,,36092,4758,2015-02-19,-1
-56084,sold,20300,2,2,0.16,593 Elm Ave,Madison,Wisconsin,53704,1699,2021-12-17,"72,24"
-58970,sold,949900,3,4,0.23,828 Spring St,Kensington,Maryland,20895,27.0,2021-12-30,-1
--1,sold,89600,3,2,0.9,Unknown,Harpers Ferry,West Virginia,25425,3220,2021-12-10,"73,101"
-nan,sold,750000,8,4,0.19,"Park Blvd, 59",Meridian,Idaho,83642,2796,01/10/22,"53,122"
--1,sold,935000,5,5,0.16,-,Manteca,California,95337,3789,02/18/22,-1
-22217,sold,898000,3,two,0.21,"North Blvd, 52",Alhambra,California,91803,1465,-,81
-34888,sold,389000,3,2,0.22,383 Market St,Houston,Texas,77025,1696,12/16/21,-1
--1,for_sale,$599500,5,3,0.004,217 Church Ln,Calabash,North Carolina,28467,3058,2020-03-24,43
-108243,sold,499000,3,3,0.18,197 Meadow Ct,Kennewick,WA,99337,2289,2022-03-30,-1
-4630,for_sale,$519950,4,three,0.13,906 Mill Blvd,Huntsville,Alabama,35801,2778,2020-03-09,-1
-53173,s,350000,3,two,0.9,693 Ridge Pl,Harpers Ferry,West Virginia,25425,3220,12/10/21,"73,90"
-23017,sold,240000,3,2,0.2,"Square Ave, 922",Moses Lake,,98837,1670,2022-03-09,-1
-94681,s,$409900,2,8,2.12,655 First St,Stockbridge,Massachusetts,1262,1015,Unknown,29
-45913,sold,250000,3,two,0.86,"Washington Ave, 94",Queensbury,New York,12804,1883,2021-11-23,-1
-106177,for_sale,399500,3,8,0.27,"Wilson Ave, 411",Savannah,Georgia,31405,1760,2002-06-03,-1
-51274,for_sale,774000,6,4,0.35,668 Maple Ave,Saratoga Springs,Utah,84043,3625,04/19/19,17
-68269,sold,389854,three,two,0.15,144 Terrace Blvd,Caldwell,Idaho,83605,1574,2021-12-17,67
-109978,sold,760000,three,2,0.36,760 Madison Ln,Escondido,California,92026,1888,2021-12-22,-1
-81671,sold,325000,11,2,8.36,651 Vista Blvd,Plato,MO,65552,6.399219467401285e-05,2021-12-17,-1
-22792,sold,525000,11,two,0.59,"Adams Blvd, 977",Westford,Massachusetts,1886,2211,2021-11-19,25
-78167,sold,350000,3,two,0.15,"Sunset St, 324",Saint Louis Park,Minnesota,,1908,04/01/22,-1
-3479,sold,419000,5,11,0.3,864 Lake Ln,,TX,-1,3110,12/09/21,"11,84"
--1,for_sale,309000,3,2,0.0021,"View Ln, 820",Ojibwa,Wisconsin,,2025,Unknown,-1
-45936,for_sale,539900,3,2,0.21,293 Terrace Ct,Unknown,New York,13152,1918,06/15/15,-1
-,sold,355000,3,2,0.0034,-,Orlando,Florida,32828,1864,2021-12-08,"5,22"
--1,sold,750000,three,4,0.19,59 Park Blvd,Meridian,Idaho,83642,2796,2022-01-10,"91,53"
-78184,sold,385000,3,3,0.23,390 Madison Ct,North Port,Florida,-1,79.0,2022-03-18,-1
-79245,for_sale,599900,5,five,0.42,254 Princess Ave,Bettendorf,Iowa,52722,3765,2016-11-21,-1
-53177,-,105000,three,9,0.24,434 Court Ct,Woodward,Oklahoma,-1,2036,2007-06-29,-1
--1,for_sale,0,4,1,0.15,380 Valley Ln,Fairborn,Ohio,-1,4.003099173553719e-05,2020-08-03,39
-81311,sold,79700,5,4,0.22,827 Elm Ct,Leland,North Carolina,28451,3057,2022-04-22,-1
-82978,for_sale,55200,three,two,0.014,71 Hill Ln,Temple,Texas,76502,2344,-,-1
-,for_sale,150000,4,2,10.0,675 Circle Dr,Hulbert,OK,74441,1896,2018-04-19,26
+,sold,259900,-1,2,0.0039,391 Bridge Rd,Great Falls,Montana,59405,140.0,2021-11-09,-1
+97679,sold,440000,3,nan,0.07,"Lincoln Ave, 82",Charlotte,North Carolina,28210,2053,2022-03-07,-1
+59082,sold,249900,3,two,0.41,672 West Pl,Stuarts Draft,Virginia,24477,85.0,02/14/22,-1
+96817,sold,nan,4,-1,0.0088,33 Pine Ave,Alexandria,Virginia,22309,2075,02/04/22,9
+-1,sold,355000,8,2,0.19,-,Orlando,Florida,32828,1864,2021-12-08,"16,91"
+53556,for_sale,-1,5,3,-1,611 Hill Pl,Wichita,Kansas,67207,2696,2021-11-12,45
+57424,for_sale,999000,,12,0.15,"Princess Dr, 277",-,California,-1,1785,2022-04-22,-1
+3479,sold,,5,4,0.3,864 Lake Ln,Irving,Texas,75060,3110,Unknown,"88,64"
+10437,sold,350000,3,2,1.07,,Unknown,Georgia,30041,160.0,2022-02-23,-1
+,-,22400,four,3,0.06,33 Pine Ave,-,-,22309,2075,02/04/22,3
+-1,for_sale,210000,11,two,nan,272 Farm Blvd,Dearborn Heights,MI,48125,,2010-10-14,"35,47"
+16829,sold,350000,four,2,0.18,219 Field St,Houston,Texas,77021,-1,03/31/22,60
+,for_sale,$774000,6,4,0.35,668 Maple Ave,,Unknown,84043,3625,,82
+53673,for_sale,$112900,,2,0.5,169 Meadow St,Mount Pleasant,Michigan,48858,1524,,-1
+53138,sold,57000,three,three,-1,47 Lincoln Rd,Bowie,Maryland,,2375,2022-01-04,53
+,s,749000,,2,0.27,285 Center Ln,,Virginia,nan,0.0001057449494949495,-,65
+687,Unknown,355000,3,2,0.19,272 Terrace Ln,Orlando,Florida,-1,1864,2021-12-08,"4,91"
+56084,s,279900,2,two,-1,593 Elm Ave,Madison,Wisconsin,-1,1699,2021-12-17,"54,67"
+,,525000,3,2,0.59,977 Adams Blvd,Westford,Massachusetts,1886,-1,-,86
+52946,for_sale,150000,,two,10.0,675 Circle Dr,Unknown,OK,74441,11.0,2018-04-19,99
+54093,f,$265000,1,1,0.03,896 Sunset Ct,Marathon,Florida,33050,1.1514290633608815e-05,2004-09-20,-1
+92736,for_sale,33200,3,2,0.26,,Unknown,Oklahoma,74055,1144,2017-12-29,-1
+-1,sold,409900,2,1,2.12,655 First St,Stockbridge,Massachusetts,1262,1015,2021-11-29,79
+78460,,278900,3,-1,0.7,95 Meadow Ave,Unknown,Kentucky,42503,1923,2016-07-01,-1
+22721,sold,799999,4,9,0.15,900 Baker Ln,-,Massachusetts,,3422,2022-04-05,-1
+22671,s,90000,3,2,0.09,Unknown,Saint Louis,Missouri,63115,1152,2022-03-24,-1
+-1,sold,$98500,4,10,0.015,-,Fairview,Michigan,,2064,2022-04-14,37
+75073,for_sale,375000,3,1,0.1,766 Church St,Columbus,Ohio,-1,87.0,2020-07-06,-1
+32769,for_sale,9441500,2,3,27.59,,,CA,nan,986,2020-05-15,-1
+53377,sold,189900,4,1,0.28,,Saint Louis,Missouri,nan,1624,,40
+nan,-,115900,4,1,0.15,380 Valley Ln,Fairborn,OH,45324,1116,2020-08-03,96
+,for_sale,1075000,3,nan,0.013,162 Mill St,Tustin,California,,1928,-,52
+104873,for_sale,888000,4,4,0.0076,210 Church Ln,Houston,TX,77082,4156,2013-09-26,-1
+-1,for_sale,599500,7,3,0.37,,Calabash,North Carolina,28467,3058,2020-03-24,74
+55214,sold,509900,3,three,0.2,603 Princess St,-,California,-1,2383,2022-05-03,-1
+22562,for_sale,210000,,2,0.15,272 Farm Blvd,Unknown,Michigan,48125,1960,2010-10-14,"10,47"
+65293,for_sale,725000,3,3,1.04,715 Terrace Dr,Sparks,NV,89441,1876,2004-09-10,-1
+7689,s,98500,4,nan,0.0033,272 Broadway Ln,Fairview,Michigan,48621,2064,2022-04-14,26
+78075,sold,280000,2,1,0.0014,686 East Ln,Reno,NV,-1,851,2021-11-19,-1
+nan,-,317900,2,2,-1,"Bridge Pl, 168",Unknown,-,63122,2032,2021-11-23,-1
+,sold,$189900,nan,8,0.28,286 Bridge Ln,Unknown,Missouri,-1,5.825298438934803e-05,2022-01-18,29
+78200,sold,149000,3,-1,-1,688 Garfield Ct,Unknown,Ohio,44314,1560,,-1
+nan,sold,70100,three,four,0.19,"Park Blvd, 59",Meridian,Idaho,nan,2796,2022-01-10,"70,92"
+48807,for_sale,375000,3,3,0.2,88 East Ave,San Antonio,Texas,78254,2346,2004-05-14,59
+nan,sold,$292677,five,3,0.0084,63 Field Dr,Sumter,South Carolina,29154,-1,12/22/21,61
+-1,for_sale,$375000,5,3,0.3,"Hill Pl, 611",-,Kansas,67207,160.0,2021-11-12,5
+21986,sold,$269900,4,3,0.17,614 Garden Ct,Pooler,Georgia,31322,2368,2021-12-30,-1
+22562,for_sale,210000,3,2,0.15,"Farm Blvd, 272",Dearborn Heights,Michigan,nan,1960,2010-10-14,"10,35"
+16829,for_sale,12312100,6,6,0.29,"Adams Ct, 400",Port Washington,New York,11050,8953.0,,-1
+10726,Unknown,425000,3,two,,,Brewster,Massachusetts,nan,4.9070247933884296e-05,07/06/01,-1
+56699,sold,-1,3,2,0.29,"Roosevelt Pl, 115",Ellisville,Missouri,63011,2037,2022-03-04,-1
+68269,sold,389854,7,2,0.15,"Terrace Blvd, 144",,Idaho,83605,1574,2021-12-17,83
+84529,for_sale,1075000,3,3,-1,Unknown,Tustin,,92782,1928,2011-11-14,31
+,-,-1,3,-1,0.22,47 Lincoln Rd,Bowie,Unknown,20720,2375,2022-01-04,14
+56084,s,279900,two,2,0.16,-,Madison,Wisconsin,53704,1699,2021-12-17,"17,67"
+,s,350000,3,2,,693 Ridge Pl,Harpers Ferry,West Virginia,25425,,2021-12-10,"69,77"
+31355,s,2365000,five,5,0.19,592 Meadow Ave,Edina,Minnesota,55424,10440.0,2021-12-30,-1
+45807,for_sale,,3,2,6.69,157 Market Pl,New Middletown,Unknown,44442,1747,04/17/91,-1
+103967,for_sale,635000,3,8,0.0037,885 Washington Ave,Iselin,New Jersey,8830,2000,02/28/19,-1
+48807,f,375000,3,3,0.2,88 East Ave,-,TX,78254,2346,2004-05-14,43
+16829,-,$350000,4,2,0.0016,219 Field St,-,Texas,77021,-1,2022-03-31,11
+81824,sold,$292677,9,3,0.29,63 Field Dr,Sumter,South Carolina,29154,3040,12/22/21,44
+22217,sold,898000,3,2,0.006,52 North Blvd,Alhambra,California,nan,1465,2022-04-08,72
+107955,for_sale,2199000,3,3,0.3,20 First Dr,Hingham,MA,2043,3650,1992-10-22,-1
+3479,sold,419000,5,4,-1,864 Lake Ln,Irving,TX,75060,0.00011155589990817264,2021-12-09,"7,88"
+81316,s,749000,4,2,-1,Unknown,Unknown,Virginia,22030,2948,2021-12-10,15
+86329,f,699000,4,5,14.25,347 Oak Ln,-,Alabama,36092,4758,02/19/15,-1
+56084,sold,279900,2,2,0.16,"Elm Ave, 593",,-,-1,6.094323921028467e-05,2021-12-17,"54,17"
+58970,sold,949900,3,12,0.23,"Spring St, 828",Kensington,,,8.967516069788796e-05,12/30/21,-1
+-1,sold,350000,3,2,0.9,693 Ridge Pl,-,West Virginia,25425,3220,12/10/21,"55,77"
+nan,sold,750000,3,4,0.19,59 Park Blvd,Meridian,-,83642,2796,Unknown,"42,92"
+57424,sold,,5,5,0.16,409 Wood Ct,Manteca,California,95337,3789,2022-02-18,-1
+nan,sold,898000,three,2,0.21,"North Blvd, 52",Alhambra,-,91803,1465,04/08/22,62
+,Unknown,389000,3,2,0.22,383 Market St,Houston,TX,77025,1696,-,-1
+20385,-,599500,five,8,0.37,217 Church Ln,Calabash,North Carolina,28467,0.00010969065656565657,03/24/20,33
+108243,sold,86300,3,3,0.18,197 Meadow Ct,Kennewick,Washington,99337,,2022-03-30,-1
+,for_sale,519950,4,3,0.13,906 Mill Blvd,Huntsville,Alabama,nan,2778,2020-03-09,-1
+nan,sold,nan,-1,10,0.9,693 Ridge Pl,Harpers Ferry,West Virginia,,3220,2021-12-10,"55,69"
+23017,sold,240000,3,2,0.2,"Square Ave, 922",-,Washington,98837,nan,2022-03-09,-1
+94681,s,409900,2,1,,655 First St,Unknown,Massachusetts,,1015,2021-11-29,22
+nan,sold,250000,nan,2,0.86,94 Washington Ave,-,,12804,1883,-,-1
+106177,for_sale,399500,three,3,0.27,-,Savannah,Georgia,31405,6.313131313131313e-05,2002-06-03,-1
+51274,Unknown,774000,6,4,0.35,668 Maple Ave,Saratoga Springs,UT,84043,3625,2019-04-19,12
+nan,-,70400,3,2,-1,"Terrace Blvd, 144",,-,83605,1574,2021-12-17,51
+109978,sold,,9,nan,0.36,760 Madison Ln,Escondido,California,,1888,,-1
+81671,sold,65500,3,2,,651 Vista Blvd,Plato,MO,65552,,2021-12-17,-1
+22792,sold,525000,3,2,0.59,977 Adams Blvd,Westford,Massachusetts,1886,7.930871212121212e-05,2021-11-19,18
+78167,s,350000,3,-1,0.15,324 Sunset St,-,-,55426,1908,2022-04-01,-1
+-1,-,419000,12,4,0.0063,864 Lake Ln,Irving,Texas,nan,3110,2021-12-09,"7,64"
+19415,,309000,3,two,3.0,820 View Ln,Unknown,-,nan,2025,-,-1
+,for_sale,539900,3,,0.00071,293 Terrace Ct,,New York,-1,2.8,2015-06-15,-1
+687,sold,355000,,2,,272 Terrace Ln,Orlando,Florida,32828,1864,2021-12-08,"4,16"
+5145,sold,750000,3,4,0.012,"Park Blvd, 59",Meridian,ID,83642,110.0,2022-01-10,"70,42"
+78184,s,78600,10,3,0.23,390 Madison Ct,North Port,Florida,34286,1708,2022-03-18,-1
+79245,for_sale,nan,8,9,0.42,Unknown,Bettendorf,Iowa,,3765,2016-11-21,-1
+53177,for_sale,105000,3,2,0.24,434 Court Ct,Woodward,Unknown,73801,2036,2007-06-29,-1
+-1,for_sale,115900,4,1,0.0094,380 Valley Ln,Fairborn,OH,-1,-1,,30
+81311,sold,575000,5,four,0.22,827 Elm Ct,Leland,North Carolina,28451,3057,04/22/22,-1
+82978,for_sale,335000,7,2,0.18,Unknown,Temple,Texas,-1,2344,2013-05-01,-1
+52946,f,150000,4,10,10.0,675 Circle Dr,Hulbert,Oklahoma,74441,1896,2018-04-19,19

@@ -617,7 +617,7 @@ def make_data_imputation_dirty(df, perc):
         for idx, missing_value in zip(indices_to_replace, missing_values):
             df.loc[idx, col] = missing_value
 
-def make_single_value_data_imputation_dirty(value, col_name):
+def make_single_value_data_imputation_dirty(col_name):
 
     if col_name == 'status' or col_name == 'street' or col_name == 'city' or col_name == 'state' or col_name == 'prev_sold_date':
         return random.choice(["-", "Unknown", ""])
