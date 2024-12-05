@@ -17,9 +17,6 @@ df = pd.read_csv(clean_dataset_path)
 df['address'] = df['street'] + ', ' + df['city'] + ', ' + df['state']
 df.drop(columns=['street', 'city', 'state'], inplace=True)
 
-df['bedrooms_bathrooms'] = df['bed'].astype(str) + ', ' + df['bath'].astype(str)
-df.drop(columns=['bed', 'bath'], inplace=True)
-
 # create new columns
 names = [
     "James", "Betty", "Jack", "Jason", "Matthew", "Taylor", "Katherine", "Helen",
@@ -35,12 +32,11 @@ surnames = [
     "Allen", "Young", "King", "Scott", "Green", "Adams", "Baker"
 ]
 
-df['broker_name'] = [random.choice(names) for _ in range(len(df))]
+df['broker_first_name'] = [random.choice(names) for _ in range(len(df))]
 df['broker_surname'] = [random.choice(surnames) for _ in range(len(df))]
 
 # add useless columns
 df['currency'] = '$'
-df['house_size_uom'] = 'sqft'
 
 # splitting prev_sold_date column
 df['prev_sold_date'] = pd.to_datetime(df['prev_sold_date'])
@@ -52,11 +48,8 @@ df['prev_sold_year'] = df['prev_sold_date'].dt.year
 df.drop(columns=['prev_sold_date'], inplace=True)
 
 # ordering of the columns
-df = df[['brokered_by', 'broker_name', 'broker_surname', 'status', 'price', 'currency', 'bedrooms_bathrooms', 'acre_lot',
-         'address', 'zip_code', 'house_size', 'house_size_uom', 'prev_sold_month', 'prev_sold_day', 'prev_sold_year']]
-
-# renaming the columns
-df.rename(columns={'acre_lot': 'land', 'zip_code': 'code'}, inplace=True)
+df = df[['brokered_by', 'broker_first_name', 'broker_surname', 'status', 'price', 'currency', 'bed', 'bath', 'acre_lot',
+         'address', 'zip_code', 'house_size', 'prev_sold_month', 'prev_sold_day', 'prev_sold_year']]
 
 # directories
 dirty_datasets_dir = os.path.join(datasets_dir, 'dirty')

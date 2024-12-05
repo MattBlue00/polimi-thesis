@@ -45,8 +45,6 @@ dirty_datasets_dir = os.path.join(task_dir, 'dirty_duplicates')
 if not os.path.exists(datasets_dir):
     raise Exception("There is no 'dirty_duplicates' directory to work with. Consider running 'python -m scripts.data_deduplication_dataset' before running this script.")
 
-columns_to_clean = ["price", "bed", "bath", "acre_lot", "house_size"]
-
 for percentage in percentages:
     # Legge il dataset originale come stringa
     csv_file = f"data_cleaning_{int(percentage * 100)}.csv"
@@ -61,28 +59,11 @@ for percentage in percentages:
     header = rows[0]
     data = rows[1:]
 
-    # Individua gli indici delle colonne da correggere
-    header_parts = header.split(';')
-    column_indices_to_clean = [header_parts.index(col) for col in columns_to_clean if col in header_parts]
-
-    # Funzione per pulire i valori nelle righe
-    def clean_row(row):
-        parts = row.split(';')
-        for col_index in column_indices_to_clean:
-            if parts[col_index] == "Unknown":
-                parts[col_index] = "nan"
-            elif parts[col_index] == "-":
-                parts[col_index] = "-1"
-        return ';'.join(parts)
-
-    # Pulisce i dati
-    cleaned_data = [clean_row(row) for row in data]
-
     # Crea una lista di righe con gli indici originali
-    indexed_data = [(i, row) for i, row in enumerate(cleaned_data)]
+    indexed_data = [(i, row) for i, row in enumerate(data)]
 
     # Effettua lo shuffle casuale del dataset
-    random.seed(RANDOM_SEED+1)
+    random.seed(RANDOM_SEED)
     shuffled_data = random.sample(indexed_data, len(indexed_data))
 
     # Crea una mappatura tra vecchi indici e nuovi indici

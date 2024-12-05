@@ -15,16 +15,18 @@ def generate_random_name():
     last_names = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez", "Swift", "Hudson", "Alwin", "Haley", "Antonoff", "Carpenter"]
     return f"{random.choice(first_names)} {random.choice(last_names)}"
 
-def expand_abbreviation(street):
-    street = street.replace("St", "Street")
-    street = street.replace("Ave", "Avenue")
-    street = street.replace("Blvd", "Boulevard")
-    street = street.replace("Ln", "Lane")
-    street = street.replace("Rd", "Road")
-    street = street.replace("Dr", "Drive")
-    street = street.replace("Pl", "Place")
-    street = street.replace("Ct", "Court")
-    return street
+
+def invert_address(address: str) -> str:
+    """
+    Prende una stringa del tipo '345 Maple St' e restituisce 'Maple St, 345'.
+
+    :param address: Una stringa che rappresenta un indirizzo con un numero civico iniziale.
+    :return: Una stringa con il numero civico spostato alla fine, separato da una virgola.
+    """
+    parts = address.split(" ", 1)  # Divide la stringa in due parti: numero civico e resto.
+    if len(parts) < 2:
+        raise ValueError("Address must be a civic number and a street name.")
+    return f"{parts[1]}, {parts[0]}"
 
 european_cities = ["Paris", "London", "Rome", "Berlin", "Madrid", "Amsterdam", "Vienna", "Barcelona", "Prague", "Budapest", "Bruxelles", "Lisbon", "Stockholm"]
 
@@ -199,7 +201,7 @@ def make_dirty(df, percentage, help_dir):
     # replaces some street abbreviations with the long version (e.g. blvd -> boulevard)
     for idx in generate_random_indices(df, percentage):
         original_street = df.at[idx, 'street']
-        df.at[idx, 'street'] = expand_abbreviation(original_street)
+        df.at[idx, 'street'] = invert_address(original_street)
 
     # replaces some american cities with random european ones
     for idx in generate_random_indices(df, percentage):
@@ -296,7 +298,7 @@ def make_data_standardization_dirty(df, percentage):
     # replaces some street abbreviations with the long version (e.g. blvd -> boulevard)
     for idx in generate_random_indices(df, percentage):
         original_street = df.at[idx, 'street']
-        df.at[idx, 'street'] = expand_abbreviation(original_street)
+        df.at[idx, 'street'] = invert_address(original_street)
 
     # replaces some state names with their official abbreviation
     for idx in generate_random_indices(df, percentage):
@@ -321,6 +323,56 @@ def make_data_standardization_dirty(df, percentage):
             df.at[idx, 'prev_sold_date'] = modified_date_str
 
     print("Done!")
+
+
+def make_single_value_data_standardization_dirty(value, col_name):
+
+    if col_name == 'status':
+        return value[0]
+
+    elif col_name == 'price':
+        return f"${value}"
+
+    elif col_name == 'bed' or col_name == 'bath':
+
+        if value == 1:
+            return "one"
+
+        elif value == 2:
+            return "two"
+
+        elif value == 3:
+            return "three"
+
+        elif value == 4:
+            return "four"
+
+        elif value == 5:
+            return "five"
+
+        elif value == 6:
+            return "six"
+
+        else:
+            raise ValueError("Value " + str(value) + " is not a valid value for bed and bath.")
+
+    elif col_name == 'street':
+        return invert_address(value)
+
+    elif col_name == 'state':
+        return abbreviate_state(value)
+
+    elif col_name == 'house_size':
+        return value / 27878400
+
+    elif col_name == 'prev_sold_date':
+        # Convert the original date string to a datetime object
+        original_date = datetime.strptime(str(value), '%Y-%m-%d')
+        # Format the date as mm/dd/yy
+        return original_date.strftime('%m/%d/%y')
+
+    else:
+        raise ValueError("Value " + str(value) + " is not a valid value.")
 
 
 def replace_values(df, column, percentage):
@@ -487,6 +539,50 @@ def make_outlier_detection_dirty(df, perc):
     ]
     df.loc[indices_to_replace_high, 'house_size'] = house_size_outliers_high
 
+
+def make_single_value_outlier_detection_dirty(value, col_name, df):
+
+    if col_name == 'price':
+
+        min_value = df['price'].min()
+        max_value = df['price'].max()
+        if abs(value - min_value) < abs(max_value - value):
+            return random.randint(0, int(min_value // 100)) * 100
+        else:
+            return random.randint(int(max_value // 100), int(max_value * 10 // 100)) * 100
+
+    elif col_name == 'bed':
+
+        max_value = df['bed'].max()
+        return random.randint(max_value + 1, max_value * 2)
+
+    elif col_name == 'bath':
+
+        max_value = df['bath'].max()
+        return random.randint(max_value + 1, max_value * 2)
+
+    elif col_name == 'acre_lot':
+
+        min_value = df['acre_lot'].min()
+        max_value = df['acre_lot'].max()
+        if abs(value - min_value) < abs(max_value - value):
+            return round_to_significant_figures(random.uniform(0, min_value / 2), sig_figs=2)
+        else:
+            return round_to_significant_figures(random.uniform(max_value * 1.25, max_value * 2), sig_figs=2)
+
+    elif col_name == 'house_size':
+
+        min_value = df['house_size'].min()
+        max_value = df['house_size'].max()
+        if abs(value - min_value) < abs(max_value - value):
+            return round_to_significant_figures(random.uniform(1, min_value / 2), sig_figs=2)
+        else:
+            return round_to_significant_figures(random.uniform(max_value * 1.25, max_value * 2), sig_figs=4)
+
+    else:
+        raise ValueError('Unknown col_name {}.'.format(col_name))
+
+
 def make_data_imputation_dirty(df, perc):
     # number of rows to replace
     n_rows_to_replace = int(len(df) * perc)
@@ -520,3 +616,12 @@ def make_data_imputation_dirty(df, perc):
         # Replacing the selected rows with corresponding missing values
         for idx, missing_value in zip(indices_to_replace, missing_values):
             df.loc[idx, col] = missing_value
+
+def make_single_value_data_imputation_dirty(col_name):
+
+    if col_name == 'status' or col_name == 'street' or col_name == 'city' or col_name == 'state' or col_name == 'prev_sold_date':
+        return random.choice(["-", "Unknown", ""])
+    elif col_name == 'brokered_by' or col_name == 'price' or col_name == 'bed' or col_name == 'bath' or col_name == 'acre_lot' or col_name == 'zip_code' or col_name == 'house_size':
+        return random.choice([-1, "nan", ""])
+    else:
+        raise ValueError(f"Unknown column: {col_name}.")

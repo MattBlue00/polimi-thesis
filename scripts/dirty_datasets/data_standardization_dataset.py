@@ -30,7 +30,8 @@ if not os.path.exists(task_dir):
     os.makedirs(task_dir)
 
 for percentage in percentages:
-    df_dirty = make_data_standardization_dirty(df_clean.copy(), percentage)
+    df_dirty = df_clean.copy()
+    make_data_standardization_dirty(df_dirty, percentage)
     csv_file_path = os.path.join(task_dir, 'data_standardization_' + str(int(percentage * 100)) + '.csv')
     df_dirty.to_csv(csv_file_path, index=False)
     print("Data standardization dataset (" + str(int(percentage * 100)) + "%) successfully saved in: " + csv_file_path)
