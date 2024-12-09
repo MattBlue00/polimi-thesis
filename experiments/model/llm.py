@@ -112,7 +112,7 @@ class Llama(BaseLLM):
         self.pipeline = transformers.pipeline(
             "text-generation",
             model=self.model_name,
-            model_kwargs={"torch_dtype": torch.float32},
+            #model_kwargs={"torch_dtype": torch.float32},
             device_map="auto"
         )
 
@@ -130,12 +130,13 @@ class Llama(BaseLLM):
         messages.append({"role": "user", "content": prompt.user_message})
 
         with torch.cuda.amp.autocast(enabled=False):
+            #torch.cuda.empty_cache()
             outputs = self.pipeline(
                 messages,
                 do_sample=False,
                 temperature=None,
                 top_p=None,
-                max_new_tokens=16384
+                max_new_tokens=1024
             )
         return outputs[0]["generated_text"][-1]
 
