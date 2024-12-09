@@ -113,8 +113,7 @@ class Llama(BaseLLM):
             "text-generation",
             model=self.model_name,
             model_kwargs={"torch_dtype": torch.bfloat16},
-            device_map="auto",
-            use_auth_token=token
+            device_map="auto"
         )
 
         print("Llama is active on device:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")
