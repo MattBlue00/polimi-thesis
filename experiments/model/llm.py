@@ -130,7 +130,7 @@ class Llama(BaseLLM):
         messages.append({"role": "user", "content": prompt.user_message})
 
         with torch.cuda.amp.autocast(enabled=False):
-            #torch.cuda.empty_cache()
+            torch.cuda.empty_cache()
             outputs = self.pipeline(
                 messages,
                 do_sample=False,
