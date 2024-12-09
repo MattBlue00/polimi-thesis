@@ -5,11 +5,9 @@ openai
 google-generativeai
 python-dotenv
 mistralai
-transformers==4.9.0
-torch==1.9.0
-torchvision==0.10.0
-torchaudio==0.9.0
+transformers
+torch
 anthropic
 tiktoken
-accelerate==0.4.0
+accelerate
 huggingface_hub
