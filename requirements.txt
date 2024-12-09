@@ -12,3 +12,4 @@ torchaudio==0.9.0
 anthropic
 tiktoken
 accelerate==0.4.0
+huggingface_hub
