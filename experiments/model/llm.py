@@ -116,8 +116,8 @@ class Llama(BaseLLM):
             device_map="auto"
         )
 
-        print("Torch version: " + str(torch.__version__))  # Verifica la versione
-        print("CUDA available? " + str(torch.cuda.is_available()))  # Verifica se CUDA è disponibile
+        print("Torch version: " + str(torch.__version__))
+        print("CUDA available? " + str(torch.cuda.is_available()))
         print("Llama is active on device:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")
 
     def get_response(self, prompt) -> str:
@@ -132,6 +132,7 @@ class Llama(BaseLLM):
         outputs = self.pipeline(
             messages,
             temperature=0.0,
+            max_new_tokens=16384
         )
         return outputs[0]["generated_text"][-1]
 
