@@ -136,7 +136,7 @@ class Llama(BaseLLM):
                 do_sample=False,
                 temperature=None,
                 top_p=None,
-                max_new_tokens=16
+                max_new_tokens=4096
             )
         return outputs[0]["generated_text"][-1]
 
