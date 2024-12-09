@@ -112,7 +112,7 @@ class Llama(BaseLLM):
         self.pipeline = transformers.pipeline(
             "text-generation",
             model=self.model_name,
-            model_kwargs={"torch_dtype": torch.bfloat32},
+            model_kwargs={"torch_dtype": torch.float32},
             device_map="auto"
         )
 
