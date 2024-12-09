@@ -132,6 +132,8 @@ class Llama(BaseLLM):
         outputs = self.pipeline(
             messages,
             do_sample=False,
+            temperature=None,
+            top_p=None,
             max_new_tokens=16384
         )
         return outputs[0]["generated_text"][-1]
