@@ -1,0 +1,92 @@
+Data Profiling
+==============
+
+### Overview
+
+Data profiling is the process of analyzing and summarizing the distribution of values within a dataset to understand the characteristics of the data. This section provides an overview of the data profiling results for the given dataset.
+
+### Dataset Statistics
+
+* Number of rows: 100
+* Number of columns: 13
+* Data types:
+	+ Integers: 4 (brokered_by, bed, bath, acre_lot)
+	+ Floats: 4 (price, house_size, zip_code, prev_sold_date)
+	+ Strings: 5 (status, street, city, state, house_size)
+
+### Column-wise Statistics
+
+1. **brokered_by**
+	* Unique values: 34
+	* Missing values: 24
+	* Data type: integer
+	* Summary: This column appears to contain a unique identifier for each property, but there are many missing values.
+2. **status**
+	* Unique values: 7 (sold, for_sale, Unknown, f, s, -)
+	* Missing values: 13
+	* Data type: string
+	* Summary: This column represents the status of each property, with 'sold' and 'for_sale' being the most common values.
+3. **price**
+	* Unique values: 73
+	* Missing values: 10
+	* Data type: float
+	* Summary: This column contains the price of each property, ranging from $7,300 to $1,500,000.
+4. **bed**
+	* Unique values: 22 (1, 2, 3, 4, 5, 7, 8, 9, 11, one, two, three, four, five, six, eight, nine, ten, eleven)
+	* Missing values: 21
+	* Data type: string
+	* Summary: This column represents the number of bedrooms in each property, with both numeric and categorical values.
+5. **bath**
+	* Unique values: 15 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, one, two, three, eight, ten)
+	* Missing values: 24
+	* Data type: string
+	* Summary: This column represents the number of bathrooms in each property, with both numeric and categorical values.
+6. **acre_lot**
+	* Unique values: 44
+	* Missing values: 20
+	* Data type: float
+	* Summary: This column contains the size of the lot for each property, ranging from 0.0001 to 48.0 acres.
+7. **street**
+	* Unique values: 83
+	* Missing values: 10
+	* Data type: string
+	* Summary: This column contains the street address of each property.
+8. **city**
+	* Unique values: 42
+	* Missing values: 25
+	* Data type: string
+	* Summary: This column contains the city of each property.
+9. **state**
+	* Unique values: 23 (Unknown, Alabama, California, Florida, Idaho, Illinois, Indiana, Kentucky, Maryland, Massachusetts, Michigan, Minnesota, Missouri, Montana, New Jersey, North Carolina, Ohio, Oklahoma, Pennsylvania, South Carolina, Tennessee, Texas, Unknown, Virginia, Washington, Wisconsin)
+	* Missing values: 25
+	* Data type: string
+	* Summary: This column contains the state of each property, with many missing values.
+10. **zip_code**
+	* Unique values: 43
+	* Missing values: 28
+	* Data type: integer
+	* Summary: This column contains the zip code of each property, with many missing values.
+11. **house_size**
+	* Unique values: 54
+	* Missing values: 20
+	* Data type: float
+	* Summary: This column contains the size of each property, ranging from 60 to 12,000 square feet.
+12. **prev_sold_date**
+	* Unique values: 63
+	* Missing values: 14
+	* Data type: string
+	* Summary: This column contains the date each property was previously sold, ranging from 2004 to 2022.
+
+### Data Quality Issues
+
+1. **Missing values**: Many columns have missing values, which can affect data analysis and modeling.
+2. **Inconsistent data types**: Some columns contain both numeric and categorical values, which can cause issues with data processing and analysis.
+3. **Outliers**: Some values in the `price` and `acre_lot` columns appear to be outliers, which can affect data modeling and analysis.
+
+### Recommendations
+
+1. **Handle missing values**: Impute or remove missing values to improve data quality and analysis.
+2. **Standardize data types**: Convert categorical values to numeric values or vice versa to improve data processing and analysis.
+3. **Remove outliers**: Identify and remove outliers to improve data modeling and analysis.
+4. **Data transformation**: Consider transforming some columns (e.g., `price`, `acre_lot`) to improve data distribution and analysis.
+5. **Data normalization**: Consider normalizing some columns (e.g., `price`, `house_size`) to improve data comparison and analysis.

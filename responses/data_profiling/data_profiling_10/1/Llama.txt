@@ -1,0 +1,96 @@
+Data profiling involves analyzing and summarizing the characteristics of a dataset. Here's a profiling of the provided dataset:
+
+### 1. Data Overview
+
+* **Number of rows**: 100
+* **Number of columns**: 12
+* **Columns**:
+	+ brokered_by
+	+ status
+	+ price
+	+ bed
+	+ bath
+	+ acre_lot
+	+ street
+	+ city
+	+ state
+	+ zip_code
+	+ house_size
+	+ prev_sold_date
+
+### 2. Data Types
+
+* **Integer columns**:
+	+ bed (77 unique values)
+	+ bath (27 unique values)
+	+ brokered_by (50 unique values)
+* **Float columns**:
+	+ price (88 unique values)
+	+ acre_lot (41 unique values)
+	+ house_size (64 unique values)
+* **String columns**:
+	+ status (6 unique values)
+	+ street (93 unique values)
+	+ city (70 unique values)
+	+ state (34 unique values)
+	+ zip_code (52 unique values)
+* **Date column**:
+	+ prev_sold_date (50 unique values)
+
+### 3. Missing Values
+
+* **Columns with missing values**:
+	+ brokered_by (13 missing values)
+	+ price (2 missing values)
+	+ bed (3 missing values)
+	+ bath (2 missing values)
+	+ acre_lot (2 missing values)
+	+ street (1 missing value)
+	+ city (1 missing value)
+	+ state (2 missing values)
+	+ zip_code (7 missing values)
+	+ house_size (3 missing values)
+	+ prev_sold_date (5 missing values)
+
+### 4. Data Distribution
+
+* **Price distribution**:
+	+ Min: $11,400
+	+ Max: $2,359,000
+	+ Mean: $442,000
+	+ Median: $349,900
+* **Acre lot distribution**:
+	+ Min: -1
+	+ Max: 27.59
+	+ Mean: 0.31
+	+ Median: 0.18
+* **House size distribution**:
+	+ Min: 0
+	+ Max: 6.879878328741965e-05
+	+ Mean: 1,944
+	+ Median: 1,908
+
+### 5. Data Quality Issues
+
+* **Inconsistent data**:
+	+ Some values in the 'bed' and 'bath' columns are represented as strings (e.g., 'four', 'two') instead of integers.
+	+ Some values in the 'price' column are represented as strings (e.g., '$949900') instead of floats.
+	+ Some values in the 'prev_sold_date' column are in different formats (e.g., '2021-12-10', '12/30/21', '03/24/22').
+* **Invalid data**:
+	+ Some values in the 'acre_lot' column are less than 0 (e.g., -1).
+	+ Some values in the 'house_size' column are extremely small (e.g., 6.879878328741965e-05).
+
+### 6. Potential Next Steps
+
+* **Data cleaning**:
+	+ Convert inconsistent data to the correct data type.
+	+ Handle missing values.
+	+ Remove invalid data or replace with valid values.
+* **Data normalization**:
+	+ Normalize the 'price' column to remove dollar signs and commas.
+	+ Normalize the 'prev_sold_date' column to a standard format (e.g., 'YYYY-MM-DD').
+* **Data transformation**:
+	+ Consider transforming the 'price' column to a logarithmic scale to reduce skewness.
+	+ Consider creating new columns based on existing columns (e.g., 'price per square foot').
+
+Please note that the above analysis is based on a general understanding of the dataset. Depending on the specific requirements and context of the project, additional analyses may be necessary.

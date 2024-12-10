@@ -22,7 +22,7 @@ if not os.path.exists(responses_dir):
 
 for task in tasks:
 
-    if task.name != "data_wrangling" : #fixme
+    if task.name != "data_profiling": #fixme
         continue
 
     print("Starting task " + task.name)
@@ -50,7 +50,8 @@ for task in tasks:
             )
         ]
 
-    else: datasets = load_dirty_datasets(task_dir)
+    else:
+        datasets = load_dirty_datasets(task_dir)
 
     task_dir = os.path.join(responses_dir, task.name)
 
@@ -75,6 +76,7 @@ for task in tasks:
 
             prompt_copy = prompt.copy()
             prompt_copy.user_message = prompt_copy.user_message.replace("{{csv_text}}", dataset.content_string)
+
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 futures = {}

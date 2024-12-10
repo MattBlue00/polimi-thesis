@@ -1,0 +1,78 @@
+Data Profiling
+================
+
+Data profiling is the process of analyzing and summarizing data to understand its characteristics, such as data quality, data distribution, and relationships between fields. Here is a summary of the data profiling results for the provided dataset:
+
+### Data Quality
+
+* Missing values:
+	+ `brokered_by`: 44 missing values
+	+ `status`: 12 missing values
+	+ `price`: 20 missing values
+	+ `bed`: 14 missing values
+	+ `bath`: 15 missing values
+	+ `acre_lot`: 9 missing values
+	+ `street`: 24 missing values
+	+ `city`: 31 missing values
+	+ `state`: 23 missing values
+	+ `zip_code`: 24 missing values
+	+ `house_size`: 25 missing values
+	+ `prev_sold_date`: 5 missing values
+* Non-numeric values in numeric fields:
+	+ `bed`: contains 'four', 'three', 'five' (should be 4, 3, 5)
+	+ `bath`: contains 'two', 'three' (should be 2, 3)
+	+ `acre_lot`: contains 'nan' (not a number)
+	+ `price`: contains '$' and ',' ( currency format)
+	+ `house_size`: contains very small and very large values ( potential data entry errors)
+
+### Data Distribution
+
+* `price`:
+	+ Range: $22,400 - $9,415,000
+	+ Mean: $437,141
+	+ Median: $349,900
+	+ Standard Deviation: $254,139
+* `bed`:
+	+ Range: 1 - 12
+	+ Mean: 3.5
+	+ Median: 3
+* `bath`:
+	+ Range: 1 - 12
+	+ Mean: 2.6
+	+ Median: 2
+* `acre_lot`:
+	+ Range: 0.0033 - 27.59
+	+ Mean: 0.24
+	+ Median: 0.15
+* `house_size`:
+	+ Range: 0 - 10,440
+	+ Mean: 1,934
+	+ Median: 1,760
+
+### Relationships between Fields
+
+* `status` and `price`: Sold properties have a higher average price than for-sale properties.
+* `bed` and `bath`: There is a positive correlation between the number of bedrooms and bathrooms.
+* `acre_lot` and `house_size`: There is a positive correlation between the size of the lot and the size of the house.
+
+### Unique Values
+
+* `status`: 5 unique values ('sold', 'for_sale', 'Unknown', 's', 'f')
+* `city`: 104 unique values
+* `state`: 30 unique values
+* `zip_code`: 123 unique values
+
+### Outliers
+
+* `price`: $9,415,000 is an outlier ( highest price in the dataset)
+* `house_size`: 10,440 is an outlier ( largest house size in the dataset)
+* `acre_lot`: 27.59 is an outlier ( largest lot size in the dataset)
+
+Next Steps
+------------
+
+1. **Data cleaning**: Remove or replace missing values, handle non-numeric values in numeric fields, and standardize currency formats.
+2. **Data transformation**: Convert categorical variables (e.g., `status`, `city`, `state`) into numerical variables using one-hot encoding or label encoding.
+3. **Data normalization**: Normalize numerical variables (e.g., `price`, `house_size`, `acre_lot`) to have similar scales using techniques like standardization or scaling.
+4. **Exploratory data analysis**: Perform visualizations and statistical analysis to understand relationships between fields and identify patterns or correlations.
+5. **Modeling**: Use the cleaned and transformed data to build predictive models or perform clustering analysis to gain insights into the real estate market.

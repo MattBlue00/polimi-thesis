@@ -1,4 +1,3 @@
-import subprocess
 from abc import ABC, abstractmethod
 
 import anthropic
@@ -7,10 +6,7 @@ from mistralai import Mistral as MistralClient
 import google.generativeai as genai
 import os
 
-import transformers
-import torch
-
-from scripts.utils.path import get_directory_from_root
+from groq import Groq
 
 class BaseLLM(ABC):
 
@@ -107,29 +103,12 @@ class Llama(BaseLLM):
 
     def __init__(self, model_name):
         super().__init__(name="Llama", model_name=model_name)
-        model_path = get_directory_from_root(__file__, 'models')
-
-        if not os.path.exists(model_path):
-            os.makedirs(model_path)
-
-        token = os.getenv('HUGGING_FACE_TOKEN')
-        command = f"echo {token} | huggingface-cli login"
-        try:
-            print("Logging into HuggingFace...")
-            subprocess.run(command, check=True, shell=True)
-
-        except subprocess.CalledProcessError as e:
-            print(f"Error while logging into HuggingFace: {e}")
-
-        self.pipeline = transformers.pipeline(
-            "text-generation",
-            model=self.model_name,
-            model_kwargs={"torch_dtype": torch.bfloat16},
-            device_map="auto",
-            cache_dir=model_path
-        )
 
     def get_response(self, prompt) -> str:
+
+        client = Groq(
+            api_key=os.getenv("GROQ_API_KEY"),
+        )
 
         messages = []
 
@@ -138,11 +117,14 @@ class Llama(BaseLLM):
 
         messages.append({"role": "user", "content": prompt.user_message})
 
-        outputs = self.pipeline(
-            messages,
-            temperature=0.0,
+        chat_completion = client.chat.completions.create(
+            messages=messages,
+            model=self.model_name,
+            max_tokens=32768,
+            temperature=0
         )
-        return outputs[0]["generated_text"][-1]
+
+        return chat_completion.choices[0].message.content
 
 
 class Claude(BaseLLM):
