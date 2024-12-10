@@ -163,6 +163,8 @@ class TableLlama(BaseLLM):
         formatted_prompt += f"User: {prompt.user_message}\n"
 
         inputs = self.tokenizer(formatted_prompt, return_tensors="pt")
+        device = self.model.device
+        inputs = inputs.to(device)
         outputs = self.model.generate(inputs.input_ids, max_new_tokens=4096)
         return self.tokenizer.decode(outputs[0])
 
