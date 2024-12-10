@@ -13,8 +13,11 @@ llms = [
         #Mistral(
         #  model_name="mistral-large-2407"
         #),
-        Llama(
-            model_name="meta-llama/Meta-Llama-3.1-8B-Instruct"
+        #Llama(
+        #    model_name="meta-llama/Meta-Llama-3.1-8B-Instruct"
+        #),
+        TableLlama(
+            model_name="osunlp/TableLlama"
         )
     ]
 

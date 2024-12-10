@@ -141,6 +141,40 @@ class Llama(BaseLLM):
         return outputs[0]["generated_text"][-1]
 
 
+class TableLlama(BaseLLM):
+
+    def __init__(self, model_name):
+        super().__init__(name="TableLlama", model_name=model_name)
+
+        self.pipeline = transformers.pipeline(
+            "text-generation",
+            model=self.model_name,
+            #model_kwargs={"torch_dtype": torch.float32},
+            device_map="auto"
+        )
+
+        print("Torch version: " + str(torch.__version__))
+        print("CUDA available? " + str(torch.cuda.is_available()))
+        print("Llama is active on device:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")
+
+    def get_response(self, prompt) -> str:
+
+        formatted_prompt = ""
+        if prompt.system_message:
+            formatted_prompt += f"System: {prompt.system_message}\n"
+        formatted_prompt += f"User: {prompt.user_message}\n"
+
+        #torch.cuda.empty_cache()
+        outputs = self.pipeline(
+            formatted_prompt,
+            do_sample=False,
+            temperature=None,
+            top_p=None,
+            max_new_tokens=4096
+        )
+        return outputs[0]["generated_text"][-1]
+
+
 class Claude(BaseLLM):
 
     def __init__(self, model_name: str) -> None:
