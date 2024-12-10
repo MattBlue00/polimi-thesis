@@ -1,4 +1,4 @@
-from experiments.model.llm import GPT, Gemini, Mistral, Llama, Claude
+from experiments.model.llm import GPT, Gemini, Mistral, Llama, Claude, TableLlama
 
 llms = [
         #GPT(
