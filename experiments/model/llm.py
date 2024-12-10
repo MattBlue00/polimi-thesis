@@ -8,6 +8,8 @@ import os
 
 import transformers
 import torch
+from transformers import LlamaTokenizer, LlamaForCausalLM
+
 
 class BaseLLM(ABC):
 
@@ -146,12 +148,8 @@ class TableLlama(BaseLLM):
     def __init__(self, model_name):
         super().__init__(name="TableLlama", model_name=model_name)
 
-        self.pipeline = transformers.pipeline(
-            "text-generation",
-            model=self.model_name,
-            #model_kwargs={"torch_dtype": torch.float32},
-            device_map="auto"
-        )
+        self.tokenizer = LlamaTokenizer.from_pretrained(model_name, use_fast=False)
+        self.model = LlamaForCausalLM.from_pretrained(model_name, device_map="auto")
 
         print("Torch version: " + str(torch.__version__))
         print("CUDA available? " + str(torch.cuda.is_available()))
@@ -164,15 +162,9 @@ class TableLlama(BaseLLM):
             formatted_prompt += f"System: {prompt.system_message}\n"
         formatted_prompt += f"User: {prompt.user_message}\n"
 
-        #torch.cuda.empty_cache()
-        outputs = self.pipeline(
-            formatted_prompt,
-            do_sample=False,
-            temperature=None,
-            top_p=None,
-            max_new_tokens=4096
-        )
-        return outputs[0]["generated_text"][-1]
+        inputs = self.tokenizer(formatted_prompt, return_tensors="pt")
+        outputs = self.model.generate(inputs.input_ids, max_new_tokens=50)
+        return self.tokenizer.decode(outputs[0])
 
 
 class Claude(BaseLLM):
