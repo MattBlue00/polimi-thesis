@@ -8,7 +8,9 @@ import os
 
 import transformers
 import torch
-from transformers import LlamaTokenizer, LlamaForCausalLM
+from transformers import LlamaTokenizer, LlamaForCausalLM, BitsAndBytesConfig
+
+from scripts.utils.path import get_directory_from_root
 
 
 class BaseLLM(ABC):
@@ -148,12 +150,23 @@ class TableLlama(BaseLLM):
     def __init__(self, model_name):
         super().__init__(name="TableLlama", model_name=model_name)
 
-        self.tokenizer = LlamaTokenizer.from_pretrained(model_name, use_fast=False)
-        self.model = LlamaForCausalLM.from_pretrained(model_name, device_map="auto")
+        # Creazione del modello e tokenizer
+        model_dir = get_directory_from_root(__file__, "models")
+        os.makedirs(model_dir, exist_ok=True)
 
-        print("Torch version: " + str(torch.__version__))
-        print("CUDA available? " + str(torch.cuda.is_available()))
-        print("Llama is active on device:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")
+        if torch.backends.mps.is_available():
+            device = torch.device("mps")  # Metal Performance Shaders
+        else:
+            device = torch.device("cpu")  # Fallback alla CPU
+            print("MPS non disponibile, utilizzo CPU.")
+
+        self.tokenizer = LlamaTokenizer.from_pretrained(model_name, use_fast=False)
+        self.model = LlamaForCausalLM.from_pretrained(
+            model_name,  # Usa float16 per migliorare le prestazioni
+            torch_dtype=torch.float16,  # Usa float16 per migliorare le prestazioni
+            device_map=None,
+            offload_folder=model_dir
+        ).to(device)
 
     def get_response(self, prompt) -> str:
 
@@ -162,7 +175,7 @@ class TableLlama(BaseLLM):
             formatted_prompt += f"System: {prompt.system_message}\n"
         formatted_prompt += f"User: {prompt.user_message}\n"
 
-        inputs = self.tokenizer(formatted_prompt, return_tensors="pt")
+        inputs = self.tokenizer(formatted_prompt, return_tensors="pt").to(self.model.device)
         device = self.model.device
         inputs = inputs.to(device)
         outputs = self.model.generate(inputs.input_ids, max_new_tokens=4096)
