@@ -4,6 +4,7 @@ setup()
 
 import os
 import pandas as pd
+import numpy as np
 from scripts.utils.path import get_directory_from_root
 
 # paths
@@ -28,17 +29,31 @@ repeated_cities = (target_cities * (n // len(target_cities) + 1))[:n]
 # Aggiornamento delle colonne city, state e zip_code
 df['city'], df['state'], df['zip_code'] = zip(*repeated_cities)
 
-# Define x and y coefficients for each city
+# Define a single x and y coefficient for all cities
 coefficients = {
-    "Houston": {"x": 0.0001, "y": 0.1},
-    "Saratoga Springs": {"x": 0.00012, "y": 0.11},
-    "Orlando": {"x": 0.00009, "y": 0.095},
-    "Los Angeles": {"x": 0.00008, "y": 0.105}
+    "x": 0.0001,
+    "y": 0.1
 }
 
-# Apply coefficients based on city
-df['acre_lot'] = df.apply(lambda row: row['price'] * coefficients[row['city']]['x'], axis=1)
-df['house_size'] = df.apply(lambda row: int(row['price'] * coefficients[row['city']]['y']), axis=1)
+# Randomly select 10% of rows to remain unchanged
+np.random.seed(RANDOM_SEED)
+unchanged_indices = np.random.choice(df.index, size=int(0.1 * n), replace=False)
+
+# Create new columns for acre_lot and house_size with conditions
+acre_lot = []
+house_size = []
+
+for idx, row in df.iterrows():
+    if idx in unchanged_indices:
+        acre_lot.append(row.get('acre_lot', np.nan))  # Preserve existing value or NaN if missing
+        house_size.append(row.get('house_size', np.nan))
+    else:
+        acre_lot.append(row['price'] * coefficients['x'])
+        house_size.append(int(row['price'] * coefficients['y']))
+
+# Update the dataframe
+df['acre_lot'] = acre_lot
+df['house_size'] = house_size
 
 # Shuffle del dataset
 df_shuffled = df.sample(frac=1, random_state=RANDOM_SEED+1).reset_index(drop=True)
@@ -52,6 +67,6 @@ os.makedirs(data_wrangling_dir, exist_ok=True)
 
 # save to CSV
 wrangling_path = os.path.join(data_wrangling_dir, f'dependency_discovery.csv')
-df.to_csv(wrangling_path, index=False)
+df_shuffled.to_csv(wrangling_path, index=False)
 
 print(f"Dependency discovery dataset was created.")
