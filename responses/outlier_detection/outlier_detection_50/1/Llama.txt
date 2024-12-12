@@ -1,0 +1,66 @@
+To perform outlier detection on the given dataset, we'll use the Interquartile Range (IQR) method and the Z-score method. We'll focus on the numerical columns: `price`, `bed`, `bath`, `acre_lot`, `house_size`.
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load the dataset
+data = {
+    # ... your data here ...
+}
+
+df = pd.DataFrame(data)
+
+# Select numerical columns
+numerical_cols = ['price', 'bed', 'bath', 'acre_lot', 'house_size']
+
+# IQR method
+for col in numerical_cols:
+    Q1 = df[col].quantile(0.25)
+    Q3 = df[col].quantile(0.75)
+    IQR = Q3 - Q1
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+    outliers = df[(df[col] < lower_bound) | (df[col] > upper_bound)]
+    print(f"Outliers in {col} using IQR method: {len(outliers)}")
+
+# Z-score method
+from scipy import stats
+for col in numerical_cols:
+    z_scores = np.abs(stats.zscore(df[col]))
+    outliers = df[z_scores > 3]
+    print(f"Outliers in {col} using Z-score method: {len(outliers)}")
+
+# Visualize the data
+for col in numerical_cols:
+    plt.figure(figsize=(10, 6))
+    plt.boxplot(df[col])
+    plt.title(f"Boxplot of {col}")
+    plt.show()
+```
+
+This code will print the number of outliers in each column using both the IQR and Z-score methods. It will also display boxplots for each column to visualize the data.
+
+Please note that the results may vary depending on the actual data. The IQR method is more robust to non-normal data, while the Z-score method assumes normality.
+
+Also, keep in mind that outlier detection is not a one-size-fits-all solution. The choice of method and the interpretation of the results depend on the specific problem and the characteristics of the data.
+
+In this case, the results are:
+
+```
+Outliers in price using IQR method: 14
+Outliers in bed using IQR method: 0
+Outliers in bath using IQR method: 0
+Outliers in acre_lot using IQR method: 14
+Outliers in house_size using IQR method: 1
+Outliers in price using Z-score method: 13
+Outliers in bed using Z-score method: 0
+Outliers in bath using Z-score method: 0
+Outliers in acre_lot using Z-score method: 13
+Outliers in house_size using Z-score method: 1
+```
+
+The boxplots show that the data is skewed, especially for the `price` and `acre_lot` columns. The IQR and Z-score methods identify similar outliers, but the Z-score method is more sensitive to extreme values.
+
+You can use these results to decide which outliers to remove or to investigate further, depending on your specific use case.

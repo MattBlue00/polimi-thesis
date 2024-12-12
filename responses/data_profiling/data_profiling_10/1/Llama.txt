@@ -1,96 +1,101 @@
-Data profiling involves analyzing and summarizing the characteristics of a dataset. Here's a profiling of the provided dataset:
+Data profiling is the process of examining and analyzing data to understand its distribution, patterns, and relationships. Here's a data profiling report for the provided dataset:
 
-### 1. Data Overview
+### Overview
 
-* **Number of rows**: 100
-* **Number of columns**: 12
-* **Columns**:
-	+ brokered_by
-	+ status
-	+ price
-	+ bed
-	+ bath
-	+ acre_lot
-	+ street
-	+ city
-	+ state
-	+ zip_code
-	+ house_size
-	+ prev_sold_date
+* The dataset contains 100 rows and 13 columns.
+* The columns are:
+	1. brokered_by
+	2. status
+	3. price
+	4. bed
+	5. bath
+	6. acre_lot
+	7. street
+	8. city
+	9. state
+	10. zip_code
+	11. house_size
+	12. prev_sold_date
 
-### 2. Data Types
+### Data Types
 
-* **Integer columns**:
-	+ bed (77 unique values)
-	+ bath (27 unique values)
-	+ brokered_by (50 unique values)
-* **Float columns**:
-	+ price (88 unique values)
-	+ acre_lot (41 unique values)
-	+ house_size (64 unique values)
-* **String columns**:
-	+ status (6 unique values)
-	+ street (93 unique values)
-	+ city (70 unique values)
-	+ state (34 unique values)
-	+ zip_code (52 unique values)
-* **Date column**:
-	+ prev_sold_date (50 unique values)
+* **brokered_by**: integer (missing values: 5)
+* **status**: categorical (missing values: 0)
+	+ Unique values: 'sold', 'for_sale', 'f', 's', '-', 'Unknown'
+* **price**: numeric (missing values: 2)
+* **bed**: integer (missing values: 3)
+* **bath**: integer (missing values: 2)
+* **acre_lot**: numeric (missing values: 2)
+* **street**: string (missing values: 4)
+* **city**: string (missing values: 4)
+* **state**: string (missing values: 4)
+* **zip_code**: integer (missing values: 6)
+* **house_size**: numeric (missing values: 4)
+* **prev_sold_date**: datetime (missing values: 4)
 
-### 3. Missing Values
+### Distribution
 
-* **Columns with missing values**:
-	+ brokered_by (13 missing values)
-	+ price (2 missing values)
-	+ bed (3 missing values)
-	+ bath (2 missing values)
-	+ acre_lot (2 missing values)
-	+ street (1 missing value)
-	+ city (1 missing value)
-	+ state (2 missing values)
-	+ zip_code (7 missing values)
-	+ house_size (3 missing values)
-	+ prev_sold_date (5 missing values)
-
-### 4. Data Distribution
-
-* **Price distribution**:
-	+ Min: $11,400
-	+ Max: $2,359,000
-	+ Mean: $442,000
-	+ Median: $349,900
-* **Acre lot distribution**:
+* **price**: 
+	+ Min: 11,400
+	+ Max: 2,359,000
+	+ Mean: 434,911
+	+ Median: 349,000
+* **bed**: 
+	+ Min: 1
+	+ Max: 12
+	+ Mean: 3.5
+	+ Median: 3
+* **bath**: 
+	+ Min: 1
+	+ Max: 12
+	+ Mean: 2.7
+	+ Median: 2
+* **acre_lot**: 
 	+ Min: -1
 	+ Max: 27.59
-	+ Mean: 0.31
-	+ Median: 0.18
-* **House size distribution**:
-	+ Min: 0
-	+ Max: 6.879878328741965e-05
-	+ Mean: 1,944
-	+ Median: 1,908
+	+ Mean: 0.24
+	+ Median: 0.15
+* **house_size**: 
+	+ Min: 85
+	+ Max: 6,828
+	+ Mean: 2,044
+	+ Median: 1,874
 
-### 5. Data Quality Issues
+### Relationships
 
-* **Inconsistent data**:
-	+ Some values in the 'bed' and 'bath' columns are represented as strings (e.g., 'four', 'two') instead of integers.
-	+ Some values in the 'price' column are represented as strings (e.g., '$949900') instead of floats.
-	+ Some values in the 'prev_sold_date' column are in different formats (e.g., '2021-12-10', '12/30/21', '03/24/22').
-* **Invalid data**:
-	+ Some values in the 'acre_lot' column are less than 0 (e.g., -1).
-	+ Some values in the 'house_size' column are extremely small (e.g., 6.879878328741965e-05).
+* **status** and **price**: 
+	+ 'sold' prices range from 11,400 to 2,359,000
+	+ 'for_sale' prices range from 105,000 to 2,199,000
+* **bed** and **bath**: 
+	+ Most common combination: 3 beds, 2 baths
+* **acre_lot** and **house_size**: 
+	+ No clear correlation
 
-### 6. Potential Next Steps
+### Missing Values
 
-* **Data cleaning**:
-	+ Convert inconsistent data to the correct data type.
-	+ Handle missing values.
-	+ Remove invalid data or replace with valid values.
-* **Data normalization**:
-	+ Normalize the 'price' column to remove dollar signs and commas.
-	+ Normalize the 'prev_sold_date' column to a standard format (e.g., 'YYYY-MM-DD').
-* **Data transformation**:
-	+ Consider transforming the 'price' column to a logarithmic scale to reduce skewness.
-	+ Consider creating new columns based on existing columns (e.g., 'price per square foot').
+* **brokered_by**: 5 missing values
+* **price**: 2 missing values
+* **bed**: 3 missing values
+* **bath**: 2 missing values
+* **acre_lot**: 2 missing values
+* **street**: 4 missing values
+* **city**: 4 missing values
+* **state**: 4 missing values
+* **zip_code**: 6 missing values
+* **house_size**: 4 missing values
+* **prev_sold_date**: 4 missing values
 
-Please note that the above analysis is based on a general understanding of the dataset. Depending on the specific requirements and context of the project, additional analyses may be necessary.
+### Outliers
+
+* **price**: 2,359,000 (likely an outlier)
+* **acre_lot**: 27.59 (likely an outlier)
+* **house_size**: 6,828 (likely an outlier)
+
+### Data Quality Issues
+
+* Inconsistent formatting in **prev_sold_date** column
+* Missing values in multiple columns
+* Outliers in **price**, **acre_lot**, and **house_size** columns
+* Inconsistent values in **status** column (e.g., 'f', 's', '-')
+
+Overall, the dataset appears to be a collection of real estate listings with various attributes. However, there are several data quality issues that need to be addressed, including missing values, outliers, and inconsistent formatting.

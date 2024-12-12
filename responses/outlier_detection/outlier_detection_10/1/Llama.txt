@@ -1,0 +1,68 @@
+To perform outlier detection on the given dataset, we'll use the Interquartile Range (IQR) method and the Z-score method. We'll focus on the numerical columns: `price`, `bed`, `bath`, `acre_lot`, `house_size`.
+
+```python
+import pandas as pd
+import numpy as np
+
+# Load the dataset
+data = {
+    # ... your data here ...
+}
+
+df = pd.DataFrame(data)
+
+# Define the numerical columns
+numerical_cols = ['price', 'bed', 'bath', 'acre_lot', 'house_size']
+
+# IQR method
+for col in numerical_cols:
+    Q1 = df[col].quantile(0.25)
+    Q3 = df[col].quantile(0.75)
+    IQR = Q3 - Q1
+    
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+    
+    outliers = df[(df[col] < lower_bound) | (df[col] > upper_bound)]
+    
+    print(f"Outliers in {col} using IQR method:")
+    print(outliers)
+
+# Z-score method
+from scipy import stats
+
+for col in numerical_cols:
+    z_scores = np.abs(stats.zscore(df[col]))
+    
+    outliers = df[z_scores > 3]
+    
+    print(f"Outliers in {col} using Z-score method:")
+    print(outliers)
+```
+
+This code will print out the outliers for each numerical column using both the IQR method and the Z-score method.
+
+**Interpretation:**
+
+* The IQR method identifies outliers as data points that are more than 1.5 times the IQR away from the first quartile (Q1) or third quartile (Q3).
+* The Z-score method identifies outliers as data points with a Z-score greater than 3, indicating that they are more than 3 standard deviations away from the mean.
+
+**Example Output:**
+
+```
+Outliers in price using IQR method:
+   brokered_by status    price  bed  bath  acre_lot          street          city state  zip_code  house_size prev_sold_date
+0       81316   sold  5136800    4     2      0.27      285 Center Ln      Fairfax    VA     22030         97  2021-12-10
+1       28222   sold  2450000    4     4      0.19      687 Wilson Ave  Los Angeles    CA     90064       2751  2022-02-22
+2       53556  for_sale  8301300    5     8      0.30      611 Hill Pl       Wichita    KS     67207       2696  2021-11-12
+3       51274  for_sale 21756100    6     4      0.35      668 Maple Ave  Saratoga Springs    UT     84043       3625  2019-04-19
+
+Outliers in price using Z-score method:
+   brokered_by status    price  bed  bath  acre_lot          street          city state  zip_code  house_size prev_sold_date
+0       81316   sold  5136800    4     2      0.27      285 Center Ln      Fairfax    VA     22030         97  2021-12-10
+1       28222   sold  2450000    4     4      0.19      687 Wilson Ave  Los Angeles    CA     90064       2751  2022-02-22
+2       53556  for_sale  8301300    5     8      0.30      611 Hill Pl       Wichita    KS     67207       2696  2021-11-12
+3       51274  for_sale 21756100    6     4      0.35      668 Maple Ave  Saratoga Springs    UT     84043       3625  2019-04-19
+```
+
+Note that the output may vary depending on the actual data.

@@ -1,12 +1,16 @@
+import time
 from abc import ABC, abstractmethod
 
 import anthropic
-from openai import OpenAI
+from anthropic import APIError as AnthropicAPIError
+from google.api_core.exceptions import GoogleAPIError
+from openai import OpenAI, APIError as OpenAPIError
 from mistralai import Mistral as MistralClient
 import google.generativeai as genai
 import os
 
-from groq import Groq
+from groq import Groq, APITimeoutError, InternalServerError, GroqError
+
 
 class BaseLLM(ABC):
 
@@ -43,7 +47,17 @@ class GPT(BaseLLM):
             max_completion_tokens=16384
             )
 
-        return chat_completion.choices[0].message.content
+        response = ""
+
+        while response == "":
+            try:
+                response = chat_completion.choices[0].message.content
+            except OpenAPIError as e:
+                print(f"OpenAI error: {type(e).__name__}. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+
+        return response
 
 
 class Gemini(BaseLLM):
@@ -71,7 +85,17 @@ class Gemini(BaseLLM):
 
         chat_session = model.start_chat(history=[])
 
-        return chat_session.send_message(prompt.user_message).text
+        response = ""
+
+        while response == "":
+            try:
+                response = chat_session.send_message(prompt.user_message).text
+            except GoogleAPIError as e:
+                print(f"Google AI error: {type(e).__name__}. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+
+        return response
 
 
 class Mistral(BaseLLM):
@@ -124,6 +148,24 @@ class Llama(BaseLLM):
             temperature=0
         )
 
+        response = ""
+
+        while response == "":
+            try:
+                response = chat_completion.choices[0].message.content
+            except APITimeoutError:
+                print("Request timed out. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+            except InternalServerError:
+                print("Groq is temporarily unavailable. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+            except GroqError as e:
+                print(f"Groq error: {type(e).__name__}. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+
         return chat_completion.choices[0].message.content
 
 
@@ -139,21 +181,31 @@ class Claude(BaseLLM):
         system_message = ""
         if prompt.system_message is not None:
             system_message = prompt.system_message
-        message = client.messages.create(
-            model=self.model_name,
-            max_tokens=8192,
-            temperature=0,
-            system=system_message,
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
+
+        response = ""
+
+        while response == "":
+            try:
+                response = client.messages.create(
+                    model=self.model_name,
+                    max_tokens=8192,
+                    temperature=0,
+                    system=system_message,
+                    messages=[
                         {
-                            "type": "text",
-                            "text": prompt.user_message
+                            "role": "user",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": prompt.user_message
+                                }
+                            ]
                         }
                     ]
-                }
-            ]
-        )
-        return message.content[0].text
+                ).content[0].text
+            except AnthropicAPIError as e:
+                print(f"Anthropic error: {type(e).__name__}. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+
+        return response

@@ -1,78 +1,85 @@
-Data Profiling
-================
+Data profiling is the process of examining and analyzing data to understand its distribution, patterns, and relationships. Here's a data profiling report for the provided dataset:
 
-Data profiling is the process of analyzing and summarizing data to understand its characteristics, such as data quality, data distribution, and relationships between fields. Here is a summary of the data profiling results for the provided dataset:
+### Data Overview
 
-### Data Quality
+* Number of rows: 100
+* Number of columns: 12
+* Data types:
+	+ Integer: 4 (brokered_by, bed, bath, acre_lot)
+	+ Float: 2 (price, house_size)
+	+ String: 5 (status, street, city, state, zip_code)
+	+ Date: 1 (prev_sold_date)
 
-* Missing values:
-	+ `brokered_by`: 44 missing values
-	+ `status`: 12 missing values
-	+ `price`: 20 missing values
-	+ `bed`: 14 missing values
-	+ `bath`: 15 missing values
-	+ `acre_lot`: 9 missing values
-	+ `street`: 24 missing values
-	+ `city`: 31 missing values
-	+ `state`: 23 missing values
-	+ `zip_code`: 24 missing values
-	+ `house_size`: 25 missing values
-	+ `prev_sold_date`: 5 missing values
-* Non-numeric values in numeric fields:
-	+ `bed`: contains 'four', 'three', 'five' (should be 4, 3, 5)
-	+ `bath`: contains 'two', 'three' (should be 2, 3)
-	+ `acre_lot`: contains 'nan' (not a number)
-	+ `price`: contains '$' and ',' ( currency format)
-	+ `house_size`: contains very small and very large values ( potential data entry errors)
+### Column Analysis
 
-### Data Distribution
+1. **brokered_by**:
+	* Missing values: 5
+	* Unique values: 45
+	* Data type: Integer
+2. **status**:
+	* Missing values: 5
+	* Unique values: 5 (sold, for_sale, Unknown, s, f)
+	* Data type: String
+3. **price**:
+	* Missing values: 10
+	* Unique values: 64
+	* Data type: Float
+	* Range: $22,400 - $9,441,500
+4. **bed**:
+	* Missing values: 5
+	* Unique values: 12 (including -1 and nan)
+	* Data type: Integer
+	* Range: -1 - 12
+5. **bath**:
+	* Missing values: 5
+	* Unique values: 13 (including -1, nan, and 'two')
+	* Data type: Integer
+	* Range: -1 - 12
+6. **acre_lot**:
+	* Missing values: 5
+	* Unique values: 34
+	* Data type: Float
+	* Range: -1 - 27.59
+7. **street**:
+	* Missing values: 5
+	* Unique values: 74
+	* Data type: String
+8. **city**:
+	* Missing values: 10
+	* Unique values: 44
+	* Data type: String
+9. **state**:
+	* Missing values: 10
+	* Unique values: 26
+	* Data type: String
+10. **zip_code**:
+	* Missing values: 10
+	* Unique values: 44
+	* Data type: Integer
+	* Range: 63115 - 99999
+11. **house_size**:
+	* Missing values: 10
+	* Unique values: 54
+	* Data type: Float
+	* Range: 0.00011155589990817264 - 10440.0
+12. **prev_sold_date**:
+	* Missing values: 5
+	* Unique values: 44
+	* Data type: Date
+	* Range: 1991-04-17 - 2022-04-22
 
-* `price`:
-	+ Range: $22,400 - $9,415,000
-	+ Mean: $437,141
-	+ Median: $349,900
-	+ Standard Deviation: $254,139
-* `bed`:
-	+ Range: 1 - 12
-	+ Mean: 3.5
-	+ Median: 3
-* `bath`:
-	+ Range: 1 - 12
-	+ Mean: 2.6
-	+ Median: 2
-* `acre_lot`:
-	+ Range: 0.0033 - 27.59
-	+ Mean: 0.24
-	+ Median: 0.15
-* `house_size`:
-	+ Range: 0 - 10,440
-	+ Mean: 1,934
-	+ Median: 1,760
+### Data Quality Issues
 
-### Relationships between Fields
+* Missing values: 55 (out of 1200 total values)
+* Inconsistent data types: 'bed' and 'bath' columns contain both integer and string values
+* Outliers: 'price' column has a large range, with some values exceeding $1 million
+* Inconsistent formatting: 'prev_sold_date' column has different date formats (e.g., YYYY-MM-DD, MM/DD/YY)
 
-* `status` and `price`: Sold properties have a higher average price than for-sale properties.
-* `bed` and `bath`: There is a positive correlation between the number of bedrooms and bathrooms.
-* `acre_lot` and `house_size`: There is a positive correlation between the size of the lot and the size of the house.
+### Recommendations
 
-### Unique Values
+* Clean and preprocess the data to handle missing values and inconsistent data types
+* Normalize the 'price' column to reduce the impact of outliers
+* Standardize the 'prev_sold_date' column to a consistent date format
+* Consider adding additional columns to provide more context and improve data analysis (e.g., property type, location, etc.)
 
-* `status`: 5 unique values ('sold', 'for_sale', 'Unknown', 's', 'f')
-* `city`: 104 unique values
-* `state`: 30 unique values
-* `zip_code`: 123 unique values
-
-### Outliers
-
-* `price`: $9,415,000 is an outlier ( highest price in the dataset)
-* `house_size`: 10,440 is an outlier ( largest house size in the dataset)
-* `acre_lot`: 27.59 is an outlier ( largest lot size in the dataset)
-
-Next Steps
-------------
-
-1. **Data cleaning**: Remove or replace missing values, handle non-numeric values in numeric fields, and standardize currency formats.
-2. **Data transformation**: Convert categorical variables (e.g., `status`, `city`, `state`) into numerical variables using one-hot encoding or label encoding.
-3. **Data normalization**: Normalize numerical variables (e.g., `price`, `house_size`, `acre_lot`) to have similar scales using techniques like standardization or scaling.
-4. **Exploratory data analysis**: Perform visualizations and statistical analysis to understand relationships between fields and identify patterns or correlations.
-5. **Modeling**: Use the cleaned and transformed data to build predictive models or perform clustering analysis to gain insights into the real estate market.
+Note: This is a general data profiling report, and the specific recommendations may vary depending on the intended use of the data and the goals of the analysis.

@@ -22,9 +22,6 @@ if not os.path.exists(responses_dir):
 
 for task in tasks:
 
-    if task.name != "data_profiling": #fixme
-        continue
-
     print("Starting task " + task.name)
 
     task_dir = os.path.join(datasets_dir, task.name)
@@ -88,12 +85,13 @@ for task in tasks:
                 responses = []
 
                 for future in concurrent.futures.as_completed(futures):
-                  llm_name = futures[future]
-                  try:
-                    response = future.result()
-                    responses.append((llm_name, response))
-                  except Exception as e:
-                    print(f"Error while asking {llm_name} for a response: {e}")
+                    llm_name = futures[future]
+                    try:
+                        response = future.result()
+                        responses.append((llm_name, response))
+                    except Exception as e:
+                        print(f"Error while asking {llm_name} for a response: {e}")
+                        print(f"Error type: {type(e).__name__}")
 
             print("All LLMs answered")
 

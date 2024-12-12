@@ -1,0 +1,86 @@
+Data imputation is a process of replacing missing or null values in a dataset with statistically estimated values. Here's a step-by-step approach to perform data imputation on the given dataset:
+
+### Import necessary libraries
+
+```python
+import pandas as pd
+import numpy as np
+from sklearn.impute import SimpleImputer
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error
+```
+
+### Load the dataset
+
+```python
+# Load the dataset
+df = pd.read_csv('your_data.csv')
+```
+
+### Check for missing values
+
+```python
+# Check for missing values
+print(df.isnull().sum())
+```
+
+### Impute missing values
+
+We'll use a combination of mean, median, and mode imputation for numerical and categorical columns, respectively. For more complex datasets, we might need to use more advanced imputation techniques like regression imputation or K-Nearest Neighbors (KNN) imputation.
+
+```python
+# Separate numerical and categorical columns
+numerical_cols = df.select_dtypes(include=['int64', 'float64']).columns
+categorical_cols = df.select_dtypes(include=['object']).columns
+
+# Impute missing values in numerical columns
+imputer = SimpleImputer(strategy='mean')
+df[numerical_cols] = imputer.fit_transform(df[numerical_cols])
+
+# Impute missing values in categorical columns
+for col in categorical_cols:
+    df[col] = df[col].fillna(df[col].mode().iloc[0])
+```
+
+### Impute missing values using regression
+
+For columns with a large number of missing values, we can use regression imputation. We'll train a random forest regressor on the available data and use it to predict the missing values.
+
+```python
+# Define a function for regression imputation
+def regression_imputation(df, col):
+    # Split the data into training and testing sets
+    X = df.drop(col, axis=1)
+    y = df[col]
+    
+    # Split the data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    
+    # Train a random forest regressor
+    model = RandomForestRegressor()
+    model.fit(X_train, y_train)
+    
+    # Predict the missing values
+    missing_idx = df[col].isnull()
+    predictions = model.predict(df[missing_idx].drop(col, axis=1))
+    
+    # Fill the missing values with the predictions
+    df.loc[missing_idx, col] = predictions
+    
+    return df
+
+# Impute missing values using regression
+for col in numerical_cols:
+    if df[col].isnull().sum() > 0:
+        df = regression_imputation(df, col)
+```
+
+### Save the imputed dataset
+
+```python
+# Save the imputed dataset
+df.to_csv('imputed_data.csv', index=False)
+```
+
+Note that this is a basic example of data imputation, and the approach may vary depending on the specific characteristics of the dataset and the problem you're trying to solve. Additionally, it's essential to evaluate the performance of the imputation method using metrics like mean squared error (MSE) or mean absolute error (MAE) to ensure that the imputed values are reasonable and accurate.
