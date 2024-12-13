@@ -10,3 +10,5 @@ torch
 anthropic
 tiktoken
 groq
+markdown2
+weasyprint
