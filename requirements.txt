@@ -2,10 +2,13 @@ pandas
 numpy
 kaggle
 openai
-google-generativeai
+google
 python-dotenv
 mistralai
 transformers
 torch
 anthropic
 tiktoken
+groq
+markdown2
+weasyprint

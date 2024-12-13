@@ -1,16 +1,16 @@
-import subprocess
+import time
 from abc import ABC, abstractmethod
 
 import anthropic
-from openai import OpenAI
+from anthropic import APIError as AnthropicAPIError
+from google.api_core.exceptions import GoogleAPIError
+from openai import OpenAI, APIError as OpenAPIError
 from mistralai import Mistral as MistralClient
 import google.generativeai as genai
 import os
 
-import transformers
-import torch
+from groq import Groq, APITimeoutError, InternalServerError, GroqError
 
-from scripts.utils.path import get_directory_from_root
 
 class BaseLLM(ABC):
 
@@ -47,7 +47,17 @@ class GPT(BaseLLM):
             max_completion_tokens=16384
             )
 
-        return chat_completion.choices[0].message.content
+        response = ""
+
+        while response == "":
+            try:
+                response = chat_completion.choices[0].message.content
+            except OpenAPIError as e:
+                print(f"OpenAI error: {type(e).__name__}. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+
+        return response
 
 
 class Gemini(BaseLLM):
@@ -75,7 +85,17 @@ class Gemini(BaseLLM):
 
         chat_session = model.start_chat(history=[])
 
-        return chat_session.send_message(prompt.user_message).text
+        response = ""
+
+        while response == "":
+            try:
+                response = chat_session.send_message(prompt.user_message).text
+            except GoogleAPIError as e:
+                print(f"Google AI error: {type(e).__name__}. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+
+        return response
 
 
 class Mistral(BaseLLM):
@@ -107,29 +127,12 @@ class Llama(BaseLLM):
 
     def __init__(self, model_name):
         super().__init__(name="Llama", model_name=model_name)
-        model_path = get_directory_from_root(__file__, 'models')
-
-        if not os.path.exists(model_path):
-            os.makedirs(model_path)
-
-        token = os.getenv('HUGGING_FACE_TOKEN')
-        command = f"echo {token} | huggingface-cli login"
-        try:
-            print("Logging into HuggingFace...")
-            subprocess.run(command, check=True, shell=True)
-
-        except subprocess.CalledProcessError as e:
-            print(f"Error while logging into HuggingFace: {e}")
-
-        self.pipeline = transformers.pipeline(
-            "text-generation",
-            model=self.model_name,
-            model_kwargs={"torch_dtype": torch.bfloat16},
-            device_map="auto",
-            cache_dir=model_path
-        )
 
     def get_response(self, prompt) -> str:
+
+        client = Groq(
+            api_key=os.getenv("GROQ_API_KEY"),
+        )
 
         messages = []
 
@@ -138,11 +141,32 @@ class Llama(BaseLLM):
 
         messages.append({"role": "user", "content": prompt.user_message})
 
-        outputs = self.pipeline(
-            messages,
-            temperature=0.0,
+        chat_completion = client.chat.completions.create(
+            messages=messages,
+            model=self.model_name,
+            max_tokens=32768,
+            temperature=0
         )
-        return outputs[0]["generated_text"][-1]
+
+        response = ""
+
+        while response == "":
+            try:
+                response = chat_completion.choices[0].message.content
+            except APITimeoutError:
+                print("Request timed out. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+            except InternalServerError:
+                print("Groq is temporarily unavailable. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+            except GroqError as e:
+                print(f"Groq error: {type(e).__name__}. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+
+        return chat_completion.choices[0].message.content
 
 
 class Claude(BaseLLM):
@@ -157,21 +181,31 @@ class Claude(BaseLLM):
         system_message = ""
         if prompt.system_message is not None:
             system_message = prompt.system_message
-        message = client.messages.create(
-            model=self.model_name,
-            max_tokens=8192,
-            temperature=0,
-            system=system_message,
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
+
+        response = ""
+
+        while response == "":
+            try:
+                response = client.messages.create(
+                    model=self.model_name,
+                    max_tokens=8192,
+                    temperature=0,
+                    system=system_message,
+                    messages=[
                         {
-                            "type": "text",
-                            "text": prompt.user_message
+                            "role": "user",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": prompt.user_message
+                                }
+                            ]
                         }
                     ]
-                }
-            ]
-        )
-        return message.content[0].text
+                ).content[0].text
+            except AnthropicAPIError as e:
+                print(f"Anthropic error: {type(e).__name__}. Retrying in a minute.")
+                time.sleep(60)
+                print("Retrying now!")
+
+        return response
