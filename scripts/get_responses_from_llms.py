@@ -22,6 +22,9 @@ if not os.path.exists(responses_dir):
 
 for task in tasks:
 
+    if task.name != "data_cleaning":
+        continue
+
     print("Starting task " + task.name)
 
     task_dir = os.path.join(datasets_dir, task.name)
@@ -54,6 +57,9 @@ for task in tasks:
 
     for dataset in datasets:
 
+        if dataset.dirty_percentage != "10":
+            continue
+
         print("Starting dataset " + str(dataset.id))
 
         dataset_dir = get_directory_from_dir_name(task_dir, dataset.id)
@@ -74,7 +80,7 @@ for task in tasks:
             prompt_copy = prompt.copy()
             prompt_copy.user_message = prompt_copy.user_message.replace("{{csv_text}}", dataset.content_string)
 
-
+            '''
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 futures = {}
 
@@ -99,6 +105,11 @@ for task in tasks:
                 file_path = os.path.join(prompt_dir, f"{llm_name}.txt") # Create a clean filename
                 with open(file_path, 'w') as f:
                     f.write(response)
+            '''
+
+            print("*" * 50)
+            print(prompt_copy.user_message)
+            print("*" * 50)
 
             print("Finished prompt " + str(prompt_copy.id))
 
