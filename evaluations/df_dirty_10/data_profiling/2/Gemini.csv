@@ -1,2 +1,0 @@
-dataset_id,task_name,prompt_id,llm_name,accuracy,acc_reason,completeness,compl_reason
-df_dirty_10,data_profiling,2,Gemini,0.3,"The actual output provides a detailed breakdown of data profiling steps but lacks specific analysis results like cardinality, missing values, and distinct values as seen in the expected output. It also misses specific statistics and trends mentioned in the expected output.",0.3,"Actual output covers data type and missing values analysis but lacks cardinality, distinct values, and dependency discovery details present in expected output."

@@ -534,7 +534,7 @@ def make_outlier_detection_dirty(df, perc):
     ]
     df.loc[indices_to_replace_low, 'house_size'] = house_size_outliers_low
     house_size_outliers_high = [
-        round_to_significant_figures(random.uniform(max_value * 1.25, max_value * 2), sig_figs=4)
+        round_to_significant_figures(random.uniform(max_value * 1.25, max_value * 2), sig_figs=2)
         for _ in range(len(indices_to_replace_high))
     ]
     df.loc[indices_to_replace_high, 'house_size'] = house_size_outliers_high
