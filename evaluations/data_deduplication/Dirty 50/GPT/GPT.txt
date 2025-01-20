@@ -1,0 +1,96 @@
+Certainly! Data deduplication involves identifying and removing duplicate entries from a dataset. In this dataset, duplicates can be identified by comparing all columns or a subset of columns that uniquely identify a record. Here, I'll deduplicate the dataset based on all columns:
+
+1. **Identify Duplicates**: Check for rows that have identical values across all columns.
+2. **Remove Duplicates**: Keep only the first occurrence of each duplicate row.
+
+Here's the deduplicated dataset:
+
+```
+brokered_by;status;price;bed;bath;acre_lot;street;city;state;zip_code;house_size;prev_sold_date
+81824;sold;292677;5;3;0.29;63 Field Dr;Sumter;South Carolina;29154;3040;2021-12-22
+53138;sold;479000;3;3;0.22;47 Lincoln Rd;Bowie;Maryland;20720;2375;2022-01-04
+7846;for_sale;279000;4;3;0.08;97 Meadow Ave;Somerse;Kentuky;52503;1921;2015-7-1
+54093;for_sale;265000;1;1;0.03;896 Sunset Ct;Marathon;Florida;33050;321;2004-09-20
+68269;sold;389854;3;2;0.15;144 Terrace Blvd;Caldwell;Idaho;83605;1574;2021-12-17
+59082;sold;249900;3;2;0.41;672 West Pl;Stuarts Draft;Virginia;24477;1827;2022-02-14
+10437;sold;350000;3;2;1.07;70 Cedar Dr;Cumming;Georgia;30041;1681;2022-02-23
+10724;for_sale;425500;2;1;0.82;227 Square Rd;Brester;Massachusets;2632;1365;2001-7-5
+553137;sold;485000;5;5;0.23;47 Lincoln;Bowi;Mariland;20721;2376;2022-1-14
+78460;for_sale;278900;3;2;0.7;95 Meadow Ave;Somerset;Kentucky;42503;1923;2016-07-01
+65293;for_sale;725000;3;3;1.04;715 Terrace Dr;Sparks;Nevada;89441;1876;2004-09-10
+84529;for_sale;1075000;3;3;0.06;162 Mill St;Tustin;California;92782;1928;2011-11-14
+105798;for_sale;155990;4;3;0.21;195 Spring Ave;Albany;Indiana;47320;2009;2020-06-19
+78247;sold;339900;3;2;0.28;676 South Blvd;Troy;Illinois;62294;1613;2022-01-26
+10487;for_sale;890000;3;3;0.2;211 Church Ln;Huston;Texass;77083;4157;2012-9-26
+57424;for_sale;999000;3;2;0.15;277 Princess Dr;Livermore;California;94550;1785;2022-04-22
+65393;for_sale;730000;4;4;1.05;715 Terrace;Spark;Navada;89442;1875;2005-9-10
+86329;for_sale;699000;4;5;14.25;347 Oak Ln;Wetumpka;Alabama;36092;4758;2015-02-19
+34889;sold;389500;2;1;0.21;384 Market St;Hoston;texas;77026;1695;2021-12-15
+81316;sold;749000;4;2;0.27;285 Center Ln;Fairfax;Virginia;22030;2948;2021-12-10
+82979;for_sale;336000;2;1;0.17;72 Hill Ln;Tenple;Texaa;76500;2340;2013-5-2
+22792;sold;525000;3;2;0.59;977 Adams Blvd;Westford;Massachusetts;1886;2211;2021-11-19
+20385;for_sale;599500;5;3;0.37;217 Church Ln;Calabash;North Carolina;28467;3058;2020-03-24
+81112;for_sale;115900;4;1;0.15;380 Valley Ln;Fairborn;Ohio;45324;1116;2020-08-03
+32769;for_sale;1300000;2;3;27.59;550 Second Pl;Julian;California;92036;986;2020-05-15
+104876;sold;398000;3;2;0.11;981 Harbor Ave;Chicago;Illinois;60659;1171;2021-11-30
+2765;sold;585000;3;3;4.44;699 Wilson Dr;Crossville;Tennessee;38555;3352;2022-04-15
+23018;sold;24000;4;3;0.22;922 Square;Mose Lake;Washingtom;98887;1671;2022-3-8
+96817;sold;425000;4;3;0.06;33 Pine Ave;Alexandria;Virginia;22309;2075;2022-02-04
+82988;for_sale;335500;4;3;0.19;71 Hill;Teple;Texass;76503;2345;2012-5-1
+78139;for_sale;425000;1;1;0.58;949 Franklin Blvd;Palisade;Colorado;81526;987;2006-07-06
+79345;for_sale;599000;5;4;0.41;255 Princess Ave;Bettendorfs;iowa;5272;3770;2015-11-21
+94681;sold;409900;2;1;2.12;655 First St;Stockbridge;Massachusetts;1262;1015;2021-11-29
+104873;for_sale;888000;4;4;0.21;210 Church Ln;Houston;Texas;77082;4156;2013-09-26
+53556;for_sale;375000;5;3;0.3;611 Hill Pl;Wichita;Kansas;67207;2696;2021-11-12
+58424;for_sale;999500;4;3;0.16;277 Princess;Livemore;Californa;94650;1786;2022-3-22
+2177;sold;479900;3;2;0.13;842 Cedar Dr;Windsor;Colorado;80550;2638;2022-03-18
+26012;sold;259900;4;2;0.13;391 Bridge Rd;Great Falls;Montana;59405;1632;2021-11-09
+79245;for_sale;599900;5;5;0.42;254 Princess Ave;Bettendorf;Iowa;52722;3765;2016-11-21
+22765;sold;586000;4;4;4.45;698 Wilson Dr;Crosvile;Tennesse;38554;3353;2022-4-16
+75016;sold;317900;2;2;0.22;168 Bridge Pl;Kirkwood;Missouri;63122;2032;2021-11-23
+56084;sold;279900;2;2;0.16;593 Elm Ave;Madison;Wisconsin;53704;1699;2021-12-17
+53337;sold;190000;3;2;0.29;288 Bridge Ln;Saint Louise;Missuri;63124;1634;2020-1-18
+7688;sold;99000;3;2;9.01;272 Broadway;Faireview;Michigann;48721;2164;2022-5-14
+7689;sold;98500;4;1;9.0;272 Broadway Ln;Fairview;Michigan;48621;2064;2022-04-14
+8184;sold;385500;2;2;0.24;390 Madison ;North Ports;Florids;34287;1710;2022-4-18
+48807;for_sale;375000;3;3;0.2;88 East Ave;San Antonio;Texas;78254;2346;2004-05-14
+53015;sold;240000;4;3;0.57;829 Main Boulevard;Oaky Ridge;Tennesse;3783;1720;2023-2-2
+96014;sold;370000;4;2;0.12;224 Lincoln St;Spokane;Washington;99207;2084;2022-04-05
+20375;for_sale;600000;4;2;0.36;218 Church Ln;Calabas;North Karolina;28567;3060;2021-3-24
+51274;for_sale;774000;6;4;0.35;668 Maple Ave;Saratoga Springs;Utah;84043;3625;2019-04-19
+53377;sold;189900;4;1;0.28;286 Bridge Ln;Saint Louis;Missouri;63114;1624;2022-01-18
+22227;sold;898500;4;3;0.22;52 North Boulevard;Alahmbra;Calfornia;91804;1470;2021-4-8
+10726;for_sale;425000;3;2;0.83;226 Square Rd;Brewster;Massachusetts;2631;1368;2001-07-06
+52946;for_sale;150000;4;2;10.0;675 Circle Dr;Hulbert;Oklahoma;74441;1896;2018-04-19
+78347;sold;340000;2;1;0.27;676 South Boulevard;Troi;Ilinois;6294;1614;2022-3-26
+16829;sold;350000;4;2;0.18;219 Field St;Houston;Texas;77021;1626;2022-03-31
+53016;sold;239000;3;2;0.56;829 Main Blvd;Oak Ridge;Tennessee;37830;1724;2022-02-02
+59182;sold;250000;2;1;0.4;673 West Pl;Stuart Draft;Virginis;24477;1828;2022-3-14
+32768;for_sale;1350000;3;4;27.6;550 Second;Juliane;Californis;92046;987;2010-5-15
+31355;sold;2365000;5;5;0.19;592 Meadow Ave;Edina;Minnesota;55424;4905;2021-12-30
+103967;for_sale;635000;3;3;0.23;885 Washington Ave;Iselin;New Jersey;8830;2000;2019-02-28
+79244;for_sale;600000;4;4;0.43;254 Princess ;Betendorf;Iowah;57722;3766;2016-11-20
+8182;sold;293000;6;4;0.3;65 Field Dr;Sunter;Sout Carolina;20154;3039;2020-12-22
+81031;sold;219000;3;2;0.31;73 Lake Ln;Chambersburg;Pennsylvania;17202;1189;2021-11-24
+26011;sold;259000;3;1;0.12;391 Bridge;Great Fall;Mentana;59406;1633;2021-11-10
+97817;sold;425500;3;2;0.05;33 Pine Avenue;Alexandra;Virgini;23309;2076;2022-2-5
+78185;sold;380000;4;2;0.22;391 Madison Ct;North Porte;Florid;34386;1705;2022-3-19
+23027;sold;245000;2;1;0.19;921 Square Ave;Moses Lakes;washington;9837;1669;2022-4-9
+23017;sold;240000;3;2;0.2;922 Square Ave;Moses Lake;Washington;98837;1670;2022-03-09
+22217;sold;898000;3;2;0.21;52 North Blvd;Alhambra;California;91803;1465;2022-04-08
+34888;sold;389000;3;2;0.22;383 Market St;Houston;Texas;77025;1696;2021-12-16
+29538;for_sale;1150000;3;2;0.37;223 Lake St;Long Beach;California;90802;1409;2016-06-10
+10579;for_sale;156000;5;4;0.22;194 Spring Ave;Albani;Indians;47330;2010;2020-6-20
+22611;sold;280000;4;2;0.19;952 King Rd;Monroeville;Pennsylvania;15146;1874;2022-04-19
+34788;sold;390000;4;3;0.23;383 Market;Huston;Texa;77035;1700;2021-12-17
+103966;for_sale;635500;4;4;0.22;888 Washington Ave;Iseline;New Jerse;8831;200;2019-2-27
+10725;for_sale;420000;4;3;0.84;226 Square;Brewste;Masachusetts;26311;1370;2001-7-7
+8269;sold;389000;2;1;0.14;145 Terrace Blvd;Coldwell;Idahi;84605;1575;2021-12-18
+39538;for_sale;115500;4;3;0.38;224 Lake St;Long Beac;Californi;90812;1410;2017-6-10
+53017;sold;239500;2;1;0.55;829 Main;Oaks Ridge;Tennesee;37831;1725;2022-2-3
+78184;sold;385000;3;3;0.23;390 Madison Ct;North Port;Florida;34286;1708;2022-03-18
+81311;sold;575000;5;4;0.22;827 Elm Ct;Leland;North Carolina;28451;3057;2022-04-22
+82978;for_sale;335000;3;2;0.18;71 Hill Ln;Temple;Texas;76502;2344;2013-05-01
+```
+
+This deduplicated dataset retains only the first occurrence of each duplicate row.
