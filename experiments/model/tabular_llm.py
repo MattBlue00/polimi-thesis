@@ -47,7 +47,7 @@ class TableLlama(BaseTabularLLM):
 
     def get_response(self, instruction: str, dataset: str, question: str) -> str:
 
-        base_prompt = """"
+        prompt = """"
         Below is an instruction that describes a task, paired with an input that provides further context. Write a response that
         appropriately completes the request.
 
@@ -65,16 +65,17 @@ class TableLlama(BaseTabularLLM):
 
         formatted_dataset = format_dataset_for_tablellama(dataset)
 
-        formatted_prompt = base_prompt.replace("{instruction}", instruction).replace("{input}", formatted_dataset).replace("{question}", question)
+        prompt = prompt.replace("{instruction}", instruction).replace("{input}", formatted_dataset).replace("{question}", question)
 
         '''
-        inputs = self.tokenizer(formatted_prompt, return_tensors="pt").to(self.model.device)
+        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
         device = self.model.device
         inputs = inputs.to(device)
         outputs = self.model.generate(inputs.input_ids, max_new_tokens=4096)
         return self.tokenizer.decode(outputs[0])
         '''
 
-        print(formatted_prompt)
+        print("Prompt is:")
+        print(prompt)
 
         return "prova"
