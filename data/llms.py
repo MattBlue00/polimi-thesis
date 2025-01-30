@@ -22,6 +22,12 @@ llms = [
 tabular_llms = [
     TableLlama(
         model_name="osunlp/TableLlama"
+    ),
+    TableGPT(
+        model_name="tablegpt/TableGPT2-7B"
+    ),
+    TableLLM(
+        model_name="RUCKBReasoning/TableLLM-13b"
     )
 ]
 
