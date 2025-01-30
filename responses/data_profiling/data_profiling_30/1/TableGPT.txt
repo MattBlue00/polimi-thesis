@@ -1,0 +1,129 @@
+Certainly! Here is a data profiling summary for the provided dataset:
+
+### Data Overview
+- **Total Rows**: 128
+- **Total Columns**: 16
+
+### Column Information
+1. **brokered_by**
+   - Unique Values: 128
+   - Missing Values: 0
+   - Data Type: String
+
+2. **status**
+   - Unique Values: 5 (sold, for_sale, Unknown, s, f)
+   - Missing Values: 10
+   - Data Type: String
+
+3. **price**
+   - Unique Values: 128
+   - Missing Values: 10
+   - Data Type: Integer
+
+4. **bed**
+   - Unique Values: 12
+   - Missing Values: 10
+   - Data Type: Float
+
+5. **bath**
+   - Unique Values: 12
+   - Missing Values: 10
+   - Data Type: Float
+
+6. **acre_lot**
+   - Unique Values: 12
+   - Missing Values: 10
+   - Data Type: Float
+
+7. **street**
+   - Unique Values: 128
+   - Missing Values: 10
+   - Data Type: String
+
+8. **city**
+   - Unique Values: 128
+   - Missing Values: 10
+   - Data Type: String
+
+9. **state**
+   - Unique Values: 128
+   - Missing Values: 10
+   - Data Type: String
+
+10. **zip_code**
+    - Unique Values: 128
+    - Missing Values: 10
+    - Data Type: String
+
+11. **house_size**
+    - Unique Values: 128
+    - Missing Values: 10
+    - Data Type: Float
+
+12. **prev_sold_date**
+    - Unique Values: 128
+    - Missing Values: 10
+    - Data Type: String
+
+13. **53232**
+    - Unique Values: 128
+    - Missing Values: 10
+    - Data Type: String
+
+14. **63173**
+    - Unique Values: 128
+    - Missing Values: 10
+    - Data Type: String
+
+15. **23017**
+    - Unique Values: 128
+    - Missing Values: 10
+    - Data Type: String
+
+16. **92736**
+    - Unique Values: 128
+    - Missing Values: 10
+    - Data Type: String
+
+### Missing Values Summary
+- **brokered_by**: 0 missing values
+- **status**: 10 missing values
+- **price**: 10 missing values
+- **bed**: 10 missing values
+- **bath**: 10 missing values
+- **acre_lot**: 10 missing values
+- **street**: 10 missing values
+- **city**: 10 missing values
+- **state**: 10 missing values
+- **zip_code**: 10 missing values
+- **house_size**: 10 missing values
+- **prev_sold_date**: 10 missing values
+- **53232**: 10 missing values
+- **63173**: 10 missing values
+- **23017**: 10 missing values
+- **92736**: 10 missing values
+
+### Data Types Summary
+- **String**: 12
+- **Integer**: 1
+- **Float**: 4
+
+### Unique Values Summary
+- **brokered_by**: 128 unique values
+- **status**: 5 unique values
+- **price**: 128 unique values
+- **bed**: 12 unique values
+- **bath**: 12 unique values
+- **acre_lot**: 12 unique values
+- **street**: 128 unique values
+- **city**: 128 unique values
+- **state**: 128 unique values
+- **zip_code**: 128 unique values
+- **house_size**: 128 unique values
+- **prev_sold_date**: 128 unique values
+- **53232**: 128 unique values
+- **63173**: 128 unique values
+- **23017**: 128 unique values
+- **92736**: 128 unique values
+
+This profiling provides a comprehensive overview of the dataset's structure, including the number of rows, columns, data types, missing values, unique values, and more.

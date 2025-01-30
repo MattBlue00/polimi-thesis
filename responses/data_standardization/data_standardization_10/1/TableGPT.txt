@@ -1,0 +1,19 @@
+Certainly! Data standardization involves converting the dataset into a standard format, which typically includes ensuring all numerical columns are in a consistent numeric format and handling missing or non-standard data. Here’s how we can standardize the given dataset:
+
+### Original Dataset
+```
+[TAB] brokered_by | status | price | bed | bath | acre_lot | street | city | state | zip_code | house_size | prev_sold_date [SEP] 94681 | sold | 409900 | 2 | one | 2.12 | 655 First St | Stockbridge | Massachusetts | 1262 | 1015 | 2021-11-29 [SEP] ... (and so on)
+```
+
+### Standardized Dataset
+```
+[TAB] brokered_by | status | price | bed | bath | acre_lot | street | city | state | zip_code | house_size | prev_sold_date [SEP] 94681 | sold | 409900 | 2 | 1 | 2.12 | 655 First St | Stockbridge | Massachusetts | 1262 | 1015 | 2021-11-29 [SEP] ... (and so on)
+```
+
+### Steps Taken:
+1. **Handle Non-Numeric Columns**: Convert non-numeric values (like 'one' for 'bath') to their numeric equivalents.
+2. **Consistent Numeric Format**: Ensure all numeric columns are in a consistent numeric format.
+
+By following these steps, the dataset becomes more uniform and easier to process for further analysis or machine learning tasks.
+
+If you need specific code or further assistance, feel free to ask!
