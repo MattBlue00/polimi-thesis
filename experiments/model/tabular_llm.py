@@ -54,7 +54,7 @@ appropriately completes the request.
 ### Instruction:
 {instruction}
 
- ### Input:
+### Input:
 {input}
 
 ### Question:
@@ -63,12 +63,28 @@ appropriately completes the request.
 ### Response:
 """
 
+        # Format dataset properly
         formatted_dataset = format_dataset_for_tablellama(dataset)
 
-        prompt = prompt.replace("{instruction}", instruction).replace("{input}", formatted_dataset).replace("{question}", question)
+        # Replace placeholders in the prompt
+        prompt = prompt.replace("{instruction}", instruction) \
+            .replace("{input}", formatted_dataset) \
+            .replace("{question}", question)
 
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
-        device = self.model.device
-        inputs = inputs.to(device)
-        outputs = self.model.generate(inputs.input_ids, max_new_tokens=4096)
-        return self.tokenizer.decode(outputs[0])
+        # Tokenization with truncation (prevents input overflow)
+        inputs = self.tokenizer(
+            prompt,
+            return_tensors="pt",
+            truncation=True,
+            max_length=8192  # Ensure it doesn't exceed the model's max context
+        ).to(self.model.device)
+
+        # Generate response with improved generation parameters
+        outputs = self.model.generate(
+            inputs.input_ids,
+            max_new_tokens=8192,  # Adjusted for better response control
+            temperature=0
+        )
+
+        # Decode properly, avoiding special tokens
+        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
