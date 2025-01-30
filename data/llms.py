@@ -1,5 +1,5 @@
 from experiments.model.llm import GPT, Gemini, Mistral, Llama, Claude
-from experiments.model.tabular_llm import TableLlama
+from experiments.model.tabular_llm import TableLlama, TableGPT
 
 llms = [
         #GPT(
@@ -26,9 +26,9 @@ tabular_llms = [
     TableGPT(
         model_name="tablegpt/TableGPT2-7B"
     ),
-    TableLLM(
-        model_name="RUCKBReasoning/TableLLM-13b"
-    )
+    #TableLLM(
+    #    model_name="RUCKBReasoning/TableLLM-13b"
+    #)
 ]
 
 def get_llm(llm_name):
