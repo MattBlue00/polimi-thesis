@@ -83,7 +83,7 @@ appropriately completes the request.
         outputs = self.model.generate(
             inputs.input_ids,
             max_new_tokens=8192,  # Adjusted for better response control
-            temperature=0
+            do_sample=False
         )
 
         # Decode properly, avoiding special tokens
