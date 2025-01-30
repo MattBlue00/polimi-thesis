@@ -16,10 +16,13 @@ llms = [
         #Llama(
         #    model_name="meta-llama/Meta-Llama-3.1-8B-Instruct"
         #),
-        TableLlama(
-            model_name="osunlp/TableLlama"
-        )
     ]
+
+tabular_llms = [
+    TableLlama(
+        model_name="osunlp/TableLlama"
+    )
+]
 
 def get_llm(llm_name):
 
@@ -27,4 +30,12 @@ def get_llm(llm_name):
         if llm.name == llm_name:
             return llm
 
-    raise ValueError(f"No such llm: {llm_name}")
+    raise ValueError(f"No such LLM: {llm_name}")
+
+def get_tabular_llm(tabular_llm_name):
+
+    for tab_llm in tabular_llms:
+        if tab_llm.name == tabular_llm_name:
+            return tab_llm
+
+    raise ValueError(f"No such Tabular LLM: {tabular_llm_name}")

@@ -10,4 +10,5 @@ torch
 anthropic
 tiktoken
 accelerate
+sentencepiece
 huggingface_hub
