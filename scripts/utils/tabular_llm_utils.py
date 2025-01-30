@@ -1,11 +1,16 @@
 import csv
 import io
 
-
 def format_dataset_for_tablellama(dataset: str) -> str:
     # Usa un oggetto StringIO per trattare il dataset come file CSV
     f = io.StringIO(dataset)
-    reader = csv.reader(f)
+
+    # Usa csv.Sniffer per rilevare automaticamente il delimitatore
+    sample = f.read(1024)  # Legge un campione per l'analisi
+    f.seek(0)  # Torna all'inizio del file dopo aver letto il campione
+    dialect = csv.Sniffer().sniff(sample, delimiters=",;")  # Rileva "," o ";"
+
+    reader = csv.reader(f, delimiter=dialect.delimiter)
 
     # Separatori letterali
     tab = "[TAB]"
@@ -14,10 +19,13 @@ def format_dataset_for_tablellama(dataset: str) -> str:
     # Leggere tutte le righe dal CSV
     rows = list(reader)
 
-    # La prima riga è l'header, sostituisco le virgole con i pipe
+    if not rows:
+        raise ValueError("Dataset must not be empty.")
+
+    # La prima riga è l'header, sostituisco il delimitatore con il pipe
     header = " | ".join(rows[0])
 
-    # Le righe successive sono i dati, sostituendo le virgole con i pipe
+    # Le righe successive sono i dati, sostituendo il delimitatore con il pipe
     data_rows = [" | ".join(row) for row in rows[1:]]
 
     # Costruisco la stringa formattata

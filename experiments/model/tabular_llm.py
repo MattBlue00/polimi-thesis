@@ -61,7 +61,7 @@ appropriately completes the request.
 {question}
 
 ### Response:
-        """
+"""
 
         formatted_dataset = format_dataset_for_tablellama(dataset)
 
