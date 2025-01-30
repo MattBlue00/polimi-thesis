@@ -8,9 +8,6 @@ import os
 
 import transformers
 import torch
-from transformers import LlamaTokenizer, LlamaForCausalLM, BitsAndBytesConfig
-
-from scripts.utils.path import get_directory_from_root
 
 
 class BaseLLM(ABC):
