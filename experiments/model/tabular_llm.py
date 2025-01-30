@@ -76,3 +76,5 @@ class TableLlama(BaseTabularLLM):
         '''
 
         print(formatted_prompt)
+
+        return "prova"
