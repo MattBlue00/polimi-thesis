@@ -11,6 +11,3 @@ anthropic
 tiktoken
 accelerate
 huggingface_hub
-sentencepiece
-safetensors
-bitsandbytes

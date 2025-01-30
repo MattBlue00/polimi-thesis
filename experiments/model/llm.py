@@ -154,17 +154,20 @@ class TableLlama(BaseLLM):
         model_dir = get_directory_from_root(__file__, "models")
         os.makedirs(model_dir, exist_ok=True)
 
-        if torch.backends.mps.is_available():
-            device = torch.device("mps")  # Metal Performance Shaders
+        # Controllo se CUDA è disponibile, altrimenti uso la CPU
+        if torch.cuda.is_available():
+            device = torch.device("cuda")
+            torch_dtype = torch.float16  # Float16 per prestazioni migliori su GPU
         else:
-            device = torch.device("cpu")  # Fallback alla CPU
-            print("MPS non disponibile, utilizzo CPU.")
+            device = torch.device("cpu")
+            torch_dtype = torch.float32  # Manteniamo float32 per stabilità su CPU
+            print("CUDA non disponibile, utilizzo CPU.")
 
         self.tokenizer = LlamaTokenizer.from_pretrained(model_name, use_fast=False)
         self.model = LlamaForCausalLM.from_pretrained(
-            model_name,  # Usa float16 per migliorare le prestazioni
-            torch_dtype=torch.float16,  # Usa float16 per migliorare le prestazioni
-            device_map=None,
+            model_name,
+            torch_dtype=torch_dtype,
+            device_map="auto",  # Permette una gestione automatica del device
             offload_folder=model_dir
         ).to(device)
 
