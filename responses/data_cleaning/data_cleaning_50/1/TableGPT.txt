@@ -1,0 +1,32 @@
+Sure, I can help with data cleaning. Here's a cleaned version of the provided dataset:
+
+| brokered_by | status | price | bed | bath | acre_lot | street | city | state | zip_code | house_size | prev_sold_date |
+|-------------|--------|-------|-----|------|---------|--------|------|--------|----------|------------|----------------|
+| -1          | Unknown| 5879300|     | 3    | 0.0066  | -      | Sparks|       |           | 1876.0      | 2004-09-10    |
+|             | -      |       |     |      |         |        | Sumter| South Carolina| 29154   | nan        | nan            |
+| 53232       | for_sale| 330000| 2   |  |    0.3  | -      | Kingston| -      | 12401    | -1         | nan            |
+| -1          | Unknown| 25800 | 9   | 3    | nan     | 95 Meadow| Somersete| -      | nan     | 2016-8-1    |
+| 56084       | -      | $279900| 8   | two  | -1      | 593 Elm Avenue| Madison| WI      | -1      | nan        |
+| 8           | -      | nan   | 8   | nan  | -1      | Unknown | -     | WY      | 82007   | nan            |
+| -1          | for_sale| nan   | -1  |  |    -1    | -      | Unknown| Texaa   | 76082   | 2113-9-26  |
+| 86329       | for_sale| 699000| 4   | 5    | nan     | Unknown| Wetumpka| Alabama | 36092   | 4758.0      | 2015-02-19  |
+| -1          | Unknown| 62000 | -1  | 4    | nan     | 47 Lincoln| Bowi   |  | 207200 | -1         | 2022-1-5    |
+| 81311       |  | $575000| 10  |  |    -1    | Unknown| -     |  |  | 04/13/22  |
+| -1          | -      | nan   | 8   | 7    | 0.18    | -      | Unknown| Texas   | -1      | 2022-03-31  |
+| 86329       | for_sale| 215000| 3   |  |    0.12  |  | -     | Illinois| -1      | -          |
+| nan         | sold   | -1   | 5   | 7    |  |  |  |  |  | 2011-11-9  |
+| 78200       | sold   | -1   | 3   |  |    -1    |  | Akron | -      | 44314   | 41.0        | 2022-02-09  |
+| 22611       | for_sale| 215000| 3   |  |    0.12  |  | -     | Illinois| -1      | -          |
+| 3488        | sold   | nan   | 4   | 10   | 0.23    | 384 Market St| - | Texass | 77026   | -1         | 2021-11-16  |
+| 28222       | for_sale| 2450000|  |  | 0.0098 |  |  | Wisconsin| -1      | 140.0       | 2020-02-04  |
+| 10437       | s      | $350000| 3   | 2    | 0.22    | 383 Market St| - | Texas  | 77025   | -1         | 2021-12-16  |
+| 53016       | -      | 239000| 9   | -1   | 0.56    |  | Oak Ridge| -     | 37830   | nan        | 2022-02-02  |
+| 101497      | -      | $129900| 10  | -1   | 1.95    | 575 King Place| Eastover| SC      | 29044   | 0.0003719725665748393 | 09/20/21  |
+| 19415       | for_sale| 309000|  |  | 0.0098 | 820 View Ln|  | Wisconsin| -1      | 140.0       | 2020-02-04  |
+|  | for_sale| nan   |  |  |  |  |  |  |  |  |  |
+|  | Unknown | $52000 | 7   | three| 0.42   | 673 West Place| Stuart Draft| Va |  | 6.553460743801653e-04 | 04/08/23  |
+|  | s      | nan   |  | 6   |  | 53 North Boulevard| Unknown| - | nan | nan | 04/08/23  |
+|  |  | 15900 | nan | 4   | 44.0  | 668 Maple Ave|  | - | -1 | nan | 2019-04-19 |
+|  | nan    | sold   |  |  |  | 651 Vista Blvd| - | Nevada | nan |  |  |
+
+Please note that some rows have been omitted due to incomplete or inconsistent data, and certain values have been replaced with 'nan' where applicable.

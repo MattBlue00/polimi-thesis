@@ -1,0 +1,11 @@
+brokered_by -> status
+brokered_by -> price
+brokered_by -> bed
+brokered_by -> bath
+brokered_by -> acre_lot
+brokered_by -> street
+brokered_by -> city
+brokered_by -> state
+brokered_by -> zip_code
+brokered_by -> house_size
+brokered_by -> prev_sold_date

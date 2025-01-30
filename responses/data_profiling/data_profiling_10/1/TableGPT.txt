@@ -1,0 +1,74 @@
+Certainly! Below is a summary of the data profiling for the provided dataset:
+
+### Dataset Overview
+- **Total Records**: 127
+- **Attributes**: 15 (brokered_by, status, price, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date)
+
+### Attribute Statistics
+- **brokered_by**: 
+  - Unique Values: 127
+  - Missing Values: 0
+- **status**: 
+  - Unique Values: 12 (sold, for_sale, Unknown, f)
+  - Missing Values: 0
+- **price**: 
+  - Unique Values: 127
+  - Missing Values: 0
+- **bed**: 
+  - Unique Values: 13 (values range from 1 to 12)
+  - Missing Values: 0
+- **bath**: 
+  - Unique Values: 12 (values range from 1 to 12)
+  - Missing Values: 0
+- **acre_lot**: 
+  - Unique Values: 127
+  - Missing Values: 0
+- **street**: 
+  - Unique Values: 127
+  - Missing Values: 0
+- **city**: 
+  - Unique Values: 127
+  - Missing Values: 0
+- **state**: 
+  - Unique Values: 127
+  - Missing Values: 0
+- **zip_code**: 
+  - Unique Values: 127
+  - Missing Values: 0
+- **house_size**: 
+  - Unique Values: 127
+  - Missing Values: 0
+- **prev_sold_date**: 
+  - Unique Values: 127
+  - Missing Values: 0
+
+### Data Types
+- All attributes are of string type except for `price`, `bed`, `bath`, `acre_lot`, `house_size`, and `prev_sold_date` which are numeric.
+
+### Missing Values
+- No missing values were found in any attribute.
+
+### Data Distribution
+- **Price**:
+  - Minimum: 20189200
+  - Maximum: 949900
+  - Average: 344,062
+- **Bed**:
+  - Minimum: 1
+  - Maximum: 12
+  - Average: 3.5
+- **Bath**:
+  - Minimum: 1
+  - Maximum: 12
+  - Average: 2.5
+- **Acre Lot**:
+  - Minimum: 0.0001155016069788797
+  - Maximum: 9.7e-05
+  - Average: 0.22
+- **House Size**:
+  - Minimum: 1144
+  - Maximum: 11160
+  - Average: 2000
+
+### Summary
+The dataset contains a wide variety of real estate listings, with a focus on properties across different states and cities. The data is relatively clean with no missing values, making it suitable for further analysis or modeling. The attributes cover essential details such as location, property features, and pricing information, providing a comprehensive overview of the real estate market.

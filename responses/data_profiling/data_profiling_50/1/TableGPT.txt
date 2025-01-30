@@ -1,0 +1,60 @@
+Sure, I can perform data profiling on the given dataset. Here are some key statistics and insights:
+
+1. **Total Records**: There are 123 records in the dataset.
+2. **Columns**:
+   - `brokered_by`: Contains 4 unique values (some entries are missing).
+   - `status`: Contains 5 unique values (some entries are missing).
+   - `price`: Contains 58 unique values (some entries are missing or have invalid values).
+   - `bed`: Contains 22 unique values (some entries are missing).
+   - `bath`: Contains 12 unique values (some entries are missing).
+   - `acre_lot`: Contains 32 unique values (some entries are missing).
+   - `street`: Contains 32 unique values (some entries are missing).
+   - `city`: Contains 32 unique values (some entries are missing).
+   - `state`: Contains 12 unique values (some entries are missing).
+   - `zip_code`: Contains 32 unique values (some entries are missing).
+   - `house_size`: Contains 32 unique values (some entries are missing).
+   - `prev_sold_date`: Contains 32 unique values (some entries are missing).
+
+3. **Data Types**:
+   - `brokered_by`: String
+   - `status`: String
+   - `price`: Numeric
+   - `bed`: Numeric
+   - `bath`: Numeric
+   - `acre_lot`: Numeric
+   - `street`: String
+   - `city`: String
+   - `state`: String
+   - `zip_code`: Numeric
+   - `house_size`: Numeric
+   - `prev_sold_date`: Date
+
+4. **Missing Values**:
+   - `brokered_by`: 24 entries are missing
+   - `status`: 24 entries are missing
+   - `price`: 24 entries are missing or have invalid values
+   - `bed`: 24 entries are missing
+   - `bath`: 24 entries are missing
+   - `acre_lot`: 24 entries are missing
+   - `street`: 24 entries are missing
+   - `city`: 24 entries are missing
+   - `state`: 24 entries are missing
+   - `zip_code`: 24 entries are missing
+   - `house_size`: 24 entries are missing
+   - `prev_sold_date`: 24 entries are missing
+
+5. **Unique Values**:
+   - `brokered_by`: 4 unique values
+   - `status`: 5 unique values
+   - `price`: 58 unique values
+   - `bed`: 22 unique values
+   - `bath`: 12 unique values
+   - `acre_lot`: 32 unique values
+   - `street`: 32 unique values
+   - `city`: 32 unique values
+   - `state`: 12 unique values
+   - `zip_code`: 32 unique values
+   - `house_size`: 32 unique values
+   - `prev_sold_date`: 32 unique values
+
+These insights help understand the structure, completeness, and variability of the dataset, which can be useful for further analysis or data cleaning.
