@@ -126,11 +126,8 @@ class TableGPT(BaseTabularLLM):
                   "### Question:\n{question}\n\n"
                   "### Response:""")
 
-        # Format dataset properly
-        formatted_dataset = format_dataset_for_tablellama(dataset)
-
         # Costruzione del prompt finale
-        prompt = prompt.format(instruction=instruction, input=formatted_dataset, question=question)
+        prompt = prompt.format(instruction=instruction, input=dataset, question=question)
 
         messages = [
             {"role": "user", "content": prompt},

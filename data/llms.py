@@ -20,9 +20,9 @@ llms = [
     ]
 
 tabular_llms = [
-    TableLlama(
-        model_name="osunlp/TableLlama"
-    ),
+    #TableLlama(
+    #    model_name="osunlp/TableLlama"
+    #),
     TableGPT(
         model_name="tablegpt/TableGPT2-7B"
     ),
