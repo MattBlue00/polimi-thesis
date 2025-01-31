@@ -270,16 +270,16 @@ class TableLLM(BaseLLM):
         if prompt.system_message:
             messages.insert(0, {"role": "system", "content": prompt.system_message})
 
-        text = self.tokenizer.apply_chat_template(
-            messages, tokenize=False, add_generation_prompt=True
-        )
+        text = ""
+        if prompt.system_message:
+            text += f"SYSTEM: {prompt.system_message}\n\n"
+        text += f"USER: {prompt.user_message}\n\nASSISTANT:"
 
-        model_inputs = self.tokenizer([text], return_tensors="pt").to(self.model.device)
+        model_inputs = self.tokenizer(text, return_tensors="pt").to(self.model.device)
         generated_ids = self.model.generate(
             **model_inputs,
             max_new_tokens=8192,
             do_sample=False,
-            repetition_penalty=1.2,
             temperature=None,
             top_p=None,
             top_k=None
