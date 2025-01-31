@@ -1,0 +1,21 @@
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Convert 'price' column to numeric, handle errors by coercing them to NaN
+data['price'] = pd.to_numeric(data['price'], errors='coerce')
+
+# Define the boundaries for 'price'
+lower_bound = data['price'].quantile(0.1)
+upper_bound = data['price'].quantile(0.9)
+
+# Define the outliers range
+outliers_range = (data['price'] < lower_bound) | (data['price'] > upper_bound)
+
+# Replace the outliers with NaN
+data.loc[outliers_range, 'price'] = np.nan
+
+# Output the results
+print(data)

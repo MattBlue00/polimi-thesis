@@ -1,0 +1,35 @@
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Data cleaning
+# Remove rows with 'for_sale' status
+data = data[data['status'] != 'for_sale']
+
+# Remove rows with NaN in 'price' column
+data = data[data['price'].notna()]
+
+# Convert 'price' column to numeric type
+data['price'] = pd.to_numeric(data['price'])
+
+# Remove rows with NaN in 'bed' column
+data = data[data['bed'].notna()]
+
+# Convert 'bed' column to numeric type
+data['bed'] = pd.to_numeric(data['bed'])
+
+# Remove rows with NaN in 'bath' column
+data = data[data['bath'].notna()]
+
+# Convert 'bath' column to numeric type
+data['bath'] = pd.to_numeric(data['bath'])
+
+# Remove rows with NaN in 'acre_lot' column
+data = data[data['acre_lot'].notna()]
+
+# Convert 'acre_lot' column to numeric type
+data['acre_lot'] = pd.to_numeric(data['acre_lot'])
+
+# Print the cleaned data
+print(data)

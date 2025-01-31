@@ -1,0 +1,24 @@
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Replace missing values in 'price' column with median of the column
+data['price'] = data['price'].replace('nan', np.nan)
+data['price'] = data['price'].fillna(data['price'].median())
+
+# Replace missing values in 'bed' column with median of the column
+data['bed'] = data['bed'].replace('nan', np.nan)
+data['bed'] = data['bed'].fillna(data['bed'].median())
+
+# Replace missing values in 'bath' column with median of the column
+data['bath'] = data['bath'].replace('nan', np.nan)
+data['bath'] = data['bath'].fillna(data['bath'].median())
+
+# Replace missing values in 'acre_lot' column with median of the column
+data['acre_lot'] = data['acre_lot'].replace('nan', np.nan)
+data['acre_lot'] = data['acre_lot'].fillna(data['acre_lot'].median())
+
+# Print the processed data
+print(data)

@@ -1,0 +1,14 @@
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Data Profiling
+# Check for missing values in each column
+missing_values = data.isnull().sum()
+
+# Check for the percentage of missing values in each column
+percentage_missing = (missing_values / len(data)) * 100
+
+# Print the result
+print(percentage_missing)

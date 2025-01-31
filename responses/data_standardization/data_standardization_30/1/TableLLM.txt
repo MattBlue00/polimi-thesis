@@ -1,0 +1,12 @@
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Standardize the data
+data = data.apply(lambda x: x.replace('$', '') if x.dtype == "object" else x)
+data = data.apply(lambda x: x.replace(',', '') if x.dtype == "object" else x)
+data = data.astype(float)
+
+# Output the results
+print(data)

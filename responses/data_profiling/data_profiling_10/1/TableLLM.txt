@@ -1,0 +1,10 @@
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Perform data profiling
+profile = data.profile_report(title='Data Profile')
+
+# Print the profile
+print(profile)

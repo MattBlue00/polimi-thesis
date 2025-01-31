@@ -1,0 +1,10 @@
+import pandas as pd
+
+# Load the dataset
+df = pd.read_csv('data.csv')
+
+# Perform dependency discovery
+dependencies = df.columns.tolist()
+
+# Print the list of dependencies
+print(dependencies)

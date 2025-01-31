@@ -1,0 +1,14 @@
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Data Cleaning
+# Remove rows with 'Unknown' status
+data = data[data['status'] != 'Unknown']
+
+# Remove columns with 'Unknown' values
+data = data.dropna(subset=['Unknown'])
+
+# Rechecking the data
+print(data)

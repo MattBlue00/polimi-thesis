@@ -1,0 +1,14 @@
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Data Standardization
+# Convert 'price' column to numeric, errors set to 'coerce' will replace non-numeric values with NaN
+data['price'] = pd.to_numeric(data['price'], errors='coerce')
+
+# Replace NaN values in 'price' column with median of the column
+data['price'].fillna(data['price'].median(), inplace=True)
+
+# Print the processed data
+print(data)
