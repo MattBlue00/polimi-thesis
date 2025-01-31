@@ -220,8 +220,69 @@ class TableGPT(BaseLLM):
         generated_ids = self.model.generate(
             **model_inputs,
             max_new_tokens=8192,
-            do_sample=False,  # Disabilita il campionamento casuale
-            top_p=None
+            do_sample=False,
+            repetition_penalty=1.2,
+            temperature=None,
+            top_p=None,
+            top_k=None
+        )
+        generated_ids = [
+            output_ids[len(input_ids):]
+            for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
+        ]
+
+        response = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+        return response
+
+
+class TableLLM(BaseLLM):
+
+    def __init__(self, model_name):
+        super().__init__(name="TableLLM", model_name=model_name)
+
+        # Creazione del modello e tokenizer
+        model_dir = get_directory_from_root(__file__, "models")
+        os.makedirs(model_dir, exist_ok=True)
+
+        # Controllo se CUDA è disponibile, altrimenti uso la CPU
+        if torch.cuda.is_available():
+            device = torch.device("cuda")
+            torch_dtype = torch.float16  # Float16 per prestazioni migliori su GPU
+        else:
+            device = torch.device("cpu")
+            torch_dtype = torch.float32  # Manteniamo float32 per stabilità su CPU
+            print("CUDA unavailable, using CPU.")
+
+        self.device = device
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        self.model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            torch_dtype=torch_dtype,
+            device_map="auto",  # Permette una gestione automatica del device
+            offload_folder=model_dir
+        ).to(device)
+
+    def get_response(self, prompt) -> str:
+        messages = [
+            {"role": "user", "content": prompt.user_message},
+        ]
+
+        if prompt.system_message:
+            messages.insert(0, {"role": "system", "content": prompt.system_message})
+
+        text = self.tokenizer.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=True
+        )
+
+        model_inputs = self.tokenizer([text], return_tensors="pt").to(self.model.device)
+        generated_ids = self.model.generate(
+            **model_inputs,
+            max_new_tokens=8192,
+            do_sample=False,
+            repetition_penalty=1.2,
+            temperature=None,
+            top_p=None,
+            top_k=None
         )
         generated_ids = [
             output_ids[len(input_ids):]
