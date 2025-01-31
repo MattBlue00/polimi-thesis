@@ -1,0 +1,10 @@
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Standardize the data
+data = data.apply(lambda x: x.fillna(x.mean()) if x.dtype.kind in 'biufc' else x)
+
+# Print the standardized data
+print(data)

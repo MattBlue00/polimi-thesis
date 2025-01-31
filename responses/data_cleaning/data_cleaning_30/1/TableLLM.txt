@@ -1,0 +1,14 @@
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Data Cleaning
+# Remove rows with 'nan'
+data = data.dropna()
+
+# Remove rows where 'status' is 'Unknown'
+data = data[data['status'] != 'Unknown']
+
+# Print the cleaned data
+print(data)

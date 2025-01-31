@@ -1,0 +1,10 @@
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Remove duplicate rows
+data_deduplicated = data.drop_duplicates()
+
+# Print the result
+print(data_deduplicated)

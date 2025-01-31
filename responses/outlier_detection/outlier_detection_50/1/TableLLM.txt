@@ -1,0 +1,18 @@
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Convert 'price' column to numeric
+data['price'] = pd.to_numeric(data['price'], errors='coerce')
+
+# Remove outliers in 'price' column
+Q1 = data['price'].quantile(0.25)
+Q3 = data['price'].quantile(0.75)
+IQR = Q3 - Q1
+filter = (data['price'] >= (Q1 - 1.5 * IQR)) & (data['price'] <= (Q3 + 1.5 * IQR))
+data_filtered = data.loc[filter]
+
+# Output the results
+print(data_filtered)

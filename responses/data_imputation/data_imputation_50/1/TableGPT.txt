@@ -1,0 +1,67 @@
+Yes, I can help with data imputation for the provided dataset. Data imputation is the process of replacing missing values in datasets with estimated or predicted values based on other available information.
+
+To perform data imputation effectively, we need to understand which columns contain numerical and categorical data since different strategies work best for each type:
+
+### Numerical Columns
+
+For numerical columns (e.g., `price`, `acre_lot`), common methods include mean/median imputation, regression-based imputation, K-nearest neighbors (KNN) imputation, etc.
+
+### Categorical Columns
+
+For categorical columns (e.g., `status`, `state`), common methods include mode imputation, using machine learning models like decision trees or k-means clustering, etc.
+
+Given that your dataset contains both types of variables, let's proceed step-by-step:
+
+#### Step 1: Identify Missing Values
+
+Firstly, identify all columns containing missing values (`NaN`) and their respective counts.
+
+```python
+import pandas as pd
+from sklearn.impute import SimpleImputer
+
+# Load the dataset into a DataFrame
+df = pd.read_csv('your_dataset.csv')
+
+# Display basic info about the dataframe including null count per column
+print(df.info())
+```
+
+This will give us an overview of how many rows have missing values in each column.
+
+#### Step 2: Separate Numeric and Categorical Features
+
+Next, separate numeric features from categorical ones because they require different handling during imputation.
+
+```python
+numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns.tolist()
+categorical_cols = df.select_dtypes(exclude=['float64', 'int64']).drop(['brokered_by'], axis=1).columns.tolist() # Exclude non-numerical but not relevant columns
+```
+
+Note: The list comprehension excludes irrelevant columns such as dates and addresses.
+
+#### Step 3: Impute Missing Values
+
+Now, apply appropriate imputation techniques to each group of columns.
+
+**Numerical Columns**
+
+Use median imputation here as it tends to be more robust against outliers compared to mean imputation.
+
+```python
+imputer_num = SimpleImputer(strategy='median')
+df[numeric_cols] = imputer_num.fit_transform(df[numeric_cols])
+```
+
+**Categorical Columns**
+
+We'll use the most frequent value (mode) for simplicity.
+
+```python
+imputer_cat = SimpleImputer(strategy='most_frequent')
+df[categorical_cols] = imputer_cat.fit_transform(df[categorical_cols])
+```
+
+After these steps, your dataset should have fewer missing values. However, depending on the specific requirements of your analysis or model training, you might want to explore more sophisticated imputation techniques tailored to your needs.
+
+Remember, while imputing helps fill gaps in your data, it doesn't guarantee perfect accuracy; thus, always validate results post-imputation!

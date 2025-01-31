@@ -1,0 +1,17 @@
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Data Wrangling
+# Remove unwanted characters from 'address' column
+data['address'] = data['address'].str.replace('[^\w\s]','')
+
+# Split 'address' column into 'street_address', 'city', 'state', 'zip'
+data[['street_address', 'city', 'state', 'zip']] = data['address'].str.extract(r'(?P<street_address>.*), (?P<city>.*), (?P<state>.*), (?P<zip>.*)', expand=True)
+
+# Drop the original 'address' column
+data = data.drop(['address'], axis=1)
+
+# Print the updated DataFrame
+print(data)

@@ -23,7 +23,8 @@ tasks = [
                 user_message="Consider this dataset:\n{{csv_text}}\nCan you do data cleaning on it? Let's think step by step.",
                 system_message="You are a data quality expert. For this reason, you help users by providing detailed answers that stick to the task and dataset you are given. Be the most accurate and complete you can.",
             )
-    ]),
+        ]
+    ),
     Task(
         name="data_profiling",
         prompts=[
@@ -152,4 +153,4 @@ def get_prompt(task_name, prompt_id):
                 if str(prompt.id) == str(prompt_id):
                     return prompt
 
-    raise Exception("Prompt " + str(prompt_id) + " not found for task " + str(task_name))
+    raise ValueError("Prompt " + str(prompt_id) + " not found for task " + str(task_name))

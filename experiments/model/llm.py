@@ -1,15 +1,16 @@
-import time
 from abc import ABC, abstractmethod
 
 import anthropic
-from anthropic import APIError as AnthropicAPIError
-from google.api_core.exceptions import GoogleAPIError
-from openai import OpenAI, APIError as OpenAPIError
+from openai import OpenAI
 from mistralai import Mistral as MistralClient
 import google.generativeai as genai
 import os
 
-from groq import Groq, APITimeoutError, InternalServerError, GroqError
+import transformers
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+from scripts.utils.path import get_directory_from_root
 
 
 class BaseLLM(ABC):
@@ -21,6 +22,7 @@ class BaseLLM(ABC):
     @abstractmethod
     def get_response(self, prompt) -> str:
         pass
+
 
 class GPT(BaseLLM):
 
@@ -47,17 +49,7 @@ class GPT(BaseLLM):
             max_completion_tokens=16384
             )
 
-        response = ""
-
-        while response == "":
-            try:
-                response = chat_completion.choices[0].message.content
-            except OpenAPIError as e:
-                print(f"OpenAI error: {type(e).__name__}. Retrying in a minute.")
-                time.sleep(60)
-                print("Retrying now!")
-
-        return response
+        return chat_completion.choices[0].message.content
 
 
 class Gemini(BaseLLM):
@@ -85,17 +77,7 @@ class Gemini(BaseLLM):
 
         chat_session = model.start_chat(history=[])
 
-        response = ""
-
-        while response == "":
-            try:
-                response = chat_session.send_message(prompt.user_message).text
-            except GoogleAPIError as e:
-                print(f"Google AI error: {type(e).__name__}. Retrying in a minute.")
-                time.sleep(60)
-                print("Retrying now!")
-
-        return response
+        return chat_session.send_message(prompt.user_message).text
 
 
 class Mistral(BaseLLM):
@@ -128,11 +110,22 @@ class Llama(BaseLLM):
     def __init__(self, model_name):
         super().__init__(name="Llama", model_name=model_name)
 
-    def get_response(self, prompt) -> str:
+        token = os.getenv('HUGGING_FACE_TOKEN')
+        if not token:
+            raise ValueError("Hugging Face token is not set in the environment variables.")
 
-        client = Groq(
-            api_key=os.getenv("GROQ_API_KEY"),
+        self.pipeline = transformers.pipeline(
+            "text-generation",
+            model=self.model_name,
+            #model_kwargs={"torch_dtype": torch.float32},
+            device_map="auto"
         )
+
+        print("Torch version: " + str(torch.__version__))
+        print("CUDA available? " + str(torch.cuda.is_available()))
+        print("Llama is active on device:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")
+
+    def get_response(self, prompt) -> str:
 
         messages = []
 
@@ -141,32 +134,16 @@ class Llama(BaseLLM):
 
         messages.append({"role": "user", "content": prompt.user_message})
 
-        chat_completion = client.chat.completions.create(
-            messages=messages,
-            model=self.model_name,
-            max_tokens=32768,
-            temperature=0
-        )
-
-        response = ""
-
-        while response == "":
-            try:
-                response = chat_completion.choices[0].message.content
-            except APITimeoutError:
-                print("Request timed out. Retrying in a minute.")
-                time.sleep(60)
-                print("Retrying now!")
-            except InternalServerError:
-                print("Groq is temporarily unavailable. Retrying in a minute.")
-                time.sleep(60)
-                print("Retrying now!")
-            except GroqError as e:
-                print(f"Groq error: {type(e).__name__}. Retrying in a minute.")
-                time.sleep(60)
-                print("Retrying now!")
-
-        return chat_completion.choices[0].message.content
+        with torch.cuda.amp.autocast(enabled=False):
+            torch.cuda.empty_cache()
+            outputs = self.pipeline(
+                messages,
+                do_sample=False,
+                temperature=None,
+                top_p=None,
+                max_new_tokens=4096
+            )
+        return outputs[0]["generated_text"][-1]
 
 
 class Claude(BaseLLM):
@@ -181,31 +158,136 @@ class Claude(BaseLLM):
         system_message = ""
         if prompt.system_message is not None:
             system_message = prompt.system_message
-
-        response = ""
-
-        while response == "":
-            try:
-                response = client.messages.create(
-                    model=self.model_name,
-                    max_tokens=8192,
-                    temperature=0,
-                    system=system_message,
-                    messages=[
+        message = client.messages.create(
+            model=self.model_name,
+            max_tokens=8192,
+            temperature=0,
+            system=system_message,
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
                         {
-                            "role": "user",
-                            "content": [
-                                {
-                                    "type": "text",
-                                    "text": prompt.user_message
-                                }
-                            ]
+                            "type": "text",
+                            "text": prompt.user_message
                         }
                     ]
-                ).content[0].text
-            except AnthropicAPIError as e:
-                print(f"Anthropic error: {type(e).__name__}. Retrying in a minute.")
-                time.sleep(60)
-                print("Retrying now!")
+                }
+            ]
+        )
+        return message.content[0].text
 
+class TableGPT(BaseLLM):
+
+    def __init__(self, model_name):
+        super().__init__(name="TableGPT", model_name=model_name)
+
+        # Creazione del modello e tokenizer
+        model_dir = get_directory_from_root(__file__, "models")
+        os.makedirs(model_dir, exist_ok=True)
+
+        # Controllo se CUDA è disponibile, altrimenti uso la CPU
+        if torch.cuda.is_available():
+            device = torch.device("cuda")
+            torch_dtype = torch.float16  # Float16 per prestazioni migliori su GPU
+        else:
+            device = torch.device("cpu")
+            torch_dtype = torch.float32  # Manteniamo float32 per stabilità su CPU
+            print("CUDA unavailable, using CPU.")
+
+        self.device = device
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        self.model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            torch_dtype=torch_dtype,
+            device_map="auto",  # Permette una gestione automatica del device
+            offload_folder=model_dir
+        ).to(device)
+
+    def get_response(self, prompt) -> str:
+        messages = [
+            {"role": "user", "content": prompt.user_message},
+        ]
+
+        if prompt.system_message:
+            messages.insert(0, {"role": "system", "content": prompt.system_message})
+
+        text = self.tokenizer.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=True
+        )
+
+        model_inputs = self.tokenizer([text], return_tensors="pt").to(self.model.device)
+        generated_ids = self.model.generate(
+            **model_inputs,
+            max_new_tokens=8192,
+            do_sample=False,
+            repetition_penalty=1.2,
+            temperature=None,
+            top_p=None,
+            top_k=None
+        )
+        generated_ids = [
+            output_ids[len(input_ids):]
+            for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
+        ]
+
+        response = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+        return response
+
+
+class TableLLM(BaseLLM):
+
+    def __init__(self, model_name):
+        super().__init__(name="TableLLM", model_name=model_name)
+
+        # Creazione del modello e tokenizer
+        model_dir = get_directory_from_root(__file__, "models")
+        os.makedirs(model_dir, exist_ok=True)
+
+        # Controllo se CUDA è disponibile, altrimenti uso la CPU
+        if torch.cuda.is_available():
+            device = torch.device("cuda")
+            torch_dtype = torch.float16  # Float16 per prestazioni migliori su GPU
+        else:
+            device = torch.device("cpu")
+            torch_dtype = torch.float32  # Manteniamo float32 per stabilità su CPU
+            print("CUDA unavailable, using CPU.")
+
+        self.device = device
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        self.model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            torch_dtype=torch_dtype,
+            device_map="auto",  # Permette una gestione automatica del device
+            offload_folder=model_dir
+        )
+
+    def get_response(self, prompt) -> str:
+        messages = [
+            {"role": "user", "content": prompt.user_message},
+        ]
+
+        if prompt.system_message:
+            messages.insert(0, {"role": "system", "content": prompt.system_message})
+
+        text = ""
+        if prompt.system_message:
+            text += f"SYSTEM: {prompt.system_message}\n\n"
+        text += f"USER: {prompt.user_message}\n\nASSISTANT:"
+
+        model_inputs = self.tokenizer(text, return_tensors="pt").to(self.model.device)
+        generated_ids = self.model.generate(
+            **model_inputs,
+            max_new_tokens=8192,
+            do_sample=False,
+            temperature=None,
+            top_p=None,
+            top_k=None
+        )
+        generated_ids = [
+            output_ids[len(input_ids):]
+            for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
+        ]
+
+        response = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
         return response

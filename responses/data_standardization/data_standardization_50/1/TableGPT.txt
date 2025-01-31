@@ -1,0 +1,32 @@
+Yes, I can help with that! Data standardization is the process of rescaling features to have zero mean and unit variance or scaling them into a range such as 0–1.
+
+Here's how we could perform feature-wise standardization for each numerical column in your dataset:
+
+```python
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+
+# Load the dataset
+data = {
+    'brokered_by': [94681, ...], # Add all values here
+    ...
+}
+
+df = pd.DataFrame(data)
+
+# Select only numeric columns (excluding non-numeric ones like status)
+numeric_columns = df.select_dtypes(include=['float', 'int']).columns.tolist()
+
+scaler = StandardScaler()
+scaled_values = scaler.fit_transform(df[numeric_columns])
+
+# Create new DataFrame from scaled values
+scaled_df = pd.DataFrame(scaled_values, columns=numeric_columns)
+
+# Combine original categorical columns with scaled numeric columns
+final_df = pd.concat([df.drop(columns=numeric_columns), scaled_df], axis=1)
+```
+
+This code will load your dataset, select the numeric columns, apply standardization using `StandardScaler` from scikit-learn, create a new DataFrame containing these standardized values, and then combine this back with any remaining non-numeric columns from the original DataFrame.
+
+Please note: The ellipsis (...) indicates where you should add more rows of your dataset. Make sure to include all relevant data points when loading the dataset.

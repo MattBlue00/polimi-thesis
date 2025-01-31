@@ -1,0 +1,85 @@
+Yes, I can perform dependency discovery on the provided dataset to identify relationships between variables and determine which features have significant dependencies or correlations with each other.
+
+To start, let's load the data into a pandas DataFrame:
+
+```python
+import pandas as pd
+
+data = {
+    "brokered_by": [94681, 109978, ...],
+    # Add all columns here...
+}
+
+df = pd.DataFrame(data)
+```
+
+Now we'll calculate correlation coefficients for numerical columns (like price, house\_size) using `corr()` method in pandas:
+
+```python
+numeric_columns = df.select_dtypes(include=['float', 'int']).columns.tolist()
+correlation_matrix = df[numeric_columns].corr()
+
+print(correlation_matrix)
+```
+
+This will give us a matrix showing pairwise correlation coefficients between numeric columns. We can also visualize these correlations using seaborn library:
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+plt.figure(figsize=(12, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title("Correlation Matrix")
+plt.show()
+```
+
+Next, we can use mutual information from scikit-learn to find feature importance:
+
+```python
+from sklearn.feature_selection import mutual_info_classif
+
+X = df.drop('status', axis=1).select_dtypes(include=['object'])
+Y = df['status']
+
+mutual_info = mutual_info_classif(X.fillna(0), Y)
+
+feature_importance_df = pd.DataFrame({'Feature': X.columns, 'Mutual Information': mutual_info})
+sorted_feature_importance_df = feature_importance_df.sort_values(by='Mutual Information', ascending=False)
+
+print(sorted_feature_importance_df)
+```
+
+Finally, we can apply chi-square test of independence to categorical variables:
+
+```python
+from scipy.stats import chi2_contingency
+
+categorical_columns = df.select_dtypes(include=['object']).columns.tolist()
+contingency_tables = []
+
+for col in categorical_columns:
+    contingency_table = pd.crosstab(df[col], df['status'])
+    contingency_tables.append(contingency_table)
+
+chi2_results = []
+p_values = []
+
+for table in contingency_tables:
+    chi2, p_val, _, _ = chi2_contingency(table)
+    chi2_results.append(chi2)
+    p_values.append(p_val)
+
+chi2_pvalues_df = pd.DataFrame({
+    'Chi-Square Statistic': chi2_results,
+    'P-Value': p_values,
+}, index=categorical_columns)
+
+significant_chi2_cols = chi2_pvalues_df[
+    chi2_pvalues_df['P-Value'] < 0.05
+]
+
+print(significant_chi2_cols)
+```
+
+These steps should help you discover dependencies within your dataset. Note that some preprocessing might be required depending on the nature of your data. For example, handling missing values, encoding categorical variables, etc., may need to be done before applying statistical tests.
