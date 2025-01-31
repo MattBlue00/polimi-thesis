@@ -1,38 +1,142 @@
-Yes, I can help with data imputation for the given dataset. Data imputation is the process of replacing missing values in a dataset with estimated values. There are several methods to perform data imputation, such as mean imputation, median imputation, mode imputation, and more advanced techniques like k-nearest neighbors (KNN) or machine learning-based imputation.
+Yes, I can help with data imputation for the given dataset using Python and pandas library.
 
-Here's an example of how you might perform mean imputation for numerical columns and mode imputation for categorical columns using Python and the pandas library:
+Firstly, we need to load the dataset into a pandas DataFrame:
 
 ```python
 import pandas as pd
-import numpy as np
+from io import StringIO
 
-# Load the dataset
-data = pd.read_csv('your_dataset.csv')
+data = """brokered_by,status,price,bed,bath,acre_lot,street,city,state,zip_code,house_size,prev_sold_date
+,-,409900,,1,,655 First St,Unknown,Massachusetts,,1015,-
+109978,-,760000,-1,2,,760 Madison Ln,-,California,92026,1888,2021-12-22
+109987,,490000,nan,4,0.16,229 Broadway Ave,Corpus Christi,Texas,-1,-1,2019-04-03
+53173,sold,350000,3,2,0.9,693 Ridge Pl,Harpers Ferry,Unknown,25425,3220,-
+-1,sold,425000,-1,3,0.06,,Alexandria,Virginia,,nan,Unknown
+96014,-,,4,2,-1,,Spokane,Washington,99207,2084,
+101497,for_sale,129900,4,2,1.95,575 King Pl,Eastover,South Carolina,29044,2128,2021-09-20
+10726,for_sale,-1,,2,0.83,226 Square Rd,Brewster,Massachusetts,2631,1368,2001-07-06
+53016,sold,239000,3,,0.56,-,Oak Ridge,,37830,nan,2022-02-02
+-1,,725000,,3,1.04,Unknown,Sparks,Nevada,89441,1876,2004-09-10
+,sold,749000,,nan,0.27,-,Fairfax,Virginia,22030,2948,
+104876,,398000,3,-1,0.11,,Unknown,Illinois,-1,1171,2021-11-30
+,,278900,3,2,,95 Meadow Ave,Somerset,-,nan,1923,2016-07-01
+102016,Unknown,374900,3,-1,0.14,368 Shore Rd,Unknown,Florida,33542,1694,2019-04-25
+81311,sold,575000,5,,nan,827 Elm Ct,Leland,-,-1,-1,2022-04-22
+,Unknown,1300000,2,-1,27.59,550 Second Pl,Julian,,,986,2020-05-15
+24268,for_sale,550000,3,2,0.22,81 Roosevelt Dr,Charlottesville,Unknown,22903,1512,2011-09-29
+31355,sold,2365000,5,5,nan,-,Unknown,,55424,4905,2021-12-30
+-1,sold,479000,-1,3,-1,47 Lincoln Rd,Bowie,,20720,nan,2022-01-04
+97679,sold,,-1,3,0.07,82 Lincoln Ave,Unknown,North Carolina,,,
+78184,-,385000,-1,nan,0.23,390 Madison Ct,North Port,Florida,34286,1708,2022-03-18
+81671,sold,325000,,,8.36,651 Vista Blvd,Unknown,Unknown,65552,1784,2021-12-17
+nan,Unknown,115900,4,1,0.15,380 Valley Ln,Unknown,Ohio,45324,1116,2020-08-03
+28222,sold,2450000,nan,4,0.19,687 Wilson Ave,,California,90064,2751,2022-02-22
+8,for_sale,-1,3,-1,nan,Unknown,,Wyoming,82007,nan,2022-10-31
+75016,sold,317900,nan,2,0.22,168 Bridge Pl,-,,63122,2032,2021-11-23
+,for_sale,-1,-1,2,0.15,277 Princess Dr,Livermore,California,94550,1785,2022-04-22
+3479,sold,,5,4,0.3,864 Lake Ln,Irving,Texas,75060,3110,2021-12-09
+2177,sold,479900,3,2,0.13,842 Cedar Dr,,Colorado,80550,2638,
+106177,for_sale,399500,3,-1,-1,411 Wilson Ave,-,Georgia,31405,1760,2002-06-03
+nan,for_sale,nan,5,3,,217 Church Ln,Calabash,North Carolina,28467,3058,
+-1,sold,249900,3,2,0.41,672 West Pl,Stuarts Draft,Virginia,24477,1827,2022-02-14
+4630,for_sale,519950,4,3,nan,906 Mill Blvd,Huntsville,Alabama,nan,2778,Unknown
+,sold,,,nan,9.0,-,Fairview,Michigan,48621,2064,2022-04-14
+26543,sold,600000,4,nan,1.08,763 Adams Pl,Melbourne,Unknown,32934,3056,-
+84534,sold,689900,3,4,0.07,920 Field Dr,Vienna,Virginia,22180,2075,2022-04-22
+53232,for_sale,330000,2,1,0.3,225 Broadway Ct,Kingston,New York,12401,nan,2014-07-01
+45913,-,nan,nan,nan,-1,94 Washington Ave,Queensbury,New York,12804,-1,2021-11-23
+45807,,-1,-1,2,-1,-,New Middletown,-,44442,1747,1991-04-17
+,for_sale,,5,,0.3,Unknown,Wichita,Unknown,67207,2696,-
+nan,sold,259900,4,2,-1,Unknown,Great Falls,-,59405,,2021-11-09
+22611,for_sale,215000,3,2,0.12,995 Maple Ave,,Illinois,60409,1304,2013-08-15
+nan,sold,nan,3,3,4.44,699 Wilson Dr,Crossville,Tennessee,38555,3352,-
+56699,sold,249900,3,2,0.29,115 Roosevelt Pl,Ellisville,Missouri,nan,2037,2022-03-04
+-1,-,1075000,3,,0.06,162 Mill St,Tustin,Unknown,nan,nan,2011-11-14
+-1,sold,525000,,2,0.59,977 Adams Blvd,Westford,Massachusetts,1886,2211,2021-11-19
+15757,-,,3,nan,0.17,520 View Rd,-,Oklahoma,,1333,2016-06-09
+92736,for_sale,175000,3,2,-1,862 King Blvd,,,nan,1144,2017-12-29
+34888,sold,389000,3,2,0.22,383 Market St,Houston,Texas,77025,1696,2021-12-16
+21986,sold,269900,4,3,0.17,614 Garden Ct,Pooler,Georgia,31322,2368,-
+107955,for_sale,2199000,3,-1,0.3,20 First Dr,,Unknown,2043,-1,1992-10-22
+22721,sold,799999,-1,-1,0.15,900 Baker Ln,-,Massachusetts,,,2022-04-05
+76215,sold,339000,3,,0.34,-,Bella Vista,,72714,2035,
+nan,for_sale,375000,3,-1,0.2,88 East Ave,San Antonio,,78254,2346,2004-05-14
+53592,for_sale,nan,4,-1,,779 Third Blvd,Mchenry,Illinois,60050,4145,2020-04-02
+nan,-,339900,3,2,0.28,676 South Blvd,Troy,Illinois,62294,nan,-
+687,-,355000,3,2,0.19,Unknown,-,Florida,-1,-1,Unknown
+22611,Unknown,280000,4,nan,0.19,952 King Rd,Monroeville,Unknown,15146,-1,Unknown
+57424,sold,935000,5,5,nan,409 Wood Ct,Manteca,-,95337,3789,2022-02-18
+23017,sold,240000,3,2,0.2,,Moses Lake,-,98837,1670,2022-03-09
+79245,for_sale,-1,nan,5,nan,254 Princess Ave,Bettendorf,Iowa,52722,3765,2016-11-21
+86329,for_sale,699000,4,5,14.25,Unknown,Wetumpka,Alabama,36092,4758,2015-02-19
+55214,sold,509900,-1,3,nan,-,San Jacinto,California,92583,2383,Unknown
+81031,Unknown,219000,3,2,,,Chambersburg,Pennsylvania,17202,1189,2021-11-24
+10437,sold,350000,3,2,1.07,70 Cedar Dr,-,Georgia,30041,1681,-
+22916,sold,-1,4,3,0.28,73 Franklin Rd,,North Carolina,,3162,-
+78075,sold,,2,1,0.06,686 East Ln,-,Nevada,-1,nan,2021-11-19
+22671,sold,90000,3,2,0.09,-,,Missouri,63115,-1,2022-03-24
+19903,sold,,3,3,0.18,249 South Pl,Houston,Texas,77030,-1,Unknown
+nan,Unknown,-1,nan,3,0.21,-,Albany,,47320,2009,2020-06-19
+nan,for_sale,-1,nan,,10.0,675 Circle Dr,Hulbert,Oklahoma,74441,1896,2018-04-19
+53177,for_sale,105000,3,,0.24,Unknown,Woodward,Oklahoma,-1,2036,
+nan,for_sale,635000,3,3,0.23,885 Washington Ave,Iselin,-,-1,,-
+,sold,292677,nan,nan,0.29,63 Field Dr,Sumter,South Carolina,29154,-1,Unknown
+19415,for_sale,309000,,,3.0,820 View Ln,Ojibwa,Wisconsin,nan,2025,2020-02-04
+108243,sold,499000,3,3,0.18,,,Washington,nan,2289,2022-03-30
+-1,sold,nan,nan,2,0.15,144 Terrace Blvd,-,Idaho,83605,1574,2021-12-17
+-1,sold,189900,4,1,0.28,286 Bridge Ln,-,Missouri,63114,1624,2022-01-18
+54093,,265000,-1,1,0.03,Unknown,Marathon,Florida,nan,321,Unknown
+58970,Unknown,nan,3,4,nan,Unknown,Kensington,-,-1,2500,
+-1,for_sale,774000,6,4,0.35,668 Maple Ave,Saratoga Springs,Unknown,-1,3625,2019-04-19
+78139,for_sale,425000,1,1,0.58,949 Franklin Blvd,Unknown,Colorado,nan,,
+33901,for_sale,225000,2,2,nan,417 East Ct,Greenfield,Unknown,,,Unknown
+,-,350000,4,2,0.18,,,Texas,nan,-1,2022-03-31
+53673,for_sale,112900,,2,0.5,-,Mount Pleasant,Michigan,48858,,2012-08-13
+16829,,1979000,6,6,0.29,,Port Washington,New York,11050,5828,2017-05-05
+45936,for_sale,nan,3,2,,293 Terrace Ct,Skaneateles,New York,13152,1918,2015-06-15
+85655,sold,nan,3,1,-1,159 Meadow Rd,Scitiate,-,2831,1310,2022-02-04
+,for_sale,1150000,3,2,0.37,223 Lake St,Long Beach,California,90802,,2016-06-10
+75073,Unknown,375000,3,1,-1,766 Church St,Columbus,Ohio,43206,nan,2020-07-06
+nan,sold,,3,2,,52 North Blvd,Alhambra,California,,,2022-04-08
+5145,Unknown,,3,nan,-1,59 Park Blvd,Unknown,,,2796,2022-01-10
+82978,,-1,nan,2,,71 Hill Ln,Temple,Texas,76502,,2013-05-01
+109950,sold,-1,3,,0.23,,Fort Worth,Texas,76133,nan,2022-01-19
+56084,Unknown,279900,2,2,nan,593 Elm Ave,Madison,Wisconsin,53704,1699,
+10649,,219900,3,-1,0.2,430 Church Rd,Allison Park,Pennsylvania,15101,1188,2022-04-13
+-1,for_sale,nan,4,4,,Unknown,Houston,Texas,77082,4156,2013-09-26
+22562,,210000,3,2,0.15,272 Farm Blvd,Dearborn Heights,Michigan,-1,1960,Unknown
+78200,sold,149000,3,nan,0.15,,Akron,-,44314,1560,2022-02-09
+78167,sold,nan,,2,0.15,324 Sunset St,Unknown,Minnesota,55426,1908,2022-04-01"""
 
-# Define a function to perform mean imputation for numerical columns
-def mean_imputation(df):
-    for column in df.columns:
-        if df[column].dtype == 'float64' or df[column].dtype == 'int64':
-            df[column].fillna(df[column].mean(), inplace=True)
-    return df
-
-# Define a function to perform mode imputation for categorical columns
-def mode_imputation(df):
-    for column in df.columns:
-        if df[column].dtype == 'object':
-            df[column].fillna(df[column].mode()[0], inplace=True)
-    return df
-
-# Perform mean imputation for numerical columns
-data = mean_imputation(data)
-
-# Perform mode imputation for categorical columns
-data = mode_imputation(data)
-
-# Display the first few rows of the dataset after imputation
-print(data.head())
+df = pd.read_csv(StringIO(data))
 ```
 
-This script will load the dataset, perform mean imputation for numerical columns, and mode imputation for categorical columns, and then display the first few rows of the dataset after imputation.
+Next, let's handle missing values in each column based on their types (numeric or categorical). For numeric columns, mean/median imputation is commonly used; for categorical columns, mode-based imputation might be appropriate.
 
-Please note that this is a basic example and may not be suitable for all datasets. Depending on the nature of your data and the specific requirements of your analysis, you may need to use more sophisticated imputation techniques.
+Let's first identify which columns contain numerical data and which ones contain non-numerical data:
+
+```python
+# Identify numerical columns
+numerical_cols = df.select_dtypes(include=['float64', 'int64']).columns.tolist()
+
+# Identify non-numerical columns
+non_numerical_cols = [col for col in df.columns if col not in numerical_cols]
+```
+
+Now, perform imputation separately for numerical and non-numerical columns:
+
+```python
+# Impute missing values in numerical columns with median
+df[numerical_cols] = df[numerical_cols].fillna(df[numerical_cols].median())
+
+# Impute missing values in non-numerical columns with mode
+df[non_numerical_cols] = df[non_numerical_cols].apply(lambda x: x.fillna(x.mode()[0]))
+```
+
+Finally, check that all NaNs have been replaced:
+
+```python
+print("Remaining NaN count:", df.isnull().sum())
+```
+
+This will give us an idea of how many remaining NaNs there are after performing the imputation process. If any remain, they may require additional handling depending on your specific use case.
