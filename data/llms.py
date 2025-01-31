@@ -16,9 +16,9 @@ llms = [
     #Llama(
     #    model_name="meta-llama/Meta-Llama-3.1-8B-Instruct"
     #),
-    TableGPT(
-        model_name="tablegpt/TableGPT2-7B"
-    ),
+    #TableGPT(
+    #    model_name="tablegpt/TableGPT2-7B"
+    #),
     TableLLM(
         model_name="RUCKBReasoning/TableLLM-13b"
     )
