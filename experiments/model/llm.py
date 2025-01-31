@@ -260,7 +260,7 @@ class TableLLM(BaseLLM):
             torch_dtype=torch_dtype,
             device_map="auto",  # Permette una gestione automatica del device
             offload_folder=model_dir
-        ).to(device)
+        )
 
     def get_response(self, prompt) -> str:
         messages = [
