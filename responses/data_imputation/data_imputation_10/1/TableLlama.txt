@@ -1,1 +1,1 @@
-yes
+109950,sold,nan,3,2,0.23,Unknown,Fort Worth, Texas,76133,1552,2022-01-19

@@ -1,1 +1,1 @@
-yes
+Dependency discovery is not supported.

@@ -1,1 +1,1 @@
-yes
+97679,sold,440000,3,2,0.22,168 Bridge Pl,Kirkwood,Missouri,65552,1784.0,2021-11-23

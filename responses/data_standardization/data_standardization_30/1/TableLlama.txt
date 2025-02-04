@@ -1,1 +1,1 @@
-yes
+16829,sold,350000,4,2,0.15,159 Meadow Rd,Scituate,Rhode Island,2831,1310,2022-01-10
