@@ -1,4 +1,4 @@
-from experiments.model.llm import GPT, Gemini, Mistral, Llama, Claude, TableGPT, TableLLM
+from experiments.model.llm import GPT, Gemini, Mistral, Llama, Claude, TableGPT, TableLLM, TableLlama
 
 llms = [
     #GPT(
@@ -19,8 +19,11 @@ llms = [
     #TableGPT(
     #    model_name="tablegpt/TableGPT2-7B"
     #),
-    TableLLM(
-        model_name="RUCKBReasoning/TableLLM-13b"
+    #TableLLM(
+    #    model_name="RUCKBReasoning/TableLLM-13b"
+    #),
+    TableLlama(
+        model_name="osunlp/TableLlama"
     )
 ]
 
