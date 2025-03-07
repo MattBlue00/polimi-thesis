@@ -4,6 +4,7 @@ This repository contains materials related to our research thesis project at Pol
 
 ## 📂 Folder Structure
 
+- **`checklists`**: Provides an English version of the blueprint spreadsheets used for evaluating LLM outputs.
 - **`data`**: Includes hard-coded Python files containing information on the LLMs utilized, examined tasks, checklists, and additional relevant details.
 - **`datasets`**: Contains multiple CSV files:
   - **`datasets/dirty`**: Stores CSV versions of dirty datasets that were prompted to LLMs.
